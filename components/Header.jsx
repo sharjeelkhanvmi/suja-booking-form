@@ -1,6 +1,6 @@
 "use client"
 import React, { Fragment, useState } from 'react'
-import Logo from '../assets/images/logo-black.png';
+import Logo from '../images/logo-black.png';
 
 function classNames(...classes) 
 {
