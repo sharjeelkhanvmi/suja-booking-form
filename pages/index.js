@@ -3,7 +3,7 @@ import Form from '../components/Form'
 const index = () => {
   return (
     <div>
-      <Form title="Imayat"/>
+      <Form />
     </div>
   )
 }
