@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
+    "next": "latest",
+    "nodemailer": "^6.9.5",
     "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "autoprefixer": "latest",

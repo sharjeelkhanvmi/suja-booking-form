@@ -149,7 +149,7 @@ const course = () => {
             Back to Postal Code
           </Link>
           <Link
-            href=""
+            href="/course/tests"
             className="bg-red-700 hover:bg-red-600 hover:text-white rounded-md  px-12 py-4 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Continue{" "}

@@ -6,7 +6,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body className='bg-[#f8f8f8]'>
-        <Header/>
+        <Header />
         <Main />
         <NextScript />
       </body>
