@@ -1,3 +1,4 @@
+"use client"
 import { Button, Col, Row } from "antd";
 import React, { useContext } from "react";
 import MultiStepFormContext from "./MultiStepFormContext";
