@@ -8,7 +8,6 @@ const page = () => {
     <div className='bg-[#f2f2f2] h-screen'>
       <Header/>
       <Form/>
-      <h1>Test</h1>
     </div>
   )
 }
