@@ -11,9 +11,8 @@ const Form = () => {
         <hr />
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold lg:text-3xl leading-7 text-gray-900 text-center">
-            Let's pass you fast. Where would you like your lessons to start?
+            Lets pass you fast. Where would you like your lessons to start?
           </h2>
-
           <div className="mt-10 grid">
             <div className="sm:col-span-3">
               <div className="mt-2">
