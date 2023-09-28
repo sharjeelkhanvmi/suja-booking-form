@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    font-size: 18px;
+  }
+  .App {
+    padding: 50px;
+  }
+  .details__wrapper {
+    max-width: 400px;
+    margin: 10em auto;
+  }
+  .form__item {
+    margin-bottom: 1.6em;
+  }
+  label,
+  input {
+    display: block;
+    width: 100%;
+  }
+  .d-flex {
+    display: flex !important;
+  }
+  
+  .justify-content-end {
+    justify-content: flex-end !important;
+  }
+  
+  .justify-content-between {
+    justify-content: space-between !important;
+  }
+  .input__error input {
+    border-color: red;
+  }
+  .error__feedback {
+    color: red;
+  }
+  
