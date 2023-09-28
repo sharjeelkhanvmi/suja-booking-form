@@ -1,9 +1,9 @@
 import React from 'react'
-
+import Form from '../components/Form'
 const index = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Form title="Imayat"/>
     </div>
   )
 }
