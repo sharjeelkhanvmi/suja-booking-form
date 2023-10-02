@@ -9,8 +9,15 @@ const course = () => {
     setToggle(!Toggle);
     console.log(Toggle, "Hide And Show");
   };
+
+  
+  const handlePostalCodeChange = (e) => {
+    e.preventDefault();
+    const newPostalCode = e.target.value;
+    setPostalCode(newPostalCode);
+  };
   return (
-    <form>
+    <form onSubmit={handlePostalCodeChange}>
       <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
         <hr />
         <div className="border-b border-gray-900/10 pb-12">

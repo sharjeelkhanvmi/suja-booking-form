@@ -12,7 +12,7 @@ export async function sendMail(subject, toEmail, otpText) {
       });
 
   let mailOptions = {
-    from: "sharjeelkhanvmi@gmail.com",
+    from: "sujaform@yopmail.com",
     to: toEmail,
     subject: subject,
     text: otpText,

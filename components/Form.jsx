@@ -1,10 +1,26 @@
-"use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { usePostalCode } from "@/pages/PostalCodeContext"; // Adjust the path accordingly
+import { useRouter } from "next/router";
 
 const Form = () => {
+  const [newPostalCode, setNewPostalCode] = useState("");
+  const { updatePostalCode } = usePostalCode(); // Use the context hook
+
+  const router = useRouter();
+
+  const handlePostalCodeChange = (e) => {
+    const postalCode = e.target.value;    
+    setNewPostalCode(postalCode);
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Update postal code in the context
+    console.log("Set Postal Code:", newPostalCode);
+    updatePostalCode(newPostalCode);
+    router.push("/course")
   };
 
   return (
@@ -24,7 +40,9 @@ const Form = () => {
                   placeholder="Postal"
                   id="postal_code"
                   className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-               />
+                  value={newPostalCode} // Bind the value to the state variable
+                  onChange={handlePostalCodeChange} // Update the state on change
+                />
               </div>
             </div>
           </div>
@@ -37,12 +55,16 @@ const Form = () => {
           >
             Back to webite
           </button>
-          <Link
-            href='/course'
+          <div
+            onClick={handleSubmit}
             className="bg-red-700 hover:bg-red-600 hover:text-white rounded-md  px-12 py-4 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Continue to Course  <span className="" aria-hidden="true"> &rarr; </span>
-          </Link>
+            Continue to Course{" "}
+            <span className="" aria-hidden="true">
+              {" "}
+              &rarr;{" "}
+            </span>
+          </div>
         </div>
 
         <div className="p-4 justify-center gap-5 grid lg:grid-cols-3">
@@ -119,7 +141,8 @@ const Form = () => {
             </div>
             <div className="flex-auto">
               <a href="#" className="block font-semibold text-gray-900">
-                100% Money Back Guarantee <span className="absolute inset-0"></span>
+                100% Money Back Guarantee{" "}
+                <span className="absolute inset-0"></span>
               </a>
             </div>
           </div>

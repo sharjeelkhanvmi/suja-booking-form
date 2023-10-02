@@ -1,12 +1,21 @@
-"use client";
 import { React, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import Form from "@/components/Form"; // Make sure the import path is correct
+import { usePostalCode } from "@/pages/PostalCodeContext"; // Adjust the path accordingly
 
 const tests = () => {
+  const { postalCode, updatePostalCode } = usePostalCode(); // Use the context hook
+
   const handleSendEmail = async () => {
     try {
-      await axios.post("/api/api_mailer");
+      // Use postalCode from context
+      
+      console.log("Postal Code:", postalCode);
+
+      // Send email with postalCode
+      await axios.post("/api/api_mailer", { postalCode }); // Send the postal code in the request
+
       console.log("Email sent successfully");
     } catch (error) {
       console.error("Error sending email:", error);
@@ -19,8 +28,16 @@ const tests = () => {
     setToggle(!Toggle);
     console.log(Toggle, "Hide And Show");
   };
+  
+  const handlePostalCodeChange = (e) => {
+    e.preventDefault();
+    const newPostalCode = e.target.value;
+    setPostalCode(newPostalCode);
+  };
+
+
   return (
-    <form>
+    <form onSubmit={handlePostalCodeChange}>
       <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
         <hr />
         <div className="border-b border-gray-900/10 pb-12">
