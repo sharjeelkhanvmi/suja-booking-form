@@ -6,18 +6,16 @@ const handler = async (req, res) => {
    
     switch (method) {
       case "POST": {
-        const { subject, recipient, message, postalCode } = req.body; 
+        const { subject="Subject", message, postalCode } = req.body; 
         console.log("Post Postal Code:", postalCode);
         // Include other required fields
         const emailContent = `
-          Subject: ${subject+postalCode}
-          Recipient: ${recipient+postalCode}
-          Message: ${message+postalCode}
-          Postal Code: ${postalCode}`; // Include postal_code in the email
+          Subject: ${subject}
+          Message: "POSTAL CODE:" + ${postalCode}`; // Include postal_code in the email
 
         try {
           // Send the email
-          await sendMail("TEST", "sharjeelkhanvmi@gmail.com", emailContent);
+          await sendMail(subject, "sharjeelkhanvmi@gmail.com", emailContent);
           
           // Log a success message
           console.log("Email sent successfully");
