@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Form from '../components/Form'
-const index = () => {
+import { PostalProvider } from './Helper/Context' 
+import MyContext from './Helper/Context'
+// Import the context from context.jsx
+
+
+
+const Index = () => {
+  try {
+    const { postal } = useContext(MyContext);
+    console.log(postal);
+  } catch (error) {
+    console.error("Context error:", error);
+  }
+
+  
   return (
-    <div>
+    <PostalProvider> 
+      Abc
       <Form />
-    </div>
+    </PostalProvider>
   )
 }
 
-export default index
+export default Index;

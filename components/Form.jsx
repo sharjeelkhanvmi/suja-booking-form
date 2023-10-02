@@ -1,9 +1,18 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+
 const Form = () => {
+  const [postal, setpostal] = useState([]);
+  const handlePost = (e) => {
+    setpostal(e.target.value);
+    // setpostal((prevState) => {...prevState});
+    console.log(postal);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(postal);
   };
 
   return (
@@ -19,11 +28,12 @@ const Form = () => {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="first-name"
+                  name="postal_code"
                   placeholder="Postal"
-                  id="first-name"
-                  autoComplete="given-name"
+                  id="postal_code"
                   className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={postal}
+                  onChange={handlePost}
                 />
               </div>
             </div>
@@ -38,10 +48,14 @@ const Form = () => {
             Back to webite
           </button>
           <Link
-            href='/course'
+            href="/course"
             className="bg-red-700 hover:bg-red-600 hover:text-white rounded-md  px-12 py-4 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Continue to Course  <span className="" aria-hidden="true"> &rarr; </span>
+            Continue to Course{" "}
+            <span className="" aria-hidden="true">
+              {" "}
+              &rarr;{" "}
+            </span>
           </Link>
         </div>
 
@@ -119,7 +133,8 @@ const Form = () => {
             </div>
             <div className="flex-auto">
               <a href="#" className="block font-semibold text-gray-900">
-                100% Money Back Guarantee <span className="absolute inset-0"></span>
+                100% Money Back Guarantee{" "}
+                <span className="absolute inset-0"></span>
               </a>
             </div>
           </div>

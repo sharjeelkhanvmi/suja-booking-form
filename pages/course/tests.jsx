@@ -1,8 +1,18 @@
 "use client";
 import { React, useState } from "react";
 import Link from "next/link";
+import axios from "axios";
 
 const tests = () => {
+  const handleSendEmail = async () => {
+    try {
+      await axios.post("/api/api_mailer");
+      console.log("Email sent successfully");
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+  };
+
   const [Toggle, setToggle] = useState(false);
 
   const hideShow = () => {
@@ -162,6 +172,7 @@ const tests = () => {
           </Link>
           <Link
             href=""
+            onClick={handleSendEmail}
             className="bg-red-700 hover:bg-red-600 hover:text-white rounded-md  px-12 py-4 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Continue{" "}

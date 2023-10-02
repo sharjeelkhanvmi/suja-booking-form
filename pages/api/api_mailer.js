@@ -1,5 +1,5 @@
 import { sendMail } from "/service/mailService";
-const handler = async (req, res) => {
+const handler = async (req, res) => { 
   try {
     const { method } = req;
   
