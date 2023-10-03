@@ -1,4 +1,4 @@
-import { sendMail } from "/service/mailService";
+import { sendMail } from "@/app/service/mailService";
 
 const handler = async (req, res) => {
   try {

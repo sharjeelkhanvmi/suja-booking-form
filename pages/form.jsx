@@ -1,6 +1,7 @@
+//1st STEP
 import Link from "next/link";
 import React, { useState } from "react";
-import { usePostalCode } from "@/pages/PostalCodeContext"; // Adjust the path accordingly
+import { usePostalCode } from "@/app/context/MyContext"; // Adjust the path accordingly
 import { useRouter } from "next/router";
 
 const Form = () => {

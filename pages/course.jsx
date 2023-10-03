@@ -1,12 +1,9 @@
-"use client";
+//2nd STEP
 import { React, useState } from "react";
 import Link from "next/link";
-import { usePostalCode } from "./PostalCodeContext";
-
 
 const course = () => {
   const [Toggle, setToggle] = useState(false);
-  // const { setPostalCode, updatePostalCode,Names } = usePostalCode(); 
 
   const hideShow = () => {
     setToggle(!Toggle);
@@ -17,7 +14,7 @@ const course = () => {
   const handlePostalCodeChange = (e) => {
     e.preventDefault();
     const newPostalCode = e.target.value;
-    // setPostalCode(newPostalCode);
+    setPostalCode(newPostalCode);
   };
   return (
     <form onSubmit={handlePostalCodeChange}>

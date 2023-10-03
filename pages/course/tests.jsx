@@ -1,15 +1,14 @@
+//3rd STEP
 import { React, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-import Form from "@/components/Form"; // Make sure the import path is correct
-import { usePostalCode } from "@/pages/PostalCodeContext"; // Adjust the path accordingly
+import { usePostalCode } from "@/app/context/MyContext"; // Adjust the path accordingly
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 const tests = () => {
-  const { postalCode, updatePostalCode,Names } = usePostalCode(); // Use the context hook
-  console.log(Names);
+  const { postalCode, updatePostalCode } = usePostalCode(); // Use the context hook
 
   const handleSendEmail = async () => {
     try {
@@ -18,7 +17,7 @@ const tests = () => {
       console.log("Postal Code:", postalCode);
 
       // Send email with postalCode
-      await axios.post("/api/api_mailer", { postalCode }); // Send the postal code in the request
+      await axios.post( "/api/api_mailer" , { postalCode }); // Send the postal code in the request
 
       console.log("Email sent successfully");
       toast.success('Email sent successfully', {

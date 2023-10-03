@@ -7,7 +7,6 @@ const PostalCodeContext = createContext();
 export const PostalCodeProvider = ({ children }) => 
 {
   const [postalCode, setPostalCode] = useState('');
-  const [Names, setNames] = useState("Sharjeel")
 
   const updatePostalCode = (newPostalCode) => {
     setPostalCode(newPostalCode);
@@ -15,7 +14,7 @@ export const PostalCodeProvider = ({ children }) =>
 
  
   return (
-    <PostalCodeContext.Provider value={{ postalCode, updatePostalCode,Names }}>
+    <PostalCodeContext.Provider value={{ postalCode, updatePostalCode }}>
       {children}
     </PostalCodeContext.Provider>
   );

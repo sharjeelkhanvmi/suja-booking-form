@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { PostalCodeProvider } from "./PostalCodeContext"; // Adjust the path accordingly
+import { PostalCodeProvider } from "@/app/context/MyContext"; // Adjust the path accordingly
 
 
 export default function App({ Component, pageProps }) {
