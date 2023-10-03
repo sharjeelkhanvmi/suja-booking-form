@@ -11,17 +11,16 @@ const Form = () => {
   const router = useRouter();
 
   const handlePostalCodeChange = (e) => {
-    const postalCode = e.target.value;    
+    const postalCode = e.target.value;
     setNewPostalCode(postalCode);
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Update postal code in the context
     console.log("Set Postal Code:", newPostalCode);
     updatePostalCode(newPostalCode);
-    router.push("/course")
+    router.push("/course");
   };
 
   return (
