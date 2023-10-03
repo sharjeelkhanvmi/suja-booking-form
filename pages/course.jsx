@@ -1,23 +1,32 @@
 //2nd STEP
 import { React, useState } from "react";
 import Link from "next/link";
+import { usePostalCode } from "@/app/context/MyContext";
 
 const course = () => {
   const [Toggle, setToggle] = useState(false);
+  const [newPostalCode, setNewPostalCode] = useState("");
+  const { Name, setName } = usePostalCode(); // Use the context hook
 
   const hideShow = () => {
     setToggle(!Toggle);
     console.log(Toggle, "Hide And Show");
   };
 
-  
-  const handlePostalCodeChange = (e) => {
-    e.preventDefault();
-    const newPostalCode = e.target.value;
-    setPostalCode(newPostalCode);
+  const handleNameChange = (e) => {
+    const Name = e.target.value;
+    setName(Name);
+    console.log(Name, "Name");
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Update postal code in the context
+   setName(Name);
+  };
+
   return (
-    <form onSubmit={handlePostalCodeChange}>
+    <form onSubmit={handleSubmit}>
       <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
         <hr />
         <div className="border-b border-gray-900/10 pb-12">
@@ -144,6 +153,16 @@ const course = () => {
                   </div>
                 </div>
               </div>
+
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                id="name"
+                className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                value={Name} // Bind the value to the state variable
+                onChange={handleNameChange} // Update the state on change
+              />
             </div>
           </div>
         </div>
@@ -156,6 +175,7 @@ const course = () => {
             Back to Postal Code
           </Link>
           <Link
+          type="submit"
             href="/course/tests"
             className="bg-red-700 hover:bg-red-600 hover:text-white rounded-md  px-12 py-4 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >

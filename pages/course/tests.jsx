@@ -2,22 +2,26 @@
 import { React, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-import { usePostalCode } from "@/app/context/MyContext"; // Adjust the path accordingly
+import { usePostalCode } from "@/app/context/MyContext"; // Use For Context API Global Setting
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 const tests = () => {
-  const { postalCode, updatePostalCode } = usePostalCode(); // Use the context hook
+  const { postalCode, updatePostalCode,setName,Name,setPostalCode } = usePostalCode(); // Use the context hook
 
-  const handleSendEmail = async () => {
+  const handleSendEmail = async (e) => {
+
+    e.preventDefault();
+
+    
     try {
-      // Use postalCode from context
-      
+      // Use postalCode from context      
       console.log("Postal Code:", postalCode);
 
       // Send email with postalCode
-      await axios.post( "/api/api_mailer" , { postalCode }); // Send the postal code in the request
+      await axios.post( "/api/api_mailer" , { postalCode,Name });
+          // Send the postal code in the request
 
       console.log("Email sent successfully");
       toast.success('Email sent successfully', {
@@ -56,7 +60,7 @@ const tests = () => {
         <hr />
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold lg:text-3xl leading-7 text-gray-900 text-center">
-            Tests
+            Tests {Name}
           </h2>
           <div className="mt-10 grid">
             <div className="w-full mb-5 pr-4">
