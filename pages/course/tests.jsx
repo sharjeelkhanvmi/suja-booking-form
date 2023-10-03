@@ -8,7 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const tests = () => {
-  const { postalCode, updatePostalCode } = usePostalCode(); // Use the context hook
+  const { postalCode, updatePostalCode,Names } = usePostalCode(); // Use the context hook
+  console.log(Names);
 
   const handleSendEmail = async () => {
     try {
