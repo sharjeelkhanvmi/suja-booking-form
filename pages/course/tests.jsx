@@ -3,6 +3,9 @@ import Link from "next/link";
 import axios from "axios";
 import Form from "@/components/Form"; // Make sure the import path is correct
 import { usePostalCode } from "@/pages/PostalCodeContext"; // Adjust the path accordingly
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const tests = () => {
   const { postalCode, updatePostalCode } = usePostalCode(); // Use the context hook
@@ -17,6 +20,16 @@ const tests = () => {
       await axios.post("/api/api_mailer", { postalCode }); // Send the postal code in the request
 
       console.log("Email sent successfully");
+      toast.success('Email sent successfully', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     } catch (error) {
       console.error("Error sending email:", error);
     }
@@ -39,6 +52,7 @@ const tests = () => {
   return (
     <form onSubmit={handlePostalCodeChange}>
       <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
+      <ToastContainer />
         <hr />
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold lg:text-3xl leading-7 text-gray-900 text-center">
