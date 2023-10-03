@@ -5,18 +5,11 @@ import Link from "next/link";
 const Student = () => {
   const [Toggle, setToggle] = useState(false);
 
-  const hideShow = () => {
-    setToggle(!Toggle);
-    console.log(Toggle, "Hide And Show");
-  };
-
-  const handlePostalCodeChange = (e) => {
-    e.preventDefault();
-    const newPostalCode = e.target.value;
-    setPostalCode(newPostalCode);
-  };
   return (
     <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
+      <label className='uppercase text-xs tracking-wide font-bold text-opacity-70 text-dust "text-opacity-70" '>
+        Title
+      </label>
       <div className="w-full mb-5 pr-4">
         <h1 className=" text-[21px] leading-snug font-semibold">
           Let's get to know each other
@@ -28,9 +21,6 @@ const Student = () => {
           </span>
         </p>
       </div>
-      <label className='uppercase text-xs tracking-wide font-bold text-opacity-70 text-dust "text-opacity-70" '>
-        Title
-      </label>
       <div className="mt-1">
         <div className="grid grid-cols-4 gap-3">
           <button className=" w-full bg-pmfGray  bg- flex border items-center justify-center px-4 py-2 rounded-md font-semibold text-[15px] outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 hover:bg-pmfGraySecondary transition-all">

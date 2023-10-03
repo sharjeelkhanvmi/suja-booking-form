@@ -6,12 +6,14 @@ const handler = async (req, res) => {
    
     switch (method) {
       case "POST": {
-        const { subject="Static Subject", Name, postalCode } = req.body; 
+        const { subject="Static Subject", Name, postalCode,Email } = req.body; 
         // Include other required fields
         const emailContent = `
           Subject: ${subject}
-          Message: "POSTAL CODE:" + ${postalCode}
-          Name: + ${Name}`; // Include postal_code in the email
+          Message: "POSTAL CODE:"  ${postalCode}
+          Name:  ${Name}
+          `
+          ; // Include postal_code in the email
 
         try {
           // Send the email

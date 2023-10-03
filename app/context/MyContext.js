@@ -4,18 +4,18 @@ import React, { createContext, useContext, useState } from "react";
 const PostalCodeContext = createContext();
 
 // Create a PostalCodeProvider component to wrap your app
-export const PostalCodeProvider = ({ children }) => 
-{
-  const [postalCode, setPostalCode] = useState('');
-  const [Name, setName] = useState('');
+export const PostalCodeProvider = ({ children }) => {
+  const [postalCode, setPostalCode] = useState("");
+  const [Name, setName] = useState("");
 
   const updatePostalCode = (newPostalCode) => {
     setPostalCode(newPostalCode);
   };
 
- 
   return (
-    <PostalCodeContext.Provider value={{ postalCode, updatePostalCode,Name, setName }}>
+    <PostalCodeContext.Provider
+      value={{ postalCode, updatePostalCode, Name, setName}}
+    >
       {children}
     </PostalCodeContext.Provider>
   );
