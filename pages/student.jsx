@@ -1,4 +1,4 @@
-//Fourth STEP
+//4th STEP
 import { React, useState } from "react";
 import Link from "next/link";
 

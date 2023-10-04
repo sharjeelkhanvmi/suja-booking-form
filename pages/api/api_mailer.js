@@ -11,9 +11,7 @@ const handler = async (req, res) => {
         const emailContent = `
           Subject: ${subject}
           Message: "POSTAL CODE:"  ${postalCode}
-          Name:  ${Name}
-          `
-          ; // Include postal_code in the email
+          Name:  ${Name}`; // Include postal_code in the email
 
         try {
           // Send the email
