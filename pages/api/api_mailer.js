@@ -6,7 +6,11 @@ const handler = async (req, res) => {
    
     switch (method) {
       case "POST": {
-        const { subject="Static Subject", Name, postalCode,Email } = req.body; 
+        
+        const pageTitle = req.headers.referer.split("/").pop(); // Extract the page title from the referer header
+        const pageTitleplusname = pageTitle + " - " + req.body.Name; // get page title and name in the subject
+
+        const { subject=pageTitleplusname , Name, postalCode,Email } = req.body;
         // Include other required fields
         const emailContent = `
           Subject: ${subject}

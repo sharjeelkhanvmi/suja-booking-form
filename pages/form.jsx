@@ -21,6 +21,7 @@ const Form = () => {
     console.log("Set Postal Code:", newPostalCode);
     updatePostalCode(newPostalCode);
     router.push("/course");
+
   };
 
   return (
@@ -35,6 +36,7 @@ const Form = () => {
             <div className="sm:col-span-3">
               <div className="mt-2">
                 <input
+                  required="required"
                   type="text"
                   name="postal_code"
                   placeholder="Postal"

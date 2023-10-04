@@ -4,7 +4,9 @@ const dataModel= new mongoose.Schema ({
     lname:String,
     company:String,
     position:String,
-    year:String
+    year:String,
+    postalcode:String,
+    email:String
 });
 
 export const leadData = mongoose.models.sujaforms || mongoose.model("sujaforms", dataModel);

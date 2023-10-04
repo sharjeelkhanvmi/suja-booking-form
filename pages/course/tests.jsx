@@ -32,6 +32,37 @@ const tests = () => {
         progress: undefined,
         theme: "light",
       });
+
+      try {
+        const response = await axios.post("/api/newdata/", {
+          postalCode,
+          Name,
+        });
+        // Handle success
+        toast.success("Data successfully saved", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } catch (error) {
+        console.error(error);
+        // Handle error
+        toast.error("Error saving data to the database", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     } catch (error) {
       console.error("Error sending email:", error);
     }
@@ -41,7 +72,7 @@ const tests = () => {
 
   const hideShow = () => {
     setToggle(!Toggle);
-    console.log(Toggle, "Hide And Show");
+    console.log(Toggle, "Hide and Show");
   };
 
   const handlePostalCodeChange = (e) => {
@@ -209,8 +240,7 @@ const tests = () => {
           >
             Continue{" "}
             <span className="" aria-hidden="true">
-              {" "}
-              &rarr;{" "}
+            
             </span>
           </Link>
         </div>

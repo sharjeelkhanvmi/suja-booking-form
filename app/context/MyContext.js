@@ -14,7 +14,7 @@ export const PostalCodeProvider = ({ children }) => {
 
   return (
     <PostalCodeContext.Provider
-      value={{ postalCode, updatePostalCode, Name, setName}}
+      value={{ postalCode, updatePostalCode, Name, setName,setPostalCode}}
     >
       {children}
     </PostalCodeContext.Provider>
@@ -25,7 +25,7 @@ export const PostalCodeProvider = ({ children }) => {
 export const usePostalCode = () => {
   const context = useContext(PostalCodeContext);
 
-  console.log("COnentext Postal Code:", context.postalCode);
+  console.log("Context Postal Code:", context.postalCode);
   if (!context) {
     throw new Error("usePostalCode must be used within a PostalCodeProvider");
   }
