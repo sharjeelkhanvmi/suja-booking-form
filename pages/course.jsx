@@ -72,8 +72,7 @@ const course = () => {
                   >
                     <div className="mb-8 p-5 bg-white w-full rounded-lg border-2 border-secondary">
                       <p className=" text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
-                        Decide whether you want to be in charge of changing
-                        gears or not. If you pass in an automatic, you're
+                        Decide whether you want to be in charge of changing gears or not. If you pass in an automatic, you're
                         legally allowed to drive automatic vehicles only, but if
                         you pass in a manual, you can drive either.
                       </p>
