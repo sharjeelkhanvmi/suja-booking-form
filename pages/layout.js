@@ -1,3 +1,4 @@
+"use client"
 export const metadata = {
   title: 'Suja Driving School Booking',
   description: 'Booking form for Suja Driving School',
