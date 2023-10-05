@@ -1,14 +1,14 @@
 //1st STEP
 import Link from "next/link";
 import React, { useState } from "react";
-import { usePostalCode } from "@/app/context/MyContext"; // Adjust the path accordingly
+import { useContexData } from "@/app/context/MyContext"; // Adjust the path accordingly
 import { useRouter } from "next/router";
 import Head from 'next/head';
 import ThreeBoxes from '@/app/components/3boxes';
 
 const Form = () => {
   const [newPostalCode, setNewPostalCode] = useState("");
-  const { updatePostalCode } = usePostalCode(); // Use the context hook
+  const { updatePostalCode } = useContexData(); // Use the context hook
 
   const router = useRouter();
 

@@ -1,14 +1,14 @@
 //2nd STEP
 import { React, useState } from "react";
 import Link from "next/link";
-import { usePostalCode } from "@/app/context/MyContext";
+import { useContexData } from "@/app/context/MyContext";
 import Head from 'next/head';
 import ThreeBoxes from '@/app/components/3boxes';
 
 const course = () => {
   const [Toggle, setToggle] = useState(false);
   const [newPostalCode, setNewPostalCode] = useState("");
-  const { Name, setName } = usePostalCode(); // Use the context hook
+  const { Name, setName } = useContexData(); // Use the context hook
 
   const hideShow = () => {
     setToggle(!Toggle);

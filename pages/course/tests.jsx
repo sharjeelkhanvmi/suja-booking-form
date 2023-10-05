@@ -2,7 +2,7 @@
 import { React, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-import { usePostalCode } from "@/app/context/MyContext"; // Use For Context API Global Setting
+import { useContexData } from "@/app/context/MyContext"; // Use For Context API Global Setting
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Head from 'next/head';
@@ -10,7 +10,7 @@ import ThreeBoxes from '@/app/components/3boxes';
 
 const tests = () => {
   const { postalCode, updatePostalCode, setName, Name, setPostalCode } =
-    usePostalCode(); // Use the context hook
+    useContexData(); // Use the context hook
 
   const handleSendEmail = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const tests = () => {
       });
 
       try {
-        const response = await axios.post("/api/newdata/", {
+        const response = await axios.post("/api/formdata/postdata", {
           postalCode,
           Name,
         });

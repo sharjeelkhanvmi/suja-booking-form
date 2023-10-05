@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState } from "react";
 
 // Create a context for managing postal code
-const PostalCodeContext = createContext();
+const MyContext = createContext();
 
-// Create a PostalCodeProvider component to wrap your app
-export const PostalCodeProvider = ({ children }) => {
+// Create a ContexProvider component to wrap your app
+export const ContexProvider = ({ children }) => 
+{
   const [postalCode, setPostalCode] = useState("");
   const [Name, setName] = useState("");
 
@@ -13,21 +14,23 @@ export const PostalCodeProvider = ({ children }) => {
   };
 
   return (
-    <PostalCodeContext.Provider
+    <MyContext.Provider
       value={{ postalCode, updatePostalCode, Name, setName,setPostalCode}}
     >
       {children}
-    </PostalCodeContext.Provider>
+    </MyContext.Provider>
   );
 };
 
 // Custom hook to access the postal code and update function
-export const usePostalCode = () => {
-  const context = useContext(PostalCodeContext);
+export const useContexData = () => {
+  const context = useContext(MyContext);
 
   console.log("Context Postal Code:", context.postalCode);
-  if (!context) {
-    throw new Error("usePostalCode must be used within a PostalCodeProvider");
+
+  if (!context) 
+  {
+    throw new Error("useContexData must be used within a ContexProvider");
   }
   return context;
 };
