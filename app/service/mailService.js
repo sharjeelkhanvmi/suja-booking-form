@@ -1,18 +1,17 @@
 var nodemailer = require("nodemailer");
-require('dotenv').config();
 //-----------------------------------------------------------------------------
 export async function sendMail(subject, toEmail, otpText) {
     var transport = nodemailer.createTransport({
-        host: "smtp-relay.brevo.com",
-        port: 587,
+        host: process.env.SMTPHOST,
+        port: process.env.SMTPPORT,
         auth: {
-          user: "sharjeelkhanvmi@gmail.com",
-          pass: "LZ1KBsEDn4NzAxwO"
+          user: process.env.SMTPUSERNAME,
+          pass: process.env.SMTPPASSWORD
         }
       });
 
   let mailOptions = {
-    from: "sharjeelkhanvmi@gmail.com",
+    from: process.env.SMTPUSERNAME,
     to: toEmail,
     subject: subject,
     text: otpText,
@@ -27,3 +26,39 @@ export async function sendMail(subject, toEmail, otpText) {
     }
   });
 }
+
+export const register_user = async (formData) => {
+  try {
+      const res = await fetch('/api/auth/register', {
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify(formData),
+      });
+      const data = res.json();
+      return data;
+  } catch (error) {
+      console.log('Error in register_user (service) => ', error);
+      return error.message
+  }
+};
+
+
+export const login_user = async (formData) => {
+  try {
+      const res = await fetch('/api/auth/login', {
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify(formData),
+      });
+      const data = res.json();
+      return data;
+  } catch (error) {
+      console.log('Error in login_user (service) => ', error);
+      console.log('CUSTOM SYSTUMMMM ',res,formData);
+      return error.message
+  }
+};

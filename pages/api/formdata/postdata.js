@@ -1,14 +1,10 @@
-import { connectionSuja } from "@/database/dbconstr";
+import  connectionSuja  from "@/database/dbconstr";
 import { leadData } from "@/database/models/schema";
-import mongoose from "mongoose";
 
 export default async function POST(req, res) {
   const { Name, postalCode,Email } = req.body; 
-  //const { postalCode } = req.body.payload();
-  // console.log(res);
-  // return false;
   try {
-    await mongoose.connect(connectionSuja);
+    await connectionSuja();
     const newData = new leadData({
       fname: Name,
       lname: "Sha23h",
