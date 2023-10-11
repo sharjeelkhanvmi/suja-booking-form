@@ -87,7 +87,7 @@ const tests = () => {
     <>
     <Head>
       <title>Tests - Suja Driving School Booking</title>
-      <meta name='description' content='I hope this tutorial is helpful for you' />
+      <meta name='description' content='Form - Suja Driving School Booking' />
     </Head>
     <form onSubmit={handlePostalCodeChange}>
       <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
