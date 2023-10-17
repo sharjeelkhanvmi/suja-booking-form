@@ -1,12 +1,12 @@
 /* eslint-disable */
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import DashIcon from "components/icons/DashIcon";
+// import { Link, useLocation } from "react-router-dom";
+// import DashIcon from "components/icons/DashIcon";
 // chakra imports
 
 export function SidebarLinks(props) {
   // Chakra color mode
-  let location = useLocation();
+  let location = location();
 
   const { routes } = props;
 

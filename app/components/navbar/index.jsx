@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Dropdown from "@/app/components/dropdown";
+import Cookies from "js-cookie";
+import Router from "next/router";
 import { FiAlignJustify } from "react-icons/fi";
 // import { Link } from "react-router-dom";
-// import navbarimage from "assets/img/layout/Navbar.png";
+import navbarimage from "@/public/assets/favicon-suja.png";
 import { BsArrowBarUp } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
@@ -10,9 +12,17 @@ import {
   IoMdNotificationsOutline,
   IoMdInformationCircleOutline,
 } from "react-icons/io";
-// import avatar from "assets/img/avatars/avatar4.png";
+import avatar from "@/public/assets/favicon-suja.png";
+import Link from "next/link";
+import jwt_decode from "jwt-decode";
 
 const Navbar = (props) => {
+    const { name } = props; // Destructuring the name prop
+    const logout = () => {
+      Cookies.remove("token");
+      Router.push("/admin");
+  };
+
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
 
@@ -22,27 +32,27 @@ const Navbar = (props) => {
         <div className="h-6 w-[224px] pt-1">
           <a
             className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            href=" "
+            href="#"
           >
             Pages
             <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
               {" "}
-              /{" "}
+              / Dashboard - {name}
             </span>
           </a>
           <Link
             className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            to="#"
+            href="#"
           >
             {brandText}
           </Link>
         </div>
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
           <Link
-            to="#"
+            href="/home"
             className="font-bold capitalize hover:text-navy-700 dark:hover:text-white"
           >
-            {brandText}
+            Dashboard
           </Link>
         </p>
       </div>
@@ -180,7 +190,8 @@ const Navbar = (props) => {
           button={
             <img
               className="h-10 w-10 rounded-full"
-              src={avatar}
+              // src={avatar}
+              src="https://e7.pngegg.com/pngimages/520/472/png-clipart-computer-icons-avatar-man-male-face-head-man-icon-miscellaneous-human-thumbnail.png"
               alt="Elon Musk"
             />
           }
@@ -189,7 +200,7 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    👋 Hey, Adela
+                    👋 Hey, {name}
                   </p>{" "}
                 </div>
               </div>
@@ -208,9 +219,7 @@ const Navbar = (props) => {
                 >
                   Newsletter Settings
                 </a>
-                <a
-                  href=" "
-                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
+                <a  href="#" onClick={logout}  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
                 >
                   Log Out
                 </a>
@@ -223,5 +232,31 @@ const Navbar = (props) => {
     </nav>
   );
 };
+
+
+export async function getServerSideProps(context) {
+  const token = context.req.cookies.token;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/admin",
+        permanent: false,
+      },
+    };
+  }
+
+  const decodedToken = jwt_decode(token);
+  const name = decodedToken.name;
+
+  console.log("Decoded Token:", decodedToken);
+  console.log("Name:", name);
+
+  return {
+    props: {
+      name: name,
+    },
+  };
+}
 
 export default Navbar;
