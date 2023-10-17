@@ -1,48 +1,74 @@
+"use client"
+
 import Link from "next/link";
-import React, { useState } from "react";
 import { useContexData } from "@/app/context/MyContext"; // Adjust the path accordingly
 import { useRouter } from "next/router";
 import Head from 'next/head';
 import ThreeBoxes from '@/app/components/3boxes';
 import Joi from "joi";
 
-const schema = Joi.object({
-  postal_code: Joi.string().required().regex(/^\d{5}$/).messages({
-    "string.base": "Postal code must be a string",
-    "string.empty": "Postal code is required",
-    "string.pattern.base": "Postal code must be a 5-digit number",
-  }),
-});
+import { createContext, useState, useEffect } from "react";
+import Stepper from "@/app/components/Stepper";
+import Step from "@/app/components/Step";
+export const FormContext = createContext();
+
+
+// const schema = Joi.object({
+//   postal_code: Joi.string().required().regex(/^\d{5}$/).messages({
+//     "string.base": "Postal code must be a string",
+//     "string.empty": "Postal code is required",
+//     "string.pattern.base": "Postal code must be a 5-digit number",
+//   }),
+// });
 
 const Form = () => {
-  const [newPostalCode, setNewPostalCode] = useState("");
-  const [postalCodeError, setPostalCodeError] = useState(""); // State for validation error message
-  const { updatePostalCode } = useContexData(); // Use the context hook
+  let active;
+  // if (typeof window !== 'undefined') {
+  //   active = localStorage.getItem('activeStepIndex')
+  // }
 
-  const router = useRouter();
+  const [activeStepIndex, setActiveStepIndex] = useState(active || 0);
+  const [formData, setFormData] = useState({});
 
-  const handlePostalCodeChange = (e) => {
-    const postalCode = e.target.value;
-    setNewPostalCode(postalCode);
-    setPostalCodeError(""); // Clear the validation error message on change
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  
 
-    const { error } = schema.validate({ postal_code: newPostalCode });
+  // useEffect(() => {
+  //   let data = localStorage.getItem('activeStepIndex')
+  //   if(activeStepIndex > data) localStorage.setItem('activeStepIndex', data)
 
-    if (error) {
-      // Set the validation error message
-      setPostalCodeError(error.details[0].message);
-      return;
-    }
+  // }, []);
+  
+  
 
-    // Update postal code in the context
-    console.log("Set Postal Code:", newPostalCode);
-    updatePostalCode(newPostalCode);
-    router.push("/course");
-  };
+  // const [newPostalCode, setNewPostalCode] = useState("");
+  // const [postalCodeError, setPostalCodeError] = useState(""); // State for validation error message
+  // const { updatePostalCode } = useContexData(); // Use the context hook
+
+  // const router = useRouter();
+
+  // const handlePostalCodeChange = (e) => {
+  //   const postalCode = e.target.value;
+  //   setNewPostalCode(postalCode);
+  //   setPostalCodeError(""); // Clear the validation error message on change
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const { error } = schema.validate({ postal_code: newPostalCode });
+
+  //   if (error) {
+  //     // Set the validation error message
+  //     setPostalCodeError(error.details[0].message);
+  //     return;
+  //   }
+
+  //   // Update postal code in the context
+  //   console.log("Set Postal Code:", newPostalCode);
+  //   updatePostalCode(newPostalCode);
+  //   router.push("/course");
+  //};
 
   return (
     <>
@@ -50,7 +76,8 @@ const Form = () => {
         <title>Form - Suja Driving School Booking</title>
         <meta name='description' content='Form - Suja Driving School Booking' />
       </Head>
-      <form onSubmit={handleSubmit}>
+
+      {/* <form onSubmit={handleSubmit}>
         <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold lg:text-3xl leading-7 text-gray-900 text-center">
@@ -94,7 +121,14 @@ const Form = () => {
           </div>
           <ThreeBoxes/>
         </div>
-      </form>
+      </form> */}
+      
+    <FormContext.Provider value={{ activeStepIndex, setActiveStepIndex, formData, setFormData }} >
+      <div className="w-screen h-screen flex flex-col items-center justify-start">
+        <Stepper />
+        <Step />
+      </div>
+    </FormContext.Provider>
     </>
   );
 };

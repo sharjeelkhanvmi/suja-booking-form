@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
-    const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+    const [formData, setFormData] = useState({ fname: "", email: "", password: "", lname: "", phone: "", role: "customer" });
 
 
 
@@ -32,9 +32,18 @@ export default function Register() {
                             </h1>
                             <form onSubmit={handleSubmit} className=" space-y-4 md:space-y-6" action="#">
                                 <div className='text-left'>
-                                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-black dark:text-white">Your Name</label>
-                                    <input onChange={(e) => setFormData({ ...formData, name: e.target.value })} type="text" name="name" id="name" className="bg-indigo-50 border border-indigo-300 text-indigo-700 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-indigo-700 dark:border-indigo-600 dark:placeholder-indigo-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Abdullah Moiz" required="" />
+                                    <label htmlFor="fname" className="block mb-2 text-sm font-medium text-black dark:text-white">First Name</label>
+                                    <input onChange={(e) => setFormData({ ...formData, fname: e.target.value })} type="text" name="fname" id="fname" className="bg-indigo-50 border border-indigo-300 text-indigo-700 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-indigo-700 dark:border-indigo-600 dark:placeholder-indigo-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Abdullah Moiz" required="" />
                                 </div>
+                                <div className='text-left'>
+                                    <label htmlFor="lname" className="block mb-2 text-sm font-medium text-black dark:text-white">Last Name</label>
+                                    <input onChange={(e) => setFormData({ ...formData, lname: e.target.value })} type="text" name="lname" id="lname" className="bg-indigo-50 border border-indigo-300 text-indigo-700 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-indigo-700 dark:border-indigo-600 dark:placeholder-indigo-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Abdullah Moiz" required="" />
+                                </div>
+                                <div className='text-left'>
+                                    <label htmlFor="phone" className="block mb-2 text-sm font-medium text-black dark:text-white">Phone Number</label>
+                                    <input onChange={(e) => setFormData({ ...formData, phone: e.target.value })} type="text" name="phone" id="phone" className="bg-indigo-50 border border-indigo-300 text-indigo-700 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-indigo-700 dark:border-indigo-600 dark:placeholder-indigo-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Abdullah Moiz" required="" />
+                                </div>
+                                
                                 <div className='text-left'>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-black dark:text-white">Your email</label>
                                     <input onChange={(e) => setFormData({ ...formData, email: e.target.value })} type="email" name="email" id="email" className="bg-indigo-50 border border-indigo-300 text-indigo-700 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-indigo-700 dark:border-indigo-600 dark:placeholder-indigo-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
@@ -59,19 +68,19 @@ export default function Register() {
 }
 
 
-export async function getServerSideProps(context) {
-    const token = context.req.cookies.token
+// export async function getServerSideProps(context) {
+//     const token = context.req.cookies.token
   
-    if (token) {
-      return {
-        redirect: {
-          destination: '/home',
-          permanent: false,
-        },
-      }
-    }
+//     if (token) {
+//       return {
+//         redirect: {
+//           destination: '/home',
+//           permanent: false,
+//         },
+//       }
+//     }
   
-    return {
-      props: {},
-    }
-  }
+//     return {
+//       props: {},
+//     }
+//   }

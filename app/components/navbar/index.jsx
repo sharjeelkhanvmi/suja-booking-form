@@ -17,7 +17,7 @@ import Link from "next/link";
 import jwt_decode from "jwt-decode";
 
 const Navbar = (props) => {
-    const { name } = props; // Destructuring the name prop
+    const { name, user } = props;
     const logout = () => {
       Cookies.remove("token");
       Router.push("/admin");
@@ -30,6 +30,7 @@ const Navbar = (props) => {
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
         <div className="h-6 w-[224px] pt-1">
+        {user.role == 'admin' ? 
           <a
             className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
             href="#"
@@ -37,9 +38,10 @@ const Navbar = (props) => {
             Pages
             <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
               {" "}
-              / Dashboard - {name}
+              / Dashboard - { name }
             </span>
           </a>
+          : ""}
           <Link
             className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
             href="#"
@@ -200,7 +202,7 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    👋 Hey, {name}
+                    :wave: Hey, {name}
                   </p>{" "}
                 </div>
               </div>
@@ -245,18 +247,6 @@ export async function getServerSideProps(context) {
       },
     };
   }
-
-  const decodedToken = jwt_decode(token);
-  const name = decodedToken.name;
-
-  console.log("Decoded Token:", decodedToken);
-  console.log("Name:", name);
-
-  return {
-    props: {
-      name: name,
-    },
-  };
 }
 
 export default Navbar;

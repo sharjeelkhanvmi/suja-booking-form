@@ -87,7 +87,7 @@ const tests = () => {
     <>
     <Head>
       <title>Tests - Suja Driving School Booking</title>
-      <meta name='description' content='Form - Suja Driving School Booking' />
+      <meta name='description' content='I hope this tutorial is helpful for you' />
     </Head>
     <form onSubmit={handlePostalCodeChange}>
       <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
@@ -120,7 +120,7 @@ const tests = () => {
                 <div className=" w-full flex justify-between items-center">
                   <div className="flex items-center">
                     <div className="pr-5 false">
-                    <svg width={30} height={30} viewBox="0 0 52 73" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fillRule="evenodd" clipRule="evenodd" d="M51 36.5C51 50.307 39.807 61.5 26 61.5C12.193 61.5 1 50.307 1 36.5C1 22.693 12.193 11.5 26 11.5C39.807 11.5 51 22.693 51 36.5Z" stroke="currentColor" strokeWidth={2} /> <path d="M16 71.5H36" stroke="currentColor" strokeWidth={2} /> <path d="M26 26.5V16.5" stroke="currentColor" strokeWidth={2} /> <path d="M31 1.5H21" stroke="currentColor" strokeWidth={2} /> <path d="M26 11.5V1.5" stroke="currentColor" strokeWidth={2} /> <path d="M26 56.5V46.5" stroke="currentColor" strokeWidth={2} /> <path d="M36 36.5H46" stroke="currentColor" strokeWidth={2} /> <path d="M6 36.5H16" stroke="currentColor" strokeWidth={2} /> <path d="M18.9289 29.4289L11.8579 22.3579" stroke="currentColor" strokeWidth={2} /> <path d="M40.1421 50.6421L33.0711 43.5711" stroke="currentColor" strokeWidth={2} /> <path d="M33.0711 29.4289L40.1421 22.3579" stroke="currentColor" strokeWidth={2} /> <path d="M11.8579 50.6421L18.9289 43.5711" stroke="currentColor" strokeWidth={2} /> </svg>
+                    <svg width={30} height={30} viewBox="0 0 52 73" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fillRule="evenodd" clipRule="evenodd" d="M51 36.5C51 50.307 39.807 61.5 26 61.5C12.193 61.5 1 50.307 1 36.5C1 22.693 12.193 11.5 26 11.5C39.807 11.5 51 22.693 51 36.5Z" stroke="currentColor" stroke-width={2} /> <path d="M16 71.5H36" stroke="currentColor" stroke-width={2} /> <path d="M26 26.5V16.5" stroke="currentColor" stroke-width={2} /> <path d="M31 1.5H21" stroke="currentColor" stroke-width={2} /> <path d="M26 11.5V1.5" stroke="currentColor" stroke-width={2} /> <path d="M26 56.5V46.5" stroke="currentColor" stroke-width={2} /> <path d="M36 36.5H46" stroke="currentColor" stroke-width={2} /> <path d="M6 36.5H16" stroke="currentColor" stroke-width={2} /> <path d="M18.9289 29.4289L11.8579 22.3579" stroke="currentColor" stroke-width={2} /> <path d="M40.1421 50.6421L33.0711 43.5711" stroke="currentColor" stroke-width={2} /> <path d="M33.0711 29.4289L40.1421 22.3579" stroke="currentColor" stroke-width={2} /> <path d="M11.8579 50.6421L18.9289 43.5711" stroke="currentColor" stroke-width={2} /> </svg>
                     </div>
                     <div className="">
                       <div className=" false">

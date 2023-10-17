@@ -4,7 +4,10 @@ import Joi from "joi";
 import bcrypt from "bcrypt";
 
 const schema = Joi.object({
-  name: Joi.string().required(),
+  fname: Joi.string().required(),
+  lname: Joi.string().required(),
+  phone: Joi.string().required(),
+  role: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(8).required(),
 });
@@ -12,9 +15,9 @@ const schema = Joi.object({
 export default async (req, res) => {
   await connectionSuja();
 
-  const { name, email, password } = req.body;
+  const { fname, lname, phone, role, email, password } = req.body;
 
-  const { error } = schema.validate({ name, email, password });
+  const { error } = schema.validate({ fname, lname, phone, role, email, password });
 
   if (error) {
     return res
@@ -34,7 +37,7 @@ export default async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
 
-    const user = await User.create({ name, email, password: hashPassword });
+    const user = await User.create({ fname, lname, phone, role, email, password: hashPassword });
 
     if (user) {
       return res

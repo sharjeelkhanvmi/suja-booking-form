@@ -1,12 +1,12 @@
 import MiniCalendar from "@/app/components/calendar/MiniCalendar";
-import WeeklyRevenue from "@/app/components/default/WeeklyRevenue";
-import TotalSpent from "@/app/components/default/TotalSpent";
-import PieChartCard from "@/app/components/default/PieChartCard";
+import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue";
+import TotalSpent from "views/admin/default/components/TotalSpent";
+import PieChartCard from "views/admin/default/components/PieChartCard";
 import { IoMdHome } from "react-icons/io";
 import { IoDocuments } from "react-icons/io5";
 import { MdBarChart, MdDashboard } from "react-icons/md";
 
-import { columnsDataCheck, columnsDataComplex } from "@/app/components/default/variables/columnsData";
+import { columnsDataCheck, columnsDataComplex } from "./variables/columnsData";
 
 import Widget from "@/app/components/widget/Widget";
 import CheckTable from "views/admin/default/components/CheckTable";
