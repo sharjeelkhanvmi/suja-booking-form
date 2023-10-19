@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { FormContext } from "@/pages/form";
 import * as yup from "yup";
 
-
 function Basic() {
   const { activeStepIndex, setActiveStepIndex, formData, setFormData } =
     useContext(FormContext);
