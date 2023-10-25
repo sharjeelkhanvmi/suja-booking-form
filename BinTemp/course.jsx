@@ -55,7 +55,7 @@ const course = () => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
+                      strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
@@ -86,7 +86,7 @@ const course = () => {
                       <div className=" w-full flex justify-between items-center">
                         <div className="flex items-center">
                           <div className="pr-5 false">
-                          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fillRule="evenodd" clipRule="evenodd" d="M23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1C18.075 1 23 5.925 23 12Z" stroke="currentColor" stroke-width="2" ></path> <path fillRule="evenodd" clipRule="evenodd" d="M23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1C18.075 1 23 5.925 23 12Z" stroke="currentColor" stroke-width="2" ></path> <path d="M16.5 16.5V8.5L12 13.18L7.5 8.5V16.5" stroke="currentColor" stroke-width="2" ></path> </svg>
+                          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fillRule="evenodd" clipRule="evenodd" d="M23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1C18.075 1 23 5.925 23 12Z" stroke="currentColor" strokeWidth="2" ></path> <path fillRule="evenodd" clipRule="evenodd" d="M23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1C18.075 1 23 5.925 23 12Z" stroke="currentColor" strokeWidth="2" ></path> <path d="M16.5 16.5V8.5L12 13.18L7.5 8.5V16.5" stroke="currentColor" strokeWidth="2" ></path> </svg>
                           </div>
                           <div className="">
                             <div className=" false">Manual</div>
@@ -98,7 +98,7 @@ const course = () => {
                       <div className=" w-full flex justify-between items-center">
                         <div className="flex items-center">
                           <div className="pr-5 false">
-                          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fillRule="evenodd" clipRule="evenodd" d="M23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1C18.075 1 23 5.925 23 12Z" stroke="currentColor" stroke-width="2" ></path> <path d="M17.4593 16.7279L12.0003 7.2719L6.5403 16.7279" stroke="currentColor" stroke-width="2" ></path> <path d="M8.3145 13.4275H15.6855" stroke="currentColor" stroke-width="2" ></path> </svg>
+                          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fillRule="evenodd" clipRule="evenodd" d="M23 12C23 18.075 18.075 23 12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1C18.075 1 23 5.925 23 12Z" stroke="currentColor" strokeWidth="2" ></path> <path d="M17.4593 16.7279L12.0003 7.2719L6.5403 16.7279" stroke="currentColor" strokeWidth="2" ></path> <path d="M8.3145 13.4275H15.6855" stroke="currentColor" strokeWidth="2" ></path> </svg>
                           </div>
                           <div className="">
                             <div className=" false">Automatic</div>
