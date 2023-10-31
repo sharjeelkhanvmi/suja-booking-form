@@ -1,85 +1,49 @@
-export default function Example() {
+export default function ThreeBoxes() {
 
   return (
-    <div className="p-4 justify-center gap-5 grid lg:grid-cols-3">
-    <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          aria-hidden="true"
-          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59"
-          ></path>
-        </svg>
-      </div>
-      <div className="flex-auto">
-        <a href="#" className="block font-semibold text-gray-900">
-          Learn from the best <span className="absolute inset-0"></span>
-        </a>
-      </div>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+      <button class="w-full flex items-center text-left bg-pmfGray py-4 px-5 rounded-lg font-semibold text-secondary cursor-pointer
+       outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 bg-gray-200 hover:bg-gray-300 hover:bg-opacity-50 transition-all font-semibold w-full bg-opacity-30 border-transparent px-0 cursor-pointer hover:bg-opacity-50 hover:bg-slate-200 group" id="toggleButton">
+        <div class="p-3 mx-3 bg-gray-200 opacity-1 transition-all rounded-xl">
+          <svg width="19" height="19" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.08499 12.9941H15.456M16.275 9.39006C16.275 8.06406 15.22 6.98706 13.92 6.98706C12.619 6.98706 11.565 8.06406 11.565 9.39006V14.7961C11.565 16.7861 11.161 19.0001 9.20999 19.0001H16.275" stroke="currentColor" stroke-width="2"></path><path d="M13 1C19.627 1 25 6.373 25 13C25 19.627 19.627 25 13 25M1 4.401V8.401H5" stroke="currentColor" stroke-width="2"></path><path d="M23.979 8.167C22.119 3.949 17.907 1 12.999 1C8.094 1 3.882 3.949 2.021 8.167M2.021 17.834C3.881 22.052 8.093 25 13.001 25C17.906 25 22.118 22.05 23.979 17.833" stroke="currentColor" stroke-width="2"></path><path d="M13 1C19.627 1 25 6.373 25 13C25 19.627 19.627 25 13 25C6.373 25 1 19.627 1 13" stroke="currentColor" stroke-width="2"></path></svg>
+        </div>
+        <div class="mx-4">
+          <p>100% Money Back Guarantee</p>
+          <p class="text-secondary leading-snug text-opacity-70 font-medium text-[15px] mt-2 hidden" id="detail-paragraph">
+            We're certain that we can help you pass fast. You'll get all your money back if we can't fast-track your test within 30 days of booking or connect you with an instructor in time for your course.
+          </p>
+        </div>
+      </button>
+      <button class="w-full flex items-center text-left bg-pmfGray py-4 px-5 rounded-lg  font-semibold text-secondary
+     cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1
+      hover:bg-pmfLightGreen bg-gray-200 hover:bg-opacity-50 transition-all font-semibold w-full bg-opacity-30 border-transparent
+      px-0 cursor-pointer bg-gray-200 hover:bg-gray-300 hover:bg-opacity-50 group "><div class="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" width="19" height="19" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path></svg>    </div>
+        <div class="mx-4"><p>Learn from the best</p></div></button>
+      <button class="w-full flex items-center text-left bg-pmfGray py-4 px-5 rounded-lg  font-semibold text-secondary
+     cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1
+      hover:bg-pmfLightGreen bg-gray-200 hover:bg-opacity-50 transition-all font-semibold w-full bg-opacity-30 border-transparent
+      px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "><div class="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" width="19" height="19" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path></svg>    </div>
+        <div class="mx-4"><p>Only £250 Deposit</p></div></button>
+      <button class="w-full flex items-center text-left bg-pmfGray py-4 px-5 rounded-lg  font-semibold text-secondary
+     cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1
+      hover:bg-pmfLightGreen bg-gray-200 hover:bg-opacity-50 transition-all font-semibold w-full bg-opacity-30 border-transparent
+      px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "><div class="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" width="19" height="19" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path></svg>    </div>
+        <div class="mx-4"><p>Not your average driving course</p></div></button>
+      <button class="w-full flex items-center text-left bg-pmfGray py-4 px-5 rounded-lg font-semibold text-secondary
+     cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1
+      hover:bg-pmfLightGreen bg-gray-200 hover:bg-opacity-50 transition-all font-semibold w-full bg-opacity-30 border-transparent
+      px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "><div class="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" width="19" height="19" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path></svg>    </div>
+        <div class="mx-4"><p>Flexible payment options</p></div></button>
+      <button class="w-full flex items-center text-left bg-pmfGray py-4 px-5 rounded-lg  font-semibold text-secondary
+     cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1
+      hover:bg-pmfLightGreen bg-gray-200 hover:bg-opacity-50 transition-all font-semibold w-full bg-opacity-30 border-transparent
+      px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "><div class="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" width="19" height="19" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path></svg>    </div>
+        <div class="mx-4"><p>Support at every step </p></div></button>
     </div>
-    <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          aria-hidden="true"
-          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33"
-          ></path>
-        </svg>
-      </div>
-      <div className="flex-auto">
-        <a href="#" className="block font-semibold text-gray-900">
-          Support at every step <span className="absolute inset-0"></span>
-        </a>
-      </div>
-    </div>
-    <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          aria-hidden="true"
-          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
-          ></path>
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
-          ></path>
-        </svg>
-      </div>
-      <div className="flex-auto">
-        <a href="#" className="block font-semibold text-gray-900">
-          100% Money Back Guarantee{" "}
-          <span className="absolute inset-0"></span>
-        </a>
-      </div>
-    </div>
-  </div>
   )
 }
