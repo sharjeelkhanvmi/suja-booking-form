@@ -9,8 +9,18 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Cookies from "js-cookie";
+import decodeToken from "jwt-decode";
 
 const Sidebar = ({ open, onClose }) => {
+  let cookie = Cookies.get("token");
+  let userData;
+  let userRole = null;
+  if (cookie) {
+    userData = decodeToken(cookie);
+    userRole = userData.role;
+  }
+
   const router = useRouter();
 
   useEffect(() => {
@@ -38,166 +48,292 @@ const Sidebar = ({ open, onClose }) => {
       </div>
       <div className="mt-[58px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
       {/* Nav item */}
+      {/* ADMIN SIDEBAR */}
+      {userRole === "admin" && (
+        <ul className="mb-auto pt-1">
+          {/* <Link routes={routes} /> */}
+          <Link href="/admin">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className={`my-[3px] flex cursor-pointer items-center px-8`}>
+                <span
+                  className={`font-bold dark:text-white ${
+                    router.pathname === "/admin"
+                      ? "text-brand-500 border-b-red-500"
+                      : "text-gray-600"
+                  }`}
+                >
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="h-6 w-6"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                  </svg>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${
+                    router.pathname === `/admin`
+                      ? "text-navy-700"
+                      : "text-gray-600"
+                  }`}
+                >
+                  Dashboard
+                </p>
+              </li>
+              {router.pathname === "/admin" && (
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+              )}
+            </div>
+          </Link>
+          <Link href="/admin/orders">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className="my-[3px] flex cursor-pointer items-center px-8">
+                <span
+                  className={`font-bold dark:text-white ${
+                    router.pathname === "/admin/orders"
+                      ? "text-brand-500 border-b-red-500"
+                      : "text-gray-600"
+                  }`}
+                >
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="h-6 w-6"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" d="M0 0h24v24H0V0z"></path>
+                    <path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0020.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path>
+                  </svg>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${
+                    router.pathname === `/admin/orders`
+                      ? "text-navy-700"
+                      : "text-gray-600"
+                  }`}
+                >
+                  Orders
+                </p>
+              </li>
+              {router.pathname === "/admin/orders" && (
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+              )}
+            </div>
+          </Link>
+          <Link href="/admin/users">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className="my-[3px] flex cursor-pointer items-center px-8">
+                <span
+                  className={`font-bold dark:text-white ${
+                    router.pathname === "/admin/users"
+                      ? "text-brand-500 border-b-red-500"
+                      : "text-gray-600"
+                  }`}
+                >
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="h-6 w-6"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                  </svg>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${
+                    router.pathname === `/admin/users`
+                      ? "text-navy-700"
+                      : "text-gray-600"
+                  }`}
+                >
+                  Users
+                </p>
+              </li>
+              {router.pathname === "/admin/users" && (
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+              )}
+            </div>
+          </Link>
+          <Link href="/admin/profile">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className="my-[3px] flex cursor-pointer items-center px-8">
+                <span
+                  className={`font-bold dark:text-white ${
+                    router.pathname === "/admin/profile"
+                      ? "text-brand-500 border-b-red-500"
+                      : "text-gray-600"
+                  }`}
+                >
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="h-6 w-6"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                  </svg>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${
+                    router.pathname === `/admin/profile`
+                      ? "text-navy-700"
+                      : "text-gray-600"
+                  }`}
+                >
+                  Profile
+                </p>
+              </li>
+              {router.pathname === "/admin/profile" && (
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+              )}
+            </div>
+          </Link>
+        </ul>
+      )}
+      {userRole === "customer" && (
+        <ul className="mb-auto pt-1">
+          {/* <Link routes={routes} /> */}
+          <Link href="/admin">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className={`my-[3px] flex cursor-pointer items-center px-8`}>
+                <span
+                  className={`font-bold dark:text-white ${
+                    router.pathname === "/customer"
+                      ? "text-brand-500 border-b-red-500"
+                      : "text-gray-600"
+                  }`}
+                >
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="h-6 w-6"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                  </svg>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${
+                    router.pathname === `/customer`
+                      ? "text-navy-700"
+                      : "text-gray-600"
+                  }`}
+                >
+                  Dashboard
+                </p>
+              </li>
+              {router.pathname === "/customer" && (
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+              )}
+            </div>
+          </Link>
+          <Link href="/customer/orders">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className="my-[3px] flex cursor-pointer items-center px-8">
+                <span
+                  className={`font-bold dark:text-white ${
+                    router.pathname === "/customer/orders"
+                      ? "text-brand-500 border-b-red-500"
+                      : "text-gray-600"
+                  }`}
+                >
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="h-6 w-6"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" d="M0 0h24v24H0V0z"></path>
+                    <path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0020.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path>
+                  </svg>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${
+                    router.pathname === `/customer/orders`
+                      ? "text-navy-700"
+                      : "text-gray-600"
+                  }`}
+                >
+                  Orders
+                </p>
+              </li>
+              {router.pathname === "/customer/orders" && (
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+              )}
+            </div>
+          </Link>
 
-      <ul className="mb-auto pt-1">
-        {/* <Link routes={routes} /> */}
-        <Link href="/admin">
-          <div className="relative mb-3 flex hover:cursor-pointer">
-            <li className={`my-[3px] flex cursor-pointer items-center px-8`}>
-              <span
-                className={`font-bold dark:text-white ${
-                  router.pathname === "/admin"
-                    ? "text-brand-500 border-b-red-500"
-                    : "text-gray-600"
-                }`}
-              >
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 24 24"
-                  className="h-6 w-6"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
+          <Link href="/customer/profile">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className="my-[3px] flex cursor-pointer items-center px-8">
+                <span
+                  className={`font-bold dark:text-white ${
+                    router.pathname === "/customer/profile"
+                      ? "text-brand-500 border-b-red-500"
+                      : "text-gray-600"
+                  }`}
                 >
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
-                </svg>
-              </span>
-              <p
-                className={`leading-1 flex ms-4 font-bold dark:text-white ${
-                  router.pathname === `/admin`
-                    ? "text-navy-700"
-                    : "text-gray-600"
-                }`}
-              >
-                Dashboard
-              </p>
-            </li>
-            {router.pathname === "/admin" && (
-              <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
-            )}
-          </div>
-        </Link>
-        <Link href="/admin/orders">
-          <div className="relative mb-3 flex hover:cursor-pointer">
-            <li className="my-[3px] flex cursor-pointer items-center px-8">
-              <span
-                className={`font-bold dark:text-white ${
-                  router.pathname === "/admin/orders"
-                    ? "text-brand-500 border-b-red-500"
-                    : "text-gray-600"
-                }`}
-              >
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 24 24"
-                  className="h-6 w-6"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="h-6 w-6"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                  </svg>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${
+                    router.pathname === `/customer/profile`
+                      ? "text-navy-700"
+                      : "text-gray-600"
+                  }`}
                 >
-                  <path fill="none" d="M0 0h24v24H0V0z"></path>
-                  <path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0020.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path>
-                </svg>
-              </span>
-              <p
-                className={`leading-1 flex ms-4 font-bold dark:text-white ${
-                  router.pathname === `/admin/orders`
-                    ? "text-navy-700"
-                    : "text-gray-600"
-                }`}
-              >
-                Orders
-              </p>
-            </li>
-            {router.pathname === "/admin/orders" && (
-              <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
-            )}
-          </div>
-        </Link>
-        <Link href="/admin/users">
-          <div className="relative mb-3 flex hover:cursor-pointer">
-            <li className="my-[3px] flex cursor-pointer items-center px-8">
-              <span
-                className={`font-bold dark:text-white ${
-                  router.pathname === "/admin/users"
-                    ? "text-brand-500 border-b-red-500"
-                    : "text-gray-600"
-                }`}
-              >
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 24 24"
-                  className="h-6 w-6"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
-                </svg>
-              </span>
-              <p
-                className={`leading-1 flex ms-4 font-bold dark:text-white ${
-                  router.pathname === `/admin/users`
-                    ? "text-navy-700"
-                    : "text-gray-600"
-                }`}
-              >
-                Users
-              </p>
-            </li>
-            {router.pathname === "/admin/users" && (
-              <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
-            )}
-          </div>
-        </Link>
-        <Link href="/admin/profile">
-          <div className="relative mb-3 flex hover:cursor-pointer">
-            <li className="my-[3px] flex cursor-pointer items-center px-8">
-              <span
-                className={`font-bold dark:text-white ${
-                  router.pathname === "/admin/profile"
-                    ? "text-brand-500 border-b-red-500"
-                    : "text-gray-600"
-                }`}
-              >
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 24 24"
-                  className="h-6 w-6"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
-                </svg>
-              </span>
-              <p
-                className={`leading-1 flex ms-4 font-bold dark:text-white ${
-                  router.pathname === `/admin/profile`
-                    ? "text-navy-700"
-                    : "text-gray-600"
-                }`}
-              >
-                Profile
-              </p>
-            </li>
-            {router.pathname === "/admin/profile" && (
-              <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
-            )}
-          </div>
-        </Link>
-      </ul>
+                  Profile
+                </p>
+              </li>
+              {router.pathname === "/customer/profile" && (
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+              )}
+            </div>
+          </Link>
+        </ul>
+      )}
+      {/* CUSTOMER SIDEBAR */}
 
       {/* Free Horizon Card */}
       <div className="flex justify-center">

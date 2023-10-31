@@ -2,7 +2,7 @@ import React from "react";
 import Cookies from "js-cookie";
 import Router from "next/router";
 import Dashboard from "../admin/dashboard";
-import Layout from '@/app/components/Layout'
+import Layout from "@/app/components/Layout";
 export default function Home() {
   return (
     <Layout>

@@ -17,44 +17,63 @@ import Link from "next/link";
 import jwt_decode from "jwt-decode";
 
 const Navbar = (props) => {
-    const { name, user } = props;
-    const logout = () => {
-      Cookies.remove("token");
-      Router.push("/admin");
+  const { name, user } = props;
+  const logout = () => {
+    Cookies.remove("token");
+    Router.push("/admin");
   };
 
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
+  const pathSegments = Router.pathname.split("/");
+  const lastPath = pathSegments[pathSegments.length - 1];
+
+  let cookie = Cookies.get("token");
+  let userData;
+  let userRole = null;
+  if (cookie) {
+    userData = jwt_decode(cookie);
+    userRole = userData.role;
+  }
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
         <div className="h-6 w-[224px] pt-1">
-        {user.role == 'admin' ? 
-          <a
-            className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            href="#"
-          >
-            Pages
-            <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
-              {" "}
-              / Dashboard - { name }
-            </span>
-          </a>
-          : ""}
+          {user.role == "admin" || "customer" ? (
+            <a
+              className="pointer-events-none text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+              href="/"
+            >
+              Dashboard{" /"}
+              <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white capitalize">
+                {lastPath}
+              </span>
+            </a>
+          ) : (
+            ""
+          )}
           <Link
-            className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            href="#"
+            className="pointer-events-none text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+            href="/"
           >
             {brandText}
           </Link>
         </div>
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
           <Link
-            href="/home"
-            className="font-bold capitalize hover:text-navy-700 dark:hover:text-white"
+            href="/"
+            className="font-bold capitalize hover:text-navy-700 dark:hover:text-white pointer-events-none"
           >
-            Dashboard
+            {userRole === "admin"
+              ? lastPath === "admin"
+                ? "Dashboard"
+                : lastPath
+              : userRole === "customer"
+              ? lastPath === "customer"
+                ? "Dashboard"
+                : lastPath
+              : null}
           </Link>
         </p>
       </div>
@@ -221,7 +240,10 @@ const Navbar = (props) => {
                 >
                   Newsletter Settings
                 </a>
-                <a  href="#" onClick={logout}  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
+                <a
+                  href="#"
+                  onClick={logout}
+                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
                 >
                   Log Out
                 </a>
@@ -234,7 +256,6 @@ const Navbar = (props) => {
     </nav>
   );
 };
-
 
 export async function getServerSideProps(context) {
   const token = context.req.cookies.token;
