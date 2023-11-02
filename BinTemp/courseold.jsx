@@ -5,27 +5,27 @@ import { useContexData } from "@/app/context/MyContext";
 import Head from 'next/head';
 import ThreeBoxes from '@/app/components/3boxes';
 
-const course = () => {
+const courseold = () => {
   const [Toggle, setToggle] = useState(false);
-  const [newPostalCode, setNewPostalCode] = useState("");
-  const { Name, setName } = useContexData(); // Use the context hook
+  // const [newPostalCode, setNewPostalCode] = useState("");
+  // const { Name, setName } = useContexData(); // Use the context hook
 
   const hideShow = () => {
     setToggle(!Toggle);
     console.log(Toggle, "Hide And Show");
   };
 
-  const handleNameChange = (e) => {
-    const Name = e.target.value;
-    setName(Name);
-    console.log(Name, "Name");
-  };
+  // const handleNameChange = (e) => {
+  //   const Name = e.target.value;
+  //   setName(Name);
+  //   console.log(Name, "Name");
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Update postal code in the context
-    setName(Name);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Update postal code in the context
+  //   setName(Name);
+  // };
 
   return (
     <>
@@ -33,7 +33,7 @@ const course = () => {
       <title>Course - Suja Driving School Booking</title>
       <meta name='description' content='I hope this tutorial is helpful for you' />
     </Head>
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="space-y-12 mx-auto max-w-5xl p-10 pb-0">
         <hr />
         <div className="border-b border-gray-900/10 pb-12">
@@ -116,8 +116,8 @@ const course = () => {
                 placeholder="Name"
                 id="name"
                 className="block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                value={Name} // Bind the value to the state variable
-                onChange={handleNameChange} // Update the state on change
+                // value={Name} // Bind the value to the state variable
+                // onChange={handleNameChange} // Update the state on change
               />
             </div>
           </div>
@@ -150,4 +150,4 @@ const course = () => {
   );
 };
 
-export default course;
+export default courseold;
