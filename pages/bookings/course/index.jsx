@@ -179,10 +179,7 @@ const index = () => {
 
 
 
-
-
-
- </div>
+    </div>
 
 
 
