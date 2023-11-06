@@ -8,7 +8,6 @@ export default function Register() {
     const [formData, setFormData] = useState({ fname: "", email: "", password: "", lname: "", phone: "", role: "customer" });
 
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData)
