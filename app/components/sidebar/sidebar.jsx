@@ -23,7 +23,7 @@ export default function Formnav() {
       animate={{ opacity: 1, marginRight: 0 }}
       exit={{ opacity: 1, marginRight: -360 }}
       transition={{ delay: 0.1, duration: 0.4 }}
-      className="fixed pt-28 top-0 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto h-[calc(100vh-0px)] p-6"
+      className="fixed pt-28 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto h-[calc(100vh-0px)] p-6"
     >
       <div className="flex flex-col w-full h-full">
         <div className="flex items-center space-x-4">

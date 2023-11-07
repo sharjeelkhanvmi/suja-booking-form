@@ -21,7 +21,7 @@ export default function Formnav() {
   };
 
   return (
-   <div className={`bg-theme-red-color flex justify-center	items-center text-white text-center w-full sticky top-0 ${router.pathname !== "/bookings" ? "lg:w-[calc(100vw-350px)]" : ""}`}>
+   <div className={`bg-theme-red-color flex items-center text-white text-center w-100 sticky top-0 ${router.pathname === "/bookings" ? "justify-center" : ""} ${router.pathname !== "/bookings" ? "justify-start" : ""}`}>
       <p className="absolute left-0 ps-3 text-white cursor-pointer z-20" style={{ opacity: 1 }} onClick={handleGoBack}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ export default function Formnav() {
 
       {/* )} */}
  
-        <div  className="w-full h-[80px] flex justify-center items-center lg:w-[calc(100vw-360px)]"  style={{ opacity: 1, transform: "none" }}
+        <div  className={`"w-full h-[80px] flex justify-center items-center ${router.pathname !== "/bookings" ? "lg:w-[calc(100vw-350px)]" : ""} "`}  style={{ opacity: 1, transform: "none" }}
 >
 
 
@@ -66,7 +66,7 @@ export default function Formnav() {
                   animate={{ opacity: router.pathname !== "/bookings" ? 1 : 0, marginRight: router.pathname !== "/bookings" ? 0 : 0 }}
                   exit={{ opacity: router.pathname === "/bookings" ? 0 : 1, marginRight: router.pathname === "/bookings" ? 0 : -360 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
-                  className="flex flex-col py-5 text-white w-full max-w-[260px]"
+                  className="h-50 w-full flex justify-center items-center"
                   >
         <div className="flex flex-col py-5 text-white w-full max-w-[260px]">
               <div className="text-center mb-2 font-bold">Course Details</div>
