@@ -168,6 +168,11 @@ const index = () => {
           <div className=" false">I know what course I want</div>
         </div>
       </div>
+      <div className="pl-7 w-auto">
+        <div className="bg-lime-300		 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+         Regular Course
+        </div>
+      </div>
     </div>
   </button>
   <button
@@ -215,7 +220,7 @@ const index = () => {
       </div>
       <div className="pl-7 w-auto">
         <div className="bg-red-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
-          beginner
+          Crash Course
         </div>
       </div>
     </div>
@@ -254,7 +259,7 @@ text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ri
       </div>
       <div className="pl-7 w-auto">
         <div className="bg-amber-200	 w-max py-1 px-3 font-semibold  text-xs rounded-full">
-          intermediate
+        Speedster Course
         </div>
       </div>
     </div>
@@ -298,7 +303,7 @@ text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ri
       </div>
       <div className="pl-7 w-auto">
         <div className="bg-teal-200	 w-max py-1 px-3 font-semibold  text-xs rounded-full">
-          refresher
+        Guaranteed Pass Course
         </div>
       </div>
     </div>
@@ -307,7 +312,7 @@ text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ri
 
 
 
- {/* 1st button i know what course i want toggle html */}
+ {/* 1st button regular course i know what course i want toggle html */}
  
  <div className=" flex justify-between items-center mt-20 mb-5 gap-x-5">
   <h1 className=" text-[21px] leading-snug font-semibold">
@@ -351,62 +356,13 @@ text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ri
 
 <div className=" mb-10">
   <div className="">
-    <div className="mb-7">
-      <div className="relative w-full p-2 -z-10 rounded-lg text-center capitalize text-secondary font-semibold bg-teal-200  mb-4 text-sm">
-        refresher Courses
-        <div className="absolute top-[7px] right-4 transition duration-300 hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            width={21}
-            height={21}
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </div>
-      </div>
-      <div className="flex justify-center space-x-5  ">
-        <div className="w-1/3">
-          <button className="w-full flex items-center text-left bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full ">
-            <div className="w-full text-center">
-              <p className="font-bold text-2xl">10</p>
-              <p className="font-semibold text-xs">HOURS</p>
-              <div>
-                <div className="display-block">£740</div>
-                <div className="display-block mt-1 text-xs text-green-600" />
-                <div className="display-block mt-1 text-xs text-green-600" />
-              </div>
-            </div>
-          </button>
-        </div>
-        <div className="w-1/3">
-          <button className="w-full flex items-center text-left  bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full ">
-            <div className="w-full text-center">
-              <p className="font-bold text-2xl">15</p>
-              <p className="font-semibold text-xs">HOURS</p>
-              <div>
-                <div className="display-block">£1,040</div>
-                <div className="display-block mt-1 text-xs text-green-600" />
-                <div className="display-block mt-1 text-xs text-green-600" />
-              </div>
-            </div>
-          </button>
-        </div>
-      </div>
-    </div>
+   
     <div className="mb-7">
       <div
-        className="relative w-full p-2  -z-10 rounded-lg text-center capitalize text-secondary font-semibold bg-amber-200
+        className="relative w-full p-2 -z-10 rounded-lg text-center capitalize text-secondary font-semibold bg-lime-300
   mb-4 text-sm"
       >
-        intermediate Courses
+        Regular Courses
         <div className="absolute top-[7px] right-4 transition duration-300 hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -467,72 +423,7 @@ text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ri
         </div>
       </div>
     </div>
-    <div className="mb-7">
-      <div
-        className="relative w-full p-2 -z-10 rounded-lg text-center capitalize text-secondary 
- font-semibold mb-4 text-sm bg-red-300"
-      >
-        beginner Courses
-        <div className="absolute top-[7px] right-4 transition duration-300 hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            width={21}
-            height={21}
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </div>
-      </div>
-      <div className="flex justify-center space-x-5  ">
-        <div className="w-1/3">
-          <button className="w-full flex items-center text-left bg-gray-100  py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full ">
-            <div className="w-full text-center">
-              <p className="font-bold text-2xl">35</p>
-              <p className="font-semibold text-xs">HOURS</p>
-              <div>
-                <div className="display-block">£2,125</div>
-                <div className="display-block mt-1 text-xs text-green-600" />
-                <div className="display-block mt-1 text-xs text-green-600" />
-              </div>
-            </div>
-          </button>
-        </div>
-        <div className="w-1/3">
-          <button className="w-full flex items-center text-left  bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full ">
-            <div className="w-full text-center">
-              <p className="font-bold text-2xl">40</p>
-              <p className="font-semibold text-xs">HOURS</p>
-              <div>
-                <div className="display-block">£2,370</div>
-                <div className="display-block mt-1 text-xs text-green-600" />
-                <div className="display-block mt-1 text-xs text-green-600" />
-              </div>
-            </div>
-          </button>
-        </div>
-        <div className="w-1/3">
-          <button className="w-full flex items-center text-left  bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full ">
-            <div className="w-full text-center">
-              <p className="font-bold text-2xl">48</p>
-              <p className="font-semibold text-xs">HOURS</p>
-              <div>
-                <div className="display-block">£2,740</div>
-                <div className="display-block mt-1 text-xs text-green-600" />
-                <div className="display-block mt-1 text-xs text-green-600" />
-              </div>
-            </div>
-          </button>
-        </div>
-      </div>
-    </div>
+   
   </div>
 </div>
 
