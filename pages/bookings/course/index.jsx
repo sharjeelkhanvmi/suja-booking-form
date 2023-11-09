@@ -355,13 +355,10 @@ text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ri
 
 
 <div className=" mb-10">
-  <div className="">
-   
+  <div className="">  
     <div className="mb-7">
-      <div
-        className="relative w-full p-2 -z-10 rounded-lg text-center capitalize text-secondary font-semibold bg-lime-300
-  mb-4 text-sm"
-      >
+    <div className="relative w-full p-2 -z-10 rounded-lg text-center capitalize text-secondary font-semibold bg-lime-300
+  mb-4 text-sm">
         Regular Courses
         <div className="absolute top-[7px] right-4 transition duration-300 hidden">
           <svg
