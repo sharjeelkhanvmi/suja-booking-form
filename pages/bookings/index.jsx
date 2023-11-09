@@ -6,20 +6,15 @@ import { useRouter } from "next/router";
 import ThreeBoxes from '@/app/components/3boxes';
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
-
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : { postal_code: '' };
-
 const validationSchema = Yup.object().shape({
   postal_code: Yup.string()
     .required("Postal code is required")
     .matches(/^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$/, "Invalid UK postal code")
 });
-
-
 const index = () => {
   const router = useRouter();
-
   return (
     <div>
       <Formik
@@ -46,9 +41,8 @@ const index = () => {
                         name="postal_code"
                         placeholder="Postal code"
                         id="postal_code"
-                        className={`text-lg block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm placeholder:text-gray-400 ${
-                          formikProps.errors.postal_code ? 'ring-1 ring-inset ring-red-600' : 'ring-1 ring-inset ring-gray-300'
-                        }`}
+                        className={`text-lg block w-full rounded-md border-0 px-5 py-4 text-gray-900 shadow-sm placeholder:text-gray-400 ${formikProps.errors.postal_code ? 'ring-1 ring-inset ring-red-600' : 'ring-1 ring-inset ring-gray-300'
+                          }`}
                       />
                       <ErrorMessage name="postal_code" component="p" className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500" />
                     </div>
@@ -57,10 +51,16 @@ const index = () => {
               </div>
               <div className="flex items-center justify-content-center">
                 <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
-                  <span className="flex items-center justify-center">Continue<span className="ml-4"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h13M12 5l7 7-7 7"></path></svg></span></span>
+                  <span className="flex items-center justify-center">
+                    Continue
+                    <span className="ml-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h13M12 5l7 7-7 7"></path>
+                      </svg>
+                    </span>
+                  </span>
                 </button>
               </div>
-             
             </div>
           </Form>
         )}
@@ -70,5 +70,4 @@ const index = () => {
     </div>
   );
 };
-
 export default index;
