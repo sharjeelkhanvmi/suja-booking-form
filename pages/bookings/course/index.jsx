@@ -7,6 +7,7 @@ import ThreeBoxes from '@/app/components/3boxes';
 import Sidebar from '@/app/components/sidebar/sidebar';
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
+import { clippingParents } from '@popperjs/core';
 
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
@@ -29,7 +30,8 @@ const index = () => {
           await new Promise((r) => setTimeout(r, 500));
           Cookies.set('formData', JSON.stringify(values));
           let formdata = Cookies.get('formData');
-          router.push('/bookings/course/');
+          router.push('/bookings/course/tests');
+          console.log(router);
         }}
       >
         {formikProps => (
