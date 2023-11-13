@@ -26,7 +26,7 @@ const Index = () => {
         {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto px-6">
           <header className="relative flex items-center justify-between pt-4">
-            <div className="text-xl font-bold text-navy-700 dark:text-white">
+            <div className="text-xl font-bold text-navy-700 dark:text-white mx-auto">
               Check Table
             </div>
           </header>
