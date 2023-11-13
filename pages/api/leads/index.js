@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 export default async function GET(req, res) {
   let pageNo = req.query.page ? req.query.page : 0;
-  let Limit = req.query.limit ? req.query.limit : 50;
+  let Limit = req.query.limit ? req.query.limit : 10;
   let skip = pageNo * Limit;
   try {
     await connectionSuja();
