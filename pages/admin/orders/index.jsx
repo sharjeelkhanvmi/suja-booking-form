@@ -20,16 +20,7 @@ const Index = () => {
 
   return <Layout>
       <div className="w-full p-5 flex items-center justify-center text-white bg-black flex-col tracking-widest uppercase">
-        <p className="text-4xl font-semibold my-10 text-gray-800 dark:text-white">
-          Your Orders
-        </p>
-        {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto px-6">
-          <header className="relative flex items-center justify-between pt-4">
-            <div className="text-xl font-bold text-navy-700 dark:text-white mx-auto">
-              Check Table
-            </div>
-          </header>
           <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
             <table role="table" className="w-full" variant="simple" color="gray-500" mb="24px">
               <thead>
