@@ -23,7 +23,7 @@ export default function ThreeBoxes() {
     <div className="mx-auto max-w-[40%] pb-20">
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
         <button
-          onClick={() => setIsOpen(isOpen => !isOpen)}
+          onClick={(e) => setIsOpen(isOpen => !isOpen)}
           className="w-full flex items-center text-left bg-pmfGray py-4 px-5 rounded-lg font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 bg-gray-200 hover:bg-gray-300 hover:bg-opacity-50 transition-all font-semibold w-full bg-opacity-30 border-transparent px-0 cursor-pointer hover:bg-opacity-50 hover:bg-slate-200 group"
           id="toggleButton1"
         >
