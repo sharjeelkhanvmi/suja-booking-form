@@ -21,7 +21,7 @@ export default function Formnav() {
   };
 
   return (
-   <div className={`bg-theme-red-color flex items-center text-white text-center w-100 sticky top-0 ${router.pathname === "/bookings" ? "justify-center" : ""} ${router.pathname !== "/bookings" ? "justify-start" : ""}`}>
+   <div className={`bg-theme-red-color flex items-center text-white text-center w-100 sticky top-0 z-10 ${router.pathname === "/bookings" ? "justify-center" : ""} ${router.pathname !== "/bookings" ? "justify-start" : ""}`}>
       <p className="absolute left-0 ps-3 text-white cursor-pointer z-20" style={{ opacity: 1 }} onClick={handleGoBack}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
