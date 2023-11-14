@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
+    lead: [{ type: mongoose.Schema.Types.ObjectId, ref: "Leads" }],
     fname: { type: String, required: true, trim: true },
 
     lname: { type: String, required: true, trim: true },
@@ -17,6 +18,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.models.users || mongoose.model("users", userSchema);
+const User = mongoose.models.users || mongoose.model("Users", userSchema);
 
 export default User;
