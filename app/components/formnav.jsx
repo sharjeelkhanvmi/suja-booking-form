@@ -72,10 +72,14 @@ export default function Formnav() {
               <div className="text-center mb-2 font-bold">Course Details</div>
               <div className="flex space-x-[6px]">
                 <div className="bg-white bg-opacity-50 first:rounded-l-md w-full h-[8px] last:rounded-r-md overflow-hidden">
-                  <div
-                    className="w-full h-full bg-white "
-                    style={{ width: "100%", opacity: 1 }}
-                  />
+                <motion.div
+                  initial={{opacity: router.pathname === "/bookings/course" ? 1 : 0,  width: router.pathname === "/bookings/course" ? 0 : "100%" }}
+                  animate={{ opacity: router.pathname !== "/bookings/course" ? 0 : 1, width: router.pathname !== "/bookings/course" ? 0 : "100%" }}
+                  exit={{ opacity: router.pathname === "/bookings/course" ? 1 : 0,width: router.pathname === "/bookings/course" ? 0 : "100%" }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                  className="w-full h-full bg-white "
+                  >
+                  </motion.div>
                 </div>
                 <div className="bg-white bg-opacity-50 first:rounded-l-md w-full h-[8px] last:rounded-r-md overflow-hidden">
                   <div
