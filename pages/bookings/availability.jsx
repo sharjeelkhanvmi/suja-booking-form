@@ -15,7 +15,7 @@ const validationSchema = Yup.object().shape({
     .required("Auto Manual is required")
 });
 
-
+console.log(data);
 const availablity = () => {
   const router = useRouter();
 
