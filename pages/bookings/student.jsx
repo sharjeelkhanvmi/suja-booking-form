@@ -28,7 +28,7 @@ const router = useRouter();
           await new Promise((r) => setTimeout(r, 500));
           Cookies.set('formData', JSON.stringify(values));
           let formdata = Cookies.get('formData');
-          router.push('/bookings/availablity');
+          router.push('/bookings/availability');
         }}
       >
         {formikProps => (
