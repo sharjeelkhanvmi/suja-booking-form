@@ -27,7 +27,7 @@ export default function Formnav() {
     >
       <div className="flex flex-col w-full h-full">
         <div className="flex items-center space-x-4">
-          <Image alt="Suja Logo" width={70} height={70} src={Logo} className="mb-4" />
+          <Image alt="Suja Logo" width={70} height={70} src={Logo} className="mb-4 w-auto h-auto" />
           <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>
         </div>
         <div className="mt-5">
