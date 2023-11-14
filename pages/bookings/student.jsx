@@ -11,8 +11,8 @@ let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
 
 const validationSchema = Yup.object().shape({
-  auto_manual: Yup.string()
-    .required("Auto Manual is required")
+  // auto_manual: Yup.string()
+  //   .required("Auto Manual is required")
 });
 
 
