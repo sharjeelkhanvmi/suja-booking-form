@@ -85,15 +85,20 @@ return (
    // validationSchema={validationSchema}
    onSubmit={async (values) => {
    await new Promise(r => setTimeout(r, 500));
-   //const parsedDrCoursePrice = JSON.parse(values.dr_course_price);
-   // const newData = {
-   //    ...data,
-      //dr_course_price: parsedDrCoursePrice
-    //};
-   //let formDatas = { ...data, ...newData};
-   //Cookies.set("formData", JSON.stringify(formDatas));
+   const step2 = {
+      'step2': {
+      ...values,
+      dr_course_price: JSON.parse(values.dr_course_price)
+      }
+    };
+    const formDatas = {
+      ...data,
+      ...step2
+    };
+   // let formDatas = { ...data, ...values};
+   Cookies.set("formData", JSON.stringify(formDatas));
    router.push("/bookings/course/tests/");
-   // console.log(data);
+   // console.log(formDatas);
 }}
    
 >

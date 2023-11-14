@@ -46,8 +46,8 @@ const index = () => {
         validationSchema={validationSchema}
         onSubmit={async values => {
           await new Promise(r => setTimeout(r, 500));
-          Cookies.set("formData", JSON.stringify(values));
-          let formdata = Cookies.get("formData");
+          Cookies.set("formData", JSON.stringify({ 'step1': { ...values } }));
+          //let formdata = Cookies.get("formData");
           router.push("/bookings/course/");
         }}
       >
