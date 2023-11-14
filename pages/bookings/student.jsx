@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
 
 
 const student = () => {
-  const router = useRouter();
+const router = useRouter();
 
   return (
     <div>
@@ -104,7 +104,8 @@ px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 
  <div class="rounded-full transition-all flex w-10 h-10 items-center justify-center mr-4 border-2 border-primaryOutline bg-primary">
  <span><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div><div class="font-semibold w-[calc(100%-40px)] text-[15px]">
  Are you happy for us to contact you with more info about learning to drive?</div></div>
- </div></div>
+ </div>
+ </div>
 
 </form>
 

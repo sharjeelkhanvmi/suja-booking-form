@@ -11,8 +11,8 @@ let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
 
 const validationSchema = Yup.object().shape({
-  auto_manual: Yup.string()
-    .required("Auto Manual is required")
+  // auto_manual: Yup.string()
+  //   .required("Auto Manual is required")
 });
 
 
@@ -146,8 +146,10 @@ a flying start and pass ASAP with a fast-tracked theory test.</p></div>
 
 
   <div className="flex items-center justify-content-center">
-    <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
-      <span className="flex items-center justify-center">Continue<span className="ml-4"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h13M12 5l7 7-7 7"></path></svg></span></span>
+    <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 
+    py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
+      <span className="flex items-center justify-center">Continue<span className="ml-4">
+      <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h13M12 5l7 7-7 7"></path></svg></span></span>
     </button>
   </div>
   </div> 

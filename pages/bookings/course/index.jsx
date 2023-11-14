@@ -60,7 +60,7 @@ const getDrType = (e) => {
 function showCoursePricing(event){
    let targetVal = event.target.value
    setCourse(driving[targetVal])
-   setCourseOpen(setCourseOpen => true)
+   //setCourseOpen(setCourseOpen => true)
 }
 
 

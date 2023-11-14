@@ -106,7 +106,9 @@ slower and spread your lessons over a longer time. If you would like an intensiv
    </div>
    </div>
 
-   <div></div></div>
+   <div>
+   </div>
+   </div>
    </div>
 
 

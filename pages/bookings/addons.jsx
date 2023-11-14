@@ -29,6 +29,7 @@ const index = () => {
 
           <label htmlFor="email">Email</label>
           <Field id="email" name="email" placeholder="jane@acme.com" type="email" required/>
+          
           <button type="submit">Submit</button>
         </Form>
       </Formik>
