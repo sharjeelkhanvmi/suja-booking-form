@@ -69,23 +69,35 @@ export default function Formnav() {
                   className="h-50 w-full flex justify-center items-center"
                   >
         <div className="flex flex-col py-5 text-white w-full max-w-[260px]">
-              <div className="text-center mb-2 font-bold">Course Details</div>
+              <div className="text-center mb-2 font-bold">
+              {router.pathname === "/bookings/course" ? "Course Details" : 
+               router.pathname === "/bookings/course/tests" ? "Tests" : 
+               router.pathname === "/bookings/student" ? "Personal Details" : 
+               router.pathname === "/bookings/availability" ? "Availability" :
+               router.pathname === "/bookings/addons" ? "Add-ons" :
+               "Other Page Details"}
+                </div>
               <div className="flex space-x-[6px]">
                 <div className="bg-white bg-opacity-50 first:rounded-l-md w-full h-[8px] last:rounded-r-md overflow-hidden">
                 <motion.div
-                  initial={{opacity: router.pathname === "/bookings/course" ? 1 : 0,  width: router.pathname === "/bookings/course" ? 0 : "100%" }}
-                  animate={{ opacity: router.pathname !== "/bookings/course" ? 0 : 1, width: router.pathname !== "/bookings/course" ? 0 : "100%" }}
-                  exit={{ opacity: router.pathname === "/bookings/course" ? 1 : 0,width: router.pathname === "/bookings/course" ? 0 : "100%" }}
+                  initial={{opacity: router.pathname !== "/bookings" ? 0 : 1,  width: router.pathname !== "/bookings" ? 0 : "100%" }}
+                  animate={{ opacity: router.pathname === "/bookings/course" ? 0 : 1, width: router.pathname === "/bookings/course" ? 0 : "100%" }}
+                  //exit={{ opacity: router.pathname === "/bookings/course"  ? 1 : 0,width: router.pathname === "/bookings/course" ? 0 : "100%" }}
                   transition={{ delay: 0.8, duration: 0.5 }}
                   className="w-full h-full bg-white "
                   >
                   </motion.div>
                 </div>
                 <div className="bg-white bg-opacity-50 first:rounded-l-md w-full h-[8px] last:rounded-r-md overflow-hidden">
-                  <div
-                    className="w-full h-full bg-white "
-                    style={{ width: "0%", opacity: 0 }}
-                  />
+                <motion.div
+                  initial={{opacity: router.pathname !== "/bookings/course" ? 0 : 1,  width: router.pathname !== "/bookings/course" ? 0 : "100%" }}
+                  animate={{ opacity: router.pathname === "/bookings/course/tests"  ? 0 : 1, width: router.pathname === "/bookings/course/tests" ? 0 : "100%" }}
+                  //exit={{ opacity: router.pathname === "/bookings/course/tests" ? 1 : 0,width: router.pathname === "/bookings/course/tests"  ? 0 : "100%" }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                  className="w-full h-full bg-white "
+                  >
+                  </motion.div>
+
                 </div>
                 <div className="bg-white bg-opacity-50 first:rounded-l-md w-full h-[8px] last:rounded-r-md overflow-hidden">
                   <div
