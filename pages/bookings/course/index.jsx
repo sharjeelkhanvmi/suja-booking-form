@@ -10,8 +10,9 @@ import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import { motion } from "framer-motion";
 import {auto, manual} from '@/database/models/drivingCoursesData';
+//import { stringify } from 'postcss';
 let formdata = Cookies.get('formData');
-const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
+const data = formdata ? JSON.parse(formdata) : {  };
 const validationSchema = Yup.object().shape({
 auto_manual: Yup.string()
 .required("Auto Manual is required")
@@ -26,58 +27,86 @@ const [isCourseOpen, setCourseOpen] = useState(false)
 const [driving, setDriving] = useState(manual)
 const [course, setCourse] = useState(driving.regular)
 
-// const [isHintOpen_4, setHintOpen_4] = useState(false)
-// const [isHintOpen_5, setHintOpen_5] = useState(false)
-
 // useEffect(() => {
-//    console.log(driving)
-//    console.log(course)
-// })
+//    const checkFormData = async () => {
+//       console.log(JSON.parse(formdata))
+//      if (formdata == undefined) {
+//        router.push("/bookings/");
+//      }
+//    };
+//    checkFormData();
+//  }, [router]);
 
 const variants = {
 open: { opacity: 1, height: 'auto', position: 'relative', 'z-index': 1  },
 closed: { opacity: 0, height: 0, position: 'relative', 'z-index': -1 },
 }
 
-//console.log(drivingCoursesData);
 
 const getDrType = (e) => {
 
-   let targetVal = e.target.value
+   let targetVal = e
    if(targetVal == 'manual'){
       setDriving(manual)
    }
    else{
       setDriving(auto)
    }
-   console.log(setCourseOpen(isCourseOpen));
-   // if(setCourseOpen == true){
-   //    setCourseOpen(setCourseOpen => !setCourseOpen)
-   // }
+   Array.from(document.getElementsByClassName('dr_course_type')).forEach(checkbox => checkbox.checked = false);
+   if(isCourseOpen == true){
+      setCourseOpen(isCourseOpen => !isCourseOpen)
+   }
  }
  
 
 function showCoursePricing(event){
-   let targetVal = event.target.value
+   let targetVal = event
+   Array.from(document.getElementsByClassName('dr_course_price')).forEach(checkbox => checkbox.checked = false);
    setCourse(driving[targetVal])
-   setCourseOpen(setCourseOpen => true)
+   setCourseOpen(isCourseOpen => true)
 }
+
+
+const courseOptions = Object.keys(course.course).map((key) => ({
+   id: `dr_dcp_type_${key}`,
+   name: 'dr_course_price',
+   value: JSON.stringify({ [key]: course.course[key] }),
+   variant: course.course[key].variant,
+   price: course.course[key].price,
+   hour: course.course[key].value
+   //label: `${course.course[key].value} ${course.course[key].variant} - $${course.course[key].price}`,
+ }));
 
 
 return (
 <div>
 <Formik
-   initialValues={data}
-   validationSchema={validationSchema}
+   initialValues={{ dr_type: '', dr_course_type: '', dr_course_price: {} }}
+   // validationSchema={validationSchema}
    onSubmit={async (values) => {
-   await new Promise((r) => setTimeout(r, 500));
-   Cookies.set('formData', JSON.stringify(values));
-   let formdata = Cookies.get('formData');
-   router.push('/bookings/course/');
-   }}
+   await new Promise(r => setTimeout(r, 500));
+   //const parsedDrCoursePrice = JSON.parse(values.dr_course_price);
+   // const newData = {
+   //    ...data,
+      //dr_course_price: parsedDrCoursePrice
+    //};
+   //let formDatas = { ...data, ...newData};
+   //Cookies.set("formData", JSON.stringify(formDatas));
+   router.push("/bookings/course/tests/");
+   // console.log(data);
+}}
+   
 >
-{formikProps => (
+{({ values }) => (
+
 <Form>
+{values.dr_type.length > 0 && (
+   setIsOpen(isOpen => true),
+   getDrType(values.dr_type)
+)}
+{values.dr_course_type.length > 0 && (
+showCoursePricing(values.dr_course_type)
+)}
    <Formnav />
    <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
    <div className='w-full lg:max-w-[750px] pb-24'>
@@ -85,18 +114,18 @@ return (
       <div className="w-full lg:max-w-[750px] pb-24">
          <div className="grid grid-cols-2 gap-4">
             <div>
-               <input
+               <Field
                   type='radio'
                   className='sr-only dr_type'
                   name="dr_type"
                   id="manual"
                   value="manual"
-                  onChange={(e) => { 
-                     setIsOpen(isOpen => true);
-                     getDrType(e);
-                  }}
-               //onChange={(e) => handleRadioChange(e, formikProps)}
-               />
+                  // onChange={(e) => { 
+                  //    setIsOpen(isOpen => true);
+                  //    getDrType(e);
+                  // }}
+               
+               />              
                <label htmlFor="manual" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
                      <div className="flex items-center">
@@ -137,16 +166,16 @@ return (
                </label>
             </div>
             <div>
-               <input
+               <Field
                   type='radio'
                   className='sr-only dr_type'
                   name="dr_type"
                   id="automatic"
                   value="automatic"
-                  onChange={(e) => { 
-                     setIsOpen(isOpen => true);
-                     getDrType(e);
-                  }}
+                  // onChange={(e) => { 
+                  //    setIsOpen(isOpen => true);
+                  //    getDrType(e);
+                  // }}
                />
                <label htmlFor="automatic" className="w-full flex items-center text-left bg-emerald-100 ring-primary ring-offset-1 bg-pmfGray py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
@@ -220,13 +249,12 @@ return (
       
       <div className="mb-10" id="CourseBox">
          <div className='mb-3'>            
-            <input
+            <Field
                   type='radio'
-                  className='sr-only'
+                  className='sr-only dr_course_type'
                   name="dr_course_type"
                   id="dr_rc_type"
                   value="regular"
-                  onChange = {(e) => showCoursePricing(e) }
                />
                <label htmlFor="dr_rc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
@@ -254,7 +282,7 @@ return (
                         </div>
                      </div>
                      <div className="pl-7 w-auto">
-                        <div className="bg-lime-300		 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                        <div className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
                            Regular Course
                         </div>
                      </div>
@@ -263,13 +291,12 @@ return (
          </div>
 
          <div className='mb-3'>            
-            <input
+            <Field
                   type='radio'
-                  className='sr-only'
+                  className='sr-only dr_course_type'
                   name="dr_course_type"
                   id="dr_cc_type"
                   value="speedster"
-                  onChange = {(e) => showCoursePricing(e) }
                />
                <label htmlFor="dr_cc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                <div className=" w-full flex justify-between items-center">
@@ -309,13 +336,12 @@ return (
          </div>
 
          <div className='mb-3'>            
-            <input
+            <Field
                   type='radio'
-                  className='sr-only'
+                  className='sr-only dr_course_type'
                   name="dr_course_type"
                   id="dr_sc_type"
                   value="crash"
-                  onChange = {(e) => showCoursePricing(e) }
                />
                <label htmlFor="dr_sc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
@@ -366,13 +392,12 @@ return (
          </div>
 
          <div className='mb-3'>            
-            <input
+            <Field
                   type='radio'
-                  className='sr-only'
+                  className='sr-only dr_course_type'
                   name="dr_course_type"
                   id="dr_gpc_type"
                   value="guaranteed_pass"
-                  onChange = {(e) => showCoursePricing(e) }
                />
                <label htmlFor="dr_gpc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
@@ -479,24 +504,51 @@ return (
       </div>
       <div className="flex justify-center space-x-5  ">
 
+
+         {/* /////////////////// */}
+         {courseOptions.map((option) => (
+          <div key={option.id} className="w-1/3">
+            <Field
+              type="radio"
+              className="sr-only dr_course_price"
+              name={option.name}
+              id={option.id}
+              value={option.value}
+            />
+            <label htmlFor={option.id} className="w-full flex items-center text-left bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full">
+               <div className="w-full text-center">
+                  <p className="font-bold text-2xl">{option.hour}</p>
+                  <p className="font-semibold text-xs">{option.variant}</p>
+                  <div className="display-block">£{option.price}</div>
+               </div>
+            </label>
+          </div>
+        ))}
+         {/* /////////////////// */}
+
+{/*
       {Object.keys(course.course).map((item, key) => (
    <div key={key} className="w-1/3">
-      <input
+      <Field
          type='radio'
-         className='sr-only'
+         className='sr-only dr_course_price'
          name="dr_course_price"
          id={`dr_dcp_type_${key}`}
-         value="guaranteed_pass"
+         value={course.course[item]}
+         //value={ JSON.parse({ value: course.course[item] }) }
       />
+      
       <label htmlFor={`dr_dcp_type_${key}`} className="w-full flex items-center text-left bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full">
          <div className="w-full text-center">
          <p className="font-bold text-2xl">{course.course[item].value}</p>
-         <p className="font-semibold text-xs">{course.course[item].category}</p>
+         <p className="font-semibold text-xs">{course.course[item].variant}</p>
          <div className="display-block">£{course.course[item].price}</div>
          </div>
       </label>
    </div>
    ))}
+
+   */}
 
       </div>
       </div>

@@ -6,22 +6,22 @@ export const manual = {
         'course': {
             '5_hours': {
                 'value': '5',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 200
             },
             '10_hours': {
                 'value': '10',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 330
             },
             '15_hours': {
                 'value': '15',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 465
             },
             '20_hours': {
                 'value': '20',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 600
             }
         },
@@ -34,22 +34,22 @@ export const manual = {
         'course': {
             '5_hours': {
                 'value': '5',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 230
             },
             '10_hours': {
                 'value': '10',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 405
             },
             '15_hours': {
                 'value': '15',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 600
             },
             '20_hours': {
                 'value': '20',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 780
             }
         },
@@ -62,22 +62,22 @@ export const manual = {
         'course': {
             '20_hours': {
                 'value': '20',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 1200
             },
             '24_hours': {
                 'value': '24',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 1396
             },
             '28_hours': {
                 'value': '28',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 1584
             },
             '32_hours': {
                 'value': '32',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 1700
             }
         },
@@ -90,17 +90,17 @@ export const manual = {
         'course': {
             '1_installment': {
                 'value': 'First',
-                'category': 'Installment',
+                'variant': 'Installment',
                 'price': 3500
             },
             '2_installment': {
                 'value': 'Second',
-                'category': 'Installment',
+                'variant': 'Installment',
                 'price': 1000
             },
             '3_installment': {
                 'value': 'Third',
-                'category': 'Installment',
+                'variant': 'Installment',
                 'price': 1000
             }
         },
@@ -117,22 +117,22 @@ export const auto = {
         'course': {
             '5_hours': {
                 'value': '5',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 200
             },
             '10_hours': {
                 'value': '10',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 330
             },
             '15_hours': {
                 'value': '15',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 465
             },
             '20_hours': {
                 'value': '20',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 600
             }
         },
@@ -145,22 +145,22 @@ export const auto = {
         'course': {
             '5_hours': {
                 'value': '5',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 230
             },
             '10_hours': {
                 'value': '10',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 405
             },
             '15_hours': {
                 'value': '15',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 600
             },
             '20_hours': {
                 'value': '20',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 780
             }
         },
@@ -173,22 +173,22 @@ export const auto = {
         'course': {
             '20_hours': {
                 'value': '20',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 1200
             },
             '24_hours': {
                 'value': '24',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 1396
             },
             '28_hours': {
                 'value': '28',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 1584
             },
             '32_hours': {
                 'value': '32',
-                'category': 'Hours',
+                'variant': 'Hours',
                 'price': 1700
             }
         },
@@ -201,17 +201,17 @@ export const auto = {
         'course': {
             '1_installment': {
                 'value': 'First',
-                'category': 'Installment',
+                'variant': 'Installment',
                 'price': 3500
             },
             '2_installment': {
                 'value': 'Second',
-                'category': 'Installment',
+                'variant': 'Installment',
                 'price': 1000
             },
             '3_installment': {
                 'value': 'Third',
-                'category': 'Installment',
+                'variant': 'Installment',
                 'price': 1000
             }
         },
