@@ -12,6 +12,7 @@ const thankyou = () => {
 const router = useRouter();
 return (
 <div>
+
 <Formnav />
 
 <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
@@ -35,7 +36,7 @@ return (
   <div className="w-full">
     <div>
       <div className="w-full mb-5 pr-4">
-        <h1 className="mb-5 text-[21px] leading-snug font-semibold">
+        <h1 className="mb-5 text-[24px] text-start font-bold">
           Order Summary
         </h1>
       </div>

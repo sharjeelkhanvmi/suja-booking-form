@@ -38,7 +38,7 @@ return (
     Cookies.set('formData', JSON.stringify(stepFiveData));
     let formdata1234 = Cookies.get('formData');
     console.log(formdata1234)
-    router.push('/bookings/addons/');
+    router.push('/bookings/summary/');
     }}
     >
     {formikProps => (
