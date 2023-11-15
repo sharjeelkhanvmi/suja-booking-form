@@ -1,5 +1,5 @@
 import connectionSuja from "@/database/dbconstr";
-import { leadsModel } from "@/database/models/LeadsModel";
+import { leadsModel } from "@/database/models/Lead";
 import mongoose from "mongoose";
 
 

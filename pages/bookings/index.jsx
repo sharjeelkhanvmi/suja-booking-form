@@ -54,7 +54,7 @@ const index = () => {
         {formikProps =>
           <Form>
             <Formnav />
-            <div className="space-y-12 mx-auto max-w-[40%] pt-36 pb-10 py-24">
+            <div className="space-y-12 mx-auto w-full lg:max-w-[48%] px-4 lg:px-0 pt-36 pb-10 py-24">
               <div>
                 <h2 className="font-semibold text-2xl text-gray-900 text-start">
                   Let's pass you fast. Where would you like your lessons to

@@ -1,5 +1,5 @@
 import connectionSuja from "@/database/dbconstr";
-import { leadsModel } from "@/database/models/LeadsModel";
+import Lead from "@/database/models/Lead";
 import mongoose from "mongoose";
 
 export default async function POST(req, res) {
@@ -7,13 +7,10 @@ export default async function POST(req, res) {
   const requestData = req.body;
 
   try {
-    requestData.user = new mongoose.Types.ObjectId(requestData.userId);
-    const newLead = await new leadsModel(requestData);
-    // res.json(newLead)
+    const newLead = await new Lead(requestData);
     await newLead.save();
-    res.json(newLead)
     console.log("Lead saved successfully");
-    res.status(201).json({ success: true, message: "Lead added successfully" });
+    res.status(201).json({ success: true, message: "Lead added successfully", newLead });
   } catch (error) {
     console.error("Error saving lead:", error);
     res.status(500).json({ success: false, error: "Internal Server Error" });

@@ -1,10 +1,14 @@
 import mongoose from "mongoose";
 import connectionSuja from "@/database/dbconstr";
 import User from "@/database/models/User";
+import bcrypt from "bcrypt";
 
 export default async (req, res) => {
-  const { fname, lname, phone, role, email, password } = req.body;
+  let { fname, lname, phone, role, email, password } = req.body;
+ 
   try {
+    const salt = await bcrypt.genSalt(10);
+    password = await bcrypt.hash(password,salt);
     await connectionSuja();
     const userModel = new User({ fname, lname, phone, role, email, password });
     await userModel.save();
