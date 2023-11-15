@@ -15,7 +15,17 @@ const validationSchema = Yup.object().shape({
     .matches(
       /^(?:(?:\+44)|(?:0))(?:(?:1\d{9})|(?:[1-9]\d{9}))$/,
       'Invalid UK phone number'
-    )
+    ),
+    terms: Yup.boolean()
+    .oneOf([true], 'You must accept the terms')
+    .required('You must accept the terms'),
+    title: Yup.string().required('Title is required'),
+    firstName: Yup.string().required('First name is required'),
+    surname: Yup.string().required('Last name is required'),
+    email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+
 });
 
 // console.log(data)
@@ -30,7 +40,8 @@ return (
       firstName: "",
       surname: "",
       email: "",
-      phone_number: ""
+      phone_number: "",
+      terms: false
   }}
     validationSchema={validationSchema}
     onSubmit={async (values) => {
@@ -44,7 +55,7 @@ return (
     router.push('/bookings/availability');
     }}
     >
-    {formikProps => (
+    {({values, setFieldValue}) => (
     <Form>
         <Formnav />
         <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
@@ -89,6 +100,11 @@ return (
                                         </label>
                                     </div>
                                 </div>
+                                <ErrorMessage
+                                    name="title"
+                                    component="p"
+                                    className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                                />
                             </div>
                         </div>
                         <div className="mt-5 w-full">
@@ -97,8 +113,13 @@ return (
                             <div className="mt-1">
                                 <div className="relative w-full">
                                     <Field type="text" name="firstName" className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset  transition-all " id="firstName" autoComplete="given-name" />
+                                    <ErrorMessage
+                                        name="firstName"
+                                        component="p"
+                                        className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                                    />
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                         <div className="mt-5 w-full">
                             <label className="uppercase text-sm tracking-wide font-medium text-gray-800" htmlFor="surname">Last Name</label>
@@ -107,6 +128,11 @@ return (
                                     <Field type="text" name="surname" className="w-full rounded-md font-semibold text-base placeholder:text-dust 
                                         placeholder:text-opacity-50 px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 
                                         focus:ring-secondary focus:ring-offset-1 transition-all " id="surname" />
+                                    <ErrorMessage
+                                        name="surname"
+                                        component="p"
+                                        className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -117,6 +143,11 @@ return (
                                     <Field type="email" name="email" className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 
                                         px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1
                                         transition-all " id="email" />
+                                    <ErrorMessage
+                                        name="email"
+                                        component="p"
+                                        className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -137,18 +168,30 @@ return (
                         </div>
                         <div className="mt-5 w-full">
                             <div>
-                                <div className=" flex items-center cursor-pointer group">
+
+                                <Field type="checkbox" className="sr-only" name="terms" id="terms" onChange={() => setFieldValue('terms', !values.terms)}/>
+
+                                <label htmlFor="terms" className=" flex items-center cursor-pointer group">
                                     <div className="rounded-full transition-all flex w-10 h-10 items-center justify-center mr-4 border-2 border-primaryOutline bg-primary">
-                                        <span>
+                                    
+                                        <span className={`${values.terms ? '' : 'hidden'}`}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <polyline points="20 6 9 17 4 12"></polyline>
                                             </svg>
                                         </span>
+                                        
+                                        
                                     </div>
                                     <div className="font-semibold w-[calc(100%-40px)] text-[15px]">
                                         Are you happy for us to contact you with more info about learning to drive?
                                     </div>
-                                </div>
+                                </label>
+                                <ErrorMessage
+                                      name="terms"
+                                      component="p"
+                                      className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                                    />
+
                             </div>
                         </div>
                     </div>
