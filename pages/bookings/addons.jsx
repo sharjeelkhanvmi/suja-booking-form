@@ -41,14 +41,14 @@ const addons = () => {
 <div className="w-full lg:max-w-[750px]">      
 <div class="w-full mb-5 pr-4">
 <h1 class="text-[24px] font-semibold">Payment Details</h1>
-<p class="mb-4 font-regular text-stone-500	 text-[16px] mt-2">Secure your course today! We accept all major
+<p class="mb-4 font-regular text-stone-500	 text-[16px] mt-2">
+ Secure your course today! We accept all major
  credit and debit cards, including American Express.</p>
-
  <div class="flex items-center mb-4 justify-between space-x-2">
  <div class="flex space-x-2 items-center">
  <div class="w-12 transition-all duration-300 opacity-100">
  <img alt="AMEX Brand Logo" loading="lazy" width="58" height="37" decoding="async" data-nimg="1"
-  src="/_next/static/media/amex.f54f9bb1.svg" /></div>
+  src="assets/amex.f54f9bb1" /></div>
   <div class="w-12 transition-all duration-300 opacity-100">
   <img alt="Mastercard Brand Logo" loading="lazy" width="58" height="39" decoding="async" data-nimg="1" 
   src="/_next/static/media/mastercard.a1764ac8.svg" /></div>
@@ -71,31 +71,27 @@ const addons = () => {
   <div class="relative w-full">
   <input type="text" placeholder="Enter card holder name" 
   class=" w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border 
-   border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all " 
-   id="" value="alex hells" /></div>
-   </div></div></div>
-   <p class="mb-2 text-secondary leading-snug text-opacity-70 font-medium text-[15px] mt-2">Card Number</p>
+   border-[#BEBEBE] text-dust bg-white outline-none  transition-all " 
+   id="" /></div>
+   </div>
+   </div>
+   </div>
+   <p class="mb-2 font-medium text-[15px] mt-2">Card Number</p>
    <form>
    <div>
    <div class="w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold
-    text-base StripeElement StripeElement--empty">
-    <div class="__PrivateStripeElement"><iframe name="__privateStripeFrame58111" frameborder="0" 
-     allowtransparency="true" scrolling="no" role="presentation" allow="payment *" 
-     src="https://js.stripe.com/v3/elements-inner-card-50ef566327c6cd45be97e6d462d24675.html#wait=true&amp;mids[guid]=014946b2-9ea7-4d19-b835-6ebf44cec0b1100605&amp;mids[muid]=f80ed312-3655-49bc-8e95-6da70266cb50659ed2&amp;mids[sid]=67e4cab9-4b24-4689-a01a-83ae61ae4976a418b7&amp;rtl=false&amp;componentName=cardNumber&amp;keyMode=live&amp;apiKey=pk_live_YpZEUX2aoG0zfqzhNilu39IA&amp;referrer=https%3A%2F%2Fpay.passmefast.co.uk%2Fc7571546-9c68-4877-8250-0467964df80a%2Fpay&amp;controllerId=__privateStripeController5816" title="Secure card number input frame"></iframe>
-     <input type="text" class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" "  maxlength="1" />
+    text-base">
+    <div class="">
+     <input type="text" class="w-full outline-none" placeholder="card number" aria-hidden="true" aria-label="" maxlength="1" />
      </div>
      </div>
      </div>
      <div class="flex my-5 mb-10">
      <div class="w-1/2">
-     <p class="mb-2 text-secondary leading-snug text-opacity-70 font-medium text-[15px] mt-2">Expiry Date</p><div>
-     <div class="w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base 
-     StripeElement StripeElement--empty">
-     <div class="__PrivateStripeElement">
-     <iframe name="__privateStripeFrame58113" frameborder="0" 
-      allowtransparency="true" scrolling="no" role="presentation" allow="payment *"
-       src="https://js.stripe.com/v3/elements-inner-card-50ef566327c6cd45be97e6d462d24675.html#wait=true&amp;mids[guid]=014946b2-9ea7-4d19-b835-6ebf44cec0b1100605&amp;mids[muid]=f80ed312-3655-49bc-8e95-6da70266cb50659ed2&amp;mids[sid]=67e4cab9-4b24-4689-a01a-83ae61ae4976a418b7&amp;rtl=false&amp;componentName=cardExpiry&amp;keyMode=live&amp;apiKey=pk_live_YpZEUX2aoG0zfqzhNilu39IA&amp;referrer=https%3A%2F%2Fpay.passmefast.co.uk%2Fc7571546-9c68-4877-8250-0467964df80a%2Fpay&amp;controllerId=__privateStripeController5816" title="Secure expiration date input frame"></iframe>
-    <input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " maxlength="1"
+     <p class="mb-2   font-medium text-[15px] mt-2">Expiry Date</p><div>
+     <div class="w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base">
+     <div class="">
+    <input class="w-full outline-none" placeholder="expiry date" aria-hidden="true" aria-label=" " maxlength="1"
     />
     </div>
     </div>
@@ -104,29 +100,22 @@ const addons = () => {
     <div class="w-1/2 ml-6">
     <p class="mb-2 text-secondary leading-snug text-opacity-70 font-medium text-[15px] mt-2">CVC</p><div>
     <div class="w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base
-     StripeElement StripeElement--empty"><div class="__PrivateStripeElement">
-      <iframe name="__privateStripeFrame58115" frameborder="0" allowtransparency="true" scrolling="no" role="presentation" allow="payment *" src="https://js.stripe.com/v3/elements-inner-card-50ef566327c6cd45be97e6d462d24675.html#wait=true&amp;mids[guid]=014946b2-9ea7-4d19-b835-6ebf44cec0b1100605&amp;mids[muid]=f80ed312-3655-49bc-8e95-6da70266cb50659ed2&amp;mids[sid]=67e4cab9-4b24-4689-a01a-83ae61ae4976a418b7&amp;rtl=false&amp;componentName=cardCvc&amp;keyMode=live&amp;apiKey=pk_live_YpZEUX2aoG0zfqzhNilu39IA&amp;referrer=https%3A%2F%2Fpay.passmefast.co.uk%2Fc7571546-9c68-4877-8250-0467964df80a%2Fpay&amp;controllerId=__privateStripeController5816" title="Secure CVC input frame"></iframe>
-      <input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" "  maxlength="1"  />
+     StripeElement StripeElement--empty">
+     <div class=""> 
+      <input class="w-full outline-none" placeholder='CVC' aria-hidden="true" aria-label=" " maxlength="1"  />
       </div>
       </div>
       </div>
       </div>
       </div>
-      <button class=" w-full bg-primary border-primaryOutline text-secondary hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-center px-4 false opacity-100 py-2 rounded-md font-semibold text-[15px] outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all">
+      <button class="w-full text-secondary bg-[#17B745]
+       hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-center px-4 false opacity-100 py-2 rounded-md font-semibold text-[15px] outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all">
       <span class="flex items-center">Pay £1,655</span>
       </button>
       </form>
       </div>
 
-
-
-
 </div>
-
-
-
-
-
 
 </div>
 </div>
