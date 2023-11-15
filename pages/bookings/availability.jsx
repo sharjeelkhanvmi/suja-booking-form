@@ -35,7 +35,7 @@ return (
     ...data,
     ...{'step5': values}
     };
-    Cookies.set('formData', JSON.stringify(stepFiveData));
+    Cookies.set('formData', JSON.stringify(stepFiveData), { expires: null });
     let formdata1234 = Cookies.get('formData');
     console.log(formdata1234)
     router.push('/bookings/addons/');
