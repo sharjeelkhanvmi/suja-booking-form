@@ -2,11 +2,11 @@ import Layout from "@/app/components/Layout";
 import { useEffect, useState } from "react";
 
 const Index = () => {
-  const [leadsData,setLeadsData]=useState(null);
+  const [leadsData,setLeadsData]=useState();
 
   const handleLeadsData = async () =>{
   try {
-    const response = await fetch('http://localhost:3000/api/leads');
+    const response = await fetch('/api/leads');
     const responseData = await response.json();
     setLeadsData(responseData);
     console.log('Leads Data in Orders',responseData);
@@ -48,9 +48,9 @@ const Index = () => {
                 </tr>
               </thead>
               <tbody role="rowgroup">
-              {leadsData && leadsData.map((data)=>(
+              {leadsData && leadsData.filter((data) => data.user.role === 'customer') && leadsData.map((data)=>(
                 <>
-                <tr role="row">
+                <tr key={data._id} role="row">
                   <td role="cell" className="pt-[14px] pb-[16px] sm:text-[14px]">
                     <div className="flex items-center gap-2">
                       <input type="checkbox" className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]

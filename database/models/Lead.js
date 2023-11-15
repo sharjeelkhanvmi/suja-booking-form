@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import User from "./User";
 
 const leadsSchema = new mongoose.Schema({
-  user: [{ type: mongoose.Schema.Types.ObjectId, ref: "Users" }],
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   step1: {
     postalcode: { type: String }
   },
@@ -30,15 +29,7 @@ const leadsSchema = new mongoose.Schema({
   }
 });
 
-leadsSchema.methods.getUser = async function() {
-  try {
-    const user = await Promise.all(this.user.map(userId => User.findById(userId)));
-    return user;
-  } catch (error) {
-    throw new Error(`Error fetching user: ${error.message}`);
-  }
-};
 
-const leadsModel = mongoose.models.Leads || mongoose.model("Leads", leadsSchema);
+const Lead = mongoose.models.Lead || mongoose.model("Lead", leadsSchema);
 
-export { leadsModel };
+export default Lead;
