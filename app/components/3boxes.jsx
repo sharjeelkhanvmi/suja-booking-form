@@ -27,7 +27,7 @@ export default function ThreeBoxes() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="mx-auto max-w-[40%] pb-20">
+    <div className="mx-auto w-full lg:px-0 px-4 lg:max-w-[48%] pb-20">
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
         <button
           onClick={() => toggleFAQ("button1")}

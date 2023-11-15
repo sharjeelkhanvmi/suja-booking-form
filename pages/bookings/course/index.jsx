@@ -14,8 +14,9 @@ import {auto, manual} from '@/database/models/drivingCoursesData';
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : {  };
 const validationSchema = Yup.object().shape({
-auto_manual: Yup.string()
-.required("Auto Manual is required")
+dr_type: Yup.string()
+.oneOf([true], 'You must accept the terms')
+.required("Auto or Manual is required")
 });
 const index = () => {
 
@@ -219,7 +220,13 @@ showCoursePricing(values.dr_course_type)
                   </div>
                </label>
             </div>
+            <ErrorMessage
+            name="dr_type"
+            component="p"
+            className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+         />
          </div>
+         
       </div>
 
       <motion.section
