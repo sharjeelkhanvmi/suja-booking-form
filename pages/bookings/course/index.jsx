@@ -29,9 +29,6 @@ const [driving, setDriving] = useState(manual)
 const [course, setCourse] = useState(driving.regular)
 const [cart, setCart] = useState({})
 
-useEffect(() => {
-   
- }, [router]);
 
 const variants = {
 open: { opacity: 1, height: 'auto', position: 'relative', 'z-index': 1  },
@@ -54,9 +51,14 @@ const getDrType = (e) => {
    }
  }
 
- const updateCart = (values) => {
-   console.log(values)
- }
+//  const updateCart = (values) => {
+//    console.log(values)
+//  }
+
+ 
+// useEffect(() => {
+  
+//  },[]);
  
 
 function showCoursePricing(event){
@@ -82,6 +84,10 @@ return (
 <div>
 <Formik
    initialValues={{ dr_type: '', dr_course_type: '', dr_course_price: {} }}
+   enableReinitialize={false}
+   onChange = { (values) => {
+      console.log(values);
+   }}
    // validationSchema={validationSchema}
    onSubmit={async (values) => {
    await new Promise(r => setTimeout(r, 500));
@@ -99,7 +105,9 @@ return (
    Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
    router.push("/bookings/course/tests/");
    // console.log(formDatas);
-}}
+   }
+   
+}
    
 >
 {({ values }) => (
@@ -112,9 +120,9 @@ return (
 {values.dr_course_type.length > 0 && (
 showCoursePricing(values.dr_course_type)
 )}
-{values.length > 0 && (
-   updateCart(values)
-)}
+{/* {values && (
+  updateCart(values)
+)} */}
 
 
    <Formnav />
