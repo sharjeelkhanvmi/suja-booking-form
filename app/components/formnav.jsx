@@ -47,30 +47,30 @@ export default function Formnav() {
 
       {/* )} */}
  
-        <div  className={`"w-full h-[80px] flex justify-center items-center ${router.pathname !== "/bookings" ? "lg:w-[calc(100vw-350px)]" : ""} "`}  style={{ opacity: 1, transform: "none" }}
->
+      <div className={`w-full h-[80px] flex justify-center items-center ${router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment" ? "lg:w-[calc(100vw-350px)]" : ""}`} style={{ opacity: 1, transform: "none" }}>
+  {(router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment") && (
+    <motion.div
+      initial={{ opacity: (router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment") ? 0 : 1, marginRight: (router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment") ? -150 : 0 }}
+      animate={{ opacity: (router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment") ? 0 : 1, marginRight: (router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment") ? 0 : 0 }}
+      exit={{ opacity: (router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment") ? 0 : 1, marginRight: (router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment") ? -150 : 0 }}
+      transition={{ delay: 0.1, duration: 0.4 }}
+    >
+      <Image alt="" src={Logo} className="mx-auto p-2 w-100% h-100%" />
+    </motion.div>
+  )}
 
 
-          {router.pathname === "/bookings" && (
-            <motion.div
-              initial={{ opacity: router.pathname === "/bookings" ? 0 : 1, marginRight: router.pathname === "/bookings" ? -150 : 0 }}
-              animate={{ opacity: router.pathname !== "/bookings" ? 0 : 1, marginRight: router.pathname !== "/bookings" ? 0 : 0 }}
-              exit={{ opacity: router.pathname === "/bookings" ? 0 : 1, marginRight: router.pathname === "/bookings" ? -150 : 0 }}
-              transition={{ delay: 0.1, duration: 0.4 }}
-            >
-              <Image alt="" src={Logo} className="mx-auto p-2 w-100% h-100%" />
-          </motion.div>
-          )}
         
 
-        {router.pathname !== "/bookings" && (
-                  <motion.div
-                  initial={{ opacity: router.pathname === "/bookings" ? 0 : 1, marginRight: router.pathname === "/bookings" ? 0 : -360 }}
-                  animate={{ opacity: router.pathname !== "/bookings" ? 1 : 0, marginRight: router.pathname !== "/bookings" ? 0 : 0 }}
-                  exit={{ opacity: router.pathname === "/bookings" ? 0 : 1, marginRight: router.pathname === "/bookings" ? 0 : -360 }}
-                  transition={{ delay: 0.1, duration: 0.5 }}
-                  className="h-50 w-full flex justify-center items-center"
-                  >
+  {router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment" && (
+  <motion.div
+    initial={{ opacity: router.pathname === "/bookings" ? 0 : 1, marginRight: router.pathname === "/bookings" ? 0 : -360 }}
+    animate={{ opacity: (router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment") ? 1 : 0, marginRight: (router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment") ? 0 : 0 }}
+    exit={{ opacity: router.pathname === "/bookings" ? 0 : 1, marginRight: router.pathname === "/bookings" ? 0 : -360 }}
+    transition={{ delay: 0.1, duration: 0.5 }}
+    className="h-50 w-full flex justify-center items-center"
+  >
+  
                     <div className="flex flex-col py-5 text-white w-full max-w-[260px]">
                           <div className="text-center mb-2 font-bold">
                           {router.pathname === "/bookings/course" ? "Course Details" : 
@@ -78,6 +78,7 @@ export default function Formnav() {
                           router.pathname === "/bookings/student" ? "Personal Details" : 
                           router.pathname === "/bookings/availability" ? "Availability" :
                           router.pathname === "/bookings/addons" ? "Add-ons" :
+                          router.pathname === "/bookings/summary" ? "Summary" :
                           router.pathname === "/bookings/payment" ? "Payment" :
                           "Other Page Details"}
                     </div>

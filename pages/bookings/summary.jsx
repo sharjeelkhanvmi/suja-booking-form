@@ -2,19 +2,24 @@ import React from 'react';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
+import { useRouter} from "next/router";
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import Sidebar from '@/app/components/sidebar/sidebar';
 
 
 const thankyou = () => {
+
 const router = useRouter();
+
+const paymentButtonClick = () => 
+{
+  router.push('/bookings/payment');
+};
 return (
+
 <div>
-
 <Formnav />
-
 <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
 <div className='w-full lg:max-w-[750px] pb-24'>
 <div className="mt-[10px] items-center py-5">
@@ -130,9 +135,10 @@ return (
           <div className="font-semibold text-secondary">£250</div>
         </div>
        
-        <button className="my-8 w-full  bg-[#17B745] hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-center px-4 undefined 
-        border-green-800	border  py-2 rounded-md font-semibold text-[15px] outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all">
-          <span className="flex items-center">Choose Payment Method</span>
+        <button  onClick={paymentButtonClick} className="my-8 w-full  bg-[#17B745] hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-center px-4 undefined 
+        border-green-800	border  py-2 rounded-md font-semibold text-[15px] outline-none focus:ring-2 
+        focus:ring-secondary focus:ring-offset-1 transition-all">
+          <span className="flex items-center">Continue to Payment Method</span>
         </button>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
           <div className="w-full p-5 border rounded-md">
