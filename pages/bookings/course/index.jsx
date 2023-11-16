@@ -27,16 +27,8 @@ const [isHintOpen_2, setHintOpen_2] = useState(false)
 const [isCourseOpen, setCourseOpen] = useState(false)
 const [driving, setDriving] = useState(manual)
 const [course, setCourse] = useState(driving.regular)
+const [cart, setCart] = useState({})
 
-// useEffect(() => {
-//    const checkFormData = async () => {
-//       console.log(JSON.parse(formdata))
-//      if (formdata == undefined) {
-//        router.push("/bookings/");
-//      }
-//    };
-//    checkFormData();
-//  }, [router]);
 
 const variants = {
 open: { opacity: 1, height: 'auto', position: 'relative', 'z-index': 1  },
@@ -58,6 +50,15 @@ const getDrType = (e) => {
       setCourseOpen(isCourseOpen => !isCourseOpen)
    }
  }
+
+//  const updateCart = (values) => {
+//    console.log(values)
+//  }
+
+ 
+// useEffect(() => {
+  
+//  },[]);
  
 
 function showCoursePricing(event){
@@ -83,6 +84,10 @@ return (
 <div>
 <Formik
    initialValues={{ dr_type: '', dr_course_type: '', dr_course_price: {} }}
+   enableReinitialize={false}
+   onChange = { (values) => {
+      console.log(values);
+   }}
    // validationSchema={validationSchema}
    onSubmit={async (values) => {
    await new Promise(r => setTimeout(r, 500));
@@ -97,10 +102,12 @@ return (
       ...step2
     };
    // let formDatas = { ...data, ...values};
-   Cookies.set("formData", JSON.stringify(formDatas));
+   Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
    router.push("/bookings/course/tests/");
    // console.log(formDatas);
-}}
+   }
+   
+}
    
 >
 {({ values }) => (
@@ -108,11 +115,16 @@ return (
 <Form>
 {values.dr_type.length > 0 && (
    setIsOpen(isOpen => true),
-   getDrType(values.dr_type)
+   getDrType(values.dr_type) 
 )}
 {values.dr_course_type.length > 0 && (
 showCoursePricing(values.dr_course_type)
 )}
+{/* {values && (
+  updateCart(values)
+)} */}
+
+
    <Formnav />
    <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
    <div className='w-full lg:max-w-[750px] pb-24'>
@@ -537,30 +549,6 @@ showCoursePricing(values.dr_course_type)
           </div>
         ))}
          {/* /////////////////// */}
-
-{/*
-      {Object.keys(course.course).map((item, key) => (
-   <div key={key} className="w-1/3">
-      <Field
-         type='radio'
-         className='sr-only dr_course_price'
-         name="dr_course_price"
-         id={`dr_dcp_type_${key}`}
-         value={course.course[item]}
-         //value={ JSON.parse({ value: course.course[item] }) }
-      />
-      
-      <label htmlFor={`dr_dcp_type_${key}`} className="w-full flex items-center text-left bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full">
-         <div className="w-full text-center">
-         <p className="font-bold text-2xl">{course.course[item].value}</p>
-         <p className="font-semibold text-xs">{course.course[item].variant}</p>
-         <div className="display-block">£{course.course[item].price}</div>
-         </div>
-      </label>
-   </div>
-   ))}
-
-   */}
 
       </div>
       </div>

@@ -1,11 +1,23 @@
+import { useEffect } from 'react';
 import Link from "next/link";
 import Logo from "@/public/assets/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-
+import Cookies from "js-cookie";
+let formdata = Cookies.get('formData');
+const data = formdata ? JSON.parse(formdata) : { };
 export default function Formnav() {
-  const router = useRouter();
+const router = useRouter();
+
+// useEffect(() => {
+
+//     console.log(data);
+
+//  }, [router]);
+  
+
+
 
   const handleGoBack = () => {
     if (router.pathname === "/bookings") {

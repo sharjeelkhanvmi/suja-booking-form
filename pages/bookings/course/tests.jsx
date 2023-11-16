@@ -37,7 +37,7 @@ const tests = () => {
             ...data,
             ...{'step3': values}
           };
-         Cookies.set("formData", JSON.stringify(formDatas));
+         Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
          router.push("/bookings/student");
          //console.log(formDatas)
         }}
