@@ -15,7 +15,7 @@ const Index = () => {
   }
   }
   useEffect(()=>{
-    handleUsersData()
+    handleUsersData() 
   },[])
 
   return <Layout>

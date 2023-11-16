@@ -29,7 +29,6 @@ const leadsSchema = new mongoose.Schema({
   }
 });
 
-
 const Lead = mongoose.models.Lead || mongoose.model("Lead", leadsSchema);
 
 export default Lead;

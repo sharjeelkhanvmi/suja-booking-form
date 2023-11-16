@@ -1,5 +1,7 @@
 import Layout from "@/app/components/Layout";
 import { useEffect, useState } from "react";
+import { AiFillPlusCircle ,AiFillDelete,AiFillEdit  } from "react-icons/ai";
+
 
 const Index = () => {
   const [leadsData,setLeadsData]=useState();
@@ -17,6 +19,23 @@ const Index = () => {
   useEffect(()=>{
     handleLeadsData()
   },[])
+
+  const handleDelete = async (leadId) => {
+    console.log('Deleting lead with ID:', leadId);
+    try {
+      
+      const response = await fetch(`/api/leads/del?leadId=${leadId}`,{
+        method: 'DELETE',
+      })
+      if (response.ok) {
+        handleLeadsData();
+      } 
+    } catch (error) {
+      console.error('Error deleting lead', error);
+    }
+  };
+  
+  
 
   return <Layout>
       <div className="w-full p-5 flex items-center justify-center text-white bg-black flex-col tracking-widest uppercase">
@@ -45,10 +64,15 @@ const Index = () => {
                       Mobile
                     </div>
                   </th>
+                  <th colSpan={1} role="columnheader" title="Toggle SortBy" className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700" style={{ cursor: "pointer" }}>
+                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                      Actions
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody role="rowgroup">
-              {leadsData && leadsData.filter((data) => data.user.role === 'customer') && leadsData.map((data)=>(
+              {leadsData && leadsData.map((data)=>(
                 <>
                 <tr key={data._id} role="row">
                   <td role="cell" className="pt-[14px] pb-[16px] sm:text-[14px]">
@@ -76,6 +100,21 @@ const Index = () => {
                     <p className="text-sm font-bold text-navy-700 dark:text-white">
                     {data.step4.mobile_number}
                     </p>
+                  </td>
+                  <td role="cell" className=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto">
+                    <span className="text-sm font-bold text-navy-700 dark:text-white">
+                    <AiFillPlusCircle className="text-2xl cursor-pointer" onClick={()=>{
+                      console.log('Add');
+                    }}/>
+                    </span>
+                    <span className="text-sm font-bold text-navy-700 dark:text-white">
+                    <AiFillDelete className="text-2xl cursor-pointer"  onClick={()=>{handleDelete(data._id)}}/>
+                    </span>
+                     <span className="text-sm font-bold text-navy-700 dark:text-white">
+                    <AiFillEdit  className="text-2xl cursor-pointer"  onClick={()=>{
+                      console.log('update');
+                    }}/>
+                    </span>
                   </td>
                 </tr>
                 </>

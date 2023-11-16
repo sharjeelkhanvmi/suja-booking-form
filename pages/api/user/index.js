@@ -13,8 +13,8 @@ export default async function GET(req, res) {
 
     // Fetch leads for each user
     const leadsPromises = users.map(async (user) => {
-      const leads = await Lead.find({ user: user._id }).exec();
-      return { user, leads };
+        const leads = await Lead.find({ user: user._id }).exec();
+        return { user, leads };
     });
 
     // Wait for all lead queries to complete

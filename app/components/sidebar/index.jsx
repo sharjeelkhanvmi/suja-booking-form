@@ -283,7 +283,7 @@ const Sidebar = ({ open, onClose }) => {
                       : "text-gray-600"
                   }`}
                 >
-                  Orders
+                  Order History
                 </p>
               </li>
               {router.pathname === "/customer/orders" && (
@@ -335,10 +335,10 @@ const Sidebar = ({ open, onClose }) => {
       )}
       {/* CUSTOMER SIDEBAR */}
 
-      {/* Free Horizon Card */}
-      <div className="flex justify-center">
+      {/* Free Horizon Card HIDE FOR CUSTOMER AND ADMIN*/}
+      {/* <div className="flex justify-center">
         <SidebarCard />
-      </div>
+      </div> */}
 
       {/* Nav item end */}
     </div>
