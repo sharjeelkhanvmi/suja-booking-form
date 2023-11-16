@@ -33,7 +33,7 @@ return (
 
 
 <Formnav />
-<div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
+<div className="mt-[0px] flex justify-center items-top px-7 py-8">
 <div className='w-full lg:max-w-[750px] pb-24'>
 <div className="mt-[10px] items-top py-8">
 <div className="w-full lg:max-w-[750px]">
@@ -141,7 +141,7 @@ Pay £840
 </button>
 </div>
 </div>
-<Sidebar/>
+
 </div>
 <Footnote />
 </div>
