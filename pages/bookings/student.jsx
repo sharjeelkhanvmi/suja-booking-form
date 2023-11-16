@@ -50,7 +50,7 @@ return (
       ...data,
       ...{'step4': values}
     };
-    Cookies.set('formData', JSON.stringify(stepFourData));
+    Cookies.set('formData', JSON.stringify(stepFourData), { expires: null });
     let formdata123 = Cookies.get('formData');
     router.push('/bookings/availability');
     }}
