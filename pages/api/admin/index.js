@@ -15,7 +15,7 @@ export default async function GET(req, res) {
   try {
     await connectionSuja();
     // Fetch users
-    const users = await User.find({ _id: objectId }).exec();
+    const users = await User.find().exec();
     // Fetch leads for each user
     const leadsPromises = users.map(async user => {
       const leads = await Lead.find({ user: objectId }).exec();

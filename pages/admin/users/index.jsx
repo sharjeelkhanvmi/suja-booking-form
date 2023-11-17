@@ -1,12 +1,11 @@
 import Layout from "@/app/components/Layout";
 import { useEffect, useState } from "react";
-
 const Index = () => {
   const [usersData,setUsersData]=useState(null);
 
   const handleUsersData = async () =>{
   try {
-    const response = await fetch('http://localhost:3000/api/user');
+    const response = await fetch('http://localhost:3000/api/admin');
     const responseData = await response.json();
     setUsersData(responseData);
     console.log('Users Data in Orders',responseData);

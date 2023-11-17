@@ -4,7 +4,53 @@ import { AiFillPlusCircle ,AiFillDelete,AiFillEdit  } from "react-icons/ai";
 
 
 const Index = () => {
+  
   const [leadsData,setLeadsData]=useState();
+
+  // const initialState = {
+  //   _id: '',
+  //   user: {
+  //     _id: '',
+  //     postalcode: '',
+  //   },
+  //   step1: {
+  //     postalcode: '',
+  //   },
+  //   step2: {
+  //     gear: '',
+  //     driving: '',
+  //   },
+  //   step3: {
+  //     addons: '',
+  //   },
+  //   step4: {
+  //     title: '',
+  //     first_name: '',
+  //     last_name: '',
+  //     email: '',
+  //     confirm_email: '',
+  //     mobile_number: '',
+  //     agree: '',
+  //   },
+  //   step5: {
+  //     fastcourse: '',
+  //   },
+  //   step6: {
+  //     couponcode: '',
+  //   },
+  // };
+
+  // const [formData, setformData] = useState(initialState);
+  // const handleInputChange = (e, step, field) => {
+  //   setformData((prevData) => ({
+  //     ...prevData,
+  //     [step]: {
+  //       ...prevData[step],
+  //       [field]: e.target.value,
+  //     },
+  //   }));
+  // };
+  // console.log('MY FORM DATA',formData);
 
   const handleLeadsData = async () =>{
   try {
@@ -35,6 +81,30 @@ const Index = () => {
     }
   };
   
+
+  const handleAddData = async (e) => {
+    e.preventDefault();
+    try {
+      // Make a POST request to the API route to add a new lead
+      const response = await fetch('/api/leads/post/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Assuming formData contains the lead data
+      });
+
+      if (response.ok) {
+        // If the response is okay, refresh the leads data
+        handleLeadsData();
+        console.log('Leads Added');
+      } else {
+        console.error('Error adding lead');
+      }
+    } catch (error) {
+      console.error('Error adding lead', error);
+    }
+  };
   
 
   return <Layout>
@@ -123,6 +193,139 @@ const Index = () => {
             </table>
           </div>
         </div>
+
+        {/* <form onSubmit={()=>handleAddData} className="text-navy-900">
+        <div className="my-2">
+        postalcode
+        <input
+          placeholder=""
+          name="postalcode"
+          value={formData.step1.postalcode}
+          onChange={(e) => handleInputChange(e, 'step1', 'postalcode')}
+        />
+      </div>
+
+      <div className="my-2">
+        gear
+        <input
+          placeholder=""
+          name="gear"
+          value={formData.step2.gear}
+          onChange={(e) => handleInputChange(e, 'step2', 'gear')}
+        />
+      </div>
+
+      <div className="my-2">
+        driving
+        <input
+          placeholder=""
+          name="driving"
+          value={formData.step2.driving}
+          onChange={(e) => handleInputChange(e, 'step2', 'driving')}
+        />
+      </div>
+
+      <div className="my-2">
+        addons
+        <input
+          placeholder=""
+          name="addons"
+          value={formData.step3.addons}
+          onChange={(e) => handleInputChange(e, 'step3', 'addons')}
+        />
+      </div>
+
+      <div className="my-2">
+        title
+        <input
+          placeholder=""
+          name="title"
+          value={formData.step4.title}
+          onChange={(e) => handleInputChange(e, 'step4', 'title')}
+        />
+      </div>
+
+      <div className="my-2">
+        first_name
+        <input
+          placeholder=""
+          name="first_name"
+          value={formData.step4.first_name}
+          onChange={(e) => handleInputChange(e, 'step4', 'first_name')}
+        />
+      </div>
+
+      <div className="my-2">
+        last_name
+        <input
+          placeholder=""
+          name="last_name"
+          value={formData.step4.last_name}
+          onChange={(e) => handleInputChange(e, 'step4', 'last_name')}
+        />
+      </div>
+
+      <div className="my-2">
+        email
+        <input
+          placeholder=""
+          name="email"
+          value={formData.step4.email}
+          onChange={(e) => handleInputChange(e, 'step4', 'email')}
+        />
+      </div>
+
+      <div className="my-2">
+        confirm_email
+        <input
+          placeholder=""
+          name="confirm_email"
+          value={formData.step4.confirm_email}
+          onChange={(e) => handleInputChange(e, 'step4', 'confirm_email')}
+        />
+      </div>
+
+      <div className="my-2">
+        mobile_number
+        <input
+          placeholder=""
+          name="mobile_number"
+          value={formData.step4.mobile_number}
+          onChange={(e) => handleInputChange(e, 'step4', 'mobile_number')}
+        />
+      </div>
+
+      <div className="my-2">
+        agree
+        <input
+          placeholder=""
+          name="agree"
+          value={formData.step4.agree}
+          onChange={(e) => handleInputChange(e, 'step4', 'agree')}
+        />
+      </div>
+
+      <div className="my-2">
+        fastcourse
+        <input
+          placeholder=""
+          name="fastcourse"
+          value={formData.step5.fastcourse}
+          onChange={(e) => handleInputChange(e, 'step5', 'fastcourse')}
+        />
+      </div>
+
+      <div className="my-2">
+        couponcode
+        <input
+          placeholder=""
+          name="couponcode"
+          value={formData.step6.couponcode}
+          onChange={(e) => handleInputChange(e, 'step6', 'couponcode')}
+        />
+      </div>
+      <button>Add</button>
+        </form> */}
       </div>
     </Layout>;
 };
