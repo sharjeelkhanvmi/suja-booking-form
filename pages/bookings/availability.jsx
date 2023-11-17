@@ -38,7 +38,7 @@ return (
     Cookies.set('formData', JSON.stringify(stepFiveData), { expires: null });
     let formdata1234 = Cookies.get('formData');
     console.log(formdata1234)
-    router.push('/bookings/summary/');
+    router.push('/bookings/addons/');
     }}
     >
     {formikProps => (
@@ -47,20 +47,20 @@ return (
         <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
             <div className='w-full lg:max-w-[750px] pb-24'>
                 <div className="mt-[10px] items-top py-8">
-                    <div className="w-full lg:max-w-[750px]">
-                        <div className="w-full mb-5 pr-4">
-                            <div className="flex justify-between items-center mb-5 gap-x-5">
-                                <h1 className="text-[21px] leading-snug font-semibold">Nearly there, alex! <br /> How fast do you want your course?</h1>
-                                <div className="cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" 
-                                            y1="16" x2="12" y2="12"></line>
-                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                                    </svg>
-                                </div>
-                            </div>
+<div className="w-full lg:max-w-[750px]">
+    <div className="w-full mb-5 pr-4">
+        <div className="flex justify-between items-center mb-5 gap-x-5">
+            <h1 className="text-[21px] leading-snug font-semibold">How fast do you want your course?</h1>
+            <div className="cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" 
+                        y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+            </div>
+        </div>
                         </div>
                         <div className="overflow-y-hidden">
                             <div className="mb-8 p-5 bg-white w-full rounded-lg border-2 border-secondary">

@@ -2,20 +2,25 @@ import React from 'react';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
+import { useRouter} from "next/router";
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import Sidebar from '@/app/components/sidebar/sidebar';
 
 
 const thankyou = () => {
+
 const router = useRouter();
+
+const paymentButtonClick = () => 
+{
+  router.push('/bookings/payment');
+};
 return (
+
 <div>
-
 <Formnav />
-
-<div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
+<div className="mt-[0px] flex justify-center items-top px-7 py-8">
 <div className='w-full lg:max-w-[750px] pb-24'>
 <div className="mt-[10px] items-center py-5">
     <div className="w-full lg:max-w-[750px] text-center">
@@ -130,10 +135,18 @@ return (
           <div className="font-semibold text-secondary">£250</div>
         </div>
        
-        <button className="my-8 w-full  bg-[#17B745] hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-center px-4 undefined 
-        border-green-800	border  py-2 rounded-md font-semibold text-[15px] outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all">
-          <span className="flex items-center">Choose Payment Method</span>
-        </button>
+
+<button onClick={paymentButtonClick} className="my-8 bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
+<span className="flex items-center justify-center">
+Continue to Payment Method
+<span className="ml-4">
+<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+<path d="M5 12h13M12 5l7 7-7 7"></path>
+</svg>
+</span>
+</span>
+</button>
+
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
           <div className="w-full p-5 border rounded-md">
             <div className="flex flex-col">
@@ -157,7 +170,7 @@ return (
                 </div>
                 <div className="font-semibold">100% Money-Back Guarantee</div>
               </div>
-              <p className=" text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
+              <p className="text-start text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
                 It's rarer than a Robin Reliant but, if we can't pass you fast
                 enough, you can get a full refund thanks to our money-back
                 guarantee.
@@ -186,7 +199,7 @@ return (
                 </div>
                 <div className="font-semibold">Flexible Payment Options</div>
               </div>
-              <p className=" text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
+              <p className="text-start text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
                 Unlike most intensive driving courses, we're flexible about
                 passing fast. You can pay in full today, reserve your spot with
                 a deposit of just £250. Or PaySlow with monthly instalments from
@@ -218,7 +231,7 @@ return (
                   Not your average driving course
                 </div>
               </div>
-              <p className=" text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
+              <p className="text-start text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
                 PassMeFast customers boost their odds of passing with video
                 lessons from Virtual Driving Instructor, and can make savings on
                 100+ of your fave brands with PassPerks!
@@ -247,7 +260,7 @@ return (
                 </div>
                 <div className="font-semibold">Learn from the Best</div>
               </div>
-              <p className=" text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
+              <p className="text-start text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
                 You'll be connected with one of 5,000 DVSA-approved and
                 CRB-checked driving instructors who'll know your local test
                 centre like the back of their hand and give you all the skills
@@ -277,7 +290,6 @@ return (
 </div>
 </div>
 
-  <Sidebar />
     <Footnote />
 </div>
 );
