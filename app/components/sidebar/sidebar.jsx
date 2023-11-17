@@ -30,11 +30,38 @@ const router = useRouter();
   //   }
   // };
   //const renderDrType = data?.step2?.dr_type || 'Loading...';
-  const drType = data.step2.dr_type;
+
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+
+  const drType = capitalize(data.step2.dr_type);
   const courseType = data.step2.dr_course_type;
+  let coursePriceObj;
+  let hours_value;
+  let variant;
+  let full;
+  let deposit;
+
+  console.log(data)
+  if(data.step2.dr_course_price){
+    coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
+    hours_value = coursePriceObj.value;
+    variant = coursePriceObj.variant;
+    full = coursePriceObj.full;
+    deposit = coursePriceObj.deposit;
+  }
+
+  
+
+  // console.log(variant)
+  // console.log(data.step2)
 
 
   return (
+
+
     <motion.div
       initial={{ opacity: 0.8, marginRight: -360 }}
       animate={{ opacity: 1, marginRight: 0 }}
@@ -42,7 +69,10 @@ const router = useRouter();
       transition={{ delay: 0.1, duration: 0.4 }}
       className="fixed pt-28 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto h-[calc(100vh-0px)] p-6"
     >
-      <div className="flex flex-col w-full h-full">
+
+    {data.step2.dr_course_price ? (
+        
+        <div className="flex flex-col w-full h-full">
         <div className="space-x-4 text-center">
           <Image alt="Suja Logo" width={70} height={70} src={Logo} className="mb-4 w-auto h-auto" />
           <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>
@@ -52,12 +82,9 @@ const router = useRouter();
             Course
           </h4>
           <div className="mt-2 w-full font-semibold flex">
-          
-          {/* {data && data.step2 && data.step2.dr_type && (
-            <span className="w-full">15 Hours - {data.step2.dr_type}</span>
-          )} */}
+            <span className="w-full">{ hours_value +' '+ variant +' - '+ drType}</span>
             <div className="text-right">
-              <span className="text-white text-opacity-60 ml-4">£730</span>
+              <span className="text-white text-opacity-60 ml-4">£{ (deposit) ? deposit : full }</span>
             </div>
           </div>
         </div>
@@ -81,6 +108,11 @@ const router = useRouter();
           </div>
         </div>
       </div>
+      ) : ''
+      
+    }
+
+
     </motion.div>
   );
 }
