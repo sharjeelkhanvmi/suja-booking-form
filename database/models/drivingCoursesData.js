@@ -7,7 +7,7 @@ export const manual = {
                 'value': '5',
                 'variant': 'Hours',
                 'full': 200,
-                'deposit': 200,
+                'deposit': 100,
             },
             '10_hours': {
                 'value': '10',

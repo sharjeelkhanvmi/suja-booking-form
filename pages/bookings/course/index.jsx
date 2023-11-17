@@ -32,11 +32,11 @@ const [changedData, setChangedData] = useState(data);
 const step2 = data.step2;
 
 // console.log(changedData)
-useEffect(() => {
+// useEffect(() => {
 
-    console.log(changedData);
+//     console.log(changedData);
 
- }, [changedData]);
+//  }, [changedData]);
 
 
 const variants = {
@@ -71,7 +71,7 @@ const courseOptions = Object.keys(course.course).map((key) => ({
    name: 'dr_course_price',
    value: JSON.stringify({ [key]: course.course[key] }),
    variant: course.course[key].variant,
-   price: course.course[key].price,
+   full: course.course[key].full,
    hour: course.course[key].value
  }));
 
@@ -634,7 +634,7 @@ showCoursePricing(values.dr_course_type)
                     ...changedData,
                     step2: {
                       ...changedData.step2,
-                      [name]: value,
+                      [name]: JSON.parse(value),
                     },
                   };
                 });
@@ -644,7 +644,7 @@ showCoursePricing(values.dr_course_type)
                <div className="w-full text-center">
                   <p className="font-bold text-2xl">{option.hour}</p>
                   <p className="font-semibold text-xs">{option.variant}</p>
-                  <div className="display-block">£{option.price}</div>
+                  <div className="display-block">£{option.full}</div>
                </div>
             </label>
           </div>
