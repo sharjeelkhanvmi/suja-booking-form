@@ -9,8 +9,6 @@ import { useState } from "react";
 export default function Formnav() {
 
   const [test, settest] = useState(true);
-
-
   const router = useRouter();
 
   const handleGoBack = () => {
@@ -54,13 +52,11 @@ export default function Formnav() {
       animate={{ opacity: (router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment") ? 0 : 1, marginRight: (router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment") ? 0 : 0 }}
       exit={{ opacity: (router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment") ? 0 : 1, marginRight: (router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment") ? -150 : 0 }}
       transition={{ delay: 0.1, duration: 0.4 }}
-    >
+      >
       <Image alt="" src={Logo} className="mx-auto p-2 w-100% h-100%" />
     </motion.div>
   )}
 
-
-        
 
   {router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment" && (
   <motion.div
@@ -71,17 +67,17 @@ export default function Formnav() {
     className="h-50 w-full flex justify-center items-center"
   >
   
-                    <div className="flex flex-col py-5 text-white w-full max-w-[260px]">
-                          <div className="text-center mb-2 font-bold">
-                          {router.pathname === "/bookings/course" ? "Course Details" : 
-                          router.pathname === "/bookings/course/tests" ? "Tests" : 
-                          router.pathname === "/bookings/student" ? "Personal Details" : 
-                          router.pathname === "/bookings/availability" ? "Availability" :
-                          router.pathname === "/bookings/addons" ? "Add-ons" :
-                          router.pathname === "/bookings/summary" ? "Summary" :
-                          router.pathname === "/bookings/payment" ? "Payment" :
-                          "Other Page Details"}
-                    </div>
+        <div className="flex flex-col py-5 text-white w-full max-w-[260px]">
+              <div className="text-center mb-2 font-bold">
+              {router.pathname === "/bookings/course" ? "Course Details" : 
+              router.pathname === "/bookings/course/tests" ? "Tests" : 
+              router.pathname === "/bookings/student" ? "Personal Details" : 
+              router.pathname === "/bookings/availability" ? "Availability" :
+              router.pathname === "/bookings/addons" ? "Add-ons" :
+              router.pathname === "/bookings/summary" ? "Summary" :
+              router.pathname === "/bookings/payment" ? "Payment" :
+              "Other Page Details"}
+        </div>
               <div className="flex space-x-[6px]">
                 <div className="bg-white bg-opacity-50 first:rounded-l-md w-full h-[8px] last:rounded-r-md overflow-hidden">
                 <motion.div
