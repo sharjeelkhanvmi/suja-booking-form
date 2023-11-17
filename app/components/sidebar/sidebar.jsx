@@ -1,33 +1,38 @@
-import { useEffect } from 'react';
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+//import Link from "next/link";
 import Logo from "@/public/assets/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import Cookies from "js-cookie";
-let formdata = Cookies.get('formData');
-const data = formdata ? JSON.parse(formdata) : { };
-export default function Formnav() {
+// import Cookies from "js-cookie";
+// let formdata = Cookies.get('formData');
+// const localdata = formdata ? JSON.parse(formdata) : { };
+
+
+export default function Formnav({data}) {
+
 const router = useRouter();
+// const [isClient, setIsClient] = useState(data)
 
-// useEffect(() => {
+  // useEffect(() => {
+  //   setIsClient(isClient)
+  // }, []);
 
-//     console.log(data);
+  // console.log(data)
 
-//  }, [router]);
-  
+  // const handleGoBack = () => {
+  //   if (router.pathname === "/bookings") {
+  //     // If the current route is "/bookings," navigate to your website URL
+  //     window.location.href = 'https://sujadrivingschool.co.uk/';
+  //   } else {
+  //     // Use the router's back() method to navigate back to the previous page
+  //     router.back();
+  //   }
+  // };
+  //const renderDrType = data?.step2?.dr_type || 'Loading...';
+  const drType = data.step2.dr_type;
+  const courseType = data.step2.dr_course_type;
 
-
-
-  const handleGoBack = () => {
-    if (router.pathname === "/bookings") {
-      // If the current route is "/bookings," navigate to your website URL
-      window.location.href = 'https://sujadrivingschool.co.uk/';
-    } else {
-      // Use the router's back() method to navigate back to the previous page
-      router.back();
-    }
-  };
 
   return (
     <motion.div
@@ -38,7 +43,7 @@ const router = useRouter();
       className="fixed pt-28 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto h-[calc(100vh-0px)] p-6"
     >
       <div className="flex flex-col w-full h-full">
-        <div className="flex items-center space-x-4">
+        <div className="space-x-4 text-center">
           <Image alt="Suja Logo" width={70} height={70} src={Logo} className="mb-4 w-auto h-auto" />
           <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>
         </div>
@@ -47,7 +52,10 @@ const router = useRouter();
             Course
           </h4>
           <div className="mt-2 w-full font-semibold flex">
-            <span className="w-full">15 Hours - Automatic</span>
+          
+          {/* {data && data.step2 && data.step2.dr_type && (
+            <span className="w-full">15 Hours - {data.step2.dr_type}</span>
+          )} */}
             <div className="text-right">
               <span className="text-white text-opacity-60 ml-4">£730</span>
             </div>

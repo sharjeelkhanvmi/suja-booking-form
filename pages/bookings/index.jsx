@@ -10,6 +10,8 @@ import Formnav from "@/app/components/Formnav";
 let formdata = Cookies.get("formData");
 const data = formdata ? JSON.parse(formdata) : { postal_code: "" };
 
+// localStorage.setItem("key", "value")
+
 const validationSchema = Yup.object().shape({
   postal_code: Yup.string()
     .required("Postal code is required")
@@ -18,6 +20,9 @@ const validationSchema = Yup.object().shape({
 
 const index = () => {
   const router = useRouter();
+  const step1 = data.step1;
+
+  console.log(step1)
 
   //ALL LEADS DATA START
 
@@ -42,7 +47,7 @@ const index = () => {
   return (
     <div>
       <Formik
-        initialValues={data}
+        initialValues={step1 ? step1.values : {postal_code: ""}}
         validationSchema={validationSchema}
         onSubmit={async values => {
           await new Promise(r => setTimeout(r, 500));
