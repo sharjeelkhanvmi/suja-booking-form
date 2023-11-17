@@ -3,14 +3,16 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import Sidebar from '@/app/components/sidebar/sidebar';
+import dynamic from 'next/dynamic'
+// import Sidebar from '@/app/components/sidebar/sidebar';
+const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : {  };
 
-
+console.log(data)
 
 const validationSchema = Yup.object().shape({
   // auto_manual: Yup.string()
@@ -21,15 +23,13 @@ const validationSchema = Yup.object().shape({
 const tests = () => {
   const router = useRouter();
   const [changedData, setChangedData] = useState(data);
+  const step3 = data.step3;
 
 
   return (
     <div>
       <Formik
-        initialValues={{
-            fast_track_practical: false,
-            fast_track_theory: false
-        }}
+        initialValues={step3 ? step3 : { fast_track_practical: '', fast_track_theory: '' }}
         //validationSchema={validationSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
@@ -70,7 +70,7 @@ const tests = () => {
                     className="sr-only fast_track"
                     id="fast_track_practical"
                     onChange={(e) => {
-                      setFieldValue('fast_track_practical', !values.fast_track_practical);
+                      // setFieldValue('fast_track_practical', !values.fast_track_practical);
                       handleChange(e);
                       setChangedData((changedData) => {
                         return {
@@ -90,7 +90,7 @@ const tests = () => {
             <div className={values.fast_track_practical ? "true" : "false"}>
               <p>Fast-Track Practical</p>                        
               <div className="mt-1 bg-gray-900 text-white  w-max py-1 px-3 font-semibold  text-xs rounded-full">
-              {values.fast_track_practical ? 'Remove' : 'Add'}
+              {/* {values.fast_track_practical ? 'Remove' : 'Add'} */}
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@ const tests = () => {
                             <div>
                               <p>Fast-Track Theory</p>
                               <div className="mt-1 bg-gray-900 text-white  w-max py-1 px-3 font-semibold  text-xs rounded-full">
-                              {values.fast_track_theory ? 'Remove' : 'Add'}
+                              {/* {values.fast_track_theory ? 'Remove' : 'Add'} */}
                               </div>
                             </div>
                           </div>
@@ -192,7 +192,7 @@ const tests = () => {
                   </button>
                 </div>
               </div>
-              <Sidebar data={changedData} />
+              {/* <Sidebar data={changedData} /> */}
             </div>
           </Form>
         )}

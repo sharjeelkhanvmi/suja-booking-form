@@ -36,16 +36,17 @@ const router = useRouter();
   }
 
 
-  const drType = capitalize(data.step2.dr_type);
-  const courseType = data.step2.dr_course_type;
+  let drType;
+  // const courseType = data.step2.dr_course_type;
   let coursePriceObj;
   let hours_value;
   let variant;
   let full;
   let deposit;
 
-  console.log(data)
+  // console.log(data)
   if(data.step2.dr_course_price){
+    drType = capitalize(data.step2.dr_type);
     coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
     hours_value = coursePriceObj.value;
     variant = coursePriceObj.variant;
