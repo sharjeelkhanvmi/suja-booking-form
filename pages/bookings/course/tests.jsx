@@ -62,25 +62,27 @@ const tests = () => {
                 </div>
 
 
-                <div className=" mb-10">
+        <div className=" mb-10">
 
-                  <Field type="checkbox" name="fast_track_practical" className="sr-only fast_track" id="fast_track_practical" onChange={() => setFieldValue('fast_track_practical', !values.fast_track_practical)}/>
+        <Field type="checkbox" name="fast_track_practical" className="sr-only fast_track" id="fast_track_practical" 
+        onChange={() => setFieldValue('fast_track_practical', !values.fast_track_practical)}/>
 
-                  <label htmlFor="fast_track_practical" className="border cursor-pointer flex focus-visible:ring-2 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full">
-                    <div className=" w-full flex items-center py-4 items-center">
-                      <div className="pr-5">
-                        <svg width="30" height="30" viewBox="0 0 52 73" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M51 36.5C51 50.307 39.807 61.5 26 61.5C12.193 61.5 1 50.307 1 36.5C1 22.693 12.193 11.5 26 11.5C39.807 11.5 51 22.693 51 36.5Z" stroke="currentColor" strokeWidth="2"></path><path d="M16 71.5H36" stroke="currentColor" strokeWidth="2"></path><path d="M26 26.5V16.5" stroke="currentColor" strokeWidth="2"></path><path d="M31 1.5H21" stroke="currentColor" strokeWidth="2"></path><path d="M26 11.5V1.5" stroke="currentColor" strokeWidth="2"></path><path d="M26 56.5V46.5" stroke="currentColor" strokeWidth="2"></path><path d="M36 36.5H46" stroke="currentColor" strokeWidth="2"></path><path d="M6 36.5H16" stroke="currentColor" strokeWidth="2"></path><path d="M18.9289 29.4289L11.8579 22.3579" stroke="currentColor" strokeWidth="2"></path><path d="M40.1421 50.6421L33.0711 43.5711" stroke="currentColor" strokeWidth="2"></path><path d="M33.0711 29.4289L40.1421 22.3579" stroke="currentColor" strokeWidth="2"></path><path d="M11.8579 50.6421L18.9289 43.5711" stroke="currentColor" strokeWidth="2"></path></svg>
-                      </div>                      
-                      <div className={values.fast_track_practical ? "true" : "false"}>
-                        <p>Fast-Track Practical</p>                        
-                        <div className="mt-1 bg-gray-900 text-white  w-max py-1 px-3 font-semibold  text-xs rounded-full">
-                        {values.fast_track_practical ? 'Remove' : 'Add'}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="pl-7 w-auto"><span className="text-sm flex">£110</span>
-                    </div>
-                  </label>
+        <label htmlFor="fast_track_practical" className="border cursor-pointer flex focus-visible:ring-2 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full">
+          <div className=" w-full flex items-center py-4 items-center">
+            <div className="pr-5">
+              <svg width="30" height="30" viewBox="0 0 52 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M51 36.5C51 50.307 39.807 61.5 26 61.5C12.193 61.5 1 50.307 1 36.5C1 22.693 12.193 11.5 26 11.5C39.807 11.5 51 22.693 51 36.5Z" stroke="currentColor" strokeWidth="2"></path><path d="M16 71.5H36" stroke="currentColor" strokeWidth="2"></path><path d="M26 26.5V16.5" stroke="currentColor" strokeWidth="2"></path><path d="M31 1.5H21" stroke="currentColor" strokeWidth="2"></path><path d="M26 11.5V1.5" stroke="currentColor" strokeWidth="2"></path><path d="M26 56.5V46.5" stroke="currentColor" strokeWidth="2"></path><path d="M36 36.5H46" stroke="currentColor" strokeWidth="2"></path><path d="M6 36.5H16" stroke="currentColor" strokeWidth="2"></path><path d="M18.9289 29.4289L11.8579 22.3579" stroke="currentColor" strokeWidth="2"></path><path d="M40.1421 50.6421L33.0711 43.5711" stroke="currentColor" strokeWidth="2"></path><path d="M33.0711 29.4289L40.1421 22.3579" stroke="currentColor" strokeWidth="2"></path><path d="M11.8579 50.6421L18.9289 43.5711" stroke="currentColor" strokeWidth="2"></path></svg>
+            </div>                      
+            <div className={values.fast_track_practical ? "true" : "false"}>
+              <p>Fast-Track Practical</p>                        
+              <div className="mt-1 bg-gray-900 text-white  w-max py-1 px-3 font-semibold  text-xs rounded-full">
+              {values.fast_track_practical ? 'Remove' : 'Add'}
+              </div>
+            </div>
+          </div>
+          <div className="pl-7 w-auto"><span className="text-sm flex">£110</span>
+          </div>
+        </label>
 
 
                   {/* <div className=" overflow-y-hidden"><div className="mt-4 p-5 bg-white w-full rounded-lg border-2 border-primary">

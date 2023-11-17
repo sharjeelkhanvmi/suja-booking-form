@@ -37,25 +37,26 @@ const addons = () => {
           router.push('/bookings/summary/');
         }}
       >
-        {formikProps => (
+        {({values, setFieldValue }) => (
           <Form>
         <Formnav />
 <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
-
  <div className='w-full lg:max-w-[750px] pb-24'>  
-
  <div className="mt-[10px] items-top py-16">
   <div className="w-full lg:max-w-[750px]">
     <div className="w-full mb-5 pr-4">
       <h1 className="text-[24px] text-black font-bold pb-5"> Give yourself the best chance at success! </h1>
-      <div>
+     
         <div>
-          <button
-            className="w-full flex items-center text-left  ring-2 ring-primary ring-offset-1 bg-slate-300 py-4 px-5
+        <Field type="checkbox" name="passprotect" className="sr-only fast_track  flex items-center text-left  ring-2 ring-primary ring-offset-1 bg-slate-300 py-4 px-5
  rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary
-  focus-visible:ring-offset-1  transition-all mb-5">
-            <div className=" w-full flex justify-between items-center">
-              <div className="flex items-center">
+  focus-visible:ring-offset-1  transition-all mb-5" id="passprotect" 
+        onChange={() => setFieldValue('passprotect', !values.passprotect)}/>
+      <label htmlFor="passprotect" 
+      className="border cursor-pointer flex focus-visible:ring-2 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen
+       items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full">
+            <div className="w-full flex justify-between items-center">
+              <div className="flex items-center p-5">
                 <div className="">
                   <span className="w-full text-xl text-gray-900 font-bold">
                     PassProtect
@@ -69,26 +70,23 @@ const addons = () => {
                       attempts — if at first you don’t succeed, you can try and
                       try again with PassProtect.
                     </p>
-                    <div className="flex justify-between items-center mt-5">
-                      <div>
-                        <div
-                          className="mt-1 text-sm text-white bg-gray-900 w-max py-1 px-3 font-semibold 
-  text-xs rounded-full"
-                        >
-                          REMOVE
-                        </div>
-                      </div>
-                      <p className="text-lg text-gray-700">£150</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </button>
+            <div className="flex justify-between items-center mt-5">
+      <div>
+        <div className="mt-1 text-white bg-gray-900 text-sm w-max py-1 px-3 font-semibold rounded-full">
+          {values.passprotect ? 'Remove' : 'Add'}
         </div>
       </div>
+        <p className="text-lg text-gray-700">£150</p>
+      </div>
     </div>
+    </div>
+    </div>
+    </div>
+  </label>
   </div>
+    
+  </div>
+</div>
 </div>
 
 

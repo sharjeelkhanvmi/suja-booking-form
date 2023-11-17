@@ -148,7 +148,7 @@ Continue to Payment Method
 </button>
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-          <div className="w-full p-5 border rounded-md">
+          <div className="w-full p-6 border rounded-md">
             <div className="flex flex-col">
               <div className="flex items-center  mb-4 space-x-4">
                 <div className="p-3 bg-gray-100 rounded-xl w-max">
@@ -168,16 +168,16 @@ Continue to Payment Method
                     />
                   </svg>
                 </div>
-                <div className="font-semibold">100% Money-Back Guarantee</div>
+                <div className="text-lg font-semibold leading-normal">100% Money-Back Guarantee</div>
               </div>
-              <p className="text-start text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
+              <p className="text-start  text-400 font-regular text-[15px] ">
                 It's rarer than a Robin Reliant but, if we can't pass you fast
                 enough, you can get a full refund thanks to our money-back
                 guarantee.
               </p>
             </div>
           </div>
-          <div className="w-full p-5 border rounded-md">
+          <div className="w-full p-6 border rounded-md">
             <div className="flex flex-col">
               <div className="flex items-center  mb-4 space-x-4">
                 <div className="p-3 bg-gray-100 rounded-xl w-max">
@@ -197,9 +197,9 @@ Continue to Payment Method
                     />
                   </svg>
                 </div>
-                <div className="font-semibold">Flexible Payment Options</div>
+                <div className="text-lg font-semibold leading-normal">Flexible Payment Options</div>
               </div>
-              <p className="text-start text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
+              <p className="text-start text-400 font-regular text-[15px] ">
                 Unlike most intensive driving courses, we're flexible about
                 passing fast. You can pay in full today, reserve your spot with
                 a deposit of just £250. Or PaySlow with monthly instalments from
@@ -207,7 +207,7 @@ Continue to Payment Method
               </p>
             </div>
           </div>
-          <div className="w-full p-5 border rounded-md">
+          <div className="w-full p-6 border rounded-md">
             <div className="flex flex-col">
               <div className="flex items-center  mb-4 space-x-4">
                 <div className="p-3 bg-gray-100 rounded-xl w-max">
@@ -227,18 +227,18 @@ Continue to Payment Method
                     />
                   </svg>
                 </div>
-                <div className="font-semibold">
+                <div className="text-lg text-start leading-normal font-semibold">
                   Not your average driving course
                 </div>
               </div>
-              <p className="text-start text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
+              <p className="text-start text-400 font-regular text-[15px] ">
                 PassMeFast customers boost their odds of passing with video
                 lessons from Virtual Driving Instructor, and can make savings on
                 100+ of your fave brands with PassPerks!
               </p>
             </div>
           </div>
-          <div className="w-full p-5 border rounded-md">
+          <div className="w-full p-6 border rounded-md">
             <div className="flex flex-col">
               <div className="flex items-center  mb-4 space-x-4">
                 <div className="p-3 bg-gray-100 rounded-xl w-max">
@@ -258,9 +258,9 @@ Continue to Payment Method
                     />
                   </svg>
                 </div>
-                <div className="font-semibold">Learn from the Best</div>
+                <div className="text-lg text-start leading-normal font-semibold">Learn from the Best</div>
               </div>
-              <p className="text-start text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
+              <p className="text-start text-400 font-regular text-[15px]">
                 You'll be connected with one of 5,000 DVSA-approved and
                 CRB-checked driving instructors who'll know your local test
                 centre like the back of their hand and give you all the skills
