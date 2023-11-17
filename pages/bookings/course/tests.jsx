@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
 
 const tests = () => {
   const router = useRouter();
-  //const [isAdd, setIsAdd] = useState(false);
+  const [changedData, setChangedData] = useState(data);
 
 
   return (
@@ -42,7 +42,7 @@ const tests = () => {
          //console.log(formDatas)
         }}
       >
-        {({ values, setFieldValue }) => (
+        {({ values, setFieldValue, handleChange }) => (
           <Form>
             <Formnav />
             <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
@@ -64,7 +64,22 @@ const tests = () => {
 
                 <div className=" mb-10">
 
-                  <Field type="checkbox" name="fast_track_practical" className="sr-only fast_track" id="fast_track_practical" onChange={() => setFieldValue('fast_track_practical', !values.fast_track_practical)}/>
+                  <Field
+                    type="checkbox"
+                    name="fast_track_practical"
+                    className="sr-only fast_track"
+                    id="fast_track_practical"
+                    onChange={(e) => {
+                      setFieldValue('fast_track_practical', !values.fast_track_practical);
+                      handleChange(e);
+                      setChangedData((changedData) => {
+                        return {
+                          ...changedData,
+                          [e.target.name]: e.target.value,
+                        };
+                      });
+                    }}
+                  />
 
                   <label htmlFor="fast_track_practical" className="border cursor-pointer flex focus-visible:ring-2 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full">
                     <div className=" w-full flex items-center py-4 items-center">
@@ -176,7 +191,7 @@ const tests = () => {
                   </button>
                 </div>
               </div>
-              <Sidebar />
+              <Sidebar data={changedData} />
             </div>
           </Form>
         )}

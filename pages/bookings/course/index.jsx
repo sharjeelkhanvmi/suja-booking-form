@@ -4,20 +4,21 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-//import ThreeBoxes from '@/app/components/3boxes';
-import Sidebar from '@/app/components/sidebar/sidebar';
+import dynamic from 'next/dynamic'
+// import Sidebar from '@/app/components/sidebar/sidebar';
+const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import { motion } from "framer-motion";
 import {auto, manual} from '@/database/models/drivingCoursesData';
-//import { stringify } from 'postcss';
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : {  };
 const validationSchema = Yup.object().shape({
-dr_type: Yup.string()
-.oneOf([true], 'You must accept the terms')
-.required("Auto or Manual is required")
+   dr_type: Yup.string().required('Field is required'),
+   dr_course_type: Yup.string().required('Field is required'),
+   dr_course_price: Yup.string().required('Field is required'),
 });
+
 const index = () => {
 
 const router = useRouter();
@@ -27,14 +28,21 @@ const [isHintOpen_2, setHintOpen_2] = useState(false)
 const [isCourseOpen, setCourseOpen] = useState(false)
 const [driving, setDriving] = useState(manual)
 const [course, setCourse] = useState(driving.regular)
-const [cart, setCart] = useState({})
+const [changedData, setChangedData] = useState(data);
+const step2 = data.step2;
+
+// console.log(changedData)
+useEffect(() => {
+
+    console.log(changedData);
+
+ }, [changedData]);
 
 
 const variants = {
 open: { opacity: 1, height: 'auto', position: 'relative', 'z-index': 1  },
 closed: { opacity: 0, height: 0, position: 'relative', 'z-index': -1 },
 }
-
 
 const getDrType = (e) => {
 
@@ -51,23 +59,12 @@ const getDrType = (e) => {
    }
  }
 
-//  const updateCart = (values) => {
-//    console.log(values)
-//  }
-
- 
-// useEffect(() => {
-  
-//  },[]);
- 
-
 function showCoursePricing(event){
    let targetVal = event
    Array.from(document.getElementsByClassName('dr_course_price')).forEach(checkbox => checkbox.checked = false);
    setCourse(driving[targetVal])
    setCourseOpen(isCourseOpen => true)
 }
-
 
 const courseOptions = Object.keys(course.course).map((key) => ({
    id: `dr_dcp_type_${key}`,
@@ -76,21 +73,19 @@ const courseOptions = Object.keys(course.course).map((key) => ({
    variant: course.course[key].variant,
    price: course.course[key].price,
    hour: course.course[key].value
-   //label: `${course.course[key].value} ${course.course[key].variant} - $${course.course[key].price}`,
  }));
+
 
 
 return (
 <div>
 <Formik
-   initialValues={{ dr_type: '', dr_course_type: '', dr_course_price: {} }}
+   initialValues={step2 ? step2 : { dr_type: '', dr_course_type: '', dr_course_price: {} }}
    enableReinitialize={false}
-   onChange = { (values) => {
-      console.log(values);
-   }}
    // validationSchema={validationSchema}
    onSubmit={async (values) => {
    await new Promise(r => setTimeout(r, 500));
+
    const step2 = {
       'step2': {
       ...values,
@@ -101,16 +96,14 @@ return (
       ...data,
       ...step2
     };
-   // let formDatas = { ...data, ...values};
    Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
    router.push("/bookings/course/tests/");
-   // console.log(formDatas);
    }
    
 }
    
 >
-{({ values }) => (
+{({ handleChange, values }) => (
 
 <Form>
 {values.dr_type.length > 0 && (
@@ -120,10 +113,6 @@ return (
 {values.dr_course_type.length > 0 && (
 showCoursePricing(values.dr_course_type)
 )}
-{/* {values && (
-  updateCart(values)
-)} */}
-
 
    <Formnav />
    <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
@@ -138,12 +127,32 @@ showCoursePricing(values.dr_course_type)
                   name="dr_type"
                   id="manual"
                   value="manual"
-                  // onChange={(e) => { 
-                  //    setIsOpen(isOpen => true);
-                  //    getDrType(e);
-                  // }}
+                  checked={values.dr_type === 'manual'}
+                  onChange={(e) => {
+                     handleChange(e);
+                     // setChangedData((changedData) => {
+                     //   return {
+                     //     ...changedData,
+                     //     'step2':{
+                     //       [e.target.name]: e.target.value,
+                     //    }
+                     //   };
+                     // });
+                     setChangedData((changedData) => {
+                        const { name, value } = e.target;                      
+                        return {
+                          ...changedData,
+                          step2: {
+                            ...changedData.step2,
+                            [name]: value,
+                          },
+                        };
+                      });
+                      
+                      
+                   }}
                
-               />              
+               />
                <label htmlFor="manual" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
                      <div className="flex items-center">
@@ -190,10 +199,19 @@ showCoursePricing(values.dr_course_type)
                   name="dr_type"
                   id="automatic"
                   value="automatic"
-                  // onChange={(e) => { 
-                  //    setIsOpen(isOpen => true);
-                  //    getDrType(e);
-                  // }}
+                  onChange={(e) => {
+                     handleChange(e);
+                     setChangedData((changedData) => {
+                        const { name, value } = e.target;                      
+                        return {
+                          ...changedData,
+                          step2: {
+                            ...changedData.step2,
+                            [name]: value,
+                          },
+                        };
+                      });
+                   }}
                />
                <label htmlFor="automatic" className="w-full flex items-center text-left bg-emerald-100 ring-primary ring-offset-1 bg-pmfGray py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
@@ -234,7 +252,7 @@ showCoursePricing(values.dr_course_type)
             </div>
             <ErrorMessage
             name="dr_type"
-            component="p"
+            component="div"
             className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
          />
          </div>
@@ -279,6 +297,20 @@ showCoursePricing(values.dr_course_type)
                   name="dr_course_type"
                   id="dr_rc_type"
                   value="regular"
+                  onChange={(e) => {
+                     handleChange(e);
+                     setChangedData((changedData) => {
+                        const { name, value } = e.target;
+                        delete changedData.step2.dr_course_price;
+                        return {
+                          ...changedData,
+                          step2: {
+                            ...changedData.step2,
+                            [name]: value,
+                          },
+                        };
+                      });
+                   }}
                />
                <label htmlFor="dr_rc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
@@ -321,6 +353,20 @@ showCoursePricing(values.dr_course_type)
                   name="dr_course_type"
                   id="dr_cc_type"
                   value="speedster"
+                  onChange={(e) => {
+                     handleChange(e);
+                     setChangedData((changedData) => {
+                        const { name, value } = e.target;
+                        delete changedData.step2.dr_course_price;
+                        return {
+                          ...changedData,
+                          step2: {
+                            ...changedData.step2,
+                            [name]: value,
+                          },
+                        };
+                      });
+                   }}
                />
                <label htmlFor="dr_cc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                <div className=" w-full flex justify-between items-center">
@@ -366,6 +412,20 @@ showCoursePricing(values.dr_course_type)
                   name="dr_course_type"
                   id="dr_sc_type"
                   value="crash"
+                  onChange={(e) => {
+                     handleChange(e);
+                     setChangedData((changedData) => {
+                        const { name, value } = e.target;
+                        delete changedData.step2.dr_course_price;
+                        return {
+                          ...changedData,
+                          step2: {
+                            ...changedData.step2,
+                            [name]: value,
+                          },
+                        };
+                      });
+                   }}
                />
                <label htmlFor="dr_sc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
@@ -422,6 +482,20 @@ showCoursePricing(values.dr_course_type)
                   name="dr_course_type"
                   id="dr_gpc_type"
                   value="guaranteed_pass"
+                  onChange={(e) => {
+                     handleChange(e);
+                     setChangedData((changedData) => {
+                        const { name, value } = e.target;
+                        delete changedData.step2.dr_course_price;
+                        return {
+                          ...changedData,
+                          step2: {
+                            ...changedData.step2,
+                            [name]: value,
+                          },
+                        };
+                      });
+                   }}
                />
                <label htmlFor="dr_gpc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
@@ -464,6 +538,11 @@ showCoursePricing(values.dr_course_type)
                   </div>
                </label>
          </div>
+         <ErrorMessage
+            name="dr_course_type"
+            component="p"
+            className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+         />
       </div>
       </motion.section>
       
@@ -538,6 +617,28 @@ showCoursePricing(values.dr_course_type)
               name={option.name}
               id={option.id}
               value={option.value}
+              onChange={(e) => {
+               handleChange(e);
+               // setChangedData((changedData) => {
+               //    return {
+               //       ...changedData,
+               //       'step2': {
+               //         ...changedData.step2,
+               //         'dr_course_price': e.target.value,
+               //       },
+               //     };
+               // });
+               setChangedData((changedData) => {
+                  const { name, value } = e.target;
+                  return {
+                    ...changedData,
+                    step2: {
+                      ...changedData.step2,
+                      [name]: value,
+                    },
+                  };
+                });
+             }}
             />
             <label htmlFor={option.id} className="w-full flex items-center text-left bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full">
                <div className="w-full text-center">
@@ -569,7 +670,7 @@ showCoursePricing(values.dr_course_type)
                </button>
             </div>
          </div>
-         <Sidebar />
+         <Sidebar data={changedData} />
       </div>
 </Form>
 )}

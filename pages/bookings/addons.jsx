@@ -12,6 +12,11 @@ import Visa from '@/public/assets/visa.7c2bf868.svg';
 import Apple from '@/public/assets/apple_pay.svg';
 import Googlepay from '@/public/assets/google_pay.svg';
 import Image from "next/image";
+// stripe integration
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import PaymentForm from '@/app/components/PaymentForm';
+// stripe integration
 
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
