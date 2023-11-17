@@ -1,6 +1,5 @@
 import Layout from "@/app/components/Layout";
 import { useEffect, useState } from "react";
-
 const Index = () => {
   const [usersData,setUsersData]=useState(null);
 

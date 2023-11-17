@@ -2,7 +2,6 @@ import Layout from "@/app/components/Layout";
 import { useEffect, useState } from "react";
 import { AiFillPlusCircle ,AiFillDelete,AiFillEdit  } from "react-icons/ai";
 
-
 const Index = () => {
   const [leadsData,setLeadsData]=useState();
 

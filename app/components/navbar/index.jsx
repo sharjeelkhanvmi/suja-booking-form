@@ -77,6 +77,7 @@ const Navbar = (props) => {
           </Link>
         </p>
       </div>
+      <div><button className="bg-[#422afb] text-white px-2 py-1 rounded-md" onClick={logout}>LogOut</button></div>
     </nav>
   );
 };

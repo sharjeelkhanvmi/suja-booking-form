@@ -16,12 +16,9 @@ export default async function GET(req, res) {
         const leads = await Lead.find({ user: user._id }).exec();
         return { user, leads };
     });
-
-    // Wait for all lead queries to complete
+ // Wait for all lead queries to complete
     const usersWithLeads = await Promise.all(leadsPromises);
-
     res.status(200).json(usersWithLeads);
-    
   } catch (error) {
     console.error("Error fetching leads:", error);
     res.status(500).json({ success: false, error: "Internal Server Error" });
