@@ -2,6 +2,7 @@ import Layout from "@/app/components/Layout";
 import React,{ useEffect, useState } from "react";
 
 const Index = () => {
+
   const [leadsData,setLeadsData]=useState();
 
   const handleLeadsData = async () =>{

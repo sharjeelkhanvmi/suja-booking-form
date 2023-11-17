@@ -1,17 +1,18 @@
-import Layout from '@/app/components/Layout';
-import { useEffect, useState } from 'react';
+import Layout from "@/app/components/Layout";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 const Index = () => {
   const [userProfile, setuserProfile] = useState([]);
 
   const handleData = async () => {
     try {
-      const response = await fetch('/api/user');
+      const response = await fetch("/api/user");
       const userResponse = await response.json();
       setuserProfile(userResponse);
-      console.log(userResponse, 'User response in profile');
+      console.log(userResponse, "User response in profile");
     } catch (error) {
-      console.error('Error fetching user data:', error);
+      console.error("Error fetching user data:", error);
     }
   };
 
@@ -35,7 +36,7 @@ const Index = () => {
                 colSpan={1}
                 role="columnheader"
                 className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
                   NAME
@@ -45,7 +46,7 @@ const Index = () => {
                 colSpan={1}
                 role="columnheader"
                 className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
                   Email
@@ -55,7 +56,7 @@ const Index = () => {
                 colSpan={1}
                 role="columnheader"
                 className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
                   Fast Course
@@ -65,7 +66,7 @@ const Index = () => {
                 colSpan={1}
                 role="columnheader"
                 className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
                   Mobile
@@ -75,8 +76,8 @@ const Index = () => {
           </thead>
           <tbody role="rowgroup">
             {userProfile &&
-              userProfile.map((user) => {
-                if (user.user.role === 'customer') {
+              userProfile.map(user => {
+                if (user.user.role === "customer") {
                   return (
                     <tr key={user.user._id}>
                       <td

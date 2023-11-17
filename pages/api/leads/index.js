@@ -1,6 +1,8 @@
 import connectionSuja from "@/database/dbconstr";
 import Lead from "@/database/models/Lead";
+
 export default async function GET(req, res) {
+
   let pageNo = req.query.page ? req.query.page : 0;
   let Limit = req.query.limit ? req.query.limit : 20;
   let skip = pageNo * Limit;
