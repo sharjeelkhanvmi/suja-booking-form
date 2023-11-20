@@ -51,7 +51,7 @@ const index = () => {
         validationSchema={validationSchema}
         onSubmit={async values => {
           await new Promise(r => setTimeout(r, 500));
-          Cookies.set("formData", JSON.stringify({ 'step1': { values } }), { expires: null });
+          Cookies.set("formData", JSON.stringify({ 'step1': { values } }), { expires: 30 });
           //let formdata = Cookies.get("formData");
           router.push("/bookings/course/");
         }}

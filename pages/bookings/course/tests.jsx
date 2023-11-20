@@ -37,12 +37,12 @@ const tests = () => {
             ...data,
             ...{'step3': values}
           };
-         Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
+         Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
          router.push("/bookings/student");
          //console.log(formDatas)
         }}
       >
-        {({ values, setFieldValue, handleChange }) => (
+        {({ values, handleChange }) => (
           <Form>
             <Formnav />
             <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
@@ -69,6 +69,7 @@ const tests = () => {
                     name="fast_track_practical"
                     className="sr-only fast_track"
                     id="fast_track_practical"
+                    value="110"
                     onChange={(e) => {
                       // setFieldValue('fast_track_practical', !values.fast_track_practical);
                       handleChange(e);
@@ -87,7 +88,7 @@ const tests = () => {
               <svg width="30" height="30" viewBox="0 0 52 73" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M51 36.5C51 50.307 39.807 61.5 26 61.5C12.193 61.5 1 50.307 1 36.5C1 22.693 12.193 11.5 26 11.5C39.807 11.5 51 22.693 51 36.5Z" stroke="currentColor" strokeWidth="2"></path><path d="M16 71.5H36" stroke="currentColor" strokeWidth="2"></path><path d="M26 26.5V16.5" stroke="currentColor" strokeWidth="2"></path><path d="M31 1.5H21" stroke="currentColor" strokeWidth="2"></path><path d="M26 11.5V1.5" stroke="currentColor" strokeWidth="2"></path><path d="M26 56.5V46.5" stroke="currentColor" strokeWidth="2"></path><path d="M36 36.5H46" stroke="currentColor" strokeWidth="2"></path><path d="M6 36.5H16" stroke="currentColor" strokeWidth="2"></path><path d="M18.9289 29.4289L11.8579 22.3579" stroke="currentColor" strokeWidth="2"></path><path d="M40.1421 50.6421L33.0711 43.5711" stroke="currentColor" strokeWidth="2"></path><path d="M33.0711 29.4289L40.1421 22.3579" stroke="currentColor" strokeWidth="2"></path><path d="M11.8579 50.6421L18.9289 43.5711" stroke="currentColor" strokeWidth="2"></path></svg>
             </div>                      
-            <div className={values.fast_track_practical ? "true" : "false"}>
+            <div>
               <p>Fast-Track Practical</p>                        
               <div className="mt-1 bg-gray-900 text-white  w-max py-1 px-3 font-semibold  text-xs rounded-full">
               {/* {values.fast_track_practical ? 'Remove' : 'Add'} */}
@@ -119,7 +120,23 @@ const tests = () => {
                     a flying start and pass ASAP with a fast-tracked theory test.</p></div>
                 <div className=" mb-10">
                   <div className="mb-5">
-                    <Field type="checkbox" name="fast_track_theory" className="sr-only fast_track" id="fast_track_theory" onChange={() => setFieldValue('fast_track_theory', !values.fast_track_theory)} />                    
+                    <Field
+                    type="checkbox"
+                    name="fast_track_theory"
+                    className="sr-only fast_track"
+                    id="fast_track_theory"
+                    value="40"
+                    onChange={(e) => {
+                      // setFieldValue('fast_track_practical', !values.fast_track_practical);
+                      handleChange(e);
+                      setChangedData((changedData) => {
+                        return {
+                          ...changedData,
+                          [e.target.name]: e.target.value,
+                        };
+                      });
+                    }}
+                    />
                     <label htmlFor="fast_track_theory" className="border cursor-pointer flex focus-visible:ring-2 py-5 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full justify-between">
                       <div className="flex items-center">
                         <div className="pr-5 false">
@@ -175,15 +192,6 @@ const tests = () => {
                   )}
                 </div>
 
-
-
-
-
-
-
-
-
-
                 <div className="flex items-center justify-content-center">
                   <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 
     py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
@@ -192,7 +200,7 @@ const tests = () => {
                   </button>
                 </div>
               </div>
-              {/* <Sidebar data={changedData} /> */}
+              <Sidebar data={changedData} />
             </div>
           </Form>
         )}

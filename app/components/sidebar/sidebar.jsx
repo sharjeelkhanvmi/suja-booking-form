@@ -45,7 +45,7 @@ const router = useRouter();
   let deposit;
 
   // console.log(data)
-  if(data.step2.dr_course_price){
+  if(data && data.step2 && data.step2.dr_course_price != undefined){
     drType = capitalize(data.step2.dr_type);
     coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
     hours_value = coursePriceObj.value;
@@ -57,7 +57,7 @@ const router = useRouter();
   
 
   // console.log(variant)
-  // console.log(data.step2)
+  console.log(data.step3)
 
 
   return (
@@ -71,7 +71,7 @@ const router = useRouter();
       className="fixed pt-28 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto h-[calc(100vh-0px)] p-6"
     >
 
-    {data.step2.dr_course_price ? (
+    {data && data.step2 && data.step2.dr_course_price ? (
         
         <div className="flex flex-col w-full h-full">
         <div className="space-x-4 text-center">
@@ -109,7 +109,7 @@ const router = useRouter();
           </div>
         </div>
       </div>
-      ) : ''
+      ) : 'Empty'
       
     }
 
