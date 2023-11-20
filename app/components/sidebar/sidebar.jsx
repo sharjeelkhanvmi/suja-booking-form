@@ -57,11 +57,10 @@ const router = useRouter();
   
 
   // console.log(variant)
-  console.log(data.step3)
+  // console.log(data)
 
 
   return (
-
 
     <motion.div
       initial={{ opacity: 0.8, marginRight: -360 }}
@@ -89,29 +88,97 @@ const router = useRouter();
             </div>
           </div>
         </div>
-        <div className="mt-5">
+
+        { (data && data.step3 && data.step3.fast_track_theory || data && data.step3 && data.step3.fast_track_practical)  ? (
+
+          <div>
+
+          <div className="mt-5">
           <h4 className="text-white text-opacity-50 font-bold uppercase text-[13px] tracking-wide">
             Tests
           </h4>
-          <div className="mt-2 w-full font-semibold flex">
+
+
+          {data && data.step3 && data.step3.fast_track_theory ? (
+
+            <div className="mt-2 w-full font-semibold flex">
+            <span className="w-full">Theory Test</span>
+            <div className="text-right">
+              <span className="text-white text-opacity-60 ml-4">£{data.step3.fast_track_theory}</span>
+            </div>
+            </div>
+
+          ) : ''}
+          {data && data.step3 && data.step3.fast_track_practical ? (
+
+            <div className="mt-2 w-full font-semibold flex">
             <span className="w-full">Practical Test</span>
             <div className="text-right">
-              <span className="text-white text-opacity-60 ml-4">£110</span>
+              <span className="text-white text-opacity-60 ml-4">£{data.step3.fast_track_practical}</span>
             </div>
+            </div>
+
+          ) : ''}
+
           </div>
-        </div>
-        <div className="mt-14 flex justify-between items-center">
+
+          </div>
+
+        ) : ''}
+
+        
+          <div className="mt-14 flex justify-between items-center">
           <h4 className="text-white text-opacity-50 font-bold uppercase text-[13px] tracking-wide">
             Total
           </h4>
           <div>
             <span className="text-white font-semibold">£840</span>
           </div>
+          </div>
+
+
+      </div>
+
+      
+      ) : (
+        
+        // empty card html
+        <div className="h-full w-full p-4 flex items-center justify-center flex-col text-center">
+        <div className="flex items-center justify-center flex-col text-center">
+          <div className="rounded-full bg-white bg-opacity-10 p-8 flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              width={40}
+              height={40}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+          </div>
+          <p className="font-semibold mt-4">Your cart is empty</p>
+          <p className="text-sm text-white text-opacity-70 mt-4">
+            Start by selecting your course to see it in your cart.
+          </p>
         </div>
       </div>
-      ) : 'Empty'
+      
+
+
+      )
       
     }
+
+
+
+
+
 
 
     </motion.div>
