@@ -243,4 +243,9 @@ export const auto = {
         'bg_color' : 'bg-teal-200',
     }
 };
+
+export const test = {
+    'fast_track_practical' : 110,
+    'fast_track_theory' : 40
+}
   

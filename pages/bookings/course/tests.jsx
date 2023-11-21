@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
 // import Sidebar from '@/app/components/sidebar/sidebar';
 const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
+import {test} from '@/database/models/drivingCoursesData';
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 
@@ -22,28 +23,45 @@ const validationSchema = Yup.object().shape({
 const tests = () => {
   const router = useRouter();
   const [changedData, setChangedData] = useState(data);
+  const [checkboxValue, setCheckboxValue] = useState(test);
   const step3 = data.step3;
 
-  //console.log(data)
+  // const handleChange = (e) => {
+  //   setCheckboxValue(e.target.value);
+  // };
+
+  useEffect(() => {
+
+    console.log(changedData);
+
+ }, [changedData]);
 
   return (
     <div>
       <Formik
-        initialValues={step3 ? step3 : { fast_track_practical: '', fast_track_theory: '' }}
-        enableReinitialize={false}
+        initialValues={{ fast_track_practical: false, fast_track_theory: false, i_have_already_booked: false }}
+        //enableReinitialize={false}
         //validationSchema={validationSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
-        //   const formDatas = {
-        //     ...data,
-        //     ...{'step3': values}
-        //   };
+          const fastTrackPracticalValue = values.fast_track_practical ? checkboxValue.fast_track_practical : '';
+          const fastTrackTheoryValue = values.fast_track_theory ? checkboxValue.fast_track_theory : '';
+          // const fieldNames = Object.keys(values);
+          
+          const formDatas = {
+            ...data,
+            step3: {
+              ...values,
+              'fast_track_practical': fastTrackPracticalValue,
+              'fast_track_theory': fastTrackTheoryValue,
+            },
+          };
         //  Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
         //  router.push("/bookings/student");
-         console.log(values)
+         console.log(formDatas)
         }}
       >
-        {({ values, handleChange }) => (
+        {({ handleChange, values }) => (
           <Form>
             <Formnav />
             <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
@@ -63,41 +81,25 @@ const tests = () => {
                 </div>
 
 
-        <div className=" mb-10">
+        <div className="mb-10">
 
                   <Field
                     type="checkbox"
                     name="fast_track_practical"
-                    className="sr-only fast_track"
+                    className="fast_track"
                     id="fast_track_practical"
-                    value="110"
                     onChange={(e) => {
                       handleChange(e);
-                    
-                      setChangedData((prevData) => {
-                        const { name, value, type, checked } = e.target;
-                    
-                        const updatedStep3 = type === 'checkbox'
-                          ? {
-                              ...prevData.step3,
-                              [name]: checked ? value : '', // If checked, set the value; otherwise, set an empty string
-                            }
-                          : {
-                              ...prevData.step3,
-                              [name]: type === 'number' ? parseFloat(value) : value, // Ensure the value is a number if the type is 'number'
-                            };
-                    
-                        return {
-                          ...prevData,
-                          step3: updatedStep3,
-                        };
-                      });
+                      setChangedData((changedData) => {
+                         return {
+                           ...changedData,
+                           step3: {                       
+                            fast_track_practical: e.target.checked ? checkboxValue.fast_track_practical : '',
+                           },
+                         };
+                       });
                     }}
-                    
-                    
-                    
                   />
-
         <label htmlFor="fast_track_practical" className="border cursor-pointer flex focus-visible:ring-2 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full">
           <div className="w-full flex items-center py-4 items-center">
             <div className="pr-5">
@@ -114,6 +116,7 @@ const tests = () => {
           <div className="pl-7 w-auto"><span className="text-sm flex">£110</span>
           </div>
         </label>
+        
 
 
                   {/* <div className=" overflow-y-hidden"><div className="mt-4 p-5 bg-white w-full rounded-lg border-2 border-primary">
@@ -141,26 +144,20 @@ const tests = () => {
                     name="fast_track_theory"
                     className="sr-only fast_track"
                     id="fast_track_theory"
-                    value="40"
                     onChange={(e) => {
                       handleChange(e);
-                    
                       setChangedData((changedData) => {
-                        const { name, value, type, checked } = e.target;
-                        const updatedStep3 = type === 'checkbox' ?
-                          (checked
-                            ? { ...changedData.step3, [name]: value }
-                            : Object.fromEntries(Object.entries(changedData.step3).filter(([key]) => key !== name))
-                          )
-                          : { ...changedData.step3, name: value };
-                    
-                        return {
-                          ...changedData,
-                          step3: updatedStep3,
-                        };
-                      });
-                    }}
-                    
+                         //const { name, value } = e.target;
+                        //  console.log('handlechanged', checkboxValue);
+                         return {
+                           ...changedData,
+                           step3: {
+                            //  ...changedData.step3,                            
+                            fast_track_theory: e.target.checked ? checkboxValue.fast_track_theory : '',
+                           },
+                         };
+                       });
+                    }}                    
                     />
                     
                     <label htmlFor="fast_track_theory" className="border cursor-pointer flex focus-visible:ring-2 py-5 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full justify-between">
@@ -186,12 +183,28 @@ const tests = () => {
 
                   </div>
 
-                  {values.fast_track_theory === true && (
+                  {values.fast_track_theory !== true && (
                   <div className="mb-5">
                     <div>
 
                       <div className="mb-3">
-                        <Field type="checkbox" name="i_have_already_booked" className="sr-only fast_track" id="i_have_already_booked" />
+                        <Field
+                        type="checkbox"
+                        name="i_have_already_booked"
+                        className="sr-only fast_track"
+                        id="i_have_already_booked"
+                        onChange={(e) => {
+                          handleChange(e);
+                          setChangedData((changedData) => {
+                             return {
+                               ...changedData,
+                               step3: {                       
+                                i_have_already_booked: e.target.checked ? checkboxValue.i_have_already_booked : false,
+                               },
+                             };
+                           });
+                        }}
+                        />
                         <label htmlFor="i_have_already_booked" className="border cursor-pointer flex focus-visible:ring-2 py-5 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full justify-between">
                           <div className="flex items-center">
                             <div className="pr-5 false"><svg width="19" height="19" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -204,7 +217,23 @@ const tests = () => {
                       </div>
 
                       <div className="py-4">
-                        <Field type="checkbox" name="i_have_already_passed" className="sr-only fast_track" id="i_have_already_passed" />
+                        <Field
+                        type="checkbox"
+                        name="i_have_already_passed"
+                        className="sr-only fast_track"
+                        id="i_have_already_passed"
+                        onChange={(e) => {
+                          handleChange(e);
+                          setChangedData((changedData) => {
+                             return {
+                               ...changedData,
+                               step3: {                       
+                                i_have_already_passed: e.target.checked ? checkboxValue.i_have_already_passed : false,
+                               },
+                             };
+                           });
+                        }}
+                        />
                         <label htmlFor="i_have_already_passed" className="border cursor-pointer flex focus-visible:ring-2 py-5 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full justify-between">
                           <div className="flex items-center">
                             <div className="pr-5 false"><svg width="19" height="19" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
