@@ -497,7 +497,7 @@ const Index = () => {
             </div>
           </form>
         </Modal>
-        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto mt-36 p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col'>
+        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col h-full'>
         <h1 className="text-center text-4xl font-bold pb-3">View Data</h1>
         {viewLead && (
           <div className="flex justify-center gap-10">
