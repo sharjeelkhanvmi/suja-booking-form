@@ -67,6 +67,31 @@ const MyModal = () => {
                lacus vitae, dapibus urna. Proin placerat rhoncus nunc, vitae tempus magna convallis eu.
                 Integer fermentum lectus nunc, eget venenatis ante vestibulum nec.</p>
             <br />
+            <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+      <div className="bg-white p-8 rounded shadow-md w-96">
+        <h1 className="text-2xl font-semibold mb-4">Customer Dashboard</h1>
+        
+        <div className="mb-4">
+          <p className="text-gray-600">Name:</p>
+          <p className="text-black font-semibold"></p>
+        </div>
+
+        <div className="mb-4">
+          <p className="text-gray-600">Email:</p>
+          <p className="text-black font-semibold"></p>
+        </div>
+
+        <div className="mb-4">
+          <p className="text-gray-600">Total Orders:</p>
+          <p className="text-black font-semibold"></p>
+        </div>
+
+        <div className="mb-4">
+          <p className="text-gray-600">Last Purchase:</p>
+          <p className="text-black font-semibold"></p>
+        </div>
+      </div>
+    </div>
       <button className="close-button" onClick={closeModal}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <line x1="18" y1="6" x2="6" y2="18"></line>

@@ -75,7 +75,7 @@
   left: 45% !important;
   transform: translate(-50%, -50%);
   border: none;
-  border-radius:10px;
+  border-radius:15px !important;
   outline: none;
   padding: 20px;
   max-width: 900px !important;
