@@ -1,39 +1,54 @@
+// PaymentForm.jsx
+
 import React, { useState } from 'react';
-import { CardNumberElement,
-    CardCvcElement,
-    CardExpiryElement,
-    Elements,
-    ElementsConsumer, useStripe, useElements } from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
+import {
+  CardNumberElement,
+  CardCvcElement,
+  CardExpiryElement,
+  Elements,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf');
+const stripePromise = loadStripe(
+  'pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf'
+);
 
-const appearance = {
-    theme: 'stripe',
-    variables: {
-        colorPrimary: '#0570de',
-        colorBackground: '#ffffff',
-        colorText: '#30313d',
-        colorDanger: '#df1b41',
-        fontFamily: 'Ideal Sans, system-ui, sans-serif',
-        spacingUnit: '2px',
-        borderRadius: '4px',
-        // See all possible variables below
-      }
-  };
-  // sk_test_51OCgAiLtI6eAAvg7RIlCZHIzlh3tzYm9Eb6a0ZZEp1PSraq6yZz7GPKo9n9DmKxGTMTroGpU62CN8SZ2Vm7yGOV400kDMncejP
-
-const PaymentForm = () => {
-
+const PaymentForm = ({ onSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
+  const [productName, setProductName] = useState('Product Name');
+  const [productPrice, setProductPrice] = useState('16000');
 
-  const options = {
-    // passing the client secret obtained from the server
-    clientSecret: '{{sk_test_51OCgAiLtI6eAAvg7RIlCZHIzlh3tzYm9Eb6a0ZZEp1PSraq6yZz7GPKo9n9DmKxGTMTroGpU62CN8SZ2Vm7yGOV400kDMncejP}}',
+  const cardElementOptions = {
+    style: {
+      base: {
+        color: '#303238',
+        fontFamily: 'Arial, sans-serif',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#ccc',
+        },
+      },
+      invalid: {
+        color: '#e5424d',
+      },
+    },
+    classes: {
+      base:
+        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+      complete:
+        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+      empty:
+        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+      focus:
+        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+      invalid:
+        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+    },
   };
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,16 +57,35 @@ const PaymentForm = () => {
       return;
     }
 
-    const cardElement = elements.getElement(CardElement);
-
     try {
-      const { paymentMethod } = await stripe.createPaymentMethod({
+      const { paymentMethod, error } = await stripe.createPaymentMethod({
         type: 'card',
-        card: cardElement,
+        card: elements.getElement(CardNumberElement),
+        billing_details: {
+          address: {
+            city: 'Karachi',
+            country: 'PK',
+            line1: 'Your Address Line 1',
+          },
+          email: 'sharjeelkhanvmi@gmail.com',
+          name: 'Sharjeel Khan',
+          phone: '+923331279579',
+        },
+        metadata: {
+          product: JSON.stringify({
+            name: productName,
+            price: productPrice,
+          }),
+        },
       });
 
-      // Handle the payment method (send to server for processing, etc.)
-      console.log('PaymentMethod:', paymentMethod);
+      if (error) {
+        setPaymentError(error.message);
+      } else {
+        console.log('PaymentMethod:', paymentMethod);
+        console.log('Product Details:', { productName, productPrice });
+        onSuccess();
+      }
     } catch (error) {
       setPaymentError(error.message);
       console.error(error);
@@ -60,16 +94,65 @@ const PaymentForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Card details
-        <CardNumberElement />
-        <CardExpiryElement />
-        <CardCvcElement />
-      </label>
-      <button type="submit" disabled={!stripe}>
-        Pay
-      </button>
-      {paymentError && <p style={{ color: 'red' }}>{paymentError}</p>}
+      <p className="mb-2 font-medium text-[15px] mt-2">Card Number</p>
+      <div className="w-full rounded-md text-dust bg-white outline-none font-semibold text-base">
+        <div className="">
+          <CardNumberElement options={cardElementOptions} />
+        </div>
+      </div>
+
+      <div className="flex mt-2 mb-5">
+        <div className="w-1/2">
+          <p className="mb-2 font-medium text-[15px] mt-2">Expiry Date</p>
+          <div className="w-full rounded-md text-dust bg-white outline-none font-semibold text-base">
+            <div className="">
+              <CardExpiryElement options={cardElementOptions} />
+            </div>
+          </div>
+        </div>
+        <div className="w-1/2 ml-6">
+          <p className="mb-2 text-secondary leading-snug text-opacity-70 font-medium text-[15px] mt-2">
+            CVC
+          </p>
+          <div className="w-full rounded-md text-dust bg-white outline-none font-semibold text-base">
+            <div className="">
+              <CardCvcElement options={cardElementOptions} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="block items-center justify-content-center mt-5">
+        {paymentError && (
+          <p className="mb-4" style={{ color: 'red' }}>
+            {paymentError}
+          </p>
+        )}
+        <button
+          type="submit"
+          disabled={!stripe}
+          className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600"
+        >
+          <span className="flex items-center justify-center">
+            Pay £840
+            <span className="ml-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="19"
+                height="19"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h13M12 5l7 7-7 7"></path>
+              </svg>
+            </span>
+          </span>
+        </button>
+      </div>
     </form>
   );
 };
