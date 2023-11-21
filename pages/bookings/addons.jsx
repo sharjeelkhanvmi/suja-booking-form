@@ -37,7 +37,7 @@ const addons = () => {
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
-          Cookies.set('formData', JSON.stringify(values));
+          Cookies.set('formData', JSON.stringify(values), { expires: 30 });
           let formdata = Cookies.get('formData');
           router.push('/bookings/summary/');
         }}
@@ -90,7 +90,7 @@ const addons = () => {
   </label>
   </div>
     
-  </div>
+</div>
 </div>
 </div>
 

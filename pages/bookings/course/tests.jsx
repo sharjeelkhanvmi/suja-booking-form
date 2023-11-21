@@ -6,13 +6,15 @@ import { useRouter } from "next/router";
 import dynamic from 'next/dynamic'
 // import Sidebar from '@/app/components/sidebar/sidebar';
 const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
+import {test} from '@/database/models/drivingCoursesData';
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
+import ModalExample from '@/pages/bookings/Modal'
+import Modal from '@/pages/bookings/Modal';
 
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : {  };
 
-console.log(data)
 
 const validationSchema = Yup.object().shape({
   // auto_manual: Yup.string()
@@ -23,26 +25,45 @@ const validationSchema = Yup.object().shape({
 const tests = () => {
   const router = useRouter();
   const [changedData, setChangedData] = useState(data);
+  const [checkboxValue, setCheckboxValue] = useState(test);
   const step3 = data.step3;
 
+  // const handleChange = (e) => {
+  //   setCheckboxValue(e.target.value);
+  // };
+
+  useEffect(() => {
+
+    console.log(changedData);
+
+ }, [changedData]);
 
   return (
     <div>
       <Formik
-        initialValues={step3 ? step3 : { fast_track_practical: '', fast_track_theory: '' }}
+        initialValues={{ fast_track_practical: false, fast_track_theory: false, i_have_already_booked: false }}
+        //enableReinitialize={false}
         //validationSchema={validationSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
+          const fastTrackPracticalValue = values.fast_track_practical ? checkboxValue.fast_track_practical : '';
+          const fastTrackTheoryValue = values.fast_track_theory ? checkboxValue.fast_track_theory : '';
+          // const fieldNames = Object.keys(values);
+          
           const formDatas = {
             ...data,
-            ...{'step3': values}
+            step3: {
+              ...values,
+              'fast_track_practical': fastTrackPracticalValue,
+              'fast_track_theory': fastTrackTheoryValue,
+            },
           };
-         Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
-         router.push("/bookings/student");
-         //console.log(formDatas)
+        //  Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
+        //  router.push("/bookings/student");
+         console.log(formDatas)
         }}
       >
-        {({ values, setFieldValue, handleChange }) => (
+        {({ handleChange, values }) => (
           <Form>
             <Formnav />
             <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
@@ -62,41 +83,42 @@ const tests = () => {
                 </div>
 
 
-        <div className=" mb-10">
+        <div className="mb-10">
 
                   <Field
                     type="checkbox"
                     name="fast_track_practical"
-                    className="sr-only fast_track"
+                    className="fast_track"
                     id="fast_track_practical"
                     onChange={(e) => {
-                      // setFieldValue('fast_track_practical', !values.fast_track_practical);
                       handleChange(e);
                       setChangedData((changedData) => {
-                        return {
-                          ...changedData,
-                          [e.target.name]: e.target.value,
-                        };
-                      });
+                         return {
+                           ...changedData,
+                           step3: {                       
+                            fast_track_practical: e.target.checked ? checkboxValue.fast_track_practical : '',
+                           },
+                         };
+                       });
                     }}
                   />
-
         <label htmlFor="fast_track_practical" className="border cursor-pointer flex focus-visible:ring-2 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full">
-          <div className=" w-full flex items-center py-4 items-center">
+          <div className="w-full flex items-center py-4 items-center">
             <div className="pr-5">
               <svg width="30" height="30" viewBox="0 0 52 73" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M51 36.5C51 50.307 39.807 61.5 26 61.5C12.193 61.5 1 50.307 1 36.5C1 22.693 12.193 11.5 26 11.5C39.807 11.5 51 22.693 51 36.5Z" stroke="currentColor" strokeWidth="2"></path><path d="M16 71.5H36" stroke="currentColor" strokeWidth="2"></path><path d="M26 26.5V16.5" stroke="currentColor" strokeWidth="2"></path><path d="M31 1.5H21" stroke="currentColor" strokeWidth="2"></path><path d="M26 11.5V1.5" stroke="currentColor" strokeWidth="2"></path><path d="M26 56.5V46.5" stroke="currentColor" strokeWidth="2"></path><path d="M36 36.5H46" stroke="currentColor" strokeWidth="2"></path><path d="M6 36.5H16" stroke="currentColor" strokeWidth="2"></path><path d="M18.9289 29.4289L11.8579 22.3579" stroke="currentColor" strokeWidth="2"></path><path d="M40.1421 50.6421L33.0711 43.5711" stroke="currentColor" strokeWidth="2"></path><path d="M33.0711 29.4289L40.1421 22.3579" stroke="currentColor" strokeWidth="2"></path><path d="M11.8579 50.6421L18.9289 43.5711" stroke="currentColor" strokeWidth="2"></path></svg>
             </div>                      
-            <div className={values.fast_track_practical ? "true" : "false"}>
+            <div>
               <p>Fast-Track Practical</p>                        
               <div className="mt-1 bg-gray-900 text-white  w-max py-1 px-3 font-semibold  text-xs rounded-full">
-              {/* {values.fast_track_practical ? 'Remove' : 'Add'} */}
+              {/* { (values.fast_track_practical != '') || () ? 'Remove' : 'Add'} */}
               </div>
             </div>
           </div>
           <div className="pl-7 w-auto"><span className="text-sm flex">£110</span>
           </div>
         </label>
+        
 
 
                   {/* <div className=" overflow-y-hidden"><div className="mt-4 p-5 bg-white w-full rounded-lg border-2 border-primary">
@@ -119,7 +141,27 @@ const tests = () => {
                     a flying start and pass ASAP with a fast-tracked theory test.</p></div>
                 <div className=" mb-10">
                   <div className="mb-5">
-                    <Field type="checkbox" name="fast_track_theory" className="sr-only fast_track" id="fast_track_theory" onChange={() => setFieldValue('fast_track_theory', !values.fast_track_theory)} />                    
+                    <Field
+                    type="checkbox"
+                    name="fast_track_theory"
+                    className="sr-only fast_track"
+                    id="fast_track_theory"
+                    onChange={(e) => {
+                      handleChange(e);
+                      setChangedData((changedData) => {
+                         //const { name, value } = e.target;
+                        //  console.log('handlechanged', checkboxValue);
+                         return {
+                           ...changedData,
+                           step3: {
+                            //  ...changedData.step3,                            
+                            fast_track_theory: e.target.checked ? checkboxValue.fast_track_theory : '',
+                           },
+                         };
+                       });
+                    }}                    
+                    />
+                    
                     <label htmlFor="fast_track_theory" className="border cursor-pointer flex focus-visible:ring-2 py-5 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full justify-between">
                       <div className="flex items-center">
                         <div className="pr-5 false">
@@ -130,7 +172,7 @@ const tests = () => {
                             <div>
                               <p>Fast-Track Theory</p>
                               <div className="mt-1 bg-gray-900 text-white  w-max py-1 px-3 font-semibold  text-xs rounded-full">
-                              {/* {values.fast_track_theory ? 'Remove' : 'Add'} */}
+                              {/* { (values.fast_track_theory != '') ? 'Remove' : 'Add'} */}
                               </div>
                             </div>
                           </div>
@@ -143,12 +185,28 @@ const tests = () => {
 
                   </div>
 
-                  {values.fast_track_theory === true && (
+                  {values.fast_track_theory !== true && (
                   <div className="mb-5">
                     <div>
 
                       <div className="mb-3">
-                        <Field type="checkbox" name="i_have_already_booked" className="sr-only fast_track" id="i_have_already_booked" />
+                        <Field
+                        type="checkbox"
+                        name="i_have_already_booked"
+                        className="sr-only fast_track"
+                        id="i_have_already_booked"
+                        onChange={(e) => {
+                          handleChange(e);
+                          setChangedData((changedData) => {
+                             return {
+                               ...changedData,
+                               step3: {                       
+                                i_have_already_booked: e.target.checked ? checkboxValue.i_have_already_booked : false,
+                               },
+                             };
+                           });
+                        }}
+                        />
                         <label htmlFor="i_have_already_booked" className="border cursor-pointer flex focus-visible:ring-2 py-5 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full justify-between">
                           <div className="flex items-center">
                             <div className="pr-5 false"><svg width="19" height="19" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -161,7 +219,23 @@ const tests = () => {
                       </div>
 
                       <div className="py-4">
-                        <Field type="checkbox" name="i_have_already_passed" className="sr-only fast_track" id="i_have_already_passed" />
+                        <Field
+                        type="checkbox"
+                        name="i_have_already_passed"
+                        className="sr-only fast_track"
+                        id="i_have_already_passed"
+                        onChange={(e) => {
+                          handleChange(e);
+                          setChangedData((changedData) => {
+                             return {
+                               ...changedData,
+                               step3: {                       
+                                i_have_already_passed: e.target.checked ? checkboxValue.i_have_already_passed : false,
+                               },
+                             };
+                           });
+                        }}
+                        />
                         <label htmlFor="i_have_already_passed" className="border cursor-pointer flex focus-visible:ring-2 py-5 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full justify-between">
                           <div className="flex items-center">
                             <div className="pr-5 false"><svg width="19" height="19" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -174,16 +248,7 @@ const tests = () => {
                   </div>
                   )}
                 </div>
-
-
-
-
-
-
-
-
-
-
+              <Modal />
                 <div className="flex items-center justify-content-center">
                   <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 
     py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
@@ -192,7 +257,7 @@ const tests = () => {
                   </button>
                 </div>
               </div>
-              {/* <Sidebar data={changedData} /> */}
+              <Sidebar data={changedData} />
             </div>
           </Form>
         )}

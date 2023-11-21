@@ -96,7 +96,7 @@ return (
       ...data,
       ...step2
     };
-   Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
+   Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
    router.push("/bookings/course/tests/");
    }
    
