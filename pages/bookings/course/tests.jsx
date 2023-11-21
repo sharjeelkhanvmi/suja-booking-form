@@ -8,6 +8,8 @@ import dynamic from 'next/dynamic'
 const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
+import ModalExample from '@/pages/bookings/Modal'
+import Modal from '@/pages/bookings/Modal';
 
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : {  };
@@ -34,13 +36,13 @@ const tests = () => {
         //validationSchema={validationSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
-        //   const formDatas = {
-        //     ...data,
-        //     ...{'step3': values}
-        //   };
-        //  Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
-        //  router.push("/bookings/student");
-         console.log(values)
+          const formDatas = {
+            ...data,
+            ...{'step3': values}
+          };
+         Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
+         router.push("/bookings/student");
+        // console.log(formDatas)
         }}
       >
         {({ values, handleChange }) => (
@@ -217,9 +219,7 @@ const tests = () => {
                   </div>
                   )}
                 </div>
-
-
-
+              <Modal />
                 <div className="flex items-center justify-content-center">
                   <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 
     py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">

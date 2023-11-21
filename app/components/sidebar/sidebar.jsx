@@ -30,34 +30,8 @@ const router = useRouter();
   //   }
   // };
   //const renderDrType = data?.step2?.dr_type || 'Loading...';
-
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-
-  let drType;
+  // const drType = data.step2.dr_type;
   // const courseType = data.step2.dr_course_type;
-  let coursePriceObj;
-  let hours_value;
-  let variant;
-  let full;
-  let deposit;
-
-  // console.log(data)
-  if(data && data.step2 && data.step2.dr_course_price != undefined){
-    drType = capitalize(data.step2.dr_type);
-    coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
-    hours_value = coursePriceObj.value;
-    variant = coursePriceObj.variant;
-    full = coursePriceObj.full;
-    deposit = coursePriceObj.deposit;
-  }
-
-  
-
-  // console.log(variant)
-  // console.log(data)
 
 
   return (
