@@ -1,11 +1,16 @@
 import Layout from "@/app/components/Layout";
 import { useEffect, useState } from "react";
 import { AiFillPlusCircle, AiFillDelete, AiFillEdit } from "react-icons/ai";
+import Modal from "react-modal";
+import { IoEye } from "react-icons/io5";
+
 
 const Index = () => {
+  const [Toggle, setToggle] = useState(false);
+  const [viewLead , setViewLead ] = useState(null);
+  const [SecondToggle, setSecondToggle] = useState(false);
   const [leadsData, setLeadsData] = useState([]);
-  const [selectedLead, setSelectedLead] = useState(null);
-  // console.log(selectedLead._id,'selected LEads');
+  const [selectedLead, setSelectedLead] = useState();
   const [formData, setFormData] = useState({
     step1: {
       postalcode: ""
@@ -38,7 +43,6 @@ const Index = () => {
     try {
       const response = await fetch("/api/leads");
       const responseData = await response.json();
-
       if (responseData && Object.keys(responseData).length > 0) {
         setLeadsData(responseData);
         console.log("Leads Data in Orders", responseData);
@@ -54,7 +58,7 @@ const Index = () => {
     handleLeadsData();
   }, []);
 
-  const handleDelete = async (leadId) => {
+  const handleDelete = async leadId => {
     console.log("Deleting lead with ID:", leadId);
     try {
       const response = await fetch(`/api/leads/del?leadId=${leadId}`, {
@@ -68,7 +72,7 @@ const Index = () => {
     }
   };
 
-  const handleEdit = (lead) => {
+  const handleEdit = lead => {
     setSelectedLead(lead);
     setFormData({
       step1: {
@@ -97,9 +101,10 @@ const Index = () => {
         couponcode: lead.step6.couponcode
       }
     });
+    setToggle(true);
   };
 
-  const handleEditSubmit = async (e) => {
+  const handleEditSubmit = async e => {
     e.preventDefault();
 
     try {
@@ -118,22 +123,7 @@ const Index = () => {
 
       if (response.ok) {
         handleLeadsData();
-        setFormData({
-          step1: { postalcode: "" },
-          step2: { gear: "", driving: "" },
-          step3: { addons: "" },
-          step4: {
-            title: "",
-            first_name: "",
-            last_name: "",
-            email: "",
-            confirm_email: "",
-            mobile_number: "",
-            agree: ""
-          },
-          step5: { fastcourse: "" },
-          step6: { couponcode: "" }
-        });
+        closeModal();
         setSelectedLead(null);
         console.log("Lead Updated");
       } else {
@@ -142,6 +132,16 @@ const Index = () => {
     } catch (error) {
       console.error("Error updating lead", error);
     }
+  };
+
+  const closeModal = () => {
+    setToggle(false);
+    setSecondToggle(false);
+  };
+
+  const handleView = (lead) => {
+    setViewLead(lead);
+    setSecondToggle(true);
   };
 
   return (
@@ -238,8 +238,8 @@ const Index = () => {
                 </tr>
               </thead>
               <tbody role="rowgroup">
-                {leadsData &&
-                  leadsData.map((data) => (
+              {leadsData &&
+                  leadsData.map(data =>
                     <tr key={data._id}>
                       <td
                         role="cell"
@@ -317,39 +317,231 @@ const Index = () => {
                             onClick={() => handleEdit(data)}
                           />
                         </span>
+                        <span className="text-sm font-bold text-navy-700 dark:text-white">
+                        <IoEye className="text-2xl cursor-pointer" onClick={()=>{
+                          setSecondToggle(true)
+                          handleView(data)
+                        }}/>
+                        </span>
                       </td>
                     </tr>
-                  ))}
+                  )}
               </tbody>
             </table>
           </div>
         </div>
-        <form onSubmit={handleEditSubmit} className="text-gray-800">
-          <label>Postal Code</label>
-          <input
-            value={formData.step1.postalcode || ""}
-            type="text"
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                step1: { postalcode: e.target.value }
-              })
-            }
-          />
+        <Modal
+          isOpen={Toggle}
+          onRequestClose={closeModal}
+          className="mx-auto mt-24 py-3 bg-gray-50 w-[50%] rounded-3xl "
+        >
+          <form
+            onSubmit={handleEditSubmit}
+            className="text-gray-800 w-full mt-2 "
+          >
+          <h2 className="text-center text-5xl my-4 font-bold">Edit Leads</h2>
+            <div className="flex justify-center w-full gap-4">
+              <div className="flex flex-col w-1/4 mr-3 ">
+                <label className="my-2 font-bold">Postal Code</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step1.postalcode}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step1: { postalcode: e.target.value }
+                    })}
+                />
 
-          <label>LName</label>
-          <input
-            value={formData.step2.gear || ""}
-            type="text"
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                step2: { gear: e.target.value }
-              })
-            }
-          />
-          <button>Submit</button>
-        </form>
+                <label className="my-2 font-bold">Gear</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step2.gear}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step2: { gear: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Driving</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step2.driving}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step2: { driving: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Addons</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step3.addons}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step3: { addons: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Agree</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step4.agree}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step4: { agree: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Confirm Email</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step4.email}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step4: { email: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Email</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step4.confirm_email}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step4: { confirm_email: e.target.value }
+                    })}
+                />
+              </div>
+              <div className="flex flex-col w-1/4">
+                <label className="my-2 font-bold">First name</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step4.first_name}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step4: { first_name: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Last Name</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step4.last_name}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step4: { last_name: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Mobile</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step4.mobile_number}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step4: { mobile_number: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Title</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step4.title}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step4: { title: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold" >Fast Course</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step5.fastcourse}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step5: { fastcourse: e.target.value }
+                    })}
+                />
+                <label className="my-2 font-bold">Couponcode</label>
+                <input
+                  className="rounded-md p-1"
+                  value={formData.step6.couponcode}
+                  type="text"
+                  onChange={e =>
+                    setFormData({
+                      ...formData,
+                      step6: { couponcode: e.target.value }
+                    })}
+                />
+              </div>
+            </div>
+            <div className="text-center flex justify-center w-full mt-4">
+              <button className="py-1 px-1 bg-blueSecondary h-10 w-1/4 text-white text font-bold rounded-lg">
+                Submit
+              </button>
+            </div>
+          </form>
+        </Modal>
+        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto mt-36 p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col'>
+        <h1 className="text-center text-4xl font-bold pb-3">View Data</h1>
+        {viewLead && (
+          <div className="flex justify-center gap-10">
+            <div className="pt-[14px] pb-[16px] sm:text-[14px]">
+              <p className="font-bold text-center text-xl py-2 text-navy-700 dark:text-white">
+                PostalCode: {viewLead.step1.postalcode}
+              </p>
+              <p className="font-bold text-center text-xl py-2 text-navy-700 dark:text-white">
+              Driving: {viewLead.step2.driving}
+              </p>
+              <p className="font-bold text-center text-xl py-2 text-navy-700 dark:text-white">
+                Gear: {viewLead.step2.gear}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+                Addons: {viewLead.step3.addons}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+                Agree: {viewLead.step4.agree}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+              Email: {viewLead.step4.email}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+              Confirm Email: {viewLead.step4.confirm_email}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+              First Name: {viewLead.step4.first_name}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+              Last Name: {viewLead.step4.last_name}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+              Mobile Number: {viewLead.step4.mobile_number}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+              Fast Course: {viewLead.step5.fastcourse}
+              </p>
+              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
+              Coupon Code: {viewLead.step6.couponcode}
+              </p>
+            </div>
+          </div>
+        )}
+      </Modal>
       </div>
     </Layout>
   );
