@@ -26,18 +26,20 @@ const OldUserLoader = () => {
       setIsGuestMessageVisible(true);
       setTimeout(() => {
         setIsLoading(false);
-        setIsGuestMessageVisible(false);
+        // No need to hide guest message here, it will be handled in the rendering logic
       }, 2000);
     }
   }, []);
 
-  if (isLoading && !isGuestMessageVisible) {
+  if (isLoading) {
     const loadingMessage = (
-      <div className="flex items-center justify-center h-screen absolute w-full bg-gray-50 z-10 text-center">
+      <div className="flex items-center justify-center h-screen absolute w-full bg-gray-50 z-50 text-center top-0">
         <div className="p-4 text-center justify-items-center">
-          <BiLoaderAlt className="ml-2 animate-spin text-5xl mt-5 m-auto" />
-          <p>
-            Getting you behind the wheel. Just a few more seconds...
+        <BiLoaderAlt className="ml-2 animate-spin text-5xl mb-5" style={{ margin: '0 auto' }} />
+          <p className="mt-2">
+            {isGuestMessageVisible
+              ? "Welcome! Preparing for your journey. Just a few more seconds..."
+              : "Getting you behind the wheel. Just a few more seconds..."}
           </p>
         </div>
       </div>
@@ -45,16 +47,8 @@ const OldUserLoader = () => {
     return loadingMessage;
   }
 
-  // Display a different message for guests
-  const guestMessage = (
-    <div className={`flex items-center justify-center h-screen ${isGuestMessageVisible ? 'block' : 'hidden'}`}>
-      <p>
-        Welcome! Redirecting to the main page...
-      </p>
-    </div>
-  );
-
-  return guestMessage;
+  // No need for a separate guest message component, as it is included in the loading message
+  return null;
 };
 
 export default OldUserLoader;
