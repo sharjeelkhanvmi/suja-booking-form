@@ -333,18 +333,18 @@ const Index = () => {
         <Modal
           isOpen={Toggle}
           onRequestClose={closeModal}
-          className="mx-auto mt-24 py-3 bg-gray-50 w-[50%] rounded-3xl "
+          className="mx-auto py-3 bg-gray-50 w-[50%] rounded-3xl"
         >
           <form
             onSubmit={handleEditSubmit}
-            className="text-gray-800 w-full mt-2 px-12"
+            className="text-gray-800 w-full mt-2"
           >
-          <h2 className="text-center text-5xl pb-4 my-4 font-bold">Edit Leads</h2>
-            <div className="flex justify-center w-full gap-6">
-              <div className="flex flex-col w-1/2 mr-3">
-                <label className="my-2 text-sm text-gray-900 font-bold">Postal Code</label>
+          <h2 className="text-center text-5xl my-4 font-bold">Edit Leads</h2>
+            <div className="flex justify-center w-full gap-4">
+              <div className="flex flex-col w-1/4 mr-3 ">
+                <label className="my-2 font-bold">Postal Code</label>
                 <input
-                  className="rounded-md p-2 mb-3 border-2 text-sm border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step1.postalcode}
                   type="text"
                   onChange={e =>
@@ -354,9 +354,9 @@ const Index = () => {
                     })}
                 />
 
-                <label className="my-2 text-sm text-gray-900 font-bold">Gear</label>
+                <label className="my-2 font-bold">Gear</label>
                 <input
-                  className="rounded-md p-2 mb-3 border-2 text-sm border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step2.gear}
                   type="text"
                   onChange={e =>
@@ -365,9 +365,9 @@ const Index = () => {
                       step2: { gear: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm text-gray-900 font-bold">Driving</label>
+                <label className="my-2 font-bold">Driving</label>
                 <input
-                  className="rounded-md p-2 mb-3 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step2.driving}
                   type="text"
                   onChange={e =>
@@ -376,9 +376,9 @@ const Index = () => {
                       step2: { driving: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm text-gray-900 font-bold">Addons</label>
+                <label className="my-2 font-bold">Addons</label>
                 <input
-                  className="rounded-md p-2 mb-3 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step3.addons}
                   type="text"
                   onChange={e =>
@@ -387,9 +387,9 @@ const Index = () => {
                       step3: { addons: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm font-bold">Agree</label>
+                <label className="my-2 font-bold">Agree</label>
                 <input
-                  className="rounded-md p-2 mb-3 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step4.agree}
                   type="text"
                   onChange={e =>
@@ -398,9 +398,9 @@ const Index = () => {
                       step4: { agree: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm text-gray-900 font-bold">Confirm Email</label>
+                <label className="my-2 font-bold">Confirm Email</label>
                 <input
-                  className="rounded-md p-2 mb-3 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step4.email}
                   type="text"
                   onChange={e =>
@@ -409,9 +409,9 @@ const Index = () => {
                       step4: { email: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm text-gray-900 text-lg text-gray-900 font-bold">Email</label>
+                <label className="my-2 font-bold">Email</label>
                 <input
-                  className="rounded-md mb-3 p-2 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step4.confirm_email}
                   type="text"
                   onChange={e =>
@@ -421,10 +421,10 @@ const Index = () => {
                     })}
                 />
               </div>
-              <div className="flex flex-col w-1/2 mr-3">
-                <label className="my-2 text-sm text-gray-900 font-bold">First name</label>
+              <div className="flex flex-col w-1/4">
+                <label className="my-2 font-bold">First name</label>
                 <input
-                  className="rounded-md mb-3 p-2 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step4.first_name}
                   type="text"
                   onChange={e =>
@@ -433,9 +433,9 @@ const Index = () => {
                       step4: { first_name: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm text-gray-900 font-bold">Last Name</label>
+                <label className="my-2 font-bold">Last Name</label>
                 <input
-                  className="rounded-md mb-3 p-2 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step4.last_name}
                   type="text"
                   onChange={e =>
@@ -444,9 +444,9 @@ const Index = () => {
                       step4: { last_name: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm text-gray-900 font-bold">Mobile</label>
+                <label className="my-2 font-bold">Mobile</label>
                 <input
-                  className="rounded-md p-2 mb-3 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step4.mobile_number}
                   type="text"
                   onChange={e =>
@@ -457,7 +457,7 @@ const Index = () => {
                 />
                 <label className="my-2 font-bold">Title</label>
                 <input
-                  className="rounded-md p-2 mb-3 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step4.title}
                   type="text"
                   onChange={e =>
@@ -466,9 +466,9 @@ const Index = () => {
                       step4: { title: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm text-gray-900 font-bold" >Fast Course</label>
+                <label className="my-2 font-bold" >Fast Course</label>
                 <input
-                  className="rounded-md p-2 mb-3 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step5.fastcourse}
                   type="text"
                   onChange={e =>
@@ -477,9 +477,9 @@ const Index = () => {
                       step5: { fastcourse: e.target.value }
                     })}
                 />
-                <label className="my-2 text-sm text-gray-900 font-bold">Couponcode</label>
+                <label className="my-2 font-bold">Couponcode</label>
                 <input
-                  className="rounded-md p-2 mb-3 text-sm border-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                  className="rounded-md p-1"
                   value={formData.step6.couponcode}
                   type="text"
                   onChange={e =>
@@ -490,15 +490,15 @@ const Index = () => {
                 />
               </div>
             </div>
-            <div className="text-center flex justify-center w-full mb-5 mt-5">
-              <button className="py-2 px-5 bg-theme-red-color hover:bg-red-900 h-12 w-1/4 text-white text-lg font-semibold rounded-lg">
+            <div className="text-center flex justify-center w-full mt-4">
+              <button className="py-1 px-1 bg-blueSecondary h-10 w-1/4 text-white text font-bold rounded-lg">
                 Submit
               </button>
             </div>
           </form>
         </Modal>
-        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto mt-10 p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col'>
-        <h1 className="text-center  text-navy-700 text-3xl font-bold py-5">Order Details</h1>
+        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col'>
+        <h1 className="text-center text-4xl font-bold pb-3">View Data</h1>
         {viewLead && (
           <div className="justify-center gap-10">
           <div className="w-full block">
