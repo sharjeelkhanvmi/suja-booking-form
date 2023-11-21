@@ -1,5 +1,5 @@
 
-import { login_user } from "@/app/service/mailService";
+import { forgotPassword } from "@/app/service/mailService";
 import Head from 'next/head'
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,22 +10,22 @@ import jwt_decode from "jwt-decode";
 
 
 export default function Home() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ email: ""});
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await login_user(formData);
-    if (res.success) {
-      toast.success(res.message);
-      const user = jwt_decode(res.token);
-      Cookies.set("token", res.token);
-      // setTimeout(() => {
-        Router.push("/"+user.role);
-      // }, 1000);
-    } else {
-      toast.error(res.message);
-    }
+    const res = await forgotPassword(formData);
+    // if (res.success) {
+    //   toast.success(res.message);
+    //   const user = jwt_decode(res.token);
+    //   Cookies.set("token", res.token);
+    //   // setTimeout(() => {
+    //     Router.push("/"+user.role);
+    //   // }, 1000);
+    // } else {
+    //   toast.error(res.message);
+    // }
   };
 
   return (
