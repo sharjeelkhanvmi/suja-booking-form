@@ -195,17 +195,9 @@ const Navbar = props => {
             }
           }}
         >
-<<<<<<< HEAD
           {darkmode
             ? <RiSunFill className="h-4 w-4 text-gray-600 dark:text-white" />
             : <RiMoonFill className="h-4 w-4 text-gray-600 dark:text-white" />}
-=======
-          {darkmode ? (
-            <RiSunFill className="h-4 w-4 text-gray-600 dark:text-white" />
-          ) : (
-            <RiMoonFill className="h-4 w-4 text-gray-600 dark:text-white" />
-          )}
->>>>>>> d55e0bc966b0047e78a651d83fad3cea92436156
         </div>
         {/* Profile & Dropdown */}
         <Dropdown
