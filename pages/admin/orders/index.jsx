@@ -497,47 +497,47 @@ const Index = () => {
             </div>
           </form>
         </Modal>
-        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto mt-36 p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col'>
-        <h1 className="text-center text-4xl font-bold pb-3">View Data</h1>
+        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto mt-10 p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col'>
+        <h1 className="text-center  text-navy-700 text-3xl font-bold py-5">Order Details</h1>
         {viewLead && (
-          <div className="flex justify-center gap-10">
-            <div className="pt-[14px] pb-[16px] sm:text-[14px]">
-              <p className="font-bold text-center text-xl py-2 text-navy-700 dark:text-white">
-                PostalCode: {viewLead.step1.postalcode}
-              </p>
-              <p className="font-bold text-center text-xl py-2 text-navy-700 dark:text-white">
-              Driving: {viewLead.step2.driving}
-              </p>
-              <p className="font-bold text-center text-xl py-2 text-navy-700 dark:text-white">
-                Gear: {viewLead.step2.gear}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-                Addons: {viewLead.step3.addons}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-                Agree: {viewLead.step4.agree}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-              Email: {viewLead.step4.email}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-              Confirm Email: {viewLead.step4.confirm_email}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-              First Name: {viewLead.step4.first_name}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-              Last Name: {viewLead.step4.last_name}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-              Mobile Number: {viewLead.step4.mobile_number}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-              Fast Course: {viewLead.step5.fastcourse}
-              </p>
-              <p className="text-xl py-2 text-center font-bold text-navy-700 dark:text-white">
-              Coupon Code: {viewLead.step6.couponcode}
-              </p>
+          <div className="justify-center gap-10">
+          <div className="w-full block">
+          <p className="font-semibold text-start text-xl divide-y py-5 px-3 text-navy-700 dark:text-white">
+          PostalCode: {viewLead.step1.postalcode}</p></div>
+          <div className="grid grid-cols-4 pt-[14px] pb-[16px] px-5">
+          <p className="font-regular text-start text-sm py-2 text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold">Driving:</span>  {viewLead.step2.driving}
+          </p>
+          <p className="font-regular text-start text-sm my-4 text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold"> Gear:</span> {viewLead.step2.gear}
+          </p>
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold"> Addons: </span> {viewLead.step3.addons}
+          </p>
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold"> Agree: </span> {viewLead.step4.agree}
+          </p>
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold"> Email: </span> {viewLead.step4.email}
+          </p>     
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold"> Confirm Email:</span> {viewLead.step4.confirm_email}
+          </p>
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold">First Name: </span> {viewLead.step4.first_name}
+          </p>
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold">Last Name: </span> {viewLead.step4.last_name}
+          </p>
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold">Mobile Number:</span> {viewLead.step4.mobile_number}
+          </p>
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold"> Fast Course:</span> {viewLead.step5.fastcourse}
+          </p>
+          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-xl font-semibold">Coupon Code: </span> {viewLead.step6.couponcode}
+          </p>
             </div>
           </div>
         )}
