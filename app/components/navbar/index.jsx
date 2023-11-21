@@ -149,11 +149,7 @@ const Navbar = props => {
                 style={{
                   backgroundImage: `url(${navbarimage})`,
                   backgroundRepeat: "no-repeat",
-<<<<<<< HEAD
                   backgroundSize: "cover"
-=======
-                  backgroundSize: "cover",
->>>>>>> d55e0bc966b0047e78a651d83fad3cea92436156
                 }}
                 className="mb-2 aspect-video w-full rounded-lg"
               />
