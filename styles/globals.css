@@ -35,7 +35,7 @@
 .intensive:checked + label {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  --tw-ring-color: #00ff00; /* Change this to your desired green color */
+  --tw-ring-color: #3ECD3E; /* Change this to your desired green color */
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 
   /* Background color when checked */
@@ -52,4 +52,82 @@
   -webkit-transition: height .3s ease;
 }
 
+/* Add this CSS in a separate file or include it in your component's styles */
+
+/* Styling for the modal overlay */
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+/* Styling for the modal content */
+.ReactModal__Content {
+  position: absolute;
+  top: 50% !important;
+  left: 45% !important;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius:10px;
+  outline: none;
+  padding: 20px;
+  max-width: 900px !important;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  right: 0px !important;
+  height: 500px;
+}
+
+/* Add your additional styling for modal content here */
+
+/* Example styling for the form inside the modal */
+.viewdata-popup {
+  text-align: center;
+  padding-top:100px;
+}
+.viewdata-popup button {
+  padding: 10px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.viewdata-popup form {
+  margin-top: 20px;
+}
+
+.viewdata-popup label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.viewdata-popup input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+.viewdata-popup button {
+  padding: 10px;
+  color: #000;
+  background-color:transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.viewdata-popup button:last-child {
+  margin-right: 0;
+}
 

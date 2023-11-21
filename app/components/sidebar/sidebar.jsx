@@ -30,8 +30,8 @@ const router = useRouter();
   //   }
   // };
   //const renderDrType = data?.step2?.dr_type || 'Loading...';
-  const drType = data.step2.dr_type;
-  const courseType = data.step2.dr_course_type;
+  // const drType = data.step2.dr_type;
+  // const courseType = data.step2.dr_course_type;
 
 
   return (

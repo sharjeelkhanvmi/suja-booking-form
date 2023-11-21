@@ -90,7 +90,7 @@ const addons = () => {
   </label>
   </div>
     
-  </div>
+</div>
 </div>
 </div>
 

@@ -22,7 +22,8 @@ const validationSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
     firstName: Yup.string().required('First name is required'),
     surname: Yup.string().required('Last name is required'),
-    email: Yup.string()
+    email: Yup.string(),
+    password: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
 
@@ -40,6 +41,7 @@ return (
       firstName: "",
       surname: "",
       email: "",
+      password: "",
       phone_number: "",
       terms: false
   }}
@@ -150,6 +152,36 @@ return (
                                     />
                                 </div>
                             </div>
+                        </div>
+                        <div className="mt-5 w-full">
+                            <label className="uppercase text-xs tracking-wide font-medium text-gray-800" htmlFor="email">Password</label>
+            <div className="mt-1">
+                <div className="relative w-full">
+                    <Field type="password" name="password" className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 
+                        px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1
+                        transition-all " id="p" />
+                    <ErrorMessage
+                        name="password"
+                        component="p"
+                        className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                    />
+                </div>
+            </div>
+                        </div>
+                        <div className="mt-5 w-full">
+                            <label className="uppercase text-xs tracking-wide font-medium text-gray-800" htmlFor="email">Confirm Password</label>
+            <div className="mt-1">
+                <div className="relative w-full">
+                    <Field type="password" name="confirm_password" className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 
+                        px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1
+                        transition-all " id="p" />
+                    <ErrorMessage
+                        name="confirm_password"
+                        component="p"
+                        className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                    />
+                </div>
+            </div>
                         </div>
                         <div className="mt-5 w-full">
                             <label className="uppercase text-xs tracking-wide font-medium text-gray-800" htmlFor="phone_number">Mobile number</label>

@@ -94,7 +94,7 @@ text-base">
 </div>
 <div className="flex my-5 mb-10">
 <div className="w-1/2">
-<p className="mb-2   font-medium text-[15px] mt-2">Expiry Date</p>
+<p className="mb-2 font-medium text-[15px] mt-2">Expiry Date</p>
 <div>
 <div className="w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base">
 <div className="">

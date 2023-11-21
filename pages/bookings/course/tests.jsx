@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import Sidebar from '@/app/components/sidebar/sidebar';
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
+import ModalExample from '@/pages/bookings/Modal'
+import Modal from '@/pages/bookings/Modal';
 
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : {  };
@@ -39,7 +41,7 @@ const tests = () => {
           };
          Cookies.set("formData", JSON.stringify(formDatas), { expires: null });
          router.push("/bookings/student");
-         //console.log(formDatas)
+        // console.log(formDatas)
         }}
       >
         {({ values, setFieldValue, handleChange }) => (
@@ -174,16 +176,7 @@ const tests = () => {
                   </div>
                   )}
                 </div>
-
-
-
-
-
-
-
-
-
-
+              <Modal />
                 <div className="flex items-center justify-content-center">
                   <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 
     py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
