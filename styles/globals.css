@@ -71,8 +71,8 @@
 /* Styling for the modal content */
 .ReactModal__Content {
   position: absolute;
-  top: 40% !important;
-  left: 45% !important;
+  top: 45% !important;
+  left: 40% !important;
   transform: translate(-50%, -50%);
   border: none;
   border-radius:15px !important;
