@@ -71,18 +71,17 @@
 /* Styling for the modal content */
 .ReactModal__Content {
   position: absolute;
-  top: 50% !important;
+  top: 40% !important;
   left: 45% !important;
   transform: translate(-50%, -50%);
   border: none;
   border-radius:15px !important;
   outline: none;
-  padding: 20px;
+  padding:30px 20px 20px 20px;
   max-width: 900px !important;
   background: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   right: 0px !important;
-  height: 500px;
 }
 
 /* Add your additional styling for modal content here */

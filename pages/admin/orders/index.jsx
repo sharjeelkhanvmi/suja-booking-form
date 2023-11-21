@@ -333,11 +333,11 @@ const Index = () => {
         <Modal
           isOpen={Toggle}
           onRequestClose={closeModal}
-          className="mx-auto mt-24 py-3 bg-gray-50 w-[50%] rounded-3xl "
+          className="mx-auto py-3 bg-gray-50 w-[50%] rounded-3xl"
         >
           <form
             onSubmit={handleEditSubmit}
-            className="text-gray-800 w-full mt-2 "
+            className="text-gray-800 w-full mt-2"
           >
           <h2 className="text-center text-5xl my-4 font-bold">Edit Leads</h2>
             <div className="flex justify-center w-full gap-4">
@@ -497,7 +497,7 @@ const Index = () => {
             </div>
           </form>
         </Modal>
-        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col h-full'>
+        <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col'>
         <h1 className="text-center text-4xl font-bold pb-3">View Data</h1>
         {viewLead && (
           <div className="flex justify-center gap-10">
