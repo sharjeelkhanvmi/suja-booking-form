@@ -8,7 +8,7 @@ import Layout from "@/app/components/Layout";
 const Index = () => {
   return (
     <Layout>
-      <div className="w-full p-5 flex items-center justify-center text-white bg-black flex-col tracking-widest uppercase">
+      <div className=" p-5 flex w-full lg:max-w-[48%] m-auto  items-center justify-center text-white bg-black flex-col tracking-widest uppercase">
         <p className="text-4xl font-semibold my-10 text-gray-800 dark:text-white">
           Profile
         </p>

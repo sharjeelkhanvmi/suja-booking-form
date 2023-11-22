@@ -148,6 +148,7 @@ const Index = () => {
     <Layout>
       <div className="w-full p-5 flex items-center justify-center text-white bg-black flex-col tracking-widest uppercase">
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto px-6">
+          
           <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
             <table
               role="table"
@@ -252,7 +253,7 @@ const Index = () => {
                           checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
                             name="weekly"
                           />
-                          <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          <p className="text-sm font-bold text-navy-500 dark:text-white">
                             {data.step4.first_name}
                           </p>
                         </div>
@@ -339,206 +340,207 @@ const Index = () => {
             onSubmit={handleEditSubmit}
             className="text-gray-800 w-full mt-2"
           >
-          <h2 className="text-center text-5xl my-4 font-bold">Edit Leads</h2>
-            <div className="flex justify-center w-full gap-4">
-              <div className="flex flex-col w-1/4 mr-3 ">
-                <label className="my-2 font-bold">Postal Code</label>
+          <h2 className="text-center text-4xl text-gray-900 mb-7 font-bold">Edit Leads</h2>
+            <div className="flex justify-center w-full gap-4 px-10">
+              <div className="flex flex-col w-1/2 mr-3">
+                <label className="mb-1 font-semibold text-gray-900">Postal Code</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full p-2 text-xs border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step1.postalcode}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step1: { postalcode: e.target.value }
+                      step1: { ...formData.step1,postalcode: e.target.value }
                     })}
                 />
 
-                <label className="my-2 font-bold">Gear</label>
+                <label className="mb-1 font-semibold text-gray-900">Gear</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step2.gear}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step2: { gear: e.target.value }
+                      step2: { ...formData.step2,gear: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Driving</label>
+                <label className="mb-1 font-semibold text-gray-900">Driving</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step2.driving}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step2: { driving: e.target.value }
+                      step2: { ...formData.step2,driving: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Addons</label>
+                <label className="mb-1 font-semibold text-gray-900">Addons</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step3.addons}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step3: { addons: e.target.value }
+                      step3: { ...formData.step3,addons: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Agree</label>
+                <label className="mb-1 font-semibold text-gray-900">Agree</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step4.agree}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step4: { agree: e.target.value }
+                      step4: { ...formData.step4,agree: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Confirm Email</label>
+                <label className="mb-1 font-semibold text-gray-900">Confirm Email</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step4.email}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step4: { email: e.target.value }
+                      step4: {  ...formData.step4,email: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Email</label>
+                <label className="mb-1 font-semibold text-gray-900">Email</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step4.confirm_email}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step4: { confirm_email: e.target.value }
+                      step4: {  ...formData.step4,confirm_email: e.target.value }
                     })}
                 />
               </div>
-              <div className="flex flex-col w-1/4">
-                <label className="my-2 font-bold">First name</label>
+              <div className="flex flex-col w-1/2 mr-3">
+                <label className="mb-1 font-semibold text-gray-900">First name</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step4.first_name}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step4: { first_name: e.target.value }
+                      step4: {  ...formData.step4,first_name: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Last Name</label>
+                <label className="mb-1 font-semibold text-gray-900">Last Name</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step4.last_name}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step4: { last_name: e.target.value }
+                      step4: {  ...formData.step4,last_name: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Mobile</label>
+                <label className="mb-1 font-semibold text-gray-900">Mobile</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step4.mobile_number}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step4: { mobile_number: e.target.value }
+                      step4: {  ...formData.step4,mobile_number: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Title</label>
+                <label className="mb-1 font-semibold text-gray-900">Title</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 text-xs w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step4.title}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step4: { title: e.target.value }
+                      step4: {  ...formData.step4,title: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold" >Fast Course</label>
+                <label className="mb-1 font-semibold text-gray-900">Fast Course</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 text-xs w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step5.fastcourse}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step5: { fastcourse: e.target.value }
+                      step5: {  ...formData.step5,fastcourse: e.target.value }
                     })}
                 />
-                <label className="my-2 font-bold">Couponcode</label>
+                <label className="mb-1 font-semibold text-gray-900">Couponcode</label>
                 <input
-                  className="rounded-md p-1"
+                  className="block mb-4 text-xs w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData.step6.couponcode}
                   type="text"
                   onChange={e =>
                     setFormData({
                       ...formData,
-                      step6: { couponcode: e.target.value }
+                      step6: {  ...formData.step6,couponcode: e.target.value }
                     })}
                 />
               </div>
             </div>
             <div className="text-center flex justify-center w-full mt-4">
-              <button className="py-1 px-1 bg-blueSecondary h-10 w-1/4 text-white text font-bold rounded-lg">
+              <button className="bg-theme-red-color hover:bg-red-900  mt-2 hover:text-white rounded-md mb-5 
+              px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
                 Submit
               </button>
             </div>
           </form>
         </Modal>
         <Modal isOpen={SecondToggle} onRequestClose={closeModal} className='mx-auto p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col'>
-        <h1 className="text-center text-4xl font-bold pb-3">View Data</h1>
+        <h1 className="text-center text-4xl  text-gray-900 font-bold pb-3">View Data</h1>
         {viewLead && (
-          <div className="justify-center gap-10">
-          <div className="w-full block">
-          <p className="font-semibold text-start text-xl divide-y py-5 px-3 text-navy-700 dark:text-white">
-          PostalCode: {viewLead.step1.postalcode}</p></div>
+          <div className="justify-center gap-10 pb-5 pt-5">
+          <div className="lg:w-48 w-full block">
+          <p className="font-semibold border-b-2 border-gray-300 text-start text-lg divide-y pb-3 ms-5 text-navy-700 dark:text-white">
+          PostalCode: {viewLead.step1.postalcode} :</p></div>
           <div className="grid grid-cols-4 pt-[14px] pb-[16px] px-5">
-          <p className="font-regular text-start text-sm py-2 text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold">Driving:</span>  {viewLead.step2.driving}
+          <p className="font-regular border-b-2 border-gray-300 text-start text-sm py-5 text-navy-700 dark:text-white">
+          <span className="block pb-1  text-lg font-semibold">Driving:</span>  {viewLead.step2.driving}
           </p>
-          <p className="font-regular text-start text-sm my-4 text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold"> Gear:</span> {viewLead.step2.gear}
+          <p className="font-regular border-b-2 border-gray-300 text-start text-sm py-5 text-navy-700 dark:text-white">
+          <span className="block pb-1  text-lg font-semibold"> Gear:</span> {viewLead.step2.gear}
           </p>
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold"> Addons: </span> {viewLead.step3.addons}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block pb-1  text-lg font-semibold"> Addons: </span> {viewLead.step3.addons}
           </p>
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold"> Agree: </span> {viewLead.step4.agree}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block pb-1  text-lg font-semibold"> Agree: </span> {viewLead.step4.agree}
           </p>
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold"> Email: </span> {viewLead.step4.email}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block pb-1  text-lg font-semibold"> Email: </span> {viewLead.step4.email}
           </p>     
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold"> Confirm Email:</span> {viewLead.step4.confirm_email}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block pb-1  text-lg font-semibold"> Confirm Email:</span> {viewLead.step4.confirm_email}
           </p>
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold">First Name: </span> {viewLead.step4.first_name}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block pb-1  text-lg font-semibold">First Name: </span> {viewLead.step4.first_name}
           </p>
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold">Last Name: </span> {viewLead.step4.last_name}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-lg pb-1  font-semibold">Last Name: </span> {viewLead.step4.last_name}
           </p>
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold">Mobile Number:</span> {viewLead.step4.mobile_number}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block pb-1 text-lg font-semibold">Mobile Number:</span> {viewLead.step4.mobile_number}
           </p>
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold"> Fast Course:</span> {viewLead.step5.fastcourse}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block pb-1  text-lg font-semibold"> Fast Course:</span> {viewLead.step5.fastcourse}
           </p>
-          <p className="text-sm my-4 text-start font-regular text-navy-700 dark:text-white">
-          <span className="block text-xl font-semibold">Coupon Code: </span> {viewLead.step6.couponcode}
+          <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
+          <span className="block text-lg pb-1 font-semibold">Coupon Code: </span> {viewLead.step6.couponcode}
           </p>
-            </div>
+          </div>
           </div>
         )}
       </Modal>
