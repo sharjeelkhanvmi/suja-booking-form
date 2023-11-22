@@ -210,18 +210,17 @@ const Navbar = props => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    :wave: Hey, {name}
+                    Hey, {name}
                   </p>{" "}
                 </div>
               </div>
               <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
               <div className="flex flex-col p-4">
-                <a
-                  href=" "
-                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
+                <Link
+                  href="/admin/profile"
+                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white">
                   Profile Settings
-                </a>
+                </Link>
                 <a
                   href=" "
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
