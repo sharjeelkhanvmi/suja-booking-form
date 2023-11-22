@@ -130,4 +130,16 @@
 .viewdata-popup button:last-child {
   margin-right: 0;
 }
+.fast_track + label .add_remove_label::before {
+  content: 'Add';
+}
+.fast_track:checked + label .add_remove_label::before {
+  content: 'Remove';
+}
 
+.fast_track_theory_bottom{
+  display: block;
+}
+.fast_track:checked + label +.fast_track_theory_bottom{
+  display: none;
+}

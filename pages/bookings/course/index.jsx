@@ -11,15 +11,26 @@ import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import { motion } from "framer-motion";
 import {auto, manual} from '@/database/models/drivingCoursesData';
-let formdata = Cookies.get('formData');
-const data = formdata ? JSON.parse(formdata) : {  };
-const validationSchema = Yup.object().shape({
-   dr_type: Yup.string().required('Field is required'),
-   dr_course_type: Yup.string().required('Field is required'),
-   dr_course_price: Yup.string().required('Field is required'),
-});
+// let formdata = Cookies.get('formData');
+// const data = formdata ? JSON.parse(formdata) : {  };
+
+
 
 const index = () => {
+
+   let formdata;
+   if (typeof localStorage !== 'undefined') {
+      formdata = JSON.parse(localStorage.getItem("formData"));
+   }
+   else{
+      formdata = '';
+   }
+   const validationSchema = Yup.object().shape({
+      dr_type: Yup.string().required('Field is required'),
+      dr_course_type: Yup.string().required('Field is required'),
+      dr_course_price: Yup.string().required('Field is required'),
+   });
+   
 
 const router = useRouter();
 const [isOpen, setIsOpen] = useState(false)
@@ -28,15 +39,13 @@ const [isHintOpen_2, setHintOpen_2] = useState(false)
 const [isCourseOpen, setCourseOpen] = useState(false)
 const [driving, setDriving] = useState(manual)
 const [course, setCourse] = useState(driving.regular)
-const [changedData, setChangedData] = useState(data);
-const step2 = data.step2;
+const [changedData, setChangedData] = useState(formdata);
+const [info,setInfo] = useState();
+useEffect(() => {
+   setInfo(formdata)
+ },[])
+const step2 = (formdata) ? formdata.step2 : '';
 
-// console.log(changedData)
-// useEffect(() => {
-
-//     console.log(changedData);
-
-//  }, [changedData]);
 
 
 const variants = {
@@ -93,10 +102,11 @@ return (
       }
     };
     const formDatas = {
-      ...data,
+      ...formdata,
       ...step2
     };
-   Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
+   // Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
+   localStorage.setItem("formData", JSON.stringify(formDatas));
    router.push("/bookings/course/tests/");
    }
    
