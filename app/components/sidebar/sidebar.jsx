@@ -45,6 +45,9 @@ const router = useRouter();
   let full;
   let deposit;
   let total;
+  let subTotal;
+  let fast_track_theory;
+  let fast_track_practical;
 
   // console.log(data)
   if(data && data.step2 && data.step2.dr_course_price != undefined){
@@ -52,12 +55,17 @@ const router = useRouter();
     coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
     hours_value = coursePriceObj.value;
     variant = coursePriceObj.variant;
-    full = coursePriceObj.full;
-    deposit = coursePriceObj.deposit;
+    full = parseInt(coursePriceObj.full);
+    deposit = parseInt(coursePriceObj.deposit);
   }
 
+  fast_track_theory = (data.step3.fast_track_theory != '') ? parseInt(data.step3.fast_track_theory) : 0
+  fast_track_practical = (data.step3.fast_track_practical != '') ? parseInt(data.step3.fast_track_practical) : 0
+  
 
-  total = ((deposit) ? deposit : full) + data.step3.fast_track_theory + data.step3.fast_track_practical;
+ // subTotal = ((deposit) ? deposit : full)
+
+  total = full + fast_track_theory + fast_track_practical;
 
   
 
@@ -89,7 +97,7 @@ const router = useRouter();
           <div className="mt-2 w-full font-semibold flex">
             <span className="w-full">{ hours_value +' '+ variant +' - '+ drType}</span>
             <div className="text-right">
-              <span className="text-white text-opacity-60 ml-4">£{ (deposit) ? deposit : full }</span>
+              <span className="text-white text-opacity-60 ml-4">£{ full }</span>
             </div>
           </div>
         </div>

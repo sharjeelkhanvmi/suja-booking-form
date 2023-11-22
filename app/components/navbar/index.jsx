@@ -10,13 +10,13 @@ import { FiSearch } from "react-icons/fi";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
 import {
   IoMdNotificationsOutline,
-  IoMdInformationCircleOutline,
+  IoMdInformationCircleOutline
 } from "react-icons/io";
 import avatar from "@/public/assets/favicon-suja.png";
 import Link from "next/link";
 import jwt_decode from "jwt-decode";
 
-const Navbar = (props) => {
+const Navbar = props => {
   const { name, user } = props;
   const logout = () => {
     Cookies.remove("token");
@@ -40,19 +40,17 @@ const Navbar = (props) => {
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
         <div className="h-6 w-[224px] pt-1">
-          {user.role == "admin" || "customer" ? (
-            <a
-              className="pointer-events-none text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-              href="/"
-            >
-              Dashboard{" /"}
-              <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white capitalize">
-                {lastPath}
-              </span>
-            </a>
-          ) : (
-            ""
-          )}
+          {user.role == "admin" || "customer"
+            ? <a
+                className="pointer-events-none text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+                href="/"
+              >
+                Dashboard{" /"}
+                <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white capitalize">
+                  {lastPath}
+                </span>
+              </a>
+            : ""}
           <Link
             className="pointer-events-none text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
             href="/"
@@ -66,14 +64,10 @@ const Navbar = (props) => {
             className="font-bold capitalize hover:text-navy-700 dark:hover:text-white pointer-events-none"
           >
             {userRole === "admin"
-              ? lastPath === "admin"
-                ? "Dashboard"
-                : lastPath
+              ? lastPath === "admin" ? "Dashboard" : lastPath
               : userRole === "customer"
-              ? lastPath === "customer"
-                ? "Dashboard"
-                : lastPath
-              : null}
+                ? lastPath === "customer" ? "Dashboard" : lastPath
+                : null}
           </Link>
         </p>
       </div>
@@ -155,7 +149,7 @@ const Navbar = (props) => {
                 style={{
                   backgroundImage: `url(${navbarimage})`,
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
+                  backgroundSize: "cover"
                 }}
                 className="mb-2 aspect-video w-full rounded-lg"
               />
@@ -197,11 +191,9 @@ const Navbar = (props) => {
             }
           }}
         >
-          {darkmode ? (
-            <RiSunFill className="h-4 w-4 text-gray-600 dark:text-white" />
-          ) : (
-            <RiMoonFill className="h-4 w-4 text-gray-600 dark:text-white" />
-          )}
+          {darkmode
+            ? <RiSunFill className="h-4 w-4 text-gray-600 dark:text-white" />
+            : <RiMoonFill className="h-4 w-4 text-gray-600 dark:text-white" />}
         </div>
         {/* Profile & Dropdown */}
         <Dropdown
@@ -218,18 +210,17 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    :wave: Hey, {name}
+                    Hey, {name}
                   </p>{" "}
                 </div>
               </div>
               <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
               <div className="flex flex-col p-4">
-                <a
-                  href=" "
-                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
+                <Link
+                  href="/admin/profile"
+                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white">
                   Profile Settings
-                </a>
+                </Link>
                 <a
                   href=" "
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
@@ -260,8 +251,8 @@ export async function getServerSideProps(context) {
     return {
       redirect: {
         destination: "/admin",
-        permanent: false,
-      },
+        permanent: false
+      }
     };
   }
 }
