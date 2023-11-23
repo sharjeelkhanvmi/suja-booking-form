@@ -7,7 +7,8 @@ const leadsSchema = new mongoose.Schema({
   },
   step2: {
     gear: { type: String },
-    driving: { type: String }
+    driving: { type: String },
+    hours: { type: String }
   },
   step3: {
     addons: { type: String }
