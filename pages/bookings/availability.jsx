@@ -7,8 +7,8 @@ import dynamic from 'next/dynamic'
 const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
-let formdata = Cookies.get('formData');
-const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
+// let formdata = Cookies.get('formData');
+// const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
 const validationSchema = Yup.object().shape({
 intensiveCourse: Yup.string()
 .required('Please choose either one of the intensity')
@@ -32,7 +32,7 @@ const step5 = formdata.step5
 return (
 <div>
     <Formik
-    initialValues={{
+    initialValues={ step5 ? step5 : {
     intensiveCourse: '',
     }}
     validationSchema={validationSchema}
@@ -46,7 +46,7 @@ return (
     //Cookies.set('formData', JSON.stringify(stepFiveData), { expires: 30 });
     // let formdata1234 = Cookies.get('formData');
     // console.log(formdata1234)
-    // router.push('/bookings/addons/');
+    router.push('/bookings/addons/');
     }}
     >
     {formikProps => (
@@ -80,12 +80,7 @@ return (
         </div>
     </div>
     <div className="mb-10">
-        <div>
-            <ErrorMessage
-                name="intensiveCourse"
-                component="p"
-                className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
-            />
+        <div>            
             <div className="">
                 <Field type="radio" name="intensiveCourse" className="sr-only intensive" id="intensive" value="Intensive" />
                 <label htmlFor="intensive" className="w-full flex items-center text-left py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer
@@ -155,6 +150,13 @@ return (
                 </div>
             </div>
         </label>
+    </div>
+    <div className="mt-3">
+            <ErrorMessage
+                name="intensiveCourse"
+                component="p"
+                className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+            />
     </div>
     <div>
     </div>

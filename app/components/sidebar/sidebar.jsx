@@ -39,19 +39,22 @@ const router = useRouter();
   let drType;
   // const drType = data.step2.dr_type;
   // const courseType = data.step2.dr_course_type;
+  let course_name;
   let coursePriceObj;
   let hours_value;
   let variant;
   let full;
   let deposit;
   let total;
-  let subTotal;
+  // let subTotal;
   let fast_track_theory;
   let fast_track_practical;
+  let pass_protect;
 
   // console.log(data)
   if(data && data.step2 && data.step2.dr_course_price != undefined){
     drType = capitalize(data.step2.dr_type);
+    course_name = data.step2.dr_course_type;
     coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
     hours_value = coursePriceObj.value;
     variant = coursePriceObj.variant;
@@ -62,9 +65,10 @@ const router = useRouter();
  
   fast_track_theory = (data && data.step3 && data.step3.fast_track_theory != '') ? parseInt(data.step3.fast_track_theory) : 0
   fast_track_practical = (data && data.step3 && data.step3.fast_track_practical != '') ? parseInt(data.step3.fast_track_practical) : 0
+  pass_protect = (data && data.step6 && data.step6.pass_protect != '') ? parseInt(data.step6.pass_protect) : 0
  // subTotal = ((deposit) ? deposit : full)
   
-  total = full + fast_track_theory + fast_track_practical;
+  total = full + fast_track_theory + fast_track_practical + pass_protect;
   // console.log(variant)
   // console.log(data)
 
@@ -134,6 +138,24 @@ const router = useRouter();
           </div>
 
         ) : ''}
+
+
+        {(data && data.step6 && data.step6.pass_protect) ? (
+
+        <div className="mt-5">
+        <h4 className="text-white text-opacity-50 font-bold uppercase text-[13px] tracking-wide">
+          Add-ons
+        </h4>
+
+        <div className="mt-2 w-full font-semibold flex">
+        <span className="w-full">Pass Protect</span>
+        <div className="text-right">
+          <span className="text-white text-opacity-60 ml-4">£{data.step6.pass_protect}</span>
+        </div>
+        </div>
+        </div>
+
+        ) : '' }
 
         
           <div className="mt-14 flex justify-between items-center">
