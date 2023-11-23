@@ -59,16 +59,12 @@ const router = useRouter();
     deposit = parseInt(coursePriceObj.deposit);
   }
 
-  fast_track_theory = (data.step3.fast_track_theory != '') ? parseInt(data.step3.fast_track_theory) : 0
-  fast_track_practical = (data.step3.fast_track_practical != '') ? parseInt(data.step3.fast_track_practical) : 0
-  
-
+ 
+  fast_track_theory = (data && data.step3 && data.step3.fast_track_theory != '') ? parseInt(data.step3.fast_track_theory) : 0
+  fast_track_practical = (data && data.step3 && data.step3.fast_track_practical != '') ? parseInt(data.step3.fast_track_practical) : 0
  // subTotal = ((deposit) ? deposit : full)
-
-  total = full + fast_track_theory + fast_track_practical;
-
   
-
+  total = full + fast_track_theory + fast_track_practical;
   // console.log(variant)
   // console.log(data)
 

@@ -1,13 +1,14 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import Sidebar from '@/app/components/sidebar/sidebar';
+import dynamic from 'next/dynamic'
+const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
-let formdata = Cookies.get('formData');
-const data = formdata ? JSON.parse(formdata) : { phone_number: "" };
+//let formdata = Cookies.get('formData');
+//const data = formdata ? JSON.parse(formdata) : { phone_number: "" };
 
 const validationSchema = Yup.object().shape({
   phone_number: Yup.string()
@@ -22,22 +23,37 @@ const validationSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
     firstName: Yup.string().required('First name is required'),
     surname: Yup.string().required('Last name is required'),
-    email: Yup.string(),
-    password: Yup.string(),
-    confirm_password: Yup.string()
+    email: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
+    password: Yup.string(),
+    confirm_password: Yup.string(),
 
 });
 
 // console.log(data)
 
 const student = () => {
+
+    const [info, setInfo] = useState();
+    let formdata;
+    if (typeof localStorage !== 'undefined') {
+      formdata = JSON.parse(localStorage.getItem("formData"));
+    }
+    else {
+      formdata = '';
+    }
+    useEffect(() => {
+      setInfo(formdata)
+    }, [])
+
 const router = useRouter();
+const [changedData, setChangedData] = useState(formdata);
+const step4 = formdata.step4
 return (
 <div>
     <Formik
-    initialValues={{
+    initialValues={step4? step4 :{
       title: "",
       firstName: "",
       surname: "",
@@ -50,12 +66,13 @@ return (
     validationSchema={validationSchema}
     onSubmit={async (values) => {
     await new Promise((r) => setTimeout(r, 500));
-    const stepFourData = {
-      ...data,
+    const formDatas = {
+      ...formdata,
       ...{'step4': values}
     };
-    Cookies.set('formData', JSON.stringify(stepFourData), { expires: 30 });
-    let formdata123 = Cookies.get('formData');
+    localStorage.setItem("formData", JSON.stringify(formDatas));
+    //Cookies.set('formData', JSON.stringify(stepFourData), { expires: 30 });
+    //let formdata123 = Cookies.get('formData');
     router.push('/bookings/availability');
     }}
     >
@@ -245,7 +262,7 @@ return (
                     </p>
                 </div>
             </div>
-            <Sidebar />
+            <Sidebar data={changedData} />
         </div>
     </Form>
     )}
