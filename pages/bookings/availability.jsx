@@ -3,23 +3,16 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import Sidebar from '@/app/components/sidebar/sidebar';
+import dynamic from 'next/dynamic'
+const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 let formdata = Cookies.get('formData');
 const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
 const validationSchema = Yup.object().shape({
-// intensive: Yup.boolean()
-//   .oneOf([true], 'You must accept the terms')
-//   .required('You must accept the terms'),
-// semi_intensive: Yup.boolean()
-//   .oneOf([true], 'You must accept the terms')
-//   .required('You must accept the terms'),
-//   relaxed: Yup.boolean()
-//   .oneOf([true], 'You must accept the terms')
-//   .required('You must accept the terms'),
+intensiveCourse: Yup.string()
+.required('Please choose either one of the intensity')
 });
-// console.log(data);
 const availablity = () => {
     const [info, setInfo] = useState();
     let formdata;
@@ -40,15 +33,16 @@ return (
 <div>
     <Formik
     initialValues={{
-    intensiveCourse: 'Intensive',
+    intensiveCourse: '',
     }}
     validationSchema={validationSchema}
     onSubmit={async (values) => {
     await new Promise((r) => setTimeout(r, 500));
-    const stepFiveData = {
-    ...data,
+    const formDatas = {
+    ...formdata,
     ...{'step5': values}
     };
+    localStorage.setItem("formData", JSON.stringify(formDatas));
     //Cookies.set('formData', JSON.stringify(stepFiveData), { expires: 30 });
     // let formdata1234 = Cookies.get('formData');
     // console.log(formdata1234)
@@ -87,6 +81,11 @@ return (
     </div>
     <div className="mb-10">
         <div>
+            <ErrorMessage
+                name="intensiveCourse"
+                component="p"
+                className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+            />
             <div className="">
                 <Field type="radio" name="intensiveCourse" className="sr-only intensive" id="intensive" value="Intensive" />
                 <label htmlFor="intensive" className="w-full flex items-center text-left py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer

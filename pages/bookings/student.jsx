@@ -26,8 +26,8 @@ const validationSchema = Yup.object().shape({
     email: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
-    password: Yup.string(),
-    confirm_password: Yup.string(),
+    password: Yup.string().required('Password is required'),
+    confirm_password: Yup.string().required('Confirm Password is required'),
 
 });
 
