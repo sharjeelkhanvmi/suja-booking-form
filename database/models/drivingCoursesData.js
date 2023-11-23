@@ -246,6 +246,6 @@ export const auto = {
 
 export const test = {
     'fast_track_practical' : 110,
-    'fast_track_theory' : 40
+    'fast_track_theory' : 40,
 }
   

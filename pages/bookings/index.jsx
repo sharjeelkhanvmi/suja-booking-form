@@ -11,53 +11,49 @@ import OldUserLoader from "@/pages/bookings/OldUserLoader";
 
 
 
-let formdata = Cookies.get("formData");
-const data = formdata ? JSON.parse(formdata) : { postal_code: "" };
+
+const index = () => {
+
+  const [info,setInfo] = useState();
+
+
+ 
+
+  let formdata;
+if (typeof localStorage !== 'undefined') {
+  formdata = JSON.parse(localStorage.getItem("formData"));
+}
+else{
+  formdata = '';
+}
+
+useEffect(() => {
+  setInfo(formdata)
+},[])
 
 const validationSchema = Yup.object().shape({
   postal_code: Yup.string()
     .required("Postal code is required")
     .matches(/^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$/, "Invalid UK postal code"),
 });
-
-const index = () => {
   const router = useRouter();
-  const step1 = data.step1;
-
-  const [leads, setLeads] = useState([]);
-
-  const leadData = async () => {
-    try {
-      let response = await fetch("http://localhost:3000/api/leads/get");
-      let data = await response.json();
-      setLeads(data);
-      console.log("Leads Data", data);
-    } catch (error) {
-      console.error("Error fetching leads:", error);
-    }
-  };
-
-  useEffect(() => {
-    leadData();
-  }, []);
-
+  const step1 = formdata ? formdata.step1 : ''
+  console.log(step1)
   return (
     <div>
       <Formik
-        initialValues={step1 ? step1.values : { postal_code: "" }}
+        initialValues={step1 ? step1 : { postal_code: "" }}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true);
-
-          // Simulate an API call (replace this with your actual API call)
           await new Promise((resolve) => setTimeout(resolve, 2000));
-
           setSubmitting(false);
-
-          Cookies.set("formData", JSON.stringify({ step1: { values } }), {
-            expires: 30,
-          });
-
+          const step01 = { step1: values }
+          const formDatas = {
+            ...formdata,
+            ...step01
+          };
+          localStorage.setItem("formData", JSON.stringify(formDatas));
           router.push("/bookings/course/");
         }}
       >
