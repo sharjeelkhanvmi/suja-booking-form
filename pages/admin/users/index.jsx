@@ -17,7 +17,7 @@ const Index = () => {
   },[])
 
   return <Layout>
-      <div className="w-full p-5 flex items-center justify-center text-white bg-black flex-col tracking-widest uppercase my-5">
+      <div className="w-full p-2 flex items-center justify-center text-white bg-black flex-col tracking-widest uppercase my-3">
         
         {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
@@ -27,7 +27,7 @@ const Index = () => {
           <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden px-6">
             <table role="table" className="w-full" variant="simple" color="gray-500" mb="24px">
               <thead>
-                <tr role="row bg-[#e2e8f0]">
+                <tr role="row bg-gray-300">
                   <th colSpan={1} role="columnheader" title="Toggle SortBy" className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700" style={{ cursor: "pointer" }}>
                     <div className="text-sm font-bold  tracking-wide text-gray-800">
                       NAME
