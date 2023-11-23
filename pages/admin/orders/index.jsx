@@ -166,7 +166,7 @@ const Index = () => {
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
                       NAME
                     </div>
                   </th>
@@ -177,7 +177,7 @@ const Index = () => {
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
                       Email
                     </div>
                   </th>
@@ -188,7 +188,7 @@ const Index = () => {
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
                       Coupon code
                     </div>
                   </th>
@@ -199,7 +199,7 @@ const Index = () => {
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
                       Mobile
                     </div>
                   </th>
@@ -210,7 +210,7 @@ const Index = () => {
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
                       Postal Code
                     </div>
                   </th>
@@ -221,7 +221,7 @@ const Index = () => {
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
                       Role
                     </div>
                   </th>
@@ -232,7 +232,7 @@ const Index = () => {
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
                       Actions
                     </div>
                   </th>
@@ -253,7 +253,7 @@ const Index = () => {
                           checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
                             name="weekly"
                           />
-                          <p className="text-sm font-bold text-navy-500 dark:text-white">
+                          <p className="text-sm font-bold text-gray-900 dark:text-white">
                             {data.step4.first_name}
                           </p>
                         </div>
@@ -304,7 +304,7 @@ const Index = () => {
                         role="cell"
                         className=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
                       >
-                        <span className="text-sm font-bold text-navy-700 dark:text-white">
+                        <span className="text-sm font-bold text-red-700 dark:text-white">
                           <AiFillDelete
                             className="text-2xl cursor-pointer"
                             onClick={() => {
@@ -312,13 +312,13 @@ const Index = () => {
                             }}
                           />
                         </span>
-                        <span className="text-sm font-bold text-navy-700 dark:text-white">
+                        <span className="text-sm font-bold text-gray-800 dark:text-white">
                           <AiFillEdit
                             className="text-2xl cursor-pointer"
                             onClick={() => handleEdit(data)}
                           />
                         </span>
-                        <span className="text-sm font-bold text-navy-700 dark:text-white">
+                        <span className="text-sm font-bold text-gray-800 dark:text-white">
                         <IoEye className="text-2xl cursor-pointer" onClick={()=>{
                           setSecondToggle(true)
                           handleView(data)

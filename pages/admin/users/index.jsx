@@ -2,7 +2,6 @@ import Layout from "@/app/components/Layout";
 import { useEffect, useState } from "react";
 const Index = () => {
   const [usersData,setUsersData]=useState(null);
-
   const handleUsersData = async () =>{
   try {
     const response = await fetch('http://localhost:3000/api/admin');
@@ -30,26 +29,26 @@ const Index = () => {
               <thead>
                 <tr role="row">
                   <th colSpan={1} role="columnheader" title="Toggle SortBy" className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700" style={{ cursor: "pointer" }}>
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold  tracking-wide text-gray-800">
                       NAME
                     </div>
                   </th>
                   <th colSpan={1} role="columnheader" title="Toggle SortBy" className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700" style={{ cursor: "pointer" }}>
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold  tracking-wide text-gray-800">
                       Email
                     </div>
                   </th>
                   <th colSpan={1} role="columnheader" title="Toggle SortBy" className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700" style={{ cursor: "pointer" }}>
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold  tracking-wide text-gray-800">
                       Role
                     </div>
                   </th>
                   <th colSpan={1} role="columnheader" title="Toggle SortBy" className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700" style={{ cursor: "pointer" }}>
-                    <div className="text-xs font-bold tracking-wide text-gray-600 lg:text-xs">
+                    <div className="text-sm font-bold  tracking-wide text-gray-800">
                       Mobile
                     </div>
                   </th>
-                </tr>
+                </tr> 
               </thead>
               <tbody role="rowgroup">
               {usersData && usersData.map((data)=>(

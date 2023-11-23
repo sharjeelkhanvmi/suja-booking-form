@@ -9,35 +9,33 @@ const Index = () => {
   return (
     <Layout>
       <div className=" p-5 flex w-full lg:max-w-[48%] m-auto  items-center justify-center text-white bg-black flex-col tracking-widest uppercase">
-        <p className="text-4xl font-semibold my-10 text-gray-800 dark:text-white">
-          Profile
-        </p>
-        <form className="w-full max-w-lg">
-  <div className="flex flex-wrap -mx-3 mb-6">
+      <p className="text-4xl font-semibold my-10 text-gray-800 dark:text-white"> Profile </p>
+    <form className="w-full max-w-lg">
+    <div className="flex flex-wrap -mx-3 mb-6">
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label
-        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        className="block uppercase tracking-wide text-black-400 text-xs font-bold mb-2"
         htmlFor="grid-first-name"
       >
         First Name
       </label>
       <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         id="grid-first-name"
         type="text"
         placeholder="Jane"
       />
-      <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+      
     </div>
     <div className="w-full md:w-1/2 px-3">
       <label
-        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        className="block uppercase tracking-wide text-gray-900 text-xs font-bold mb-2"
         htmlFor="grid-last-name"
       >
         Last Name
       </label>
       <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         id="grid-last-name"
         type="text"
         placeholder="Doe"
@@ -53,7 +51,7 @@ const Index = () => {
         Password
       </label>
       <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         id="grid-password"
         type="password"
         placeholder="******************"
@@ -72,7 +70,7 @@ const Index = () => {
         City
       </label>
       <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         id="grid-city"
         type="text"
         placeholder="Albuquerque"
@@ -113,7 +111,7 @@ const Index = () => {
         Zip
       </label>
       <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         id="grid-zip"
         type="text"
         placeholder={90210}
@@ -121,12 +119,9 @@ const Index = () => {
     </div>
   </div>
 </form>
- 
-
-
-        
-        {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
-      </div>{" "}
+     
+    {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
+    </div>{" "}
     </Layout>
   );
 };
