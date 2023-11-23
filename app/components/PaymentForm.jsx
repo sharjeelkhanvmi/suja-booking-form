@@ -1,6 +1,6 @@
 // PaymentForm.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CardNumberElement,
   CardCvcElement,
@@ -15,12 +15,38 @@ const stripePromise = loadStripe(
   'pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf'
 );
 
-const PaymentForm = ({ onSuccess }) => {
+const PaymentForm = ({ onSuccess, data }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
   const [productName, setProductName] = useState('Product Name');
-  const [productPrice, setProductPrice] = useState('16000');
+  const [productPrice, setProductPrice] = useState();
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  useEffect(() => {
+
+    let drType;
+    let course_name;
+    let coursePriceObj;
+    let hours_value;
+    let variant;
+    let payment;
+
+    if(data && data.step2 && data.step2.dr_course_price != undefined){
+      drType = capitalize(data.step2.dr_type);
+      course_name = data.step2.dr_course_type;
+      coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
+      hours_value = coursePriceObj.value;
+      variant = coursePriceObj.variant;
+    }
+    if(data && data.step7 && data.step7.payment != undefined){
+      payment = data.step7.payment;
+    }
+    setProductPrice((data && data.step7 && data.step7.amount) ? data.step7.amount : 0);
+    setProductName( hours_value +' '+ variant +' - '+ drType + ' - ' +  payment );
+  }, [data])
+  console.log('payment page', data)
 
   const cardElementOptions = {
     style: {
@@ -134,7 +160,7 @@ const PaymentForm = ({ onSuccess }) => {
           className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600"
         >
           <span className="flex items-center justify-center">
-            Pay £840
+            Pay £{productPrice}
             <span className="ml-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
