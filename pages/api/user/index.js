@@ -11,17 +11,16 @@ export default async function GET(req, res) {
   const decoded = jwtDecode(token);
   const userId = decoded.id;
   const objectId = new ObjectId(userId);
-
+  
   try {
     await connectionSuja();
-    // Fetch users
+
     const users = await User.find({ _id: objectId }).exec();
-    // Fetch leads for each user
+
     const leadsPromises = users.map(async user => {
       const leads = await Lead.find({ user: objectId }).exec();
       return { user, leads };
     });
-    // Wait for all lead queries to complete
     const usersWithLeads = await Promise.all(leadsPromises);
     res.status(200).json(usersWithLeads);
   } catch (error) {
