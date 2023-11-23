@@ -1,21 +1,72 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import Cookies from "js-cookie";
+//import Cookies from "js-cookie";
 import { useRouter} from "next/router";
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
-import Sidebar from '@/app/components/sidebar/sidebar';
+//import Sidebar from '@/app/components/sidebar/sidebar';
 
 
 const thankyou = () => {
 
+  const [info, setInfo] = useState();
+  let formdata;
+  if (typeof localStorage !== 'undefined') {
+    formdata = JSON.parse(localStorage.getItem("formData"));
+  }
+  else {
+    formdata = '';
+  }
+  useEffect(() => {
+    setInfo(formdata)
+  }, [])
+
 const router = useRouter();
+const [changedData, setChangedData] = useState(formdata);
+
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+
+let drType;
+let course_name;
+let coursePriceObj;
+let hours_value;
+let variant;
+let full;
+let deposit;
+let total;
+let fast_track_theory;
+let fast_track_practical;
+let pass_protect;
+
+if(changedData && changedData.step2 && changedData.step2.dr_course_price != undefined){
+  drType = capitalize(changedData.step2.dr_type);
+  course_name = changedData.step2.dr_course_type;
+  coursePriceObj = changedData.step2.dr_course_price[Object.keys(changedData.step2.dr_course_price)[0]];
+  hours_value = coursePriceObj.value;
+  variant = coursePriceObj.variant;
+  full = parseInt(coursePriceObj.full);
+  deposit = parseInt(coursePriceObj.deposit);
+}
+
+
+fast_track_theory = (changedData && changedData.step3 && changedData.step3.fast_track_theory != '') ? parseInt(changedData.step3.fast_track_theory) : 0
+fast_track_practical = (changedData && changedData.step3 && changedData.step3.fast_track_practical != '') ? parseInt(changedData.step3.fast_track_practical) : 0
+pass_protect = (changedData && changedData.step6 && changedData.step6.pass_protect != '') ? parseInt(changedData.step6.pass_protect) : 0
+// subTotal = ((deposit) ? deposit : full)
+
+total = full + fast_track_theory + fast_track_practical + pass_protect;
 
 const paymentButtonClick = () => 
 {
   router.push('/bookings/payment');
 };
+
+
 return (
 
 <div>
@@ -39,6 +90,10 @@ return (
     }}
   ></div>
   <div className="w-full">
+    
+  {/* {changedData && changedData.step2 && changedData.step2.dr_course_price ? (
+    <div>done</div>
+  ) : ''} */}
     <div>
       <div className="w-full mb-5 pr-4">
         <h1 className="mb-5 text-[24px] text-start font-bold">
@@ -72,7 +127,7 @@ return (
                 </svg>
               </div>
               <div className="pl-4 font-bold text-[15px]">
-                <div>25 Hour Course</div>
+                <div>28 Hours - Automatic</div>
                 <div className="text-[13px] tracking-wide text-dust text-opacity-60 font-medium">
                   Automatic
                 </div>
@@ -271,6 +326,9 @@ Continue to Payment Method
         </div>
       </div>
     </div>
+
+  
+
     <div className="fixed bottom-3 right-3 rounded-full bg-slate-200 p-2 text-slate-700 cursor-pointer">
       <svg
         xmlns="http://www.w3.org/2000/svg"

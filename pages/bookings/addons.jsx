@@ -1,11 +1,13 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import Cookies from "js-cookie";
+//import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import Sidebar from '@/app/components/sidebar/sidebar';
+import dynamic from 'next/dynamic'
+const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
+import { test } from '@/database/models/drivingCoursesData';
 import Amex from '@/public/assets/amex.f54f9bb1.svg';
 import Mastercard from '@/public/assets/mastercard.a1764ac8.svg';
 import Visa from '@/public/assets/visa.7c2bf868.svg';
@@ -18,8 +20,8 @@ import { loadStripe } from '@stripe/stripe-js';
 import PaymentForm from '@/app/components/PaymentForm';
 // stripe integration
 
-let formdata = Cookies.get('formData');
-const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
+// let formdata = Cookies.get('formData');
+// const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
 
 const validationSchema = Yup.object().shape({
   // auto_manual: Yup.string()
@@ -28,21 +30,48 @@ const validationSchema = Yup.object().shape({
 
 
 const addons = () => {
+  const [info, setInfo] = useState();
+    let formdata;
+    if (typeof localStorage !== 'undefined') {
+      formdata = JSON.parse(localStorage.getItem("formData"));
+    }
+    else {
+      formdata = '';
+    }
+    useEffect(() => {
+      setInfo(formdata)
+    }, [])
   const router = useRouter();
+  const [changedData, setChangedData] = useState(formdata);
+  const [checkboxValue, setCheckboxValue] = useState(test);
+  const step6 = formdata.step6
+  // console.log(changedData)
 
   return (
     <div>
       <Formik
-        initialValues={data}
+        initialValues={{ pass_protect: (step6 && step6.pass_protect != '') ? true : false }}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
-          Cookies.set('formData', JSON.stringify(values), { expires: 30 });
-          let formdata = Cookies.get('formData');
+          const passProtect = values.pass_protect ? checkboxValue.pass_protect : '';
+          // const fieldNames = Object.keys(values);
+          const formDatas = {
+            ...formdata,
+            step6: {
+              'pass_protect': passProtect,
+            },
+          };
+          // const formDatas = {
+          // ...formdata,
+          // ...{'step6': values}
+          // };
+          // console.log(formDatas)
+          localStorage.setItem("formData", JSON.stringify(formDatas));
           router.push('/bookings/summary/');
         }}
       >
-        {({values, setFieldValue }) => (
+        {({ handleChange, setFieldValue, values }) => (
           <Form>
         <Formnav />
 <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
@@ -53,13 +82,29 @@ const addons = () => {
       <h1 className="text-[24px] text-black font-bold pb-5"> Give yourself the best chance at success! </h1>
      
         <div>
-        <Field type="checkbox" name="passprotect" className="sr-only fast_track  flex items-center text-left  ring-2 ring-primary ring-offset-1 bg-slate-300 py-4 px-5
- rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary
-  focus-visible:ring-offset-1  transition-all mb-5" id="passprotect" 
-        onChange={() => setFieldValue('passprotect', !values.passprotect)}/>
-      <label htmlFor="passprotect" 
-      className="border cursor-pointer flex focus-visible:ring-2 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen
-       items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full">
+        <Field 
+        type="checkbox" 
+        name="pass_protect" 
+        className="sr-only fast_track  flex items-center text-left  ring-2 ring-primary ring-offset-1 bg-slate-300 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1  transition-all mb-5"
+        id="pass_protect" 
+        onChange={(e) => {
+          handleChange(e);
+          setChangedData((changedData) => {
+            // console.log(values)
+            return {
+              ...changedData,
+              step6: {
+                ...changedData.step6,
+                pass_protect: e.target.checked ? checkboxValue.pass_protect : '',
+              },
+            };
+          });
+        }}
+        // onChange={() => setFieldValue('pass_protect', !values.pass_protect)}
+        />
+        <label htmlFor="pass_protect" 
+        className="border cursor-pointer flex focus-visible:ring-2 font-semibold hover:bg-opacity-50 hover:bg-pmfLightGreen
+        items-center outline-none pl-5 pr-3.5 rounded-lg text-left text-secondary transition-all w-full">
             <div className="w-full flex justify-between items-center">
               <div className="flex items-center p-5">
                 <div className="">
@@ -77,8 +122,8 @@ const addons = () => {
                     </p>
             <div className="flex justify-between items-center mt-5">
       <div>
-        <div className="mt-1 text-white bg-gray-900 text-sm w-max py-1 px-3 font-semibold rounded-full">
-          {values.passprotect ? 'Remove' : 'Add'}
+        <div className="mt-1 text-white bg-gray-900 text-sm w-max py-1 px-3 font-semibold rounded-full add_remove_label">
+          
         </div>
       </div>
         <p className="text-lg text-gray-700">£150</p>
@@ -103,7 +148,7 @@ const addons = () => {
 
 </div>
 </div> 
-  <Sidebar/>
+<Sidebar data={changedData} />
 </div>            
   </Form>
         )}

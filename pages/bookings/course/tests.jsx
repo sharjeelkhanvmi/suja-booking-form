@@ -71,7 +71,7 @@ const tests = () => {
       >
         {({ handleChange, setFieldValue, values }) => (
           <Form>
-            {console.log('Form values in render:', values.fast_track_theory === false)}
+            {/* {console.log('Form values in render:', values.fast_track_theory === false)} */}
             <Formnav />
             <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
               <div className='w-full lg:max-w-[750px] pb-24'>
