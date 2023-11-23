@@ -100,7 +100,12 @@ const Index = () => {
 
     
      
+<<<<<<< Updated upstream
     </div>{" "}
+=======
+    {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
+    </div>
+>>>>>>> Stashed changes
     </Layout>
   );
 };

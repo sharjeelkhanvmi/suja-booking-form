@@ -311,14 +311,14 @@ const Index = () => {
                           {data.step2.hours}
                         </p>
                       </td>
-                      <td
+                      {/* <td
                         role="cell"
                         className="pt-[14px] pb-[16px] sm:text-[14px]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {data.user.role}
                         </p>
-                      </td>
+                      </td> */}
                       <td
                         role="cell"
                         className=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
