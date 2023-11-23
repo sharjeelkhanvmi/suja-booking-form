@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Cookies from "js-cookie";
@@ -21,7 +21,21 @@ const validationSchema = Yup.object().shape({
 });
 // console.log(data);
 const availablity = () => {
+    const [info, setInfo] = useState();
+    let formdata;
+    if (typeof localStorage !== 'undefined') {
+      formdata = JSON.parse(localStorage.getItem("formData"));
+    }
+    else {
+      formdata = '';
+    }
+    useEffect(() => {
+      setInfo(formdata)
+    }, [])
+
 const router = useRouter();
+const [changedData, setChangedData] = useState(formdata);
+const step5 = formdata.step5
 return (
 <div>
     <Formik
@@ -35,10 +49,10 @@ return (
     ...data,
     ...{'step5': values}
     };
-    Cookies.set('formData', JSON.stringify(stepFiveData), { expires: 30 });
-    let formdata1234 = Cookies.get('formData');
-    console.log(formdata1234)
-    router.push('/bookings/addons/');
+    //Cookies.set('formData', JSON.stringify(stepFiveData), { expires: 30 });
+    // let formdata1234 = Cookies.get('formData');
+    // console.log(formdata1234)
+    // router.push('/bookings/addons/');
     }}
     >
     {formikProps => (
@@ -162,7 +176,7 @@ return (
         </button>
     </div>
 </div>
-            <Sidebar/>
+<Sidebar data={changedData} />
         </div>
     </Form>
     )}
