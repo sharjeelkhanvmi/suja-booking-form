@@ -1,3 +1,4 @@
+'use client'
 import { React, useState, useEffect } from 'react';
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -8,27 +9,21 @@ import Formnav from '@/app/components/Formnav';
 //import Sidebar from '@/app/components/sidebar/sidebar';
 
 
-const thankyou = () => {
-
-  const [info, setInfo] = useState();
-  let formdata;
-  if (typeof localStorage !== 'undefined') {
-    formdata = JSON.parse(localStorage.getItem("formData"));
-  }
-  else {
-    formdata = '';
-  }
+const ThankYou = ({ info }) => {
+  const [changedData, setChangedData] = useState();
   useEffect(() => {
-    setInfo(formdata)
-  }, [])
+    setChangedData(info)
+  }, [info])
 
+  // const [info, setInfo] = useState();
 const router = useRouter();
-const [changedData, setChangedData] = useState(formdata);
+
 
 
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
 
 
 let drType;
@@ -91,9 +86,7 @@ return (
   ></div>
   <div className="w-full">
     
-  {/* {changedData && changedData.step2 && changedData.step2.dr_course_price ? (
-    <div>done</div>
-  ) : ''} */}
+  {changedData && changedData.step2 && changedData.step2.dr_course_price ? (
     <div>
       <div className="w-full mb-5 pr-4">
         <h1 className="mb-5 text-[24px] text-start font-bold">
@@ -127,18 +120,25 @@ return (
                 </svg>
               </div>
               <div className="pl-4 font-bold text-[15px]">
-                <div>28 Hours - Automatic</div>
-                <div className="text-[13px] tracking-wide text-dust text-opacity-60 font-medium">
-                  Automatic
+                <div>{ hours_value +' '+ variant +' - '+ drType}</div>
+                <div className="text-[13px] tracking-wide text-dust text-opacity-60 font-medium text-start">
+                  {drType}
                 </div>
               </div>
             </div>
             <div className="flex items-center">
               <div className="font-semibold text-gray-800 text-xl">
-                £1,545
+              £{ full }
               </div>
             </div>
           </div>
+
+          { (changedData && changedData.step3 && changedData.step3.fast_track_theory || changedData && changedData.step3 && changedData.step3.fast_track_practical)  ? (
+            <div>
+              
+
+          { changedData && changedData.step3 && changedData.step3.fast_track_theory ? (
+            
           <div className="py-3 flex items-center justify-between">
             <div className="flex items-center">
               <div className="h-10 w-10 bg-gray-100 rounded-md flex items-center justify-center">
@@ -169,26 +169,134 @@ return (
               </div>
               <div className="pl-4 font-bold text-[15px]">
                 <div>Practical Test</div>
-                <div className="text-[13px] tracking-wide text-dust text-opacity-60 font-medium">
+                <div className="text-[13px] tracking-wide text-dust text-opacity-60 font-medium text-start">
                   Fast-Track
                 </div>
               </div>
             </div>
             <div className="flex items-center">
               <div className="font-semibold text-gray-800 text-lg">
-                £110
+                £{changedData.step3.fast_track_practical}
               </div>
             </div>
           </div>
+         
+
+          ) : '' }
+
+          {changedData && changedData.step3 && changedData.step3.fast_track_practical ? (
+
+          
+
+          <div className="py-3 flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="h-10 w-10 bg-gray-100 rounded-md flex items-center justify-center">
+                <svg
+                  width={22}
+                  height={22}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3 8.68799C3 7.82399 3.933 7.28299 4.683 7.71099L11.791 11.773C11.9631 11.8714 12.1061 12.0136 12.2055 12.1851C12.305 12.3565 12.3574 12.5513 12.3574 12.7495C12.3574 12.9477 12.305 13.1424 12.2055 13.3139C12.1061 13.4854 11.9631 13.6276 11.791 13.726L4.683 17.788C4.51182 17.8858 4.31796 17.9368 4.12082 17.9361C3.92369 17.9354 3.73021 17.8829 3.55976 17.7838C3.38932 17.6848 3.24789 17.5427 3.14965 17.3718C3.05141 17.2008 2.9998 17.0071 3 16.81V8.68799Z"
+                    fill="#FF8A00"
+                    stroke="black"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M14.433 7.71099C13.683 7.28299 12.75 7.82399 12.75 8.68799V16.811C12.75 17.008 12.8017 17.2016 12.9 17.3724C12.9983 17.5432 13.1398 17.6851 13.3102 17.7841C13.4806 17.883 13.674 17.9354 13.8711 17.9361C14.0681 17.9368 14.2619 17.8857 14.433 17.788L21.541 13.726C21.7131 13.6276 21.8561 13.4854 21.9555 13.3139C22.055 13.1424 22.1074 12.9477 22.1074 12.7495C22.1074 12.5513 22.055 12.3565 21.9555 12.1851C21.8561 12.0136 21.7131 11.8714 21.541 11.773L14.433 7.71099Z"
+                    fill="#FFB626"
+                    stroke="black"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <div className="pl-4 font-bold text-[15px]">
+                <div>Theory Test</div>
+                <div className="text-[13px] tracking-wide text-dust text-opacity-60 font-medium text-start">
+                  Fast-Track
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <div className="font-semibold text-gray-800 text-lg">
+              £{changedData.step3.fast_track_theory}
+              </div>
+            </div>
+          </div>
+
+          
+          ) : '' }
+
+
+            {changedData && changedData.step6 && changedData.step6.pass_protect ? (
+
+            <div className="py-3 flex items-center justify-between">
+              <div className="flex items-center">
+                <div className="h-10 w-10 bg-gray-100 rounded-md flex items-center justify-center">
+                  <svg
+                    width={22}
+                    height={22}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 8.68799C3 7.82399 3.933 7.28299 4.683 7.71099L11.791 11.773C11.9631 11.8714 12.1061 12.0136 12.2055 12.1851C12.305 12.3565 12.3574 12.5513 12.3574 12.7495C12.3574 12.9477 12.305 13.1424 12.2055 13.3139C12.1061 13.4854 11.9631 13.6276 11.791 13.726L4.683 17.788C4.51182 17.8858 4.31796 17.9368 4.12082 17.9361C3.92369 17.9354 3.73021 17.8829 3.55976 17.7838C3.38932 17.6848 3.24789 17.5427 3.14965 17.3718C3.05141 17.2008 2.9998 17.0071 3 16.81V8.68799Z"
+                      fill="#FF8A00"
+                      stroke="black"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M14.433 7.71099C13.683 7.28299 12.75 7.82399 12.75 8.68799V16.811C12.75 17.008 12.8017 17.2016 12.9 17.3724C12.9983 17.5432 13.1398 17.6851 13.3102 17.7841C13.4806 17.883 13.674 17.9354 13.8711 17.9361C14.0681 17.9368 14.2619 17.8857 14.433 17.788L21.541 13.726C21.7131 13.6276 21.8561 13.4854 21.9555 13.3139C22.055 13.1424 22.1074 12.9477 22.1074 12.7495C22.1074 12.5513 22.055 12.3565 21.9555 12.1851C21.8561 12.0136 21.7131 11.8714 21.541 11.773L14.433 7.71099Z"
+                      fill="#FFB626"
+                      stroke="black"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div className="pl-4 font-bold text-[15px]">
+                  <div>Pass Protect</div>
+                  <div className="text-[13px] tracking-wide text-dust text-opacity-60 font-medium text-start">
+                    Add-ons
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="font-semibold text-gray-800 text-lg">
+                £{changedData.step6.pass_protect}
+                </div>
+              </div>
+            </div>
+
+
+            ) : '' }
+
+          </div>
+
+          
+
+          ) : '' }
+
+
         </div>
         <div className="w-full flex justify-between items-center mt-5">
           <div className="font-semibold text-[15px]">Total</div>
-          <div className="font-semibold text-secondary">£1,655</div>
+          <div className="font-semibold text-secondary">£{total}</div>
         </div>
-        <div className="w-full flex justify-between items-center mt-5">
+        {/* <div className="w-full flex justify-between items-center mt-5">
           <div className="font-semibold text-[15px]">Due Today</div>
           <div className="font-semibold text-secondary">£250</div>
-        </div>
+        </div> */}
        
 
 <button onClick={paymentButtonClick} className="my-8 bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
@@ -327,7 +435,7 @@ Continue to Payment Method
       </div>
     </div>
 
-  
+  ) : '' }
 
     <div className="fixed bottom-3 right-3 rounded-full bg-slate-200 p-2 text-slate-700 cursor-pointer">
       <svg
@@ -352,4 +460,18 @@ Continue to Payment Method
 </div>
 );
 }
-export default thankyou;
+
+
+let formdata;
+if (typeof localStorage !== 'undefined') {
+  formdata = JSON.parse(localStorage.getItem("formData"));
+}
+else {
+  formdata = '';
+}
+
+const YourPage = () => {
+  return <ThankYou  info={formdata} />;
+};
+
+export default YourPage;
