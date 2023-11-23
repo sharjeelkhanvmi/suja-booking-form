@@ -55,6 +55,10 @@
 /* Add this CSS in a separate file or include it in your component's styles */
 
 /* Styling for the modal overlay */
+.ReactModalPortal {
+  position: relative;
+  z-index: 50;
+}
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 300ms ease-in-out;

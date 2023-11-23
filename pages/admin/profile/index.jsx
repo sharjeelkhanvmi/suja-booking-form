@@ -1,14 +1,12 @@
 import { columnsDataCheck } from "@/app/components/default/variables/columnsData";
-
 import CheckTable from "@/app/components/default/CheckTable";
-
 import tableDataCheck from "@/app/components/default/variables/tableDataCheck.json";
 import Layout from "@/app/components/Layout";
 
 const Index = () => {
   return (
     <Layout>
-    <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-5 justify-center align-middle text-white bg-black flex-col tracking-widest uppercase">
+    <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-3 justify-center align-middle text-white bg-black flex-col tracking-widest uppercase">
     <form className="pb-5 w-1/1  rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500">
     <div className="flex flex-wrap mx-3">
     <div className="w-full px-3 pt-5 md:mb-0">
@@ -100,12 +98,9 @@ const Index = () => {
 
     
      
-<<<<<<< Updated upstream
     </div>{" "}
-=======
     {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
-    </div>
->>>>>>> Stashed changes
+    
     </Layout>
   );
 };

@@ -381,7 +381,7 @@ const Index = () => {
         <Modal
           isOpen={Toggle}
           onRequestClose={closeModal}
-          className="mx-auto py-3 bg-gray-50 w-[50%] rounded-3xl"
+          className="mx-auto py-3 bg-gray-50 w-[50%] relative z-50 rounded-3xl"
         >
           <form
             onSubmit={handleEditSubmit}

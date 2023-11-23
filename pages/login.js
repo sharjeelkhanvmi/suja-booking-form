@@ -99,7 +99,7 @@ import { login_user } from "@/app/service/mailService";
 import Head from 'next/head'
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import Logo from "@/public/assets/logo.png";
+import Logo from "@/public/assets/logo-black.png";
 import Image from "next/image";
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
@@ -136,9 +136,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="bg-[#f8f8f8] 	text-center text-navy-700 md:mt-10">
-        <div className="flex flex-col h-screen justify-center items-center  px-6 py-8">
-        <Image alt="" src={Logo} className="mx-auto p-2 w-100% h-100%" />
+      <section className="bg-[#f8f8f8] text-center text-navy-700">
+        <div className="flex flex-col h-screen justify-center items-center px-6 py-8">
+        <Image alt="" src={Logo} className="mx-auto mb-5 w-100% h-100%" />
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-red-800 dark:border-red-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-red-600 md:text-2xl dark:text-white">
