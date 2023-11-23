@@ -58,7 +58,7 @@ const Sidebar = ({ open, onClose }) => {
                 <span
                   className={`font-bold dark:text-white ${
                     router.pathname === "/admin"
-                      ? "text-brand-500 border-b-red-500"
+                      ? "text-red-700 border-b-red-500"
                       : "text-gray-600"
                   }`}
                 >
@@ -80,14 +80,14 @@ const Sidebar = ({ open, onClose }) => {
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
                     router.pathname === `/admin`
                       ? "text-navy-700"
-                      : "text-gray-600"
+                      : "text-gray-800"
                   }`}
                 >
                   Dashboard
                 </p>
               </li>
               {router.pathname === "/admin" && (
-                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-700 end-0 dark:bg-brand-400"></div>
               )}
             </div>
           </Link>
@@ -97,7 +97,7 @@ const Sidebar = ({ open, onClose }) => {
                 <span
                   className={`font-bold dark:text-white ${
                     router.pathname === "/admin/orders"
-                      ? "text-brand-500 border-b-red-500"
+                      ? "text-red-700 border-b-red-500"
                       : "text-gray-600"
                   }`}
                 >
@@ -119,14 +119,14 @@ const Sidebar = ({ open, onClose }) => {
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
                     router.pathname === `/admin/orders`
                       ? "text-navy-700"
-                      : "text-gray-600"
+                      : "text-gray-800"
                   }`}
                 >
                   Orders
                 </p>
               </li>
               {router.pathname === "/admin/orders" && (
-                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-700 end-0 dark:bg-brand-400"></div>
               )}
             </div>
           </Link>
@@ -136,7 +136,7 @@ const Sidebar = ({ open, onClose }) => {
                 <span
                   className={`font-bold dark:text-white ${
                     router.pathname === "/admin/users"
-                      ? "text-brand-500 border-b-red-500"
+                      ? "text-red-700 border-b-red-500"
                       : "text-gray-600"
                   }`}
                 >
@@ -158,14 +158,14 @@ const Sidebar = ({ open, onClose }) => {
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
                     router.pathname === `/admin/users`
                       ? "text-navy-700"
-                      : "text-gray-600"
+                      : "text-gray-800"
                   }`}
                 >
                   Users
                 </p>
               </li>
               {router.pathname === "/admin/users" && (
-                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-700 end-0 dark:bg-red-400"></div>
               )}
             </div>
           </Link>
@@ -175,7 +175,7 @@ const Sidebar = ({ open, onClose }) => {
                 <span
                   className={`font-bold dark:text-white ${
                     router.pathname === "/admin/profile"
-                      ? "text-brand-500 border-b-red-500"
+                      ? "text-red-500 border-b-red-500"
                       : "text-gray-600"
                   }`}
                 >
@@ -197,14 +197,14 @@ const Sidebar = ({ open, onClose }) => {
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
                     router.pathname === `/admin/profile`
                       ? "text-navy-700"
-                      : "text-gray-600"
+                      : "text-gray-800"
                   }`}
                 >
                   Profile
                 </p>
               </li>
               {router.pathname === "/admin/profile" && (
-                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-700 end-0 dark:bg-brand-400"></div>
               )}
             </div>
           </Link>

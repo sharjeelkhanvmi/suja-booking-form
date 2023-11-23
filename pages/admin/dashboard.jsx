@@ -70,32 +70,32 @@ const Dashboard = () => {
       <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
         {/* Check Table */}
         <div>
-          <CheckTable
+          {/* <CheckTable
             columnsData={columnsDataCheck}
             tableData={tableDataCheck}
-          />
+          /> */}
         </div>
 
         {/* Traffic chart & Pie Chart */}
 
         <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <DailyTraffic />
-          <PieChartCard />
+          {/* <DailyTraffic />
+          <PieChartCard /> */}
         </div>
 
         {/* Complex Table , Task & Calendar */}
 
-        <ComplexTable
+        {/* <ComplexTable
           columnsData={columnsDataComplex}
           tableData={tableDataComplex}
-        />
+        /> */}
 
         {/* Task chart & Calendar */}
 
         <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <TaskCard />
+          {/* <TaskCard /> */}
           <div className="grid grid-cols-1 rounded-[20px]">
-            <MiniCalendar />
+            {/* <MiniCalendar /> */}
           </div>
         </div>
       </div>
