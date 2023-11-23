@@ -118,7 +118,7 @@ const Sidebar = ({ open, onClose }) => {
                 <p
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
                     router.pathname === `/admin/orders`
-                      ? "text-navy-700"
+                      ? "text-navy-800"
                       : "text-gray-800"
                   }`}
                 >
