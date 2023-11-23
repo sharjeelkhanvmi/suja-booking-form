@@ -225,7 +225,7 @@ const Index = () => {
                       Hours
                     </div>
                   </th>
-                  <th
+                  {/* <th
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
@@ -235,7 +235,7 @@ const Index = () => {
                     <div className="text-sm font-bold tracking-wide text-gray-800">
                       Role
                     </div>
-                  </th>
+                  </th> */}
                   <th
                     colSpan={1}
                     role="columnheader"
@@ -319,253 +319,27 @@ const Index = () => {
                           {data.user.role}
                         </p>
                       </td> */}
-                      <td
-                        role="cell"
-                        className=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
-                      >
-                        <span className="text-sm font-bold text-red-700 dark:text-white">
-                          <AiFillDelete
-                            className="text-2xl cursor-pointer"
-                            onClick={() => {
-                              handleDelete(data._id);
-                            }}
-                          />
-                        </span>
-                        <span className="text-sm font-bold text-gray-800 dark:text-white">
-                          <AiFillEdit
-                            className="text-2xl cursor-pointer"
-                            onClick={() => handleEdit(data)}
-                          />
-                        </span>
-                        <span className="text-sm font-bold text-gray-800 dark:text-white">
-                          <IoEye
-                            className="text-2xl cursor-pointer"
-                            onClick={() => {
-                              setSecondToggle(true);
-                              handleView(data);
-                            }}
-                          />
-                        </span>
-                      </td>
-                    </tr>
+              <td
+                role="cell"
+                className=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto">                                
+                  
+                <span className="text-sm font-bold text-gray-800 dark:text-white">
+                  <IoEye
+                    className="text-2xl cursor-pointer"
+                    onClick={() => {
+                      setSecondToggle(true);
+                      handleView(data);
+                    }}
+                  />
+                </span>
+              </td>
+            </tr>
                   )}
               </tbody>
             </table>
           </div>
         </div>
-        <Modal
-          isOpen={Toggle}
-          onRequestClose={closeModal}
-          className="mx-auto py-3 bg-gray-50 w-[50%] rounded-3xl"
-        >
-          <form
-            onSubmit={handleEditSubmit}
-            className="text-gray-800 w-full mt-2"
-          >
-            <h2 className="text-center text-4xl text-gray-900 mb-7 font-bold">
-              Edit Leads
-            </h2>
-            <div className="flex justify-center w-full gap-4 px-10">
-              <div className="flex flex-col w-1/2 mr-3">
-                <label className="mb-1 font-semibold text-gray-900">
-                  Postal Code
-                </label>
-                <input
-                  className="block mb-4 w-full p-2 text-xs border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step1.postalcode}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step1: { ...formData.step1, postalcode: e.target.value }
-                    })}
-                />
-
-                <label className="mb-1 font-semibold text-gray-900">Gear</label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step2.gear}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step2: { ...formData.step2, gear: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Driving
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step2.driving}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step2: { ...formData.step2, driving: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Hours
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step2.hours}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step2: { ...formData.step2, hours: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Addons
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step3.addons}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step3: { ...formData.step3, addons: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Agree
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step4.agree}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step4: { ...formData.step4, agree: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Confirm Email
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step4.email}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step4: { ...formData.step4, email: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Email
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step4.confirm_email}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step4: {
-                        ...formData.step4,
-                        confirm_email: e.target.value
-                      }
-                    })}
-                />
-              </div>
-              <div className="flex flex-col w-1/2 mr-3">
-                <label className="mb-1 font-semibold text-gray-900">
-                  First name
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step4.first_name}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step4: { ...formData.step4, first_name: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Last Name
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step4.last_name}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step4: { ...formData.step4, last_name: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Mobile
-                </label>
-                <input
-                  className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step4.mobile_number}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step4: {
-                        ...formData.step4,
-                        mobile_number: e.target.value
-                      }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Title
-                </label>
-                <input
-                  className="block mb-4 text-xs w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step4.title}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step4: { ...formData.step4, title: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Fast Course
-                </label>
-                <input
-                  className="block mb-4 text-xs w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step5.fastcourse}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step5: { ...formData.step5, fastcourse: e.target.value }
-                    })}
-                />
-                <label className="mb-1 font-semibold text-gray-900">
-                  Couponcode
-                </label>
-                <input
-                  className="block mb-4 text-xs w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData.step6.couponcode}
-                  type="text"
-                  onChange={e =>
-                    setFormData({
-                      ...formData,
-                      step6: { ...formData.step6, couponcode: e.target.value }
-                    })}
-                />
-              </div>
-            </div>
-            <div className="text-center flex justify-center w-full mt-4">
-              <button className="bg-theme-red-color hover:bg-red-900  mt-2 hover:text-white rounded-md mb-5 
-              px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
-                Submit
-              </button>
-            </div>
-          </form>
-        </Modal>
+        
         <Modal
           isOpen={SecondToggle}
           onRequestClose={closeModal}
@@ -578,7 +352,7 @@ const Index = () => {
             <div className="justify-center gap-10 pb-5 pt-5">
               <div className="lg:w-48 w-full block">
                 <p className="font-semibold border-b-2 border-gray-300 text-start text-lg divide-y pb-3 ms-5 text-navy-700 dark:text-white">
-                  PostalCode: {viewLead.step1.postalcode} :
+                  PostalCode: {viewLead.step1.postalcode}
                 </p>
               </div>
               <div className="grid grid-cols-4 pt-[14px] pb-[16px] px-5">
