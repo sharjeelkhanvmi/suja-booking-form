@@ -3,6 +3,13 @@ import { useEffect, useState } from "react";
 import { AiFillPlusCircle, AiFillDelete, AiFillEdit } from "react-icons/ai";
 import Modal from "react-modal";
 import { IoEye } from "react-icons/io5";
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 const Index = () => {
   const [Toggle, setToggle] = useState(false);
@@ -58,17 +65,35 @@ const Index = () => {
     handleLeadsData();
   }, []);
 
-  const handleDelete = async leadId => {
+  const handleDelete = async (leadId) => {
     console.log("Deleting lead with ID:", leadId);
+
     try {
-      const response = await fetch(`/api/leads/del?leadId=${leadId}`, {
-        method: "DELETE"
+      const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover this lead!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
       });
-      if (response.ok) {
-        handleLeadsData();
+
+      if (result.isConfirmed) {
+        const response = await fetch(`/api/leads/del?leadId=${leadId}`, {
+          method: 'DELETE',
+        });
+
+        if (response.ok) {
+          toast.success('Lead deleted successfully!');
+          handleLeadsData();
+        } else {
+          toast.error('Error deleting lead. Please try again.');
+        }
       }
     } catch (error) {
-      console.error("Error deleting lead", error);
+      console.error('Error deleting lead', error);
+      toast.error('Error deleting lead. Please try again.');
     }
   };
 
@@ -225,7 +250,7 @@ const Index = () => {
                       Hours
                     </div>
                   </th>
-                  <th
+                  {/* <th
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
@@ -235,7 +260,7 @@ const Index = () => {
                     <div className="text-sm font-bold tracking-wide text-gray-800">
                       Role
                     </div>
-                  </th>
+                  </th> */}
                   <th
                     colSpan={1}
                     role="columnheader"
@@ -311,14 +336,14 @@ const Index = () => {
                           {data.step2.hours}
                         </p>
                       </td>
-                      <td
+                      {/* <td
                         role="cell"
                         className="pt-[14px] pb-[16px] sm:text-[14px]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {data.user.role}
                         </p>
-                      </td>
+                      </td> */}
                       <td
                         role="cell"
                         className=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
@@ -658,6 +683,7 @@ const Index = () => {
             </div>}
         </Modal>
       </div>
+      <ToastContainer />
     </Layout>
   );
 };

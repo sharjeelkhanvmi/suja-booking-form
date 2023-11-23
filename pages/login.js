@@ -99,11 +99,14 @@ import { login_user } from "@/app/service/mailService";
 import Head from 'next/head'
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import Logo from "@/public/assets/logo.png";
+import Image from "next/image";
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
 import Link from 'next/link';
 import jwt_decode from "jwt-decode";
+
 
 
 export default function Home() {
@@ -133,8 +136,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="bg-[#f8f8f8] text-center text-navy-700 md:mt-10">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:mt-10 lg:py-0">
+      <section className="bg-[#f8f8f8] 	text-center text-navy-700 md:mt-10">
+        <div className="flex flex-col h-screen justify-center items-center  px-6 py-8">
+        <Image alt="" src={Logo} className="mx-auto p-2 w-100% h-100%" />
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-red-800 dark:border-red-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-red-600 md:text-2xl dark:text-white">
@@ -161,9 +165,9 @@ export default function Home() {
                   <Link href="/forgot" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</Link>
                 </div>
                 <button type="submit" className="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
-                <p className="text-sm font-light text-black dark:text-indigo-400">
+                {/* <p className="text-sm font-light text-black dark:text-indigo-400">
                   Don't have an account yet? <Link href="/register" className="font-medium text-dark hover:underline dark:text-primary-500 text-red-600">Sign up</Link>
-                </p>
+                </p> */}
               </form>
             </div>
           </div>

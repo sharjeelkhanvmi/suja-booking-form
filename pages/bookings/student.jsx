@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import * as Yup from "yup";
+import { object, string, ref } from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -10,26 +11,39 @@ import Formnav from '@/app/components/Formnav';
 //let formdata = Cookies.get('formData');
 //const data = formdata ? JSON.parse(formdata) : { phone_number: "" };
 
-const validationSchema = Yup.object().shape({
-  phone_number: Yup.string()
-    .required('Phone number is required')
-    .matches(
-      /^(?:(?:\+44)|(?:0))(?:(?:1\d{9})|(?:[1-9]\d{9}))$/,
-      'Invalid UK phone number'
-    ),
+
+
+const getCharacterValidationError = (str) => {
+    return `Your password must have at least 1 ${str} character`;
+  };
+
+  const validationSchema = Yup.object().shape({
+    phone_number: Yup.string()
+      .required('Phone number is required')
+      .matches(
+        /^(?:(?:\+44)|(?:0))(?:(?:1\d{9})|(?:[1-9]\d{9}))$/,
+        'Invalid UK phone number'
+      ),
     terms: Yup.boolean()
-    .oneOf([true], 'You must accept the terms')
-    .required('You must accept the terms'),
+      .oneOf([true], 'You must accept the terms')
+      .required('You must accept the terms'),
     title: Yup.string().required('Title is required'),
     firstName: Yup.string().required('First name is required'),
     surname: Yup.string().required('Last name is required'),
     email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-    password: Yup.string().required('Password is required'),
-    confirm_password: Yup.string().required('Confirm Password is required'),
-
-});
+      .email('Invalid email address')
+      .required('Email is required'),
+    password: Yup.string()
+      .required("Please enter a password")
+      .min(8, "Password must have at least 8 characters")
+      .matches(/[0-9]/, getCharacterValidationError("digit"))
+      .matches(/[a-z]/, getCharacterValidationError("lowercase"))
+      .matches(/[A-Z]/, getCharacterValidationError("uppercase")),
+      confirm_password: Yup.string()
+      .required("Please re-type your password")
+      .oneOf([Yup.ref("password")], "Passwords do not match"),
+  });
+  
 
 // console.log(data)
 
