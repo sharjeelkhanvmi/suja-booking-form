@@ -219,7 +219,7 @@ const Sidebar = ({ open, onClose }) => {
                 <span
                   className={`font-bold dark:text-white ${
                     router.pathname === "/customer"
-                      ? "text-brand-500 border-b-red-500"
+                      ? "text-red-500 border-b-red-500"
                       : "text-gray-600"
                   }`}
                 >
@@ -248,7 +248,7 @@ const Sidebar = ({ open, onClose }) => {
                 </p>
               </li>
               {router.pathname === "/customer" && (
-                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-500 end-0 dark:bg-red-500"></div>
               )}
             </div>
           </Link>
@@ -258,7 +258,7 @@ const Sidebar = ({ open, onClose }) => {
                 <span
                   className={`font-bold dark:text-white ${
                     router.pathname === "/customer/orders"
-                      ? "text-brand-500 border-b-red-500"
+                      ? "text-red-500 border-b-red-500"
                       : "text-gray-600"
                   }`}
                 >
@@ -287,7 +287,7 @@ const Sidebar = ({ open, onClose }) => {
                 </p>
               </li>
               {router.pathname === "/customer/orders" && (
-                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-500 end-0 dark:bg-red-400"></div>
               )}
             </div>
           </Link>
@@ -298,7 +298,7 @@ const Sidebar = ({ open, onClose }) => {
                 <span
                   className={`font-bold dark:text-white ${
                     router.pathname === "/customer/profile"
-                      ? "text-brand-500 border-b-red-500"
+                      ? "text-red-500 border-b-red-500"
                       : "text-gray-600"
                   }`}
                 >
@@ -327,7 +327,7 @@ const Sidebar = ({ open, onClose }) => {
                 </p>
               </li>
               {router.pathname === "/customer/profile" && (
-                <div className="absolute top-px h-9 w-1 rounded-lg bg-brand-500 end-0 dark:bg-brand-400"></div>
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-500 end-0 dark:bg-red-400"></div>
               )}
             </div>
           </Link>
