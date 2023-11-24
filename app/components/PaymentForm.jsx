@@ -40,13 +40,13 @@ const PaymentForm = ({ onSuccess, data }) => {
       hours_value = coursePriceObj.value;
       variant = coursePriceObj.variant;
     }
-    if(data && data.step7 && data.step7.payment != undefined){
-      payment = data.step7.payment;
+    if(data && data.step6 && data.step6.payment != undefined){
+      payment = data.step6.payment;
     }
-    setProductPrice((data && data.step7 && data.step7.amount) ? data.step7.amount : 0);
+    setProductPrice((data && data.step6 && data.step6.amount) ? data.step6.amount : 0);
     setProductName( hours_value +' '+ variant +' - '+ drType + ' - ' +  payment );
   }, [data])
-  console.log('payment page', data)
+  //console.log('payment page', data)
 
   const cardElementOptions = {
     style: {
@@ -110,7 +110,7 @@ const PaymentForm = ({ onSuccess, data }) => {
       } else {
         console.log('PaymentMethod:', paymentMethod);
         console.log('Product Details:', { productName, productPrice });
-        onSuccess();
+        onSuccess(paymentMethod);
       }
     } catch (error) {
       setPaymentError(error.message);

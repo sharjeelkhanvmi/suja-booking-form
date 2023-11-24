@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 // import Sidebar from "@/app/components/sidebar/sidebar";
 // import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -12,22 +12,28 @@ import Googlepay from "@/public/assets/google_pay.svg";
 import Image from "next/image";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 import axios from "axios";
-const PaymentForm = dynamic(() => import('@/app/components/PaymentForm'), { ssr: false })
+import { login_user } from "@/app/service/mailService";
+const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {
+  ssr: false
+});
 // import PaymentForm from "@/app/components/PaymentForm";
 
 const stripePromise = loadStripe(
   "pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf"
 );
 
-const Payment = ({info}) => {
+const Payment = ({ info }) => {
   const [changedData, setChangedData] = useState();
-  useEffect(() => {
-    setChangedData(info)
-  }, [info])
+  useEffect(
+    () => {
+      setChangedData(info);
+      console.log(info);
+    },
+    [info]
+  );
   const router = useRouter();
-
 
   let drType;
   let course_name;
@@ -40,129 +46,190 @@ const Payment = ({info}) => {
   let fast_track_theory;
   let fast_track_practical;
   let pass_protect;
-  
-  if(changedData && changedData.step2 && changedData.step2.dr_course_price != undefined){
+
+  if (
+    changedData &&
+    changedData.step2 &&
+    changedData.step2.dr_course_price != undefined
+  ) {
     drType = capitalize(changedData.step2.dr_type);
     course_name = changedData.step2.dr_course_type;
-    coursePriceObj = changedData.step2.dr_course_price[Object.keys(changedData.step2.dr_course_price)[0]];
+    coursePriceObj =
+      changedData.step2.dr_course_price[
+        Object.keys(changedData.step2.dr_course_price)[0]
+      ];
     hours_value = coursePriceObj.value;
     variant = coursePriceObj.variant;
     full = parseInt(coursePriceObj.full);
     deposit = parseInt(coursePriceObj.deposit);
   }
-  
-  
-  fast_track_theory = (changedData && changedData.step3 && changedData.step3.fast_track_theory != '') ? parseInt(changedData.step3.fast_track_theory) : 0
-  fast_track_practical = (changedData && changedData.step3 && changedData.step3.fast_track_practical != '') ? parseInt(changedData.step3.fast_track_practical) : 0
-  pass_protect = (changedData && changedData.step6 && changedData.step6.pass_protect != '') ? parseInt(changedData.step6.pass_protect) : 0
+
+  fast_track_theory =
+    changedData &&
+    changedData.step3 &&
+    changedData.step3.fast_track_theory != ""
+      ? parseInt(changedData.step3.fast_track_theory)
+      : 0;
+  fast_track_practical =
+    changedData &&
+    changedData.step3 &&
+    changedData.step3.fast_track_practical != ""
+      ? parseInt(changedData.step3.fast_track_practical)
+      : 0;
+  pass_protect =
+    changedData && changedData.step6 && changedData.step6.pass_protect != ""
+      ? parseInt(changedData.step6.pass_protect)
+      : 0;
   // subTotal = ((deposit) ? deposit : full)
-  
-  total = full + fast_track_theory + fast_track_practical + pass_protect;
+
+  total = full + fast_track_theory + fast_track_practical;
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
-  
-  const handlePaymentSuccess = async () => {
-    try {
-      // Send email with all data from local storage
-      await axios.post("/api/api_mailer", { formdata: info });
-      console.log("Email sent successfully");
 
+  const handlePaymentSuccess = async (paymentMethod) => {
+
+    const login = {
+      email: changedData.step4.email,
+      password: changedData.step4.password
+    }
+    const userData = {
+      fname: changedData.step4.firstName,
+      lname: changedData.step4.surname,
+      postalcode: changedData.step1.postal_code,
+      email: changedData.step4.email,
+      password: changedData.step4.password,
+      phone: changedData.step4.phone_number
+    };
       try {
-        const response = await axios.post("/api/formdata/postdata", info);
-        // Handle success
-        console.log("Data successfully saved");
+        //await axios.post("/api/api_mailer", { formdata: changedData });
+        console.log(userData)
+        const find = await axios.get(`/api/user/find/?email=${userData.email}`);
+        console.log(find.data)
+        let user
+        if(find.data.success)
+        {
+          user = find.data.user
+        }
+        else
+        {
+          const userresponse = await axios.post("/api/user/post", userData);
+          user = await userresponse.data
+        }
+        console.log(user)
+        const leadData = await {
+          user: user._id,
+          step1: changedData.step1,
+          step2: changedData.step2,
+          step3: changedData.step3,
+          step4: changedData.step4,
+          step5: changedData.step5,
+          step6: changedData.step6,
+          stripe: paymentMethod
+        }
+        const leadresponse = await axios.post("/api/leads/post", leadData);
+        //const lead = await leadresponse.data
+        //login_user(login)
       } catch (error) {
         console.error(error);
-        // Handle error
         console.log("Error saving data to the database");
       }
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-
-    // Handle successful payment, e.g., redirect to a thank-you page
     router.push("/bookings/thankyou");
   };
+ 
 
-  const setStepSeven = (e) => {
+  const setStepSeven = e => {
     let amount;
-     if(e.target.value == 'Full'){
+    if (e.target.value == "Full") {
       amount = total;
-     }
-     else{
+    } else {
       amount = deposit;
-     }
-    const step6 = { step6 : { payment: e.target.value, amount: amount } }
+    }
+    const step6 = { step6: { payment: e.target.value, amount: amount } };
     const formDatas = {
       ...changedData,
       ...step6
     };
-    
-    localStorage.setItem("formData", JSON.stringify(formDatas));
-    setChangedData(formDatas)
-    // console.log(changedData)
 
+    localStorage.setItem("formData", JSON.stringify(formDatas));
+    setChangedData(formDatas);
+    // console.log(changedData)
   };
-  
 
   return (
     <div>
       <Formnav />
       <div className="mt-[0px] flex justify-center items-top px-7 py-8">
-        
         <div className="w-full lg:max-w-[750px] pb-24 flex flex-wrap justify-center">
-        <h2 className="w-full text-2xl font-bold mb-7 text-center">Secure Payment Options for Your Driving Course</h2>
-        <div className="w-1/2 pe-3">
-                <input
-                type="radio"
-                name="payment"
-                className="sr-only payment"
-                id="deposit"
-                value="Deposit"
-                onChange={(e) => {
-                  setStepSeven(e);
-                }}
-                />
-                <label htmlFor="deposit" className="w-full flex items-center text-left py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer
+          <h2 className="w-full text-2xl font-bold mb-7 text-center">
+            Secure Payment Options for Your Driving Course
+          </h2>
+          <div className="w-1/2 pe-3">
+            <input
+              type="radio"
+              name="payment"
+              className="sr-only payment"
+              id="deposit"
+              value="Deposit"
+              onChange={e => {
+                setStepSeven(e);
+              }}
+            />
+            <label
+              htmlFor="deposit"
+              className="w-full flex items-center text-left py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer
                     outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-indigo-400  
-                    transition-all mb-5">                    
-                    <div className="">
-                        <span className="w-full font-bold">Pay Deposit - £{deposit}</span>
-                        <div className="text-secondary text-opacity-[0.65] text-sm false">
-                            <p className="text-secondary leading-snug text-opacity-70 font-medium 
-                                text-[15px] mt-2">Pay a deposit securely by credit or debit card. This includes the price of PassProtect and the remaining £{total} isn't due until we've arranged your course.</p>
-                        </div>
-                    </div>
-                </label>
-        </div>
+                    transition-all mb-5"
+            >
+              <div className="">
+                <span className="w-full font-bold">
+                  Pay Deposit - £{deposit}
+                </span>
+                <div className="text-secondary text-opacity-[0.65] text-sm false">
+                  <p className="text-secondary leading-snug text-opacity-70 font-medium 
+                                text-[15px] mt-2">
+                    Pay a deposit securely by credit or debit card. This
+                    includes the price of PassProtect and the remaining £{total}{" "}
+                    isn't due until we've arranged your course.
+                  </p>
+                </div>
+              </div>
+            </label>
+          </div>
 
-        <div className="w-1/2 ps-3">
-                <input
-                type="radio"
-                name="payment"
-                className="sr-only payment"
-                id="full"
-                value="Full"
-                onChange={(e) => {
-                  setStepSeven(e);
-                }}
-                />
-                <label htmlFor="full" className="w-full flex items-center text-left py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer
+          <div className="w-1/2 ps-3">
+            <input
+              type="radio"
+              name="payment"
+              className="sr-only payment"
+              id="full"
+              value="Full"
+              onChange={e => {
+                setStepSeven(e);
+              }}
+            />
+            <label
+              htmlFor="full"
+              className="w-full flex items-center text-left py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer
                     outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-indigo-400  
-                    transition-all mb-5">
-                    <div className="">
-                        <span className="w-full font-bold">Pay Full - £{full}</span>
-                        <div className="text-secondary text-opacity-[0.65] text-sm false">
-                            <p className="text-secondary leading-snug text-opacity-70 font-medium 
-                                text-[15px] mt-2">Concentrate on the driving and forget about the finance side of things by paying the full course balance securely by credit or debit card today.</p>
-                        </div>
-                    </div>
-                </label>
-        </div>
-
-
+                    transition-all mb-5"
+            >
+              <div className="">
+                <span className="w-full font-bold">
+                  Pay Full - £{full}
+                </span>
+                <div className="text-secondary text-opacity-[0.65] text-sm false">
+                  <p className="text-secondary leading-snug text-opacity-70 font-medium 
+                                text-[15px] mt-2">
+                    Concentrate on the driving and forget about the finance side
+                    of things by paying the full course balance securely by
+                    credit or debit card today.
+                  </p>
+                </div>
+              </div>
+            </label>
+          </div>
 
           <div className="mt-[10px] items-top py-8 w-full">
             <div className="w-full lg:max-w-[750px]">
@@ -240,7 +307,10 @@ hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-
 </button> */}
                 </div>
                 <Elements stripe={stripePromise}>
-                  <PaymentForm onSuccess={handlePaymentSuccess} data={changedData}/>
+                  <PaymentForm
+                    onSuccess={handlePaymentSuccess}
+                    data={changedData}
+                  />
                 </Elements>
               </div>
             </div>
@@ -266,15 +336,14 @@ Pay £840
 };
 
 let formdata;
-if (typeof localStorage !== 'undefined') {
+if (typeof localStorage !== "undefined") {
   formdata = JSON.parse(localStorage.getItem("formData"));
-}
-else {
-  formdata = '';
+} else {
+  formdata = "";
 }
 
 const PaymentPage = () => {
-  return <Payment  info={formdata} />;
+  return <Payment info={formdata} />;
 };
 
 export default PaymentPage;
