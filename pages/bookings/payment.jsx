@@ -120,11 +120,11 @@ const Payment = ({ info }) => {
         }
         const leadresponse = await axios.post("/api/leads/post", leadData);
         const lead = await leadresponse.data
-        await axios.post("/api/api_mailer", { formdata: lead });
+        await axios.post("/api/api_mailer", { formdata: leadData });
         //login_user(login)
       } catch (error) {
         console.error(error);
-        console.log("Error saving data to the database");
+        console.log("Error");
       }
     router.push("/bookings/thankyou");
   };
