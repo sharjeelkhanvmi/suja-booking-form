@@ -14,16 +14,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import { login_user } from "@/app/service/mailService";
-const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {
-  ssr: false
-});
-// import PaymentForm from "@/app/components/PaymentForm";
-
-const stripePromise = loadStripe(
-  "pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf"
-);
-
+import OldUserLoader from "@/pages/bookings/OldUserLoader";
+const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {ssr: false});
+const stripePromise = loadStripe("pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf")
 const Payment = ({ info }) => {
   const [changedData, setChangedData] = useState();
   useEffect(
@@ -34,7 +27,6 @@ const Payment = ({ info }) => {
     [info]
   );
   const router = useRouter();
-
   let drType;
   let course_name;
   let coursePriceObj;
@@ -103,7 +95,7 @@ const Payment = ({ info }) => {
       phone: changedData.step4.phone_number
     };
       try {
-        //await axios.post("/api/api_mailer", { formdata: changedData });
+        
         console.log(userData)
         const find = await axios.get(`/api/user/find/?email=${userData.email}`);
         console.log(find.data)
@@ -117,7 +109,6 @@ const Payment = ({ info }) => {
           const userresponse = await axios.post("/api/user/post", userData);
           user = await userresponse.data
         }
-        console.log(user)
         const leadData = await {
           user: user._id,
           step1: changedData.step1,
@@ -129,11 +120,12 @@ const Payment = ({ info }) => {
           stripe: paymentMethod
         }
         const leadresponse = await axios.post("/api/leads/post", leadData);
-        //const lead = await leadresponse.data
+        const lead = await leadresponse.data
+        await axios.post("/api/api_mailer", { formdata: lead });
         //login_user(login)
       } catch (error) {
         console.error(error);
-        console.log("Error saving data to the database");
+        console.log("Error");
       }
     router.push("/bookings/thankyou");
   };
@@ -160,6 +152,7 @@ const Payment = ({ info }) => {
   return (
     <div>
       <Formnav />
+      {typeof formdata ? <OldUserLoader /> : null}
       <div className="mt-[0px] flex justify-center items-top px-7 py-8">
         <div className="w-full lg:max-w-[750px] pb-24 flex flex-wrap justify-center">
           <h2 className="w-full text-2xl font-bold mb-7 text-center">

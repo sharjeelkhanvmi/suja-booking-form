@@ -14,12 +14,8 @@ import OldUserLoader from "@/pages/bookings/OldUserLoader";
 
 const index = () => {
 
-  const [info,setInfo] = useState();
-
-
- 
-
-  let formdata;
+const [info,setInfo] = useState();
+let formdata;
 if (typeof localStorage !== 'undefined') {
   formdata = JSON.parse(localStorage.getItem("formData"));
 }

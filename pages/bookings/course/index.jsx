@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 import {auto, manual} from '@/database/models/drivingCoursesData';
 // let formdata = Cookies.get('formData');
 // const data = formdata ? JSON.parse(formdata) : {  };
-
+import OldUserLoader from "@/pages/bookings/OldUserLoader";
 
 
 const index = () => {
@@ -125,6 +125,7 @@ showCoursePricing(values.dr_course_type)
 )}
 
    <Formnav />
+   {typeof formdata ? <OldUserLoader /> : null}
    <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
    <div className='w-full lg:max-w-[750px] pb-24'>
    <div className=" mt-[80px] items-top px-7 py-8">

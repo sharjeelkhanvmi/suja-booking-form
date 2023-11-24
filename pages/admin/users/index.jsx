@@ -272,73 +272,124 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <Modal isOpen={Toggle} isClose={closeModal} className='h-[70%]  mx-auto'>
-        <button onClick={closeModal} className="absolute left-[830px] text-2xl">x</button>
-        <div className="p-2 flex w-[100%] my-5 rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 justify-center text-white bg-black flex-col tracking-widest uppercase">
-          <form className=" pb-5 " onSubmit={handleEdit}>
-            <div className="flex flex-wrap mx-3">
-              <div className="w-full px-3 pt-5 md:mb-0">
-                <label
-                  className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
-                  htmlFor="grid-first-name"
-                >
-                  First Name
-                </label>
-                <input
-                  className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="Jane"
-                  value={editUserData.fname}
-                  onChange={(e) => setEditUserData({ ...editUserData, fname: e.target.value })}
-                />
-              </div>
-              <div className="w-full pt-5  px-3">
-                <label
-                  className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
-                  htmlFor="grid-last-name"
-                >
-                  Last Name
-                </label>
-                <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-last-name"
-                  type="text"
-                  placeholder="Doe"
-                  value={editUserData.lname}
-                  onChange={(e) => setEditUserData({ ...editUserData, lname: e.target.value })}
-                />
-              </div>
+      <Modal isOpen={Toggle} isClose={closeModal} onRequestClose={closeModal} className='w-[40%] mx-auto'>
+      {/* <button onClick={closeModal} className="absolute left-[830px] text-2xl">x</button> */}
+      <div className="flex justify-between py-4 px-5 bg-red-400 rounded-t-xl pb-3">
+              <h4 className="text-center w-full text-xl  text-dark font-semibold">
+                Update User Details
+              </h4>
             </div>
+        <div className="p-6 my-5 rounded-[20px] bg-white">
+          <form className="" onSubmit={handleEdit}>
+       
+    <div className="flex flex-wrap  mb-6">
+    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+  <label
+    className="block  text-gray-900 text-sm font-bold mb-2"
+    htmlFor="grid-state"
+  >
+    Ttile
+  </label>
+  <div className="relative">
+    <select
+      className="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      id="grid-state"
+    >
+      <option>Mr</option>
+      <option>Mrs</option>
+      <option>Miss</option>
+      <option>Mx</option>
+    </select>
+    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <svg
+        className="fill-current h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+      </svg>
+    </div>
+  </div>
+</div>
+  <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+    <label
+      className="block  text-gray-900 text-sm font-bold mb-2"
+      htmlFor="grid-first-name"
+    >
+      First Name
+    </label>
+    <input
+      className="appearance-none block w-full bg-gray-100 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+      id="grid-first-name"
+      type="text"
+      placeholder=""
+      value={editUserData.fname}
+      onChange={(e) => setEditUserData({ ...editUserData, fname: e.target.value })}
+    />
+    
+  </div>
+  <div className="w-full md:w-1/3 px-3">
+    <label
+      className="block  text-gray-900 text-sm font-bold mb-2"
+      htmlFor="grid-last-name"
+    >
+      Last Name
+    </label>
+    <input
+      className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      id="grid-last-name"
+      type="text"
+      placeholder=""
+      value={editUserData.lname}
+      onChange={(e) => setEditUserData({ ...editUserData, lname: e.target.value })}
+    />
+  </div>
+ 
+  <div className="w-full px-3 py-5">
+    <label
+      className="block  text-gray-900 text-sm font-bold mb-2"
+      htmlFor="grid-email"
+    >
+      Email
+    </label>
+    <input
+      className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      id="grid-email"
+      type="email"
+      placeholder=""
+    />
+  </div>
+  <div className="w-full px-3 py-4">
+    <label
+      className="block  text-gray-900 text-sm font-bold mb-2"
+      htmlFor="grid-mobilenumber"
+    >
+      Phone Number
+    </label>
+    <input
+      className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      id="grid-mobilenumber"
+      type="tel"
+      placeholder=""
+      value={editUserData.phone}
+      onChange={(e) => setEditUserData({ ...editUserData, phone: e.target.value })}
+    />
+     </div>
+     </div>
 
-            <div className="mx-3">
-              <div className="w-full px-3 pt-7">
-                <label
-                  className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
-                  htmlFor="grid-phone"
-                >
-                  Phone
-                </label>
-                <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-phone"
-                  type="text"
-                  placeholder="Phone number"
-                  value={editUserData.phone}
-                  onChange={(e) => setEditUserData({ ...editUserData, phone: e.target.value })}
-                />
-              </div>
-              <button
-                type="submit"
-                class="rounded-full mt-5 py-4  px-10  text-lg uppercase  font-semibold text-white shadow-sm
-     bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Save Profile
-              </button>
-            </div>
+      <div className="mx-3">
+        
+        <button
+          type="submit"
+          class="rounded-full py-3  px-8  text-lg uppercase  font-semibold text-white shadow-sm
+bg-red-500 hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Save Profile
+        </button>
+      </div>
           </form>
         </div>
-
+       
       </Modal>
       <ToastContainer position="bottom-right" autoClose={5000} />
     </Layout>
