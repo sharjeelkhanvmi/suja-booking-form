@@ -44,6 +44,7 @@ const Index = () => {
       const response = await axios.put("/api/user/edit", editUserData);
       console.log("Edit Response:", response.data);
       toast.success("User data edited successfully!");
+      setToggle(false);
     } catch (error) {
       console.error("Error While Editing User:", error);
       toast.error("Error editing user data. Please try again.");
@@ -55,7 +56,6 @@ const Index = () => {
     setEditUserData({ _id: user._id,  fname: user.fname, lname: user.lname, phone: user.phone});
   };
   const closeModal = () => {
-
     setToggle(false);
   };
 
