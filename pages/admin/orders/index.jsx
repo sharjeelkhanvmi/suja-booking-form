@@ -86,7 +86,7 @@ const Index = () => {
       });
 
       if (result.isConfirmed) {
-        const response = await fetch(`/api/leads/del?leadId=${leadId}`, {
+        const response = await fetch(`/api/leads/del?leadId=£{leadId}`, {
           method: 'DELETE',
         });
 
@@ -145,7 +145,7 @@ const Index = () => {
         return;
       }
 
-      const response = await fetch(`/api/leads/edit?id=${selectedLead._id}`, {
+      const response = await fetch(`/api/leads/edit?id=£{selectedLead._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
