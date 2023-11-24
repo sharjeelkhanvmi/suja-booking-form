@@ -134,7 +134,7 @@ const handler = async (req, res) => {
 <a target="_blank" style="color:rgb(0,112,201);text-decoration:none;font-size:12px" href="http://localhost:3000/customer" data-saferedirecturl="http://localhost:3000/dashboard">Go to Dashboard</a><span style="margin-left:4px;margin-right:4px;color:rgb(51,51,51);font-weight:200">|</span><a target="_blank" style="color:rgb(0,112,201);text-decoration:none;font-size:12px" href="http://localhost:3000/customer/order" data-saferedirecturl="">View Order</a>
               </td>
               <td align="right" style="display:table-cell;padding:0px 20px 0px 0px;width:100px;vertical-align:top">
-                <p style="font-size:12px;line-height:24px;margin:0;font-weight:600">Total Price: ${step6.amount}</p>
+                <p style="font-size:12px;line-height:24px;margin:0;font-weight:600">Total Price: £${step6.amount}</p>
               </td>
               </td>
             </tr>
