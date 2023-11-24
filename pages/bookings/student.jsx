@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic'
 const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
+import OldUserLoader from "@/pages/bookings/OldUserLoader";
 //let formdata = Cookies.get('formData');
 //const data = formdata ? JSON.parse(formdata) : { phone_number: "" };
 
@@ -93,6 +94,7 @@ return (
     {({values, setFieldValue}) => (
     <Form>
         <Formnav />
+        {typeof formdata ? <OldUserLoader /> : null}
         <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
             <div className='w-full lg:max-w-[750px] pb-24'>
                 <div className="mt-[10px] items-top py-8">

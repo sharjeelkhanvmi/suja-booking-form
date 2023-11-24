@@ -6,6 +6,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter} from "next/router";
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
+import OldUserLoader from "@/pages/bookings/OldUserLoader";
 //import Sidebar from '@/app/components/sidebar/sidebar';
 
 
@@ -68,6 +69,7 @@ return (
 
 <div>
 <Formnav />
+{typeof formdata ? <OldUserLoader /> : null}
 <div className="mt-[0px] flex justify-center items-top px-7 py-8">
 <div className='w-full lg:max-w-[750px] pb-24'>
 <div className="mt-[10px] items-center py-5">

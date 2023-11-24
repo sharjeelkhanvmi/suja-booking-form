@@ -180,23 +180,23 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="w-full p-2 my-3 flex items-center justify-center text-white bg-black flex-col">
-        <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto px-6">
-          <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
+      <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
+        <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
+          <div className="overflow-x-scroll xl:overflow-x-hidden p-10">
             <table
               role="table"
-              className="w-full"
+              className="w-full table-auto"
               variant="simple"
               color="gray-500"
               mb="24px"
             >
               <thead>
-                <tr role="row">
+                <tr role="row bg-gray-500">
                   <th
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -207,7 +207,7 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -229,7 +229,7 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -240,7 +240,7 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -251,7 +251,7 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -273,7 +273,7 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-end text-sm font-bold  uppercase  text-gray-800">
@@ -602,15 +602,16 @@ const Index = () => {
           <Modal
             isOpen={SecondToggle}
             onRequestClose={closeModal}
-            className="mx-auto   bg-gray-50 w-[40%] rounded-3xl flex flex-col"
+            className="mx-auto bg-gray-50 w-[40%] rounded-3xl flex flex-col"
           >
             <div className="flex justify-between py-4 px-5 bg-red-400 rounded-t-xl pb-3">
 
               <h4 className="text-center w-full text-2xl  text-dark font-semibold">
-                Order No# {viewLead._id}
+                Order# {viewLead._id}
               </h4>
               {/* <span class="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
             </div>
+            <div className="overflow-y-auto">
 
             <div className="orderCustomerDetails p-7 pb-3">
 
@@ -639,9 +640,6 @@ const Index = () => {
 
 
             </div>
-
-
-
 
             <div class="order-details p-4 pb-8 relative overflow-x-auto shadow-md sm:rounded-lg">
               <table class="w-full text-sm text-left border rtl:text-right">
@@ -712,13 +710,7 @@ const Index = () => {
                 </tbody>
               </table>
             </div>
-
-
-
-
-
-
-
+            </div>
           </Modal>
         }
       </div>

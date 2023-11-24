@@ -9,6 +9,7 @@ const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr:
 import { test } from '@/database/models/drivingCoursesData';
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
+import OldUserLoader from "@/pages/bookings/OldUserLoader";
 // import ModalExample from '@/pages/bookings/Modal'
 // import Modal from '@/pages/bookings/Modal';
 // let formdata = Cookies.get('formData');
@@ -73,6 +74,7 @@ const tests = () => {
           <Form>
             {/* {console.log('Form values in render:', values.fast_track_theory === false)} */}
             <Formnav />
+            {typeof formdata ? <OldUserLoader /> : null}
             <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
               <div className='w-full lg:max-w-[750px] pb-24'>
                 <div className=" mt-[80px] items-top py-8">
