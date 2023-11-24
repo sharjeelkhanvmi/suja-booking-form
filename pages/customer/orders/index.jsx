@@ -343,11 +343,14 @@ const Index = () => {
         <Modal
           isOpen={SecondToggle}
           onRequestClose={closeModal}
-          className="mx-auto p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col"
+          className="mx-auto p-10 bg-gray-50 w-[40%] rounded-3xl flex flex-col"
         >
           <h1 className="text-center text-4xl  text-gray-900 font-bold pb-3">
-            View Data
+           New Order: #125478965
           </h1>
+
+
+          
           {viewLead && viewLead.step4 && 
             <div className="justify-center gap-10 pb-5 pt-5">
               <div className="lg:w-48 w-full block">
@@ -380,12 +383,7 @@ const Index = () => {
                   </span>{" "}
                   {viewLead.step3.addons}
                 </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Agree:{" "}
-                  </span>{" "}
-                  {viewLead.step4.agree}
-                </p>
+              
                 <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
                   <span className="block pb-1  text-lg font-semibold">
                     {" "}Email:{" "}
@@ -422,12 +420,21 @@ const Index = () => {
                   </span>{" "}
                   {viewLead.step5.fastcourse}
                 </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block text-lg pb-1 font-semibold">
-                    Coupon Code:{" "}
-                  </span>{" "}
-                  {viewLead.step6.couponcode}
-                </p>
+                <button onClick={closeModal} className="close-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
               </div>
             </div>}
         </Modal>

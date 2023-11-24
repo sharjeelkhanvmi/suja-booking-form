@@ -62,6 +62,7 @@
 }
 .ReactModal__Overlay {
   opacity: 0;
+  background-color: rgb(0 0 0 / 75%)!important;
   transition: opacity 300ms ease-in-out;
 }
 .ReactModal__Overlay--after-open {
@@ -80,7 +81,6 @@
   border: none;
   border-radius:15px !important;
   outline: none;
-  padding:30px 20px 20px 20px;
   max-width: 900px !important;
   background: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -145,3 +145,7 @@
 .fast_track:checked + label +.fast_track_theory_bottom{
   display: none;
 }
+/* .order-details table th{
+  background:#dcdcdc;
+  color:#000;
+} */

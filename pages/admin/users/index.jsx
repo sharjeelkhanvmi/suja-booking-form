@@ -10,7 +10,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 const Index = () => {
-  const router =  useRouter()
+  const router = useRouter()
   const [usersData, setUsersData] = useState(null);
   const [editUserData, setEditUserData] = useState({
     fname: "",
@@ -19,6 +19,8 @@ const Index = () => {
     _id: ""
   });
   console.log(editUserData);
+
+
 
   const [Toggle, setToggle] = useState(false);
 
@@ -51,16 +53,17 @@ const Index = () => {
     }
   };
 
+
   const openModal = (user) => {
     setToggle(true);
-    setEditUserData({ _id: user._id,  fname: user.fname, lname: user.lname, phone: user.phone});
+    setEditUserData({ _id: user._id, fname: user.fname, lname: user.lname, phone: user.phone });
   };
   const closeModal = () => {
     setToggle(false);
   };
 
   const handleDelete = async (_id) => {
-    
+
     try {
       const result = await Swal.fire({
         title: 'Are you sure?',
@@ -78,8 +81,8 @@ const Index = () => {
         if (response.data.success) {
           router.push('/admin');
           toast.success('User data deleted successfully!');
-          
-        } 
+
+        }
       }
     } catch (error) {
       console.error('Error While Deleting User:', error);
@@ -88,28 +91,36 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="w-full p-2 flex items-center justify-center text-white bg-black flex-col tracking-widest uppercase my-3">
+      <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
         {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
-          <header className="relative flex items-center justify-between pt-4"></header>
-          <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden px-6">
+
+          <div className="overflow-x-scroll xl:overflow-x-hidden p-10">
             <table
               role="table"
-              className="w-full"
+              className="w-full table-auto"
               variant="simple"
               color="gray-500"
               mb="24px"
             >
               <thead>
-                <tr role="row bg-gray-300">
+                <tr role="row bg-gray-500">
+                <th className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700">
+                <input
+                type="checkbox"
+                id="customerCheckAll"
+                className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
+        checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
+                              name="weekly"
+                            /></th>
                   <th
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold  tracking-wide text-gray-800">
+                    <div className="text-sm font-bold uppercase  text-gray-800">
                       NAME
                     </div>
                   </th>
@@ -117,10 +128,10 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold  tracking-wide text-gray-800">
+                    <div className="text-sm font-bold uppercase   text-gray-800">
                       Email
                     </div>
                   </th>
@@ -128,21 +139,21 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold  tracking-wide text-gray-800">
-                      Role
+                    <div className="text-sm font-bold uppercase  text-gray-800">
+                      Postal Code
                     </div>
                   </th>
                   <th
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold  tracking-wide text-gray-800">
+                    <div className="text-sm font-bold  uppercase  text-gray-800">
                       Mobile
                     </div>
                   </th>
@@ -150,10 +161,10 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold  tracking-wide text-gray-800">
+                    <div className="text-end text-sm font-bold  uppercase  text-gray-800">
                       Action
                     </div>
                   </th>
@@ -164,18 +175,20 @@ const Index = () => {
                   usersData.map((data) => (
                     <>
                       <tr role="row">
+                        <td> <input
+                          type="checkbox"
+                          
+                          className="defaultCheckbox customerCheck relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
+                      checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
+                          name="weekly"
+                        /></td>
                         <td
                           role="cell"
                           className="pt-[14px] pb-[16px] sm:text-[14px]"
                         >
                           <div className="flex items-center gap-2">
-                            <input
-                              type="checkbox"
-                              className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
-                      checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
-                              name="weekly"
-                            />
-                            <p className="text-sm font-bold text-navy-700 dark:text-white">
+
+                            <p className="text-sm font-semibold text-navy-700 dark:text-white">
                               {data.user.fname}
                             </p>
                           </div>
@@ -185,7 +198,7 @@ const Index = () => {
                           className="pt-[14px] pb-[16px] sm:text-[14px]"
                         >
                           <div className="flex items-center">
-                            <p className="text-sm font-bold text-navy-700 dark:text-white">
+                            <p className="text-sm font-semibold text-navy-700 dark:text-white">
                               {data.user.email}
                             </p>
                           </div>
@@ -194,7 +207,7 @@ const Index = () => {
                           role="cell"
                           className="pt-[14px] pb-[16px] sm:text-[14px]"
                         >
-                          <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          <p className="text-sm font-semibold text-navy-700 dark:text-white">
                             {data.user.role}
                           </p>
                         </td>
@@ -202,14 +215,14 @@ const Index = () => {
                           role="cell"
                           className="pt-[14px] pb-[16px] sm:text-[14px]"
                         >
-                          <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          <p className="text-sm font-semibold text-navy-700 dark:text-white">
                             {data.user.phone}
                           </p>
                         </td>
 
                         <td
                           role="cell"
-                          class=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
+                          class=" flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
                         >
                           <span
                             onClick={() => {
@@ -260,7 +273,7 @@ const Index = () => {
         </div>
       </div>
       <Modal isOpen={Toggle} isClose={closeModal} className='h-[70%]  mx-auto'>
-      <button onClick={closeModal} className="absolute left-[830px] text-2xl">x</button>
+        <button onClick={closeModal} className="absolute left-[830px] text-2xl">x</button>
         <div className="p-2 flex w-[100%] my-5 rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 justify-center text-white bg-black flex-col tracking-widest uppercase">
           <form className=" pb-5 " onSubmit={handleEdit}>
             <div className="flex flex-wrap mx-3">
@@ -325,7 +338,7 @@ const Index = () => {
             </div>
           </form>
         </div>
-       
+
       </Modal>
       <ToastContainer position="bottom-right" autoClose={5000} />
     </Layout>
