@@ -179,19 +179,19 @@ const Sidebar = ({ open, onClose }) => {
                       : "text-gray-600"
                   }`}
                 >
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 24 24"
-                    className="h-6 w-6"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
-                  </svg>
+                <svg
+    stroke="currentColor"
+    fill="currentColor"
+    strokeWidth="0"
+    viewBox="0 0 24 24"
+    className="h-6 w-6"
+    height="1em"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path fill="none" d="M0 0h24v24H0z"></path>
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+  </svg>
                 </span>
                 <p
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
@@ -241,7 +241,7 @@ const Sidebar = ({ open, onClose }) => {
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
                     router.pathname === `/customer`
                       ? "text-navy-700"
-                      : "text-gray-600"
+                      : "text-gray-700"
                   }`}
                 >
                   Dashboard
@@ -280,7 +280,7 @@ const Sidebar = ({ open, onClose }) => {
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
                     router.pathname === `/customer/orders`
                       ? "text-navy-700"
-                      : "text-gray-600"
+                      : "text-gray-700"
                   }`}
                 >
                   Order History
@@ -320,7 +320,7 @@ const Sidebar = ({ open, onClose }) => {
                   className={`leading-1 flex ms-4 font-bold dark:text-white ${
                     router.pathname === `/customer/profile`
                       ? "text-navy-700"
-                      : "text-gray-600"
+                      : "text-gray-700"
                   }`}
                 >
                   Profile

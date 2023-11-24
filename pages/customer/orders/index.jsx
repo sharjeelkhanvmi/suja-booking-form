@@ -41,7 +41,7 @@ const Index = () => {
 
   const handleLeadsData = async () => {
     try {
-      const response = await fetch("/api/leads");
+      const response = await fetch("/api/leads/userLeads");
       const responseData = await response.json();
       if (responseData && Object.keys(responseData).length > 0) {
         setLeadsData(responseData);
@@ -255,7 +255,7 @@ const Index = () => {
                     <tr key={data._id}>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] "
                       >
                         <div className="flex items-center gap-2">
                           {/* <input
@@ -321,7 +321,7 @@ const Index = () => {
                       </td> */}
               <td
                 role="cell"
-                className=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto">                                
+                className="flex flex-1 ps-3 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto">                                
                   
                 <span className="text-sm font-bold text-gray-800 dark:text-white">
                   <IoEye
@@ -348,7 +348,7 @@ const Index = () => {
           <h1 className="text-center text-4xl  text-gray-900 font-bold pb-3">
             View Data
           </h1>
-          {viewLead &&
+          {viewLead && viewLead.step4 && 
             <div className="justify-center gap-10 pb-5 pt-5">
               <div className="lg:w-48 w-full block">
                 <p className="font-semibold border-b-2 border-gray-300 text-start text-lg divide-y pb-3 ms-5 text-navy-700 dark:text-white">

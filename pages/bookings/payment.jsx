@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 // import Sidebar from "@/app/components/sidebar/sidebar";
 // import { Formik, Field, Form, ErrorMessage } from "formik";
 import Footnote from "@/app/components/Footnote";
-// import Formnav from "@/app/components/Formnav";
+import Formnav from "@/app/components/Formnav";
 import Amex from "@/public/assets/amex.f54f9bb1.svg";
 import Mastercard from "@/public/assets/mastercard.a1764ac8.svg";
 import Visa from "@/public/assets/visa.7c2bf868.svg";
@@ -109,7 +109,7 @@ const Payment = ({info}) => {
 
   return (
     <div>
-      
+      <Formnav />
       <div className="mt-[0px] flex justify-center items-top px-7 py-8">
         <div className="w-full lg:max-w-[750px] pb-24 flex flex-wrap justify-center">
         <div className="w-1/2 pe-3">
