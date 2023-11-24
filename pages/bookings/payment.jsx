@@ -110,8 +110,7 @@ const Payment = ({info}) => {
   return (
     <div>
       <Formnav />
-      <div className="mt-[0px] flex justify-center items-top px-7 py-8">
-        
+      <div className="mt-[50px] flex justify-center items-top px-7 py-8">
         <div className="w-full lg:max-w-[750px] pb-24 flex flex-wrap justify-center">
         <h2 className="w-full text-2xl font-bold mb-7 text-center">Secure Payment Options for Your Driving Course</h2>
         <div className="w-1/2 pe-3">
