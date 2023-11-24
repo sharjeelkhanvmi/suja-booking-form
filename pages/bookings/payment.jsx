@@ -14,16 +14,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import { login_user } from "@/app/service/mailService";
-const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {
-  ssr: false
-});
-// import PaymentForm from "@/app/components/PaymentForm";
-​
-const stripePromise = loadStripe(
-  "pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf"
-);
-​
+const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {ssr: false});
+const stripePromise = loadStripe("pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf")
 const Payment = ({ info }) => {
   const [changedData, setChangedData] = useState();
   useEffect(
@@ -34,7 +26,6 @@ const Payment = ({ info }) => {
     [info]
   );
   const router = useRouter();
-​
   let drType;
   let course_name;
   let coursePriceObj;
@@ -46,7 +37,7 @@ const Payment = ({ info }) => {
   let fast_track_theory;
   let fast_track_practical;
   let pass_protect;
-​
+
   if (
     changedData &&
     changedData.step2 &&
@@ -63,7 +54,7 @@ const Payment = ({ info }) => {
     full = parseInt(coursePriceObj.full);
     deposit = parseInt(coursePriceObj.deposit);
   }
-​
+
   fast_track_theory =
     changedData &&
     changedData.step3 &&
@@ -81,15 +72,15 @@ const Payment = ({ info }) => {
       ? parseInt(changedData.step6.pass_protect)
       : 0;
   // subTotal = ((deposit) ? deposit : full)
-​
+
   total = full + fast_track_theory + fast_track_practical;
-​
+
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
-​
+
   const handlePaymentSuccess = async (paymentMethod) => {
-​
+
     const login = {
       email: changedData.step4.email,
       password: changedData.step4.password
@@ -138,7 +129,7 @@ const Payment = ({ info }) => {
     router.push("/bookings/thankyou");
   };
  
-​
+
   const setStepSeven = e => {
     let amount;
     if (e.target.value == "Full") {
@@ -151,12 +142,12 @@ const Payment = ({ info }) => {
       ...changedData,
       ...step6
     };
-​
+
     localStorage.setItem("formData", JSON.stringify(formDatas));
     setChangedData(formDatas);
     // console.log(changedData)
   };
-​
+
   return (
     <div>
       <Formnav />
@@ -197,7 +188,7 @@ const Payment = ({ info }) => {
               </div>
             </label>
           </div>
-​
+
           <div className="w-1/2 ps-3">
             <input
               type="radio"
@@ -230,7 +221,7 @@ const Payment = ({ info }) => {
               </div>
             </label>
           </div>
-​
+
           <div className="mt-[10px] items-top py-8 w-full">
             <div className="w-full lg:max-w-[750px]">
               <div className="w-full mb-5 pr-4">
@@ -315,7 +306,7 @@ hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-
               </div>
             </div>
           </div>
-​
+
           {/* <div className="block items-center justify-content-center">
 <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
 <span className="flex items-center justify-center">
@@ -334,16 +325,16 @@ Pay £840
     </div>
   );
 };
-​
+
 let formdata;
 if (typeof localStorage !== "undefined") {
   formdata = JSON.parse(localStorage.getItem("formData"));
 } else {
   formdata = "";
 }
-​
+
 const PaymentPage = () => {
   return <Payment info={formdata} />;
 };
-​
+
 export default PaymentPage;
