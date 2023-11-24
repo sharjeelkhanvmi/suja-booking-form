@@ -10,13 +10,15 @@ import Formnav from '@/app/components/Formnav';
 
 
 const ThankYou = ({ info }) => {
+
+  const router = useRouter();
   const [changedData, setChangedData] = useState();
   useEffect(() => {
     setChangedData(info)
   }, [info])
 
   // const [info, setInfo] = useState();
-const router = useRouter();
+
 
 
 
@@ -51,10 +53,10 @@ if(changedData && changedData.step2 && changedData.step2.dr_course_price != unde
 
 fast_track_theory = (changedData && changedData.step3 && changedData.step3.fast_track_theory != '') ? parseInt(changedData.step3.fast_track_theory) : 0
 fast_track_practical = (changedData && changedData.step3 && changedData.step3.fast_track_practical != '') ? parseInt(changedData.step3.fast_track_practical) : 0
-pass_protect = (changedData && changedData.step6 && changedData.step6.pass_protect != '') ? parseInt(changedData.step6.pass_protect) : 0
+// pass_protect = (changedData && changedData.step6 && changedData.step6.pass_protect != '') ? parseInt(changedData.step6.pass_protect) : 0
 // subTotal = ((deposit) ? deposit : full)
 
-total = full + fast_track_theory + fast_track_practical + pass_protect;
+total = full + fast_track_theory + fast_track_practical;
 
 const paymentButtonClick = () => 
 {
@@ -137,7 +139,7 @@ return (
             <div>
               
 
-          { changedData && changedData.step3 && changedData.step3.fast_track_theory ? (
+          { changedData && changedData.step3 && changedData.step3.fast_track_practical ? (
             
           <div className="py-3 flex items-center justify-between">
             <div className="flex items-center">
@@ -184,7 +186,7 @@ return (
 
           ) : '' }
 
-          {changedData && changedData.step3 && changedData.step3.fast_track_practical ? (
+          {changedData && changedData.step3 && changedData.step3.fast_track_theory ? (
 
           
 
@@ -234,7 +236,7 @@ return (
           ) : '' }
 
 
-            {changedData && changedData.step6 && changedData.step6.pass_protect ? (
+            {/* {changedData && changedData.step6 && changedData.step6.pass_protect ? (
 
             <div className="py-3 flex items-center justify-between">
               <div className="flex items-center">
@@ -279,7 +281,7 @@ return (
             </div>
 
 
-            ) : '' }
+            ) : '' } */}
 
           </div>
 
