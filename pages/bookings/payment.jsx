@@ -103,7 +103,7 @@ const Payment = ({ info }) => {
       phone: changedData.step4.phone_number
     };
       try {
-        //await axios.post("/api/api_mailer", { formdata: changedData });
+        
         console.log(userData)
         const find = await axios.get(`/api/user/find/?email=${userData.email}`);
         console.log(find.data)
@@ -117,7 +117,6 @@ const Payment = ({ info }) => {
           const userresponse = await axios.post("/api/user/post", userData);
           user = await userresponse.data
         }
-        console.log(user)
         const leadData = await {
           user: user._id,
           step1: changedData.step1,
@@ -129,7 +128,8 @@ const Payment = ({ info }) => {
           stripe: paymentMethod
         }
         const leadresponse = await axios.post("/api/leads/post", leadData);
-        //const lead = await leadresponse.data
+        const lead = await leadresponse.data
+        await axios.post("/api/api_mailer", { formdata: lead });
         //login_user(login)
       } catch (error) {
         console.error(error);
