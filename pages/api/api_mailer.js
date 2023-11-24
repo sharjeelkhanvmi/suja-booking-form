@@ -8,7 +8,7 @@ const handler = async (req, res) => {
       case "POST": {
         const { formdata } = req.body;
 
-        
+
 
         if (!formdata) {
           return res.status(400).json({ error: "Invalid request body" });
@@ -85,7 +85,7 @@ const handler = async (req, res) => {
                           <tbody style="width:100%">
                             <tr style="width:100%">
                               <td style="padding-left:20px;border-style:solid;border-color:white;border-width:0px 1px 1px 0px;height:44px">
-                                <p style="font-size:10px;line-height:1.4;margin:0;padding:0;color:rgb(102,102,102)">ORDER ID</p><a target="_blank" style="color:#15c;text-decoration:underline;font-size:12px;margin:0;padding:0;line-height:1.4">ML4F5L8522</a>
+                                <p style="font-size:10px;line-height:1.4;margin:0;padding:0;color:rgb(102,102,102)">ORDER ID</p><a target="_blank" style="color:#15c;text-decoration:underline;font-size:12px;margin:0;padding:0;line-height:1.4">${formdata._id}</a>
                               </td>
                               <td style="padding-left:20px;border-style:solid;border-color:white;border-width:0px 1px 1px 0px;height:44px">
                                 <p style="font-size:10px;line-height:1.4;margin:0;padding:0;color:rgb(102,102,102)">PHONE NO.</p>

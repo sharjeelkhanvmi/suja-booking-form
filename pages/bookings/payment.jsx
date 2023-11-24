@@ -120,7 +120,7 @@ const Payment = ({ info }) => {
         }
         const leadresponse = await axios.post("/api/leads/post", leadData);
         const lead = await leadresponse.data
-        await axios.post("/api/api_mailer", { formdata: leadData });
+        await axios.post("/api/api_mailer", { formdata: lead });
         //login_user(login)
       } catch (error) {
         console.error(error);
