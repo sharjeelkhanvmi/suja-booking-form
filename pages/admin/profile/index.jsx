@@ -8,7 +8,7 @@ import decodeToken from "jwt-decode";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import bcrypt from 'bcryptjs'
+import bcrypt from "bcryptjs";
 
 const Index = () => {
   const [profile, setprofile] = useState({
@@ -38,7 +38,8 @@ const Index = () => {
     // handlePassword();
   }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async e => {
+    e.preventDefault();
     try {
       const response = await axios.post("/api/user/edit", profile);
       if (response.data.success) {
@@ -47,18 +48,22 @@ const Index = () => {
         toast.error("Failed to update data");
       }
     } catch (error) {
-      console.error('Error updating Data:', error);
-      toast.error('Error updating Data');
+      console.error("Error updating Data:", error);
+      toast.error("Error updating Data");
     }
   };
-  
-  const handlePassword = async (e) => {
-    e.preventDefault()
-    console.log(user,'CHECK');
+  console.log(password)
+
+  const handlePassword = async e => {
+    e.preventDefault();
+
     try {
       const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password.password,salt);
-      const response = await axios.post("/api/user/changepassword", { password: hashedPassword,id:user.id});
+      const hashedPassword = await bcrypt.hash(password.password, salt);
+      const response = await axios.post("/api/user/changepassword", {
+        password: hashedPassword,
+        id: user.id
+      });
       if (response.data.success) {
         console.log("PASSWORD UPDATED SUCCESSFULLY");
         toast.success("Password updated successfully");
@@ -71,40 +76,58 @@ const Index = () => {
       toast.error("Error updating password");
     }
   };
-  
+
   return (
     <Layout>
-    <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-3 justify-center align-middle text-white bg-black flex-col tracking-widest uppercase">
-    <form className="pb-5 w-1/1  rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500">
-    <div className="flex flex-wrap mx-3">
-    <div className="w-full px-3 pt-5 md:mb-0">
-      <label
-        className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
-        htmlFor="grid-first-name">
-        First Name
-      </label>
-      <input
-        className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        id="grid-first-name"
-        type="text"
-        placeholder="Jane"
-      />      
-    </div>
-    <div className="w-full pt-5  px-3">
-      <label
-        className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
-        htmlFor="grid-last-name"
-      >
-        Last Name
-      </label>
-      <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        id="grid-last-name"
-        type="text"
-        placeholder="Doe"
-      />
-    </div>
-  </div>
+      <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-3 justify-center align-middle text-white bg-black flex-col tracking-widest uppercase">
+        <form
+          className="pb-5 w-1/1  rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex flex-wrap mx-3">
+            <div className="w-full px-3 pt-5 md:mb-0">
+              <label
+                className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
+                htmlFor="grid-first-name"
+              >
+                First Name
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-first-name"
+                type="text"
+                placeholder="Jane"
+                value={profile.fname}
+                onChange={e => {
+                  setprofile(prevData => ({
+                    ...prevData,
+                    fname: e.target.value
+                  }));
+                }}
+              />
+            </div>
+            <div className="w-full pt-5  px-3">
+              <label
+                className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
+                htmlFor="grid-last-name"
+              >
+                Last Name
+              </label>
+              <input
+                value={profile.lname}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-last-name"
+                type="text"
+                placeholder="Doe"
+                onChange={e => {
+                  setprofile(prevData => ({
+                    ...prevData,
+                    lname: e.target.value
+                  }));
+                }}
+              />
+            </div>
+          </div>
 
           <div className="mx-3">
             <div className="w-full px-3 pt-7">
@@ -139,11 +162,65 @@ const Index = () => {
           </div>
         </form>
 
-    
-     
-    </div>{" "}
-    {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
-    
+        {/* PASSWORD */}
+        <form
+          className="pb-5 w-1/1  rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500"
+          onSubmit={handlePassword}
+        >
+          <div className="mx-3">
+            <div className="w-full pt-7 px-3">
+              <label
+                className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
+                htmlFor="grid-changepassword"
+              >
+                Change Password
+              </label>
+              <input
+                value={password.password}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-changepassword"
+                type="password"
+                placeholder="******************"
+                onChange={e => {
+                  setpassword(prevData => ({
+                    ...prevData,
+                    password: e.target.value
+                  }));
+                }}
+              />
+            </div>
+            <div className="w-full pt-7 px-3">
+              <label
+                className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
+                htmlFor="grid-confirmchangepassword"
+              >
+                Confirm Change Password
+              </label>
+              <input
+                value={password.confirm_password}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-confirmchangepassword"
+                type="password"
+                placeholder="******************"
+                onChange={e => {
+                  setpassword(prevData => ({
+                    ...prevData,
+                    confirm_password: e.target.value
+                  }));
+                }}
+              />
+            </div>
+            <button
+              type="submit"
+              class="rounded-full mt-5 py-3  px-8 text-lg uppercase  font-semibold text-white shadow-sm
+     bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Udpate Passowrd
+            </button>
+          </div>
+        </form>
+      </div>{" "}
+      {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
     </Layout>
   );
 };

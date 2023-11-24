@@ -46,6 +46,12 @@ const Index = () => {
     }
   });
 
+  // function capitalize(str) {
+  //   return str.charAt(0).toUpperCase() + str.slice(1);
+  // }
+  // if(viewLead && viewLead.step2 && viewLead.step2.dr_course_price[courseKey]){
+  // let drTypeCap = capitalize(viewLead.step2.dr_course_price[courseKey].variant)
+  // }
   const handleLeadsData = async () => {
     try {
       const response = await fetch("/api/leads");
@@ -170,9 +176,11 @@ const Index = () => {
     setSecondToggle(true);
   };
 
+  console.log('SECLETD ', viewLead)
+
   return (
     <Layout>
-      <div className="w-full p-2 my-3 flex items-center justify-center text-white bg-black flex-col tracking-widest uppercase">
+      <div className="w-full p-2 my-3 flex items-center justify-center text-white bg-black flex-col">
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto px-6">
           <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
             <table
@@ -206,7 +214,7 @@ const Index = () => {
                       Email
                     </div>
                   </th>
-                  <th
+                  {/* <th
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
@@ -214,9 +222,9 @@ const Index = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold tracking-wide text-gray-800">
-                      Coupon code
+                      Postal code
                     </div>
-                  </th>
+                  </th> */}
                   <th
                     colSpan={1}
                     role="columnheader"
@@ -268,7 +276,7 @@ const Index = () => {
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold tracking-wide text-gray-800">
+                    <div className="text-end text-sm font-bold  uppercase  text-gray-800">
                       Actions
                     </div>
                   </th>
@@ -290,7 +298,7 @@ const Index = () => {
                             name="weekly"
                           /> */}
                           <p className="text-sm font-bold text-gray-900 dark:text-white">
-                            {data.step4.first_name}
+                            {data.step4.firstName}
                           </p>
                         </div>
                       </td>
@@ -304,20 +312,20 @@ const Index = () => {
                           </p>
                         </div>
                       </td>
-                      <td
+                      {/* <td
                         role="cell"
                         className="pt-[14px] pb-[16px] sm:text-[14px]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {data.step6.couponcode}
                         </p>
-                      </td>
+                      </td> */}
                       <td
                         role="cell"
                         className="pt-[14px] pb-[16px] sm:text-[14px]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          {data.step4.mobile_number}
+                          {data.step4.phone_number}
                         </p>
                       </td>
                       <td
@@ -325,7 +333,7 @@ const Index = () => {
                         className="pt-[14px] pb-[16px] sm:text-[14px]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          {data.step1.postalcode}
+                          {data.step1.postal_code}
                         </p>
                       </td>
                       <td
@@ -333,12 +341,19 @@ const Index = () => {
                         className="pt-[14px] pb-[16px] sm:text-[14px]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          {data.step2.hours}
+                          <div>
+                            {Object.keys(data.step2.dr_course_price).map((courseKey, index) => (
+                              <div key={index}>
+                                {data.step2.dr_course_price[courseKey].value}
+                              </div>
+                            ))}
+                          </div>
+
                         </p>
                       </td>
                       <td
                         role="cell"
-                        className=" flex flex-1 pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
+                        className="flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
                       >
                         <span className="text-sm font-bold text-red-700 dark:text-white">
                           <AiFillDelete
@@ -583,97 +598,129 @@ const Index = () => {
             </div>
           </form>
         </Modal>
-        <Modal
-          isOpen={SecondToggle}
-          onRequestClose={closeModal}
-          className="mx-auto p-10 bg-gray-50 w-[50%] rounded-3xl flex flex-col"
-        >
-          <h1 className="text-center text-4xl  text-gray-900 font-bold pb-3">
-            View Data
-          </h1>
-          {viewLead &&
-            <div className="justify-center gap-10 pb-5 pt-5">
-              <div className="lg:w-48 w-full block">
-                <p className="font-semibold border-b-2 border-gray-300 text-start text-lg divide-y pb-3 ms-5 text-navy-700 dark:text-white">
-                  PostalCode: {viewLead.step1.postalcode} :
-                </p>
+        {viewLead &&
+          <Modal
+            isOpen={SecondToggle}
+            onRequestClose={closeModal}
+            className="mx-auto   bg-gray-50 w-[40%] rounded-3xl flex flex-col"
+          >
+            <div className="flex justify-between py-4 px-5 bg-red-400 rounded-t-xl pb-3">
+
+              <h4 className="text-center w-full text-2xl  text-dark font-semibold">
+                Order No# {viewLead._id}
+              </h4>
+              {/* <span class="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
+            </div>
+
+            <div className="orderCustomerDetails p-7 pb-3">
+
+              <div className="flex justify-between items-center items-middle">
+                <div className="">
+                  <h3 className="text-xl font-bold mb-2">Customer Details</h3>
+                  <h4 className="font-semibold mb-3">Postal Code
+                    <span class="bg-teal-200 ms-3 py-1 px-3 font-semibold  text-xs rounded-full"> {viewLead.step1.postal_code}</span></h4>
+                </div>
+                <div className=""><span class="font-regular  text-sm text-end rounded-full font-semibold"> Transition Id: <br /><span className="font-normal">{viewLead.stripe.id}</span> </span></div>
               </div>
-              <div className="grid grid-cols-4 pt-[14px] pb-[16px] px-5">
-                <p className="font-regular border-b-2 border-gray-300 text-start text-sm py-5 text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    Driving:
-                  </span>{" "}
-                  {viewLead.step2.driving}
-                </p>
-                <p className="font-regular border-b-2 border-gray-300 text-start text-sm py-5 text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    Hours:
-                  </span>{" "}
-                  {viewLead.step2.hours}
-                </p>
-                <p className="font-regular border-b-2 border-gray-300 text-start text-sm py-5 text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Gear:
-                  </span>{" "}
-                  {viewLead.step2.gear}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Addons:{" "}
-                  </span>{" "}
-                  {viewLead.step3.addons}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Agree:{" "}
-                  </span>{" "}
-                  {viewLead.step4.agree}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Email:{" "}
-                  </span>{" "}
-                  {viewLead.step4.email}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Confirm Email:
-                  </span>{" "}
-                  {viewLead.step4.confirm_email}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    First Name:{" "}
-                  </span>{" "}
-                  {viewLead.step4.first_name}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block text-lg pb-1  font-semibold">
-                    Last Name:{" "}
-                  </span>{" "}
-                  {viewLead.step4.last_name}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1 text-lg font-semibold">
-                    Mobile Number:
-                  </span>{" "}
-                  {viewLead.step4.mobile_number}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Fast Course:
-                  </span>{" "}
-                  {viewLead.step5.fastcourse}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block text-lg pb-1 font-semibold">
-                    Coupon Code:{" "}
-                  </span>{" "}
-                  {viewLead.step6.couponcode}
-                </p>
+              <div className="grid grid-cols-2 mt-5">
+                <div>
+                  <h4 className="font-bold text-lg">Full Name: </h4>
+                  <span className="font-semibold">{viewLead.step4.title} {viewLead.step4.firstName}  {viewLead.step4.surname}</span>
+                  <h4 className="font-bold text-lg pt-3">Email: </h4>
+                  <span className="font-semibold">{viewLead.step4.email}</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg pt-3">Mobile Number: </h4>
+                  <span className="font-semibold text-sm">{viewLead.step4.phone_number}</span>
+                  <h4 className="font-bold text-lg pt-3">Course Speed: </h4>
+                  <span className="font-semibold text-sm">{viewLead.step5.intensiveCourse}</span>
+                </div>
               </div>
-            </div>}
-        </Modal>
+
+
+            </div>
+
+
+
+
+            <div class="order-details p-4 pb-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table class="w-full text-sm text-left border rtl:text-right">
+                <tbody>
+                  <tr className="border  bg-gray-200">
+                    <th scope="col" class="px-6 py-3 text-dark font-bold text-sm">
+                      Course Details
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-bold text-sm">
+                      Price
+                    </th>
+                  </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <span class="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">Speedster Course</span>
+                      <span className="block mt-2 ms-1"> {Object.keys(viewLead.step2.dr_course_price).map((courseKey, index) => (
+                        <span key={index}>
+                          {viewLead.step2.dr_course_price[courseKey].value} {viewLead.step2.dr_course_price[courseKey].variant} - <span className="capitalize">{viewLead.step2.dr_type}</span> ({viewLead.step6.payment})
+                        </span>
+                      ))}</span>
+                    </td>
+                    <td class="px-6 py-4 font-semibold text-sm">
+                      {viewLead.step6.payment === 'Full' && (
+                        <div>
+                          {Object.keys(viewLead.step2.dr_course_price).map((courseKey, index) => (
+                            <span key={index}>
+                              £{viewLead.step2.dr_course_price[courseKey].full}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                    </td>
+                  </tr>
+                  {viewLead.step3.fast_track_practical != "" && (
+                    <tr class="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <span class="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">Add-ons</span>
+                        <span className="block mt-2 ms-1">Practical Test</span>
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-sm">
+                        £{viewLead.step3.fast_track_practical}
+                      </td>
+                    </tr>
+                  )}
+                  {viewLead.step3.fast_track_theory != "" && (
+                    <tr class="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <span class="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">Add-ons</span>
+                        <span className="block mt-2 ms-1">Theory Test</span>
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-sm">
+                        £{viewLead.step3.fast_track_theory}
+                      </td>
+                    </tr>
+                  )}
+                  <tr class="border-b  p-3 bg-gray-200 dark:border-gray-700">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                      <span className="block mt-2 ms-1">Total</span>
+                    </td>
+                    <td class="px-6 py-4 font-semibold text-sm">
+                      £{viewLead.step6.amount}
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+
+
+
+
+
+
+
+          </Modal>
+        }
       </div>
       <ToastContainer />
     </Layout>
