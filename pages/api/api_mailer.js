@@ -126,8 +126,8 @@ const handler = async (req, res) => {
                   ${step2.dr_course_price[courseKey].value} ${step2.dr_course_price[courseKey].variant} - ${step2.dr_type} - ${step6.payment}
                 </p>`
               ))}
-                <p style="font-size:12px;line-height:1.4;margin:0;color:rgb(102,102,102);padding:0">Fast Track Practical: ${step3.fast_track_practical}</p>
-                <p style="font-size:12px;line-height:1.4;margin:0;color:rgb(102,102,102);padding:0">Fast Track Theory: ${step3.fast_track_theory}</p>
+                <p style="font-size:12px;line-height:1.4;margin:0;color:rgb(102,102,102);padding:0">Fast Track Practical: £${step3.fast_track_practical}</p>
+                <p style="font-size:12px;line-height:1.4;margin:0;color:rgb(102,102,102);padding:0">Fast Track Theory: £${step3.fast_track_theory}</p>
                 <p style="font-size:12px;line-height:1.4;margin:0;color:rgb(102,102,102);padding:0">Already Booked: ${step3.i_have_already_booked}</p>
                 <p style="font-size:12px;line-height:1.4;margin:0;color:rgb(102,102,102);padding:0">Already Passed: ${step3.i_have_already_passed}</p>
 
