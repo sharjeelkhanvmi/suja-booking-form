@@ -14,6 +14,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import dynamic from "next/dynamic";
 import axios from "axios";
+import OldUserLoader from "@/pages/bookings/OldUserLoader";
 const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {ssr: false});
 const stripePromise = loadStripe("pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf")
 const Payment = ({ info }) => {
@@ -151,6 +152,7 @@ const Payment = ({ info }) => {
   return (
     <div>
       <Formnav />
+      {typeof formdata ? <OldUserLoader /> : null}
       <div className="mt-[0px] flex justify-center items-top px-7 py-8">
         <div className="w-full lg:max-w-[750px] pb-24 flex flex-wrap justify-center">
           <h2 className="w-full text-2xl font-bold mb-7 text-center">
