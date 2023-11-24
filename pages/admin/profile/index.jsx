@@ -8,7 +8,7 @@ import decodeToken from "jwt-decode";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
 
 const Index = () => {
   const [profile, setprofile] = useState({
