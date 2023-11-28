@@ -35,33 +35,36 @@ const Index = () => {
   };
   useEffect(() => {
     handleUser();
-    // handlePassword();
   }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/user/edit", profile);
+    
       if (response.data.success) {
-        toast.success("Data Updated");
+       
+        console.log('Data updated');
+        toast.success("Profile Data Updated");
+       
       } else {
-        toast.error("Failed to update data");
+         toast.error("Failed to update data");
       }
     } catch (error) {
       console.error("Error updating Data:", error);
-      toast.error("Error updating Data");
+       toast.error("Error updating Data");
     }
   };
-  console.log(password)
+
 
   const handlePassword = async e => {
     e.preventDefault();
 
     try {
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password.password, salt);
+      // const salt = await bcrypt.genSalt(10);
+      // const hashedPassword = await bcrypt.hash(password.password, salt);
       const response = await axios.post("/api/user/changepassword", {
-        password: hashedPassword,
+        password: password,
         id: user.id
       });
       if (response.data.success) {
@@ -76,6 +79,8 @@ const Index = () => {
       toast.error("Error updating password");
     }
   };
+
+  console.log(password)
 
   return (
     <Layout>
