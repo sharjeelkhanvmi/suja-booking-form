@@ -25,17 +25,20 @@ const Index = () => {
   if (cookie) {
     user = decodeToken(cookie);
   }
-  // console.log(cookie);
+  // console.log(cookie,"COOKIE");
 
   const handleUser = async () => {
-    const response = await axios.get(`/api/user`);
-    let data = await response.data[0].user;
-    setprofile(data);
-    console.log("State Data", data);
+    try {
+      const response = await axios.get(`/api/user`);
+      let data = await response.data[0].user;
+      setprofile(data);
+      console.log("State Data Handle User Function", data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
   };
   useEffect(() => {
     handleUser();
-    // handlePassword();
   }, []);
 
   const handleSubmit = async e => {
@@ -44,6 +47,7 @@ const Index = () => {
       const response = await axios.post("/api/user/edit", profile);
       if (response.data.success) {
         toast.success("Data Updated");
+        console.log("User Ediiteed");
       } else {
         toast.error("Failed to update data");
       }
@@ -52,16 +56,13 @@ const Index = () => {
       toast.error("Error updating Data");
     }
   };
-  console.log(password)
 
   const handlePassword = async e => {
     e.preventDefault();
 
     try {
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password.password, salt);
       const response = await axios.post("/api/user/changepassword", {
-        password: hashedPassword,
+        password: password,
         id: user.id
       });
       if (response.data.success) {

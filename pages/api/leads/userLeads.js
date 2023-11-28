@@ -9,16 +9,13 @@ export default async function GET(req, res) {
 
   const { cookies } = req;
   const token = cookies.token;
-   const decoded = jwtDecode(token);
-   const userId = decoded.id;
-   const objectId = new ObjectId(userId);
+  const decoded = jwtDecode(token);
+  const id = decoded.id;
 
   try {
     await connectionSuja();
-
-    const leads = await Lead.find({ user: userId   })
-    return leads
-
+    const leads = await Lead.find({ user: id   })
+    res.send({leads})
   } catch (error) {
     console.error("Error fetching leads:", error);
     res.status(500).json({ success: false, error: "Internal Server Error" });
