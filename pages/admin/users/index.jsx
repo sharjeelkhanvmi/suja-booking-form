@@ -18,7 +18,7 @@ const Index = () => {
     phone: "",
     _id: ""
   });
-  console.log(editUserData);
+  
 
 
 
@@ -37,15 +37,16 @@ const Index = () => {
 
   useEffect(() => {
     handleUsersData();
+    console.log(editUserData._id);
   }, []);
 
 
   const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put("/api/user/edit", editUserData);
+      const response = await axios.put(`/api/user/edit?id_=${editUserData._id}`, editUserData);
       console.log("Edit Response:", response.data);
-      toast.success("User data edited successfully!");
+       await toast.success("User data edited successfully!");
       setToggle(false);
     } catch (error) {
       console.error("Error While Editing User:", error);
