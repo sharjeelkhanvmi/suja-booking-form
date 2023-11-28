@@ -53,7 +53,7 @@ const Index = () => {
         closeModal();
         setFormData(null);
         await toast.success("Lead Upadted")
-        console.log("Lead Updated");
+        
       } else {
         console.error("Error updating lead");
       }
@@ -68,9 +68,9 @@ const Index = () => {
       const responseData = await response.json();
       if (responseData && Object.keys(responseData).length > 0) {
         setLeadsData(responseData);
-        console.log("Leads Data in Orders", responseData);
+      
       } else {
-        console.log("Empty or invalid JSON response");
+       
       }
     } catch (error) {
       console.error(error, "Error While Fetching Leads Data In order");
@@ -81,10 +81,10 @@ const Index = () => {
     handleLeadsData();
   }, []);
 
-  console.log("dr_course_price", viewLead.step2.dr_course_price);
+
 
   const handleDelete = async (leadId) => {
-    console.log("Deleting lead with ID:", leadId);
+
 
     try {
       const result = await Swal.fire({
@@ -125,9 +125,7 @@ const Index = () => {
     setSecondToggle(true);
   };
 
-  console.log("FORM DATA ", formData);
-  console.log("SELECTED LEAD ", selectedLead);
-  console.log("VIEW LEAD", viewLead);
+ ;
 
   return (
     <Layout>
