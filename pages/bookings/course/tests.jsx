@@ -46,8 +46,7 @@ const tests = () => {
         initialValues={{
           fast_track_practical: (step3 && step3.fast_track_practical != '') ? true : false,
           fast_track_theory: (step3 && step3.fast_track_theory != '') ? true : false,
-          i_have_already_booked: step3 ? step3.i_have_already_booked : false,
-          i_have_already_passed: step3 ? step3.i_have_already_passed : false,
+          i_have_already: step3 ? step3.i_have_already : '',
         }}
         //enableReinitialize={false}
         //validationSchema={validationSchema}
@@ -67,7 +66,7 @@ const tests = () => {
           //  Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
           localStorage.setItem("formData", JSON.stringify(formDatas));
           router.push("/bookings/student");
-          //  console.log(formDatas)
+           console.log(formDatas)
         }}
       >
         {({ handleChange, setFieldValue, values }) => (
@@ -176,8 +175,8 @@ const tests = () => {
                       id="fast_track_theory"
                       onChange={(e) => {
                         handleChange(e);
-                        setFieldValue('i_have_already_booked', false)
-                        setFieldValue('i_have_already_passed', false)
+                        setFieldValue('i_have_already', false)
+                        // setFieldValue('i_have_already_passed', false)
                         setChangedData((changedData) => {
                           //const { name, value } = e.target;
                           //  console.log('handlechanged', checkboxValue);
@@ -186,8 +185,8 @@ const tests = () => {
                             step3: {
                               ...changedData.step3,
                               fast_track_theory: e.target.checked ? checkboxValue.fast_track_theory : '',
-                              i_have_already_booked: e.target.checked ? false : '',
-                              i_have_already_passed: e.target.checked ? false : '',
+                              i_have_already: e.target.checked ? false : '',
+                              // i_have_already_passed: e.target.checked ? false : '',
                             },
                           };
                         });
@@ -223,10 +222,11 @@ const tests = () => {
                       <div className="fast_track_theory_bottom">
                         <div className="mb-3">
                           <Field
-                            type="checkbox"
-                            name="i_have_already_booked"
+                            type="radio"
+                            name="i_have_already"
                             className="sr-only fast_track"
                             id="i_have_already_booked"
+                            value="booked"
                             onChange={(e) => {
                               handleChange(e);
                               setChangedData((changedData) => {
@@ -234,7 +234,8 @@ const tests = () => {
                                   ...changedData,
                                   step3: {
                                     ...changedData.step3,
-                                    i_have_already_booked: e.target.checked ? true : false,
+                                    // i_have_already_booked: e.target.checked ? true : false,
+                                    i_have_already: e.target.checked ? e.target.value : false,
                                   },
                                 };
                               });
@@ -257,10 +258,11 @@ const tests = () => {
                         </div>
                         <div className="py-4">
                           <Field
-                            type="checkbox"
-                            name="i_have_already_passed"
+                            type="radio"
+                            name="i_have_already"
                             className="sr-only fast_track"
                             id="i_have_already_passed"
+                            value="passed"
                             onChange={(e) => {
                               handleChange(e);
                               setChangedData((changedData) => {
@@ -268,7 +270,8 @@ const tests = () => {
                                   ...changedData,
                                   step3: {
                                     ...changedData.step3,
-                                    i_have_already_passed: e.target.checked ? true : false,
+                                    // i_have_already_passed: e.target.checked ? true : false,
+                                    i_have_already: e.target.checked ? e.target.value : false,
                                   },
                                 };
                               });

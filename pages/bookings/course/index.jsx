@@ -282,7 +282,7 @@ showCoursePricing(values.dr_course_type)
         variants={variants}
         transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}        
         >
-      <div className="flex justify-between items-center mb-7 gap-x-5">
+      <div className="flex justify-between items-center gap-x-5">
          <h1 className=" text-[21px] leading-snug font-semibold">How's your driving going so far?</h1>
          <div className="cursor-pointer" onClick={(e) => setHintOpen_1(isHintOpen_1 => !isHintOpen_1)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
@@ -299,15 +299,17 @@ showCoursePricing(values.dr_course_type)
       variants={variants}
       transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}
       >
-      <div className="mb-8 p-5 bg-white w-full rounded-lg border-2 border-secondary">
+      <div className="pt-7">
+      <div className="p-5 bg-white w-full rounded-lg border-2 border-secondary">
         <p className=" text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
             The DVSA recommends around 45 hours of professional driving lessons and 22 hours of private practice before your practical driving test.
         </p>
       </div>
+      </div>
       </motion.div>
 
       
-      <div className="mb-10" id="CourseBox">
+      <div className="mb-10 mt-7" id="CourseBox">
          <div className='mb-3'>            
             <Field
                   type='radio'
@@ -569,7 +571,7 @@ showCoursePricing(values.dr_course_type)
         variants={variants}
         transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}        
         >
-      <div className=" flex justify-between items-center mt-20 mb-5 gap-x-5">
+      <div className=" flex justify-between items-center mt-20 gap-x-5">
          <h1 className=" text-[21px] leading-snug font-semibold">
             { course.name }
          </h1>
@@ -596,13 +598,14 @@ showCoursePricing(values.dr_course_type)
       variants={variants}
       transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}
       >
-      <div className="mb-8 p-5 bg-white w-full rounded-lg border-2 border-secondary">
-         <p className=" text-secondary leading-snug text-opacity-70 font-medium text-[15px] ">
-            { course.hint }
+      <div className="pt-8">
+      <div className="p-5 bg-white w-full rounded-lg border-2 border-secondary">
+         <p className=" text-secondary leading-snug text-opacity-70 font-medium text-[15px] " dangerouslySetInnerHTML={{ __html: course.hint }} >
          </p>
       </div>
+      </div>
       </motion.div>  
-      <div className="mb-10">
+      <div className="mb-10 mt-7">
       <div className={`relative w-full p-2 -z-10 rounded-lg text-center capitalize text-secondary font-semibold mb-4 text-sm ${course.bg_color}`}>
          { course.title }
          <div className="absolute top-[7px] right-4 transition duration-300 hidden">

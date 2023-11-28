@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 //import Link from "next/link";
-import Logo from "@/public/assets/logo.png";
+import Logo from "@/public/assets/logo1.png";
+// import drivingSchoolIcon from "@/public/assets/driving-school-icon.svg";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
@@ -70,19 +71,15 @@ const router = useRouter();
       course_name = manual[data.step2.dr_course_type]['name'];
       bg_color = manual[data.step2.dr_course_type]['bg_color'];
     }
-    console.log(course_name)    
   }
 
  
-  fast_track_theory = (data && data.step3 && data.step3.fast_track_theory != '') ? parseInt(data.step3.fast_track_theory) : 0
-  fast_track_practical = (data && data.step3 && data.step3.fast_track_practical != '') ? parseInt(data.step3.fast_track_practical) : 0
-  pass_protect = (data && data.step6 && data.step6.pass_protect != '') ? parseInt(data.step6.pass_protect) : 0
+  fast_track_theory = (data && data.step3 && data.step3.fast_track_theory != '' && !isNaN(data.step3.fast_track_theory)) ? parseInt(data.step3.fast_track_theory) : 0
+  fast_track_practical = (data && data.step3 && data.step3.fast_track_practical != '' && !isNaN(data.step3.fast_track_practical)) ? parseInt(data.step3.fast_track_practical) : 0
+  // pass_protect = (data && data.step6 && data.step6.pass_protect != '') ? parseInt(data.step6.pass_protect) : 0
  // subTotal = ((deposit) ? deposit : full)
   
-  total = full + fast_track_theory + fast_track_practical + pass_protect;
-  // console.log(variant)
-
-
+  total = full + fast_track_practical + fast_track_theory;
 
   return (
 
@@ -91,24 +88,24 @@ const router = useRouter();
       animate={{ opacity: 1, marginRight: 0 }}
       exit={{ opacity: 1, marginRight: -360 }}
       transition={{ delay: 0.1, duration: 0.4 }}
-      className="fixed pt-8 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto h-[calc(100vh-0px)] p-6"
+      className="fixed pt-8 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto p-6 h-full"
     >
 
     {data && data.step2 && data.step2.dr_course_price ? (
         
-        <div className="flex flex-col justify-center w-full h-full">
-        {/* <div className="text-center rounded-full self-center">
-          <Image alt="Suja Logo" width={70} height={70} src={Logo} className="w-auto h-auto" />               
-        </div> */}
-        <div className="text-left mt-5">
-          <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>  
+        <div className="flex flex-col w-full h-full">
+        <div className="text-center rounded-full self-center">
+          <Image alt="Suja Logo" width={110} height={69} src={Logo} className="w-auto h-auto filter brightness-200 invert-0" />
+        </div>
+        <div className="text-left mt-10">
+          <h1 className="text-xl leading-snug font-semibold bg-theme-red-color py-4 w-[calc(100%+48px)] border-y-2 border-white ml-[-24px] text-center">Cart Summary</h1>  
         </div>
         <div className="mt-8">        
           
           <div className={`w-max py-1 px-3 font-semibold  text-xs rounded-full text-gray-900 ${bg_color}`}>{course_name}</div>            
           
-          <div className="mt-2 w-full font-semibold flex">
-            <span className="w-full">{ hours_value +' '+ variant +' - '+ drType}</span>
+          <div className="mt-2 w-full font-semibold flex items-center">
+            <span className="flex items-center leading-4 w-full">{ hours_value +' '+ variant +' - '+ drType}</span>
             <div className="text-right">
               <span className="text-white text-opacity-60 ml-4">£{ full }</span>
             </div>
@@ -171,12 +168,12 @@ const router = useRouter();
         ) : '' }
 
         
-          <div className="mt-14 flex justify-between items-center">
-          <h4 className="text-white text-opacity-50 font-bold uppercase text-[13px] tracking-wide">
+          <div className="mt-14 flex justify-between items-center bg-white py-3 w-[calc(100%+48px)] ml-[-24px] px-7 text-gray-900 border-x-4 border-[#0c1936] rounded-full">
+          <h4 className="font-bold uppercase text-[13px] tracking-wide">
             Total
           </h4>
           <div>
-            <span className="text-white font-semibold">£{total}</span>
+            <span className="font-semibold">£{total}</span>
           </div>
           </div>
 
