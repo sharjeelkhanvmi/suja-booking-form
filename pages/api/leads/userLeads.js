@@ -15,18 +15,10 @@ export default async function GET(req, res) {
 
   try {
     await connectionSuja();
-    // Fetch users
-    const users = await User.find().exec();
-    // Fetch leads for each user
-    const leadsPromises = users.map(async (user) => {
-      if (user.role === 'customer' ) {
-        console.log(objectId );
-        const leads = await Lead.find({ user: objectId   }).exec();
-        return { user,leads };
-      }
-    });
-    const usersWithLeads = await Promise.all(leadsPromises);
-    res.status(200).json(usersWithLeads);
+
+    const leads = await Lead.find({ user: userId   })
+    return leads
+
   } catch (error) {
     console.error("Error fetching leads:", error);
     res.status(500).json({ success: false, error: "Internal Server Error" });

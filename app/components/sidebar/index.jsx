@@ -41,7 +41,7 @@ const Sidebar = ({ open, onClose }) => {
       </span>
 
       <div className={`mx-[56px] mt-[0px] flex items-center`}>
-        <div className="mt-2 mb-2 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-red-700 dark:text-white">
+        <div className="mt-2 mb-2 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-red-700 dark:text-white ">
           <Image src={Logo} alt="Logo" className="w-auto h-16" />
           {/* Suja  <span className="text-navy-700 font-medium">Driving</span> */}
         </div>
