@@ -115,7 +115,7 @@ return (
                                     <div>
                                         <Field type="radio" name="title" className="sr-only title" id="title_1" value="Mr"/>
                                         <label htmlFor="title_1" className="w-full cursor-pointer flex border items-center justify-center px-4 py-2 rounded-md font-semibold text-[15px] outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 hover:bg-pmfGraySecondary transition-all">
-                                        <span className="flex items-center">Mr</span>
+                                        <span className="flex items-center">Mr.</span>
                                         </label>
                                     </div>
                                     <div>

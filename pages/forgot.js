@@ -8,6 +8,7 @@ import Image from "next/image";
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
+import Link from 'next/link';
 import jwt_decode from "jwt-decode";
 
 
@@ -52,7 +53,11 @@ export default function Home() {
                   <input onChange={(e) => setFormData({ ...formData, email: e.target.value })} type="email" name="email" id="email" className="bg-indigo-50 border border-indigo-300 text-indigo-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-indigo-700 dark:border-indigo-600 dark:placeholder-indigo-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
                 </div>
                 <button type="submit" className="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit</button>
-               
+                <div class="flex flex-row items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M12 5l-7 7 7 7"></path></svg>
+                <Link href="/login" className="text-sm px-2 font-medium text-primary-600 hover:underline dark:text-primary-500">Back to login</Link>
+                </div>  
+
               </form>
             </div>
           </div>
