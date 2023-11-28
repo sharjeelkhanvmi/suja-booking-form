@@ -36,7 +36,7 @@ const Index = () => {
   useEffect(() => {
     handleUsersData();
     console.log("User ID From EDITUSERDATA State",editUserData._id);
-  }, [editUserData]);
+  }, []);
 
 
   const handleEdit = async (e) => {
