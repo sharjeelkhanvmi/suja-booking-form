@@ -16,12 +16,10 @@ const Index = () => {
     fname: "",
     lname: "",
     phone: "",
+    postalcode:"",
     _id: ""
   });
   
-
-
-
   const [Toggle, setToggle] = useState(false);
 
   const handleUsersData = async () => {
@@ -37,8 +35,8 @@ const Index = () => {
 
   useEffect(() => {
     handleUsersData();
-    console.log(editUserData._id);
-  }, []);
+    console.log("User ID From EDITUSERDATA State",editUserData._id);
+  }, [editUserData]);
 
 
   const handleEdit = async (e) => {
@@ -50,14 +48,14 @@ const Index = () => {
       setToggle(false);
     } catch (error) {
       console.error("Error While Editing User:", error);
-      toast.error("Error editing user data. Please try again.");
+      await toast.error("Error editing user data. Please try again.");
     }
   };
 
 
   const openModal = (user) => {
     setToggle(true);
-    setEditUserData({ _id: user._id, fname: user.fname, lname: user.lname, phone: user.phone });
+    setEditUserData({ _id: user._id, fname: user.fname, lname: user.lname, phone: user.phone,postalcode:user.postalcode });
   };
   const closeModal = () => {
     setToggle(false);
@@ -209,7 +207,7 @@ const Index = () => {
                           className="pt-[14px] pb-[16px] sm:text-[14px]"
                         >
                           <p className="text-sm font-semibold text-navy-700 dark:text-white">
-                            {data.user.role}
+                            {data.user.postalcode}
                           </p>
                         </td>
                         <td
@@ -346,20 +344,22 @@ const Index = () => {
     />
   </div>
  
-  <div className="w-full px-3 py-5">
+  <div className="w-full px-3 py-4">
     <label
       className="block  text-gray-900 text-sm font-bold mb-2"
-      htmlFor="grid-email"
+      htmlFor="grid-mobilenumber"
     >
-      Email
+      Postal Code
     </label>
     <input
       className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-      id="grid-email"
-      type="email"
+      id="grid-mobilenumber"
+      type="tel"
       placeholder=""
+      value={editUserData.postalcode}
+      onChange={(e) => setEditUserData({ ...editUserData, postalcode: e.target.value })}
     />
-  </div>
+     </div>
   <div className="w-full px-3 py-4">
     <label
       className="block  text-gray-900 text-sm font-bold mb-2"

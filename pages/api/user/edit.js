@@ -4,14 +4,15 @@ import User from "@/database/models/User";
 import bcrypt from "bcrypt";
 
 export default async (req, res) => {
-  let { fname, lname, phone, _id, password } = req.body;
-
+  let { fname, lname, phone, _id, password,postalcode } = req.body;
+console.log('BACKEND USER EDIT',_id)
   try {
     await connectionSuja();
     const user = await User.findById(_id);
     user.fname = fname;
     user.lname = lname;
     user.phone = phone;
+    user.postalcode = postalcode;
     // Check if the password is provided
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
