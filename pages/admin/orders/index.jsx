@@ -52,6 +52,7 @@ const Index = () => {
         handleLeadsData();
         closeModal();
         setFormData(null);
+        await toast.success("Lead Upadted")
         console.log("Lead Updated");
       } else {
         console.error("Error updating lead");
