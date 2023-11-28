@@ -19,6 +19,7 @@ import OldUserLoader from "@/pages/bookings/OldUserLoader";
 const index = () => {
 
    let formdata;
+   let step2_stringify;
    if (typeof localStorage !== 'undefined') {
       formdata = JSON.parse(localStorage.getItem("formData"));
    }
@@ -45,7 +46,6 @@ useEffect(() => {
    setInfo(formdata)
  },[])
 const step2 = (formdata) ? formdata.step2 : '';
-
 
 
 const variants = {
@@ -89,7 +89,14 @@ const courseOptions = Object.keys(course.course).map((key) => ({
 return (
 <div>
 <Formik
-   initialValues={step2 ? step2 : { dr_type: '', dr_course_type: '', dr_course_price: {} }}
+initialValues={
+   step2
+     ? {
+         ...step2,
+         dr_course_price: JSON.stringify(step2.dr_course_price || {}),
+       }
+     : { dr_type: '', dr_course_type: '', dr_course_price: {} }
+ }
    enableReinitialize={false}
    // validationSchema={validationSchema}
    onSubmit={async (values) => {
@@ -651,8 +658,8 @@ showCoursePricing(values.dr_course_type)
                 });
              }}
             />
-            <label htmlFor={option.id} className="w-full flex items-center text-left bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all text-center h-full">
-               <div className="w-full text-center">
+            <label htmlFor={option.id} className="w-full flex items-center text-center bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all h-full">
+               <div className="w-full">
                   <p className="font-bold text-2xl">{option.hour}</p>
                   <p className="font-semibold text-xs">{option.variant}</p>
                   <div className="display-block">£{option.full}</div>

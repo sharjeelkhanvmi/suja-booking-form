@@ -42,22 +42,25 @@ const Index = () => {
   const handleLeadsData = async () => {
     try {
       const response = await fetch("/api/leads/userLeads");
-      const responseData = await response.json();
-      if (responseData && Object.keys(responseData).length > 0) {
-        setLeadsData(responseData);
-        console.log("Leads Data in Orders", responseData);
-      } else {
-        console.log("Empty or invalid JSON response");
-      }
+      const responseData = await response.data;
+      console.log(response)
+      setLeadsData(responseData);
+      // if (responseData && Object.keys(responseData).length > 0) {
+      //   setLeadsData(responseData);
+      //   console.log("Leads Data in Orders", responseData);
+      // } else {
+      //   console.log("Empty or invalid JSON response");
+      // }
     } catch (error) {
       console.error(error, "Error While Fetching Leads Data In order");
     }
   };
-
+  handleLeadsData();
   useEffect(() => {
     handleLeadsData();
+    
   }, []);
-
+  console.log(leadsData)
   const handleDelete = async leadId => {
     console.log("Deleting lead with ID:", leadId);
     try {
@@ -265,7 +268,7 @@ const Index = () => {
                             name="weekly"
                           /> */}
                           <p className="text-sm font-bold text-gray-900 dark:text-white">
-                            {data.step4.first_name}
+                            {data.step4.firstName}
                           </p>
                         </div>
                       </td>
@@ -339,105 +342,121 @@ const Index = () => {
             </table>
           </div>
         </div>
-        
+        {viewLead &&
         <Modal
-          isOpen={SecondToggle}
-          onRequestClose={closeModal}
-          className="mx-auto p-10 bg-gray-50 w-[40%] rounded-3xl flex flex-col"
-        >
-          <h1 className="text-center text-4xl  text-gray-900 font-bold pb-3">
-           New Order: #125478965
-          </h1>
+            isOpen={SecondToggle}
+            onRequestClose={closeModal}
+            className="mx-auto bg-gray-50 w-[40%] rounded-3xl flex flex-col"
+          >
+            <div className="flex justify-between py-4 px-5 bg-red-400 rounded-t-xl pb-3">
+
+              <h4 className="text-center w-full text-2xl  text-dark font-semibold">
+                Order# {viewLead._id}
+              </h4>
+              {/* <span class="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
+            </div>
+            <div className="overflow-y-auto">
+
+            <div className="orderCustomerDetails p-7 pb-3">
+
+              <div className="flex justify-between items-center items-middle">
+                <div className="">
+                  <h3 className="text-xl font-bold mb-2">Customer Details</h3>
+                  <h4 className="font-semibold mb-3">Postal Code
+                    <span class="bg-teal-200 ms-3 py-1 px-3 font-semibold  text-xs rounded-full"> {viewLead.step1.postal_code}</span></h4>
+                </div>
+                <div className=""><span class="font-regular  text-sm text-end rounded-full font-semibold"> Transition Id: <br /><span className="font-normal">{viewLead.stripe.id}</span> </span></div>
+              </div>
+              <div className="grid grid-cols-2 mt-5">
+                <div>
+                  <h4 className="font-bold text-lg">Full Name: </h4>
+                  <span className="font-semibold">{viewLead.step4.title} {viewLead.step4.firstName}  {viewLead.step4.surname}</span>
+                  <h4 className="font-bold text-lg pt-3">Email: </h4>
+                  <span className="font-semibold">{viewLead.step4.email}</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg pt-3">Mobile Number: </h4>
+                  <span className="font-semibold text-sm">{viewLead.step4.phone_number}</span>
+                  <h4 className="font-bold text-lg pt-3">Course Speed: </h4>
+                  <span className="font-semibold text-sm">{viewLead.step5.intensiveCourse}</span>
+                </div>
+              </div>
 
 
-          
-          {viewLead && viewLead.step4 && 
-            <div className="justify-center gap-10 pb-5 pt-5">
-              <div className="lg:w-48 w-full block">
-                <p className="font-semibold border-b-2 border-gray-300 text-start text-lg divide-y pb-3 ms-5 text-navy-700 dark:text-white">
-                  PostalCode: {viewLead.step1.postalcode}
-                </p>
-              </div>
-              <div className="grid grid-cols-4 pt-[14px] pb-[16px] px-5">
-                <p className="font-regular border-b-2 border-gray-300 text-start text-sm py-5 text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    Driving:
-                  </span>{" "}
-                  {viewLead.step2.driving}
-                </p>
-                <p className="font-regular border-b-2 border-gray-300 text-start text-sm py-5 text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    Hours:
-                  </span>{" "}
-                  {viewLead.step2.hours}
-                </p>
-                <p className="font-regular border-b-2 border-gray-300 text-start text-sm py-5 text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Gear:
-                  </span>{" "}
-                  {viewLead.step2.gear}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Addons:{" "}
-                  </span>{" "}
-                  {viewLead.step3.addons}
-                </p>
-              
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Email:{" "}
-                  </span>{" "}
-                  {viewLead.step4.email}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Confirm Email:
-                  </span>{" "}
-                  {viewLead.step4.confirm_email}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    First Name:{" "}
-                  </span>{" "}
-                  {viewLead.step4.first_name}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block text-lg pb-1  font-semibold">
-                    Last Name:{" "}
-                  </span>{" "}
-                  {viewLead.step4.last_name}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1 text-lg font-semibold">
-                    Mobile Number:
-                  </span>{" "}
-                  {viewLead.step4.mobile_number}
-                </p>
-                <p className="text-sm py-5 border-b-2 border-gray-300 text-start font-regular text-navy-700 dark:text-white">
-                  <span className="block pb-1  text-lg font-semibold">
-                    {" "}Fast Course:
-                  </span>{" "}
-                  {viewLead.step5.fastcourse}
-                </p>
-                <button onClick={closeModal} className="close-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-              </div>
-            </div>}
-        </Modal>
+            </div>
+
+            <div class="order-details p-4 pb-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table class="w-full text-sm text-left border rtl:text-right">
+                <tbody>
+                  <tr className="border  bg-gray-200">
+                    <th scope="col" class="px-6 py-3 text-dark font-bold text-sm">
+                      Course Details
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-bold text-sm">
+                      Price
+                    </th>
+                  </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      <span class="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">Speedster Course</span>
+                      <span className="block mt-2 ms-1"> {Object.keys(viewLead.step2.dr_course_price).map((courseKey, index) => (
+                        <span key={index}>
+                          {viewLead.step2.dr_course_price[courseKey].value} {viewLead.step2.dr_course_price[courseKey].variant} - <span className="capitalize">{viewLead.step2.dr_type}</span> ({viewLead.step6.payment})
+                        </span>
+                      ))}</span>
+                    </td>
+                    <td class="px-6 py-4 font-semibold text-sm">
+                      {viewLead.step6.payment === 'Full' && (
+                        <div>
+                          {Object.keys(viewLead.step2.dr_course_price).map((courseKey, index) => (
+                            <span key={index}>
+                              £{viewLead.step2.dr_course_price[courseKey].full}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                    </td>
+                  </tr>
+                  {viewLead.step3.fast_track_practical != "" && (
+                    <tr class="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <span class="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">Add-ons</span>
+                        <span className="block mt-2 ms-1">Practical Test</span>
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-sm">
+                        £{viewLead.step3.fast_track_practical}
+                      </td>
+                    </tr>
+                  )}
+                  {viewLead.step3.fast_track_theory != "" && (
+                    <tr class="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <span class="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">Add-ons</span>
+                        <span className="block mt-2 ms-1">Theory Test</span>
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-sm">
+                        £{viewLead.step3.fast_track_theory}
+                      </td>
+                    </tr>
+                  )}
+                  <tr class="border-b  p-3 bg-gray-200 dark:border-gray-700">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                      <span className="block mt-2 ms-1">Total</span>
+                    </td>
+                    <td class="px-6 py-4 font-semibold text-sm">
+                      £{viewLead.step6.amount}
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+            </div>
+          </Modal>
+          }
       </div>
     </Layout>
   );

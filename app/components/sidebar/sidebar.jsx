@@ -4,6 +4,7 @@ import Logo from "@/public/assets/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
+import {auto, manual} from '@/database/models/drivingCoursesData';
 // import Cookies from "js-cookie";
 // let formdata = Cookies.get('formData');
 // const localdata = formdata ? JSON.parse(formdata) : { };
@@ -50,16 +51,26 @@ const router = useRouter();
   let fast_track_theory;
   let fast_track_practical;
   let pass_protect;
+  let bg_color;
 
   // console.log(data)
   if(data && data.step2 && data.step2.dr_course_price != undefined){
     drType = capitalize(data.step2.dr_type);
-    course_name = data.step2.dr_course_type;
+    //course_name = data.step2.dr_course_type;
     coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
     hours_value = coursePriceObj.value;
     variant = coursePriceObj.variant;
     full = parseInt(coursePriceObj.full);
     deposit = parseInt(coursePriceObj.deposit);
+    if(data.step2.dr_type == 'automatic'){
+      course_name = auto[data.step2.dr_course_type]['name'];
+      bg_color = auto[data.step2.dr_course_type]['bg_color'];
+    }
+    else{
+      course_name = manual[data.step2.dr_course_type]['name'];
+      bg_color = manual[data.step2.dr_course_type]['bg_color'];
+    }
+    console.log(course_name)    
   }
 
  
@@ -70,7 +81,7 @@ const router = useRouter();
   
   total = full + fast_track_theory + fast_track_practical + pass_protect;
   // console.log(variant)
-  // console.log(data)
+
 
 
   return (
@@ -80,20 +91,22 @@ const router = useRouter();
       animate={{ opacity: 1, marginRight: 0 }}
       exit={{ opacity: 1, marginRight: -360 }}
       transition={{ delay: 0.1, duration: 0.4 }}
-      className="fixed pt-28 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto h-[calc(100vh-0px)] p-6"
+      className="fixed pt-8 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto h-[calc(100vh-0px)] p-6"
     >
 
     {data && data.step2 && data.step2.dr_course_price ? (
         
         <div className="flex flex-col w-full h-full">
-        <div className="space-x-4 text-center">
-          <Image alt="Suja Logo" width={70} height={70} src={Logo} className="mb-4 w-auto h-auto" />
-          <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>
+        <div className="text-center rounded-full self-center">
+          <Image alt="Suja Logo" width={70} height={70} src={Logo} className="w-auto h-auto" />               
         </div>
-        <div className="mt-5">
-          <h4 className="text-white text-opacity-50 font-bold uppercase text-[13px] tracking-wide">
-            Course
-          </h4>
+        <div className="text-center mt-5">
+          <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>  
+        </div>
+        <div className="mt-8">        
+          
+          <div className={`w-max py-1 px-3 font-semibold  text-xs rounded-full text-gray-900 ${bg_color}`}>{course_name}</div>            
+          
           <div className="mt-2 w-full font-semibold flex">
             <span className="w-full">{ hours_value +' '+ variant +' - '+ drType}</span>
             <div className="text-right">
