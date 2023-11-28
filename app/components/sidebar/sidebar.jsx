@@ -96,11 +96,11 @@ const router = useRouter();
 
     {data && data.step2 && data.step2.dr_course_price ? (
         
-        <div className="flex flex-col w-full h-full">
-        <div className="text-center rounded-full self-center">
+        <div className="flex flex-col justify-center w-full h-full">
+        {/* <div className="text-center rounded-full self-center">
           <Image alt="Suja Logo" width={70} height={70} src={Logo} className="w-auto h-auto" />               
-        </div>
-        <div className="text-center mt-5">
+        </div> */}
+        <div className="text-left mt-5">
           <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>  
         </div>
         <div className="mt-8">        
