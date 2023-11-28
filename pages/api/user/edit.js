@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 import connectionSuja from "@/database/dbconstr";
 import User from "@/database/models/User";
-import bcrypt from "bcrypt";
+import bcrypt, { genSalt } from "bcrypt";
 
 export default async (req, res) => {
-  let { fname, lname, phone, _id, password,postalcode } = req.body;
-console.log('BACKEND USER EDIT',_id)
+  let { fname, lname, phone, _id, postalcode } = req.body;
   try {
     await connectionSuja();
     const user = await User.findById(_id);
@@ -13,12 +12,6 @@ console.log('BACKEND USER EDIT',_id)
     user.lname = lname;
     user.phone = phone;
     user.postalcode = postalcode;
-    // Check if the password is provided
-    if (password) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      // Update the hashed password
-      user.password = hashedPassword;
-    }
     await user.save();
     res
       .status(200)
