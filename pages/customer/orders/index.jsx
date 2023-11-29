@@ -52,7 +52,7 @@ const Index = () => {
         handleLeadsData();
         closeModal();
         setFormData(null);
-        await toast.success("Lead Upadted")
+        await toast.success("Lead Updated")
         // console.log('')
         
       } else {
@@ -297,14 +297,14 @@ const Index = () => {
                         role="cell"
                         className="flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
                       >
-                        <span className="text-sm font-bold text-red-700 dark:text-white">
+                        {/* <span className="text-sm font-bold text-red-700 dark:text-white">
                           <AiFillDelete
                             className="text-2xl cursor-pointer"
                             onClick={() => {
                               handleDelete(data._id);
                             }}
                           />
-                        </span>
+                        </span> */}
                         <span className="text-sm font-bold text-gray-800 dark:text-white">
                           <AiFillEdit
                             className="text-2xl cursor-pointer"
