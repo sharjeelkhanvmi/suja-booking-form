@@ -305,12 +305,12 @@ const Index = () => {
                             }}
                           />
                         </span> */}
-                        <span className="text-sm font-bold text-gray-800 dark:text-white">
+                        {/* <span className="text-sm font-bold text-gray-800 dark:text-white">
                           <AiFillEdit
                             className="text-2xl cursor-pointer"
                             onClick={() => handleEdit(data)}
                           />
-                        </span>
+                        </span> */}
                         <span className="text-sm font-bold text-gray-800 dark:text-white">
                           <IoEye
                             className="text-2xl cursor-pointer"
