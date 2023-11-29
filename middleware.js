@@ -30,6 +30,10 @@ export function middleware(request) {
     return NextResponse.redirect(new URL("/bookings", request.url));
   }
 
+  if(request.nextUrl.pathname == "/bookings/course"){
+    console.log('donesdasda')
+  }
+
   if (request.nextUrl.pathname == "/bookings") {
     const userCookie = request.cookies.get("formData")
     //console.log(userCookie)
@@ -47,7 +51,6 @@ export function middleware(request) {
     // let data = formdata.value
     // let redirect= data.step;
     // console.log(formdata.value.firstName);
-    // return NextResponse.redirect(new URL(redirect,request.url))
-    
+    // return NextResponse.redirect(new URL(redirect,request.url))    
 }
 }

@@ -18,15 +18,18 @@ import OldUserLoader from "@/pages/bookings/OldUserLoader";
 const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {ssr: false});
 const stripePromise = loadStripe("pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf")
 const Payment = ({ info }) => {
+  const router = useRouter();
   const [changedData, setChangedData] = useState();
-  useEffect(
-    () => {
+  useEffect(() => {
+    if (info == null) {
+      router.replace('/bookings');
+    }
       setChangedData(info);
-      console.log(info);
+      // console.log(info);
     },
     [info]
   );
-  const router = useRouter();
+  
   let drType;
   let course_name;
   let coursePriceObj;

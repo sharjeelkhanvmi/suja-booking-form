@@ -28,12 +28,15 @@ const tests = () => {
     formdata = '';
   }
   useEffect(() => {
+    if (formdata == null) {
+      router.replace('/bookings');
+    }
     setInfo(formdata)
   }, [])
   const router = useRouter();
   const [changedData, setChangedData] = useState(formdata);
   const [checkboxValue, setCheckboxValue] = useState(test);
-  const step3 = formdata.step3;
+  const step3 = formdata ? formdata.step3 : '';
   // const handleChange = (e) => {
   //   setCheckboxValue(e.target.value);
   // };
@@ -66,7 +69,6 @@ const tests = () => {
           //  Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
           localStorage.setItem("formData", JSON.stringify(formDatas));
           router.push("/bookings/student");
-           console.log(formDatas)
         }}
       >
         {({ handleChange, setFieldValue, values }) => (

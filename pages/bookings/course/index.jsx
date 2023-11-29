@@ -14,12 +14,14 @@ import {auto, manual} from '@/database/models/drivingCoursesData';
 // let formdata = Cookies.get('formData');
 // const data = formdata ? JSON.parse(formdata) : {  };
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
+import { Redirect } from 'react-router-dom';
 
 
 const index = () => {
 
+   const router = useRouter();
+
    let formdata;
-   let step2_stringify;
    if (typeof localStorage !== 'undefined') {
       formdata = JSON.parse(localStorage.getItem("formData"));
    }
@@ -33,7 +35,7 @@ const index = () => {
    });
    
 
-const router = useRouter();
+
 const [isOpen, setIsOpen] = useState(false)
 const [isHintOpen_1, setHintOpen_1] = useState(false)
 const [isHintOpen_2, setHintOpen_2] = useState(false)
@@ -43,6 +45,9 @@ const [course, setCourse] = useState(driving.regular)
 const [changedData, setChangedData] = useState(formdata);
 const [info,setInfo] = useState();
 useEffect(() => {
+   if (formdata == null) {
+      router.replace('/bookings');
+    }
    setInfo(formdata)
  },[])
 const step2 = (formdata) ? formdata.step2 : '';

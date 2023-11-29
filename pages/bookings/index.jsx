@@ -34,7 +34,7 @@ const validationSchema = Yup.object().shape({
 });
   const router = useRouter();
   const step1 = formdata ? formdata.step1 : ''
-  console.log(step1)
+  // console.log(step1)
   return (
     <div>
       <Formik
