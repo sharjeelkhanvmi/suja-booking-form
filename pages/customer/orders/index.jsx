@@ -362,7 +362,7 @@ const Index = () => {
                 </label>
                 <input
                   className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                  value={formData?.step6.payment}
+                  value={formData?.step6?.payment}
                   type="text"
                   onChange={(e) =>
                     setFormData({

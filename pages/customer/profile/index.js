@@ -52,8 +52,7 @@ const Index = () => {
         toast.error("Failed to update data");
       }
     } catch (error) {
-      console.error("Error updating Data:", error);
-      toast.error("Error updating Data");
+      
     }
   };
 
@@ -216,10 +215,11 @@ const Index = () => {
               class="rounded-full mt-5 py-3  px-8 text-lg uppercase  font-semibold text-white shadow-sm
      bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Udpate Passowrd
+              Udpate Password
             </button>
           </div>
         </form>
+        <ToastContainer></ToastContainer>
       </div>{" "}
       {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
     </Layout>
