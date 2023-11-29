@@ -295,7 +295,7 @@ const Index = () => {
                       </td>
                       <td
                         role="cell"
-                        className="flex flex-1 justify-center pt-[14px] pb-[16px] sm:text-[14px] w-1/6 mx-auto "
+                        className="flex justify-end pb-[16px] pt-[14px] sm:text-[14px] mr-3 "
                       >
                         {/* <span className="text-sm font-bold text-red-700 dark:text-white">
                           <AiFillDelete
