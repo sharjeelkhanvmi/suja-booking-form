@@ -489,7 +489,7 @@ const Index = () => {
                   <div className="">
                     <span class="font-regular  text-sm text-end rounded-full font-semibold">
                       {" "}
-                      Transition Id: <br />
+                      Transaction ID: <br />
                       <span className="font-normal">
                         {viewLead.stripe.id}
                       </span>{" "}
