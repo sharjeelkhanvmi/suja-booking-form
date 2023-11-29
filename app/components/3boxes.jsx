@@ -35,51 +35,25 @@ export default function ThreeBoxes() {
           id="toggleButton1"
         >
           <div className="p-3 mx-3 bg-gray-200 opacity-1 transition-all rounded-xl">
-            <svg
-              width="19"
-              height="19"
-              viewBox="0 0 26 26"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.08499 12.9941H15.456M16.275 9.39006C16.275 8.06406 15.22 6.98706 13.92 6.98706C12.619 6.98706 11.565 8.06406 11.565 9.39006V14.7961C11.565 16.7861 11.161 19.0001 9.20999 19.0001H16.275"
-                stroke="currentColor"
-                strokeWidth="2"
-              ></path>
-              <path
-                d="M13 1C19.627 1 25 6.373 25 13C25 19.627 19.627 25 13 25M1 4.401V8.401H5"
-                stroke="currentColor"
-                strokeWidth="2"
-              ></path>
-              <path
-                d="M23.979 8.167C22.119 3.949 17.907 1 12.999 1C8.094 1 3.882 3.949 2.021 8.167M2.021 17.834C3.881 22.052 8.093 25 13.001 25C17.906 25 22.118 22.05 23.979 17.833"
-                stroke="currentColor"
-                strokeWidth="2"
-              ></path>
-              <path
-                d="M13 1C19.627 1 25 6.373 25 13C25 19.627 19.627 25 13 25C6.373 25 1 19.627 1 13"
-                stroke="currentColor"
-                strokeWidth="2"
-              ></path>
-            </svg>
+          <svg class="w-8 h-8 text-black-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+</svg>
+
           </div>
-          <div className="mx-4">
-            <p>100% Money Back Guarantee</p>
-            
+          <div className="mx-4 mt-2">
+            <p>100% Money Back Guarantee</p>           
               <motion.p
                 className="overflow-y-hidden text-secondary leading-snug text-opacity-70 font-normal text-[15px] mt-2"
                 id="detail-paragraph"
                 animate={openState["button1"] ? "open" : "closed"}
                 variants={variants}
                 transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}
-              >
+                >
                 We're certain that we can help you pass fast. You'll get all
                 your money back if we can't fast-track your test within 30 days
                 of booking or connect you with an instructor in time for your
                 course.
-              </motion.p>
-            
+              </motion.p>  
           </div>
         </button>
         <button
@@ -90,23 +64,13 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer bg-gray-200 hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              width="19"
-              height="19"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-              ></path>
-            </svg>{" "}
+          <svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.6 7.6L12 15.2l-3.6-3.6M8 12h8"/>
+</svg>
+
+{" "}
           </div>
-          <div className="mx-4">
+          <div className="mx-4 mt-2">
             <p>Learn from the best</p>
               <motion.p
               className="overflow-y-hidden text-secondary leading-snug text-opacity-70 font-normal text-[15px] mt-2"
@@ -130,23 +94,13 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              width="19"
-              height="19"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-              ></path>
-            </svg>{" "}
+<svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM12 2v4m0 16v-4m6-10h-4m-2 0H8m2 0v6h8v-6z"/>
+</svg>
+
+{" "}
           </div>
-          <div className="mx-4">
+          <div className="mx-4 mt-2">
             <p>Only £250 Deposit</p>
               <motion.p
                 className="overflow-y-hidden text-secondary leading-snug text-opacity-70 font-normal text-[15px] mt-2"
@@ -170,23 +124,15 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              width="19"
-              height="19"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-              ></path>
-            </svg>{" "}
+<svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6zm-1 9H8v3H7v2h3v-2H9v-3zm6 0h-2v3h-1v2h3v-2h-1v-3z"/>
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-1v-2l-4 1v2zM13 19l4 1v-2l-4-1v2z"/>
+</svg>
+
+
+         {" "}
           </div>
-          <div className="mx-4">
+          <div className="mx-4 mt-2">
             <p>Not your average driving course</p>
               <motion.p
                 className="overflow-y-hidden text-secondary leading-snug text-opacity-70 font-normal text-[15px] mt-2"
@@ -210,21 +156,10 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              width="19"
-              height="19"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-              ></path>
-            </svg>{" "}
+          <svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 1h16c1.104 0 2 .896 2 2v18c0 1.104-.896 2-2 2H4c-1.104 0-2-.896-2-2V3c0-1.104.896-2 2-2zm7 16v2m0 0v2m0-2h3m-3 0h3m-4-3v6"/>
+</svg>
+   {" "}
           </div>
           <div className="mx-4">
             <p>Flexible payment options</p>
@@ -250,21 +185,14 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              width="19"
-              height="19"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-              ></path>
-            </svg>{" "}
+          <svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <circle cx="12" cy="12" r="10" stroke-width="2" />
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 16v-4m0-4h.01" />
+</svg>
+
+
+          
+          {" "}
           </div>
           <div className="mx-4">
             <p>Support at every step </p>

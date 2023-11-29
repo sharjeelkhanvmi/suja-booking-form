@@ -149,7 +149,7 @@ const Index = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold tracking-wide text-gray-800">
-                      NAME
+                      Name
                     </div>
                   </th>
                   <th
@@ -215,7 +215,7 @@ const Index = () => {
                     className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-end text-sm font-bold  uppercase  text-gray-800">
+                    <div className="text-end text-sm font-bold  text-gray-800">
                       Actions
                     </div>
                   </th>

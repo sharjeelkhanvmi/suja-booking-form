@@ -8,6 +8,7 @@ const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr:
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
+import { motion } from "framer-motion";
 // let formdata = Cookies.get('formData');
 // const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
 const validationSchema = Yup.object().shape({
@@ -28,8 +29,15 @@ const availablity = () => {
     }, [])
 
 const router = useRouter();
+const [isHintOpen_1, setHintOpen_1] = useState(false)
 const [changedData, setChangedData] = useState(formdata);
 const step5 = formdata.step5
+
+const variants = {
+open: { opacity: 1, height: 'auto', position: 'relative', 'z-index': 1  },
+closed: { opacity: 0, height: 0, position: 'relative', 'z-index': -1 },
+}
+
 return (
 <div>
     <Formik
@@ -61,7 +69,7 @@ return (
     <div className="w-full mb-5 pr-4">
         <div className="flex justify-between items-center mb-5 gap-x-5">
             <h1 className="text-[21px] leading-snug font-semibold">How fast do you want your course?</h1>
-            <div className="cursor-pointer">
+            <div className="cursor-pointer" onClick={(e) => setHintOpen_1(isHintOpen_1 => !isHintOpen_1)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
@@ -72,7 +80,13 @@ return (
             </div>
         </div>
     </div>
-    <div className="overflow-y-hidden">
+
+    <motion.div
+      animate={isHintOpen_1 ? "open" : "closed"}
+      variants={variants}
+      transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}
+      className="overflow-y-hidden"
+      >
         <div className="mb-8 p-5 bg-white w-full rounded-lg border-2 border-secondary">
             <p className="text-secondary leading-snug text-opacity-70 font-regular text-[15px] ">
                 Course intensity is how fast you want to learn. You can do an intensive course with several lessons in a week, or take things 
@@ -80,7 +94,8 @@ return (
                 during the day for lessons.
             </p>
         </div>
-    </div>
+    </motion.div>
+
     <div className="mb-10">
         <div>            
             <div className="">

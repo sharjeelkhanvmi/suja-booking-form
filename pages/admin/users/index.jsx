@@ -119,8 +119,8 @@ const Index = () => {
                     className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold uppercase  text-gray-800">
-                      NAME
+                    <div className="text-sm font-bold  text-gray-800">
+                      Name
                     </div>
                   </th>
                   <th
@@ -130,7 +130,7 @@ const Index = () => {
                     className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold uppercase   text-gray-800">
+                    <div className="text-sm font-bold text-gray-800">
                       Email
                     </div>
                   </th>
@@ -141,7 +141,7 @@ const Index = () => {
                     className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold uppercase  text-gray-800">
+                    <div className="text-sm font-bold  text-gray-800">
                       Postal Code
                     </div>
                   </th>
@@ -152,7 +152,7 @@ const Index = () => {
                     className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold  uppercase  text-gray-800">
+                    <div className="text-sm font-bold  text-gray-800">
                       Mobile
                     </div>
                   </th>
@@ -163,7 +163,7 @@ const Index = () => {
                     className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-end text-sm font-bold  uppercase  text-gray-800">
+                    <div className="text-end text-sm font-bold  text-gray-800">
                       Action
                     </div>
                   </th>
@@ -175,8 +175,7 @@ const Index = () => {
                     <>
                       <tr role="row">
                         <td> <input
-                          type="checkbox"
-                          
+                          type="checkbox"                          
                           className="defaultCheckbox customerCheck relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
                       checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
                           name="weekly"
