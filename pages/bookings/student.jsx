@@ -59,12 +59,15 @@ const student = () => {
       formdata = '';
     }
     useEffect(() => {
+    if (formdata == null) {
+        router.replace('/bookings');
+    }
       setInfo(formdata)
     }, [])
 
 const router = useRouter();
 const [changedData, setChangedData] = useState(formdata);
-const step4 = formdata.step4
+const step4 = formdata ? formdata.step4 : '';
 return (
 <div>
     <Formik

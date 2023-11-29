@@ -1,11 +1,20 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Formnav from '@/app/components/Formnav';
 import Footnote from '@/app/components/Footnote';
 
 const thankyou = () => {
+  let formdata;
   const router = useRouter();
+  useEffect(() => {    
+    // if (typeof localStorage !== 'undefined') {
+    formdata = JSON.parse(localStorage.getItem("formData"));
+    
+    if (formdata == null || formdata == undefined || formdata == '') {
+      router.replace('/bookings');
+    }
+  }, [])
   return (
     <div>
       <Formnav />

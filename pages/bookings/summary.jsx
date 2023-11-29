@@ -15,6 +15,10 @@ const ThankYou = ({ info }) => {
   const router = useRouter();
   const [changedData, setChangedData] = useState();
   useEffect(() => {
+    console.log(info)
+    if (info == null) {
+      router.replace('/bookings');
+    }
     setChangedData(info)
   }, [info])
 

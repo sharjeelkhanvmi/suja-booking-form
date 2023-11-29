@@ -25,13 +25,16 @@ const availablity = () => {
       formdata = '';
     }
     useEffect(() => {
+        if (formdata == null) {
+            router.replace('/bookings');
+        }
       setInfo(formdata)
     }, [])
 
 const router = useRouter();
 const [isHintOpen_1, setHintOpen_1] = useState(false)
 const [changedData, setChangedData] = useState(formdata);
-const step5 = formdata.step5
+const step5 = formdata ? formdata.step5 : '';
 
 const variants = {
 open: { opacity: 1, height: 'auto', position: 'relative', 'z-index': 1  },
