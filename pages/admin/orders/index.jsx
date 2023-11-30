@@ -52,7 +52,7 @@ const Index = () => {
         handleLeadsData();
         closeModal();
         setFormData(null);
-        await toast.success("Lead Upadted")
+        await toast.success("Lead Updated")
         
       } else {
         console.error("Error updating lead");
@@ -487,7 +487,7 @@ const Index = () => {
                     </h4>
                   </div>
                   <div className="">
-                    <span class="font-regular  text-sm text-end rounded-full font-semibold">
+                    <span class="font-regular  text-sm text-end rounded-full font-bold">
                       {" "}
                       Transaction ID: <br />
                       <span className="font-normal">

@@ -540,9 +540,10 @@ const Index = () => {
                         scope="row"
                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <span class="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">
-                          Speedster Course
+                        <span class="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full capitalize">
+                          {viewLead.step2.dr_course_type}
                         </span>
+                       
                         {viewLead.step2.dr_course_price ? (
                           <span className="block mt-2 ms-1">
                             {" "}
@@ -567,26 +568,29 @@ const Index = () => {
                             )}
                           </span>
                         ) : (
-                          <span>No course price available</span>
+                          <span className="text-black">No course price available</span>
                         )}
                       </td>
                       <td class="px-6 py-4 font-semibold text-sm">
-                        {viewLead.step6.payment === "Full" && (
+                      {console.log("viewLead", viewLead.step2.dr_course_price)}
+                        {viewLead.step6.payment && (
                           <div>
                             {Object.keys(viewLead.step2.dr_course_price).map(
                               (courseKey, index) => (
                                 <span key={index}>
                                   £
                                   {
-                                    viewLead.step2.dr_course_price[courseKey]
-                                      .full
-                                  }
+                                      viewLead.step2.dr_course_price[courseKey].full    
+                                  } 
+                                  
                                 </span>
                               )
                             )}
                           </div>
                         )}
+                        
                       </td>
+                     
                     </tr>
                     {viewLead.step3.fast_track_practical != "" && (
                       <tr class="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
@@ -602,7 +606,7 @@ const Index = () => {
                           </span>
                         </td>
                         <td class="px-6 py-4 font-semibold text-sm">
-                          £{viewLead.step3.fast_track_practical}
+                          £{viewLead.step3.fast_track_practical} 
                         </td>
                       </tr>
                     )}
