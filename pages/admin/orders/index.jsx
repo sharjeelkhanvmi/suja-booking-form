@@ -487,7 +487,7 @@ const Index = () => {
                     </h4>
                   </div>
                   <div className="">
-                    <span class="font-regular  text-sm text-end rounded-full font-semibold">
+                    <span class="font-regular  text-sm text-end rounded-full font-bold">
                       {" "}
                       Transaction ID: <br />
                       <span className="font-normal">
