@@ -8,6 +8,7 @@ import ThreeBoxes from "@/app/components/3boxes";
 import Footnote from "@/app/components/Footnote";
 import Formnav from "@/app/components/Formnav";
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
+import {auto, manual} from '@/database/models/drivingCoursesData';
 
 
 
@@ -16,11 +17,40 @@ const index = () => {
 
 const [info,setInfo] = useState();
 let formdata;
+let urlData;
+let coursePkg;
+
+if (typeof window !== 'undefined') {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const dr_type = urlParams.get('dr_type');
+  const dr_course_type = urlParams.get('dr_course_name');
+  const dr_course_price = urlParams.get('dr_pkg_hours');
+  if(dr_type && dr_course_type && dr_course_price){
+  if(dr_type == 'auto'){
+    coursePkg = auto[dr_course_type]['course'][dr_course_price]
+  }
+  else{
+    coursePkg = manual[dr_course_type]['course'][dr_course_price]
+  }
+  urlData = {
+    'step2' : {
+      "dr_type": dr_type,
+      "dr_course_type": dr_course_type,
+      "dr_course_price": {}
+    }
+  }
+  urlData['step2']['dr_course_price'][dr_course_price] = coursePkg;
+  localStorage.setItem("formData", JSON.stringify(urlData));
+}
+  // console.log(dr_type, dr_course_type, dr_course_price);
+  // console.log(urlData);
 if (typeof localStorage !== 'undefined') {
   formdata = JSON.parse(localStorage.getItem("formData"));
 }
 else{
   formdata = '';
+}
 }
 
 useEffect(() => {
