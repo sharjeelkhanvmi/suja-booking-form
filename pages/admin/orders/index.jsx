@@ -219,7 +219,7 @@ const Index = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold tracking-wide text-gray-800">
-                      Date Time
+                      Date / Time
                     </div>
                     
                   </th>
@@ -259,7 +259,7 @@ const Index = () => {
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[18%]"
                       >
                         <div className="flex items-center">
                           <p className="text-sm font-bold text-navy-700 dark:text-white">
@@ -285,7 +285,7 @@ const Index = () => {
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] "
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {data.step1.postal_code}
@@ -293,23 +293,26 @@ const Index = () => {
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[18%]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          <div>
+                          <div className="flex gap-2">
                             {Object.keys(data.step2.dr_course_price).map(
                               (courseKey, index) => (
                                 <div key={index}>
                                   {data.step2.dr_course_price[courseKey].value}
+                                 
                                 </div>
+                                
                               )
-                            )}
+                            )} 
+                            <div>/ {data.step5.intensiveCourse}</div>
                           </div>
                         </p>
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[14%]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                         {format(new Date(data.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
