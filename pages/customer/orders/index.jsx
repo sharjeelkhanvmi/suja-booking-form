@@ -258,7 +258,7 @@ const Index = () => {
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[16%]"
                       >
                         <div className="flex items-center">
                           <p className="text-sm font-bold text-navy-700 dark:text-white">
@@ -276,7 +276,7 @@ const Index = () => {
                       </td> */}
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[14%]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {data.step4.phone_number}
@@ -284,7 +284,7 @@ const Index = () => {
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[15%]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {data.step1.postal_code}
@@ -292,10 +292,10 @@ const Index = () => {
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[15%]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          <div>
+                          <div className="flex gap-2">
                             {Object.keys(data.step2.dr_course_price).map(
                               (courseKey, index) => (
                                 <div key={index}>
@@ -303,12 +303,13 @@ const Index = () => {
                                 </div>
                               )
                             )}
+                            <div>/ {data.step5.intensiveCourse}</div>
                           </div>
                         </p>
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[14%]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                         {format(new Date(data.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
