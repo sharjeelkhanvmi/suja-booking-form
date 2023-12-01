@@ -63,21 +63,22 @@ export const login_user = async formData => {
 };
 
 
-// export const forgotPassword = async () => {
-//   try {
-//     const res = await fetch("/api/user");
-//     if (!res.ok) {
-//       throw new Error(`Failed to fetch user data. Status: ${res.status}`);
-//     }
-//     const contentType = res.headers.get("content-type");
-//     if (!contentType || !contentType.includes("application/json")) {
-//       throw new Error("Invalid response type. Expected JSON.");
-//     }
-//     const data = await res.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error("Error fetching user data:", error.message);
-//   }
-// };
+export const forgotPassword = async () => {
+  return false;
+  // try {
+  //   const res = await fetch("/api/user");
+  //   if (!res.ok) {
+  //     throw new Error(`Failed to fetch user data. Status: ${res.status}`);
+  //   }
+  //   const contentType = res.headers.get("content-type");
+  //   if (!contentType || !contentType.includes("application/json")) {
+  //     throw new Error("Invalid response type. Expected JSON.");
+  //   }
+  //   const data = await res.json();
+  //   console.log(data);
+  // } catch (error) {
+  //   console.error("Error fetching user data:", error.message);
+  // }
+};
 
 

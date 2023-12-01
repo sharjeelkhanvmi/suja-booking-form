@@ -1,4 +1,4 @@
-import { connectionSuja } from "@/database/dbconstr";
+import connectionSuja from "@/database/dbconstr";
 import { leadData } from "@/database/models/schema";
 import mongoose from "mongoose";
 
