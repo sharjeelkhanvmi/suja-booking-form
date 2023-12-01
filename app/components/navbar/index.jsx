@@ -216,17 +216,17 @@ const Navbar = props => {
               </div>
               <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
               <div className="flex flex-col p-4">
-                <Link
-                  href="/admin/profile"
+                { <Link
+                   href={Router.pathname.startsWith('/admin') ? '/admin/profile' : '/customer/profile'}
                   className="text-sm text-gray-800 dark:text-white hover:dark:text-white">
                   Profile
-                </Link>
-                <a
-                  href=" "
+                </Link>}
+                <Link
+                  href={Router.pathname.startsWith('/admin') ? '/admin/orders' : '/customer/orders'}
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
-                  Orders
-                </a>
+                  Order
+                </Link>
                 <a
                   href="#"
                   onClick={logout}
