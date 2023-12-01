@@ -9,8 +9,7 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { format } from "date-fns";
-
+import moment from 'moment';
 
 const Index = () => {
   const [Toggle, setToggle] = useState(false);
@@ -312,7 +311,7 @@ const Index = () => {
                         className="pt-[14px] pb-[16px] sm:text-[14px] w-[14%]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                        {format(new Date(data.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
+                        {moment(data.createdAt).format('YYYY-MM-DD HH:mm:ss A')}
                         </p>
                       </td>
                       <td
@@ -513,11 +512,11 @@ const Index = () => {
                       {" "}
                       Date Time <br />
                       <span className="font-normal">
-                      {format(new Date(viewLead.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
+                      {moment(viewLead.createdAt).format('YYYY-MM-DD HH:mm:ss A')}
                       </span>{" "}
                     </span>
                   </div>
-                </div>
+                </div>  
                 <div className="grid grid-cols-2 mt-5">
                   <div>
                     <h4 className="font-bold text-lg">Full Name: </h4>
