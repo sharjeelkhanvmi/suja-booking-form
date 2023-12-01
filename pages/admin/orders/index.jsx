@@ -502,7 +502,7 @@ const Index = () => {
             </div>
             <div className="overflow-y-auto">
               <div className="orderCustomerDetails p-7 pb-3">
-                <div className="flex justify-between items-center items-middle">
+                <div className="flex justify-between ">
                   <div className="">
                     <h3 className="text-xl font-bold mb-2">Customer Details</h3>
                     <h4 className="font-semibold mb-3">
@@ -513,37 +513,65 @@ const Index = () => {
                       </span>
                     </h4>
                   </div>
-                  <div className="">
-                    <span class="font-regular  text-sm text-end rounded-full font-semibold">
+                  <div className="text-start">
+                    <span class="font-bold text-lg text-start ">
                       {" "}
                       Date Time <br />
-                      <span className="font-normal">
+                      <span className="font-normal text-start">
                       {format(new Date(viewLead.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
                       </span>{" "}
                     </span>
                   </div>
+                   {/*  <div className="">
+                  <span class="font-regular  text-sm text-end rounded-full font-semibold">
+                      {" "}
+                      Transaction ID <br />
+                      <span className="font-normal">
+                      {viewLead.stripe.id}
+                      </span>
+                    </span>
+                  </div> */}
                 </div>
-                <div className="grid grid-cols-2 mt-5">
+                <div>
+                 
+                  <div className="grid grid-cols-3 mt-5">
                   <div>
                     <h4 className="font-bold text-lg">Full Name: </h4>
                     <span className="font-semibold">
                       {viewLead.step4.title} {viewLead.step4.firstName}{" "}
                       {viewLead.step4.surname}
                     </span>
-                    <h4 className="font-bold text-lg pt-3">Email: </h4>
+                    {/* <h4 className="font-bold text-lg pt-3">Email: </h4>
+                    <span className="font-semibold">
+                      {viewLead.step4.email}
+                    </span> */}
+                  </div>
+                  <div>
+                  <h4 className="font-bold text-lg">Email: </h4>
                     <span className="font-semibold">
                       {viewLead.step4.email}
                     </span>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-lg pt-3">Mobile Number: </h4>
+                    <div>
+                    <h4 className="font-bold text-lg">Mobile Number: </h4>
                     <span className="font-semibold text-sm">
                       {viewLead.step4.phone_number}
                     </span>
-                    <h4 className="font-bold text-lg pt-3">Course Speed: </h4>
+                    </div>
+                    <div>
+                    <h4 className="font-bold text-lg pt-5">Course Speed: </h4>
                     <span className="font-semibold text-sm">
                       {viewLead.step5.intensiveCourse}
                     </span>
+                    </div>
+                    <div>
+                    <span class="font-regular  text-sm text-start rounded-full font-semibold">
+                     <h4 className="font-bold text-lg pt-5"> Transaction ID</h4>
+                      <span className="font-normal">
+                      {viewLead.stripe.id}
+                      </span>
+                    </span>
+                    </div>
                   </div>
                 </div>
               </div>

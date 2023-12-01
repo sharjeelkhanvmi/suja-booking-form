@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Formnav from '@/app/components/Formnav';
 import Footnote from '@/app/components/Footnote';
+import { FaCheckCircle } from "react-icons/fa";
+
 
 const thankyou = () => {
   let formdata;
@@ -20,10 +22,11 @@ const thankyou = () => {
       <Formnav />
       <div className="mt-[0px] flex justify-center items-top px-7 py-8">
         <div className='w-full lg:max-w-[750px] pb-24'>
-          <div className="mt-[10px] items-center pt-36 pb-36">
+          <div className="mt-[10px] items-center pt-20 pb-36">
             <div className="w-full lg:max-w-[750px] items-center text-center">
-              <div className="flex justify-center mb-8">
-                <iframe src="https://lottie.host/embed/7d20931f-c30c-4ffa-be8d-1d96344c69ca/WBrHBPNPmC.json"></iframe>
+               <div className="flex justify-center mb-8">
+                <FaCheckCircle  className='text-green-400 text-9xl'/>
+
               </div>
               <h1 className="text-black font-bold lg:text-6xl text-5xl text-center">Booking Confirmed</h1>
               <p className="text-center lg:my-10 my-4 text-xl text-dark font-medium">
