@@ -20,6 +20,7 @@ const validationSchema = Yup.object().shape({
 });
 const tests = () => {
   const [info, setInfo] = useState();
+  const router = useRouter();
   let formdata;
   if (typeof localStorage !== 'undefined') {
     formdata = JSON.parse(localStorage.getItem("formData"));
@@ -33,7 +34,7 @@ const tests = () => {
     }
     setInfo(formdata)
   }, [])
-  const router = useRouter();
+  
   const [changedData, setChangedData] = useState(formdata);
   const [checkboxValue, setCheckboxValue] = useState(test);
   const step3 = formdata ? formdata.step3 : '';
@@ -71,7 +72,7 @@ const tests = () => {
           router.push("/bookings/student");
         }}
       >
-        {({ handleChange, setFieldValue, values }) => (
+        {({ handleChange, setFieldValue }) => (
           <Form>
             {/* {console.log('Form values in render:', values.fast_track_theory === false)} */}
             <Formnav />
