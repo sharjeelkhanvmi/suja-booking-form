@@ -16,6 +16,8 @@ import {auto, manual} from '@/database/models/drivingCoursesData';
 const index = () => {
 
 const [info,setInfo] = useState();
+const [isLoader, setLoader] = useState(false);
+const [valid, setValid] = useState();
 let formdata;
 let urlData;
 let coursePkg;
@@ -64,6 +66,11 @@ const validationSchema = Yup.object().shape({
     .required("Postal code is required")
     .matches(/^[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2}$/, "Invalid UK postal code"),
 });
+
+function enableLoader(){
+    setLoader(valid);
+}
+
   const router = useRouter();
   const step1 = formdata ? formdata.step1 : ''
   // console.log(step1)
@@ -73,9 +80,9 @@ const validationSchema = Yup.object().shape({
         initialValues={step1 ? step1 : { postal_code: "" }}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          setSubmitting(true);
+          // setSubmitting(true);
           await new Promise((resolve) => setTimeout(resolve, 2000));
-          setSubmitting(false);
+          
           const step01 = { step1: values }
           const formDatas = {
             ...formdata,
@@ -83,12 +90,14 @@ const validationSchema = Yup.object().shape({
           };
           localStorage.setItem("formData", JSON.stringify(formDatas));
           router.push("/bookings/course/");
+          // setSubmitting(false);
         }}
       >
         {(formikProps) => (
           <Form>
+            {setValid(formikProps.dirty)}
             <Formnav />
-            {typeof formdata ? <OldUserLoader /> : null}
+            
             <div className="space-y-12 mx-auto w-full lg:max-w-[48%] px-4 lg:px-0 pt-36 pb-10 py-24">
               <div>
                 <h2 className="font-semibold text-2xl text-gray-900 text-start">
@@ -120,6 +129,7 @@ const validationSchema = Yup.object().shape({
               </div>
               <div className="flex items-center justify-content-center">
                 <button
+                onClick={enableLoader}
                   type="submit"
                   className={`bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600 ${
                     formikProps.isSubmitting ? "opacity-75 cursor-not-allowed" : ""
@@ -162,6 +172,7 @@ const validationSchema = Yup.object().shape({
       </Formik>
       <ThreeBoxes />
       <Footnote />
+      {isLoader && <OldUserLoader />}
     </div>
   );
 };

@@ -18,22 +18,22 @@ const OldUserLoader = () => {
 
     if (!isLocalStorageEmpty || !isSessionStorageEmpty || !isCookieEmpty) {
       // Simulate loading for an old user
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
+      // setTimeout(() => {
+        // setIsLoading(false);
+      // }, 3000);
     } else {
       // No data found, set loading to false and show guest message
       setIsGuestMessageVisible(true);
-      setTimeout(() => {
-        setIsLoading(false);
+      // setTimeout(() => {
+        // setIsLoading(false);
         // No need to hide guest message here, it will be handled in the rendering logic
-      }, 1000);
+      // }, 3000);
     }
   }, []);
 
   if (isLoading) {
     const loadingMessage = (
-      <div className="flex items-center justify-center h-screen absolute w-full bg-gray-50 z-50 text-center top-0">
+      <div className="flex items-center justify-center h-100 fixed w-full bg-gray-50 z-50 text-center top-0 bottom-0 right-0 left-0">
         <div className="p-4 text-center justify-items-center">
         <BiLoaderAlt className="ml-2 animate-spin text-5xl mb-5" style={{ margin: '0 auto' }} />
           <p className="mt-2">

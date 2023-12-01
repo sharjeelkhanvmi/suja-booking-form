@@ -43,6 +43,8 @@ const [isCourseOpen, setCourseOpen] = useState(false)
 const [driving, setDriving] = useState(manual)
 const [course, setCourse] = useState(driving.regular)
 const [changedData, setChangedData] = useState(formdata);
+const [isLoader, setLoader] = useState(false);
+const [valid, setValid] = useState();
 const [info,setInfo] = useState();
 useEffect(() => {
    if (formdata == null) {
@@ -90,6 +92,11 @@ const courseOptions = Object.keys(course.course).map((key) => ({
  }));
 
 
+ function enableLoader(){
+   setLoader(valid);
+}
+
+
 
 return (
 <div>
@@ -125,9 +132,11 @@ initialValues={
 }
    
 >
-{({ handleChange, values }) => (
+{({ dirty, handleChange, values }) => (
 
 <Form>
+{setValid(dirty)}
+
 {values.dr_type.length > 0 && (
    setIsOpen(isOpen => true),
    getDrType(values.dr_type) 
@@ -137,7 +146,7 @@ showCoursePricing(values.dr_course_type)
 )}
 
    <Formnav />
-   {typeof formdata ? <OldUserLoader /> : null}
+   
    <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
    <div className='w-full lg:max-w-[750px] pb-24'>
    <div className=" mt-[80px] items-top px-7 py-8">
@@ -684,7 +693,7 @@ showCoursePricing(values.dr_course_type)
   
             </div>
             <div className="flex items-center justify-content-center">
-               <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
+               <button type="submit" onClick={enableLoader} className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
                   <span className="flex items-center justify-center">
                      Continue
                      <span className="ml-4">
@@ -702,6 +711,7 @@ showCoursePricing(values.dr_course_type)
 )}
 </Formik>
 <Footnote />
+{isLoader && <OldUserLoader />}
 </div>
 );
 };
