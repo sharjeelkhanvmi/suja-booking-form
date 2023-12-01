@@ -20,14 +20,14 @@ const OldUserLoader = () => {
       // Simulate loading for an old user
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      }, 1000);
     } else {
       // No data found, set loading to false and show guest message
       setIsGuestMessageVisible(true);
       setTimeout(() => {
         setIsLoading(false);
         // No need to hide guest message here, it will be handled in the rendering logic
-      }, 2000);
+      }, 1000);
     }
   }, []);
 
