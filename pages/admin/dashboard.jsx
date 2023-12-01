@@ -5,10 +5,12 @@ import PieChartCard from "@/app/components/default/PieChartCard";
 import { IoMdHome } from "react-icons/io";
 import { IoDocuments } from "react-icons/io5";
 import { MdBarChart, MdDashboard } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+
 
 import {
   columnsDataCheck,
-  columnsDataComplex,
+  columnsDataComplex
 } from "@/app/components/default/variables/columnsData";
 
 import Widget from "@/app/components/widget/Widget";
@@ -18,6 +20,8 @@ import DailyTraffic from "@/app/components/default/DailyTraffic";
 import TaskCard from "@/app/components/default/TaskCard";
 import tableDataCheck from "@/app/components/default/variables/tableDataCheck.json";
 import tableDataComplex from "@/app/components/default/variables/tableDataComplex.json";
+import Link from "next/link";
+import { FaBasketShopping } from "react-icons/fa6";
 
 
 const Dashboard = () => {
@@ -25,18 +29,22 @@ const Dashboard = () => {
     <div>
       {/* Card widget */}
 
-      <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
-        <Widget
-          icon={<MdBarChart className="h-7 w-7" />}
-          title={"Earnings"}
-          subtitle={"£340.5"}
-        />
-        <Widget
-          icon={<IoDocuments className="h-6 w-6" />}
-          title={"Spend this month"}
-          subtitle={"£642.39"}
-        />
-        <Widget
+      <div className="mt-3 flex gap-2">
+        <Link href="/admin/orders">
+          <Widget
+            icon={<FaBasketShopping  className="h-7 w-7" />}
+            title={"View "}
+            subtitle={"Order"}
+          />
+        </Link>
+        <Link href="/admin/profile">
+          <Widget
+            icon={<FaUser className="h-6 w-6" />}
+            title={"View"}
+            subtitle={"Profile"}
+          />  
+        </Link>
+        {/* <Widget
           icon={<MdBarChart className="h-7 w-7" />}
           title={"Sales"}
           subtitle={"£574.34"}
@@ -55,7 +63,7 @@ const Dashboard = () => {
           icon={<IoMdHome className="h-6 w-6" />}
           title={"Total Projects"}
           subtitle={"£2433"}
-        />
+        /> */}
       </div>
 
       {/* Charts */}
