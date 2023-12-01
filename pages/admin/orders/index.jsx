@@ -312,7 +312,7 @@ const Index = () => {
                         className="pt-[14px] pb-[16px] sm:text-[14px]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                        {format(new Date(data.createdAt), 'yyyy-MM-dd HH:mm:ss')}
+                        {format(new Date(data.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
                         </p>
                       </td>
                       <td
@@ -511,11 +511,11 @@ const Index = () => {
                     </h4>
                   </div>
                   <div className="">
-                    <span class="font-regular  text-sm text-end rounded-full font-bold">
+                    <span class="font-regular  text-sm text-end rounded-full font-semibold">
                       {" "}
-                      Transaction ID: <br />
+                      Date Time <br />
                       <span className="font-normal">
-                        {viewLead.stripe.id}
+                      {format(new Date(viewLead.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
                       </span>{" "}
                     </span>
                   </div>

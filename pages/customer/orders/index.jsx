@@ -9,6 +9,8 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "sweetalert2/dist/sweetalert2.min.css";
+import { format } from "date-fns";
+
 
 const Index = () => {
   const [Toggle, setToggle] = useState(false);
@@ -209,6 +211,17 @@ const Index = () => {
                       Hours
                     </div>
                   </th>
+                  <th
+                    colSpan={1}
+                    role="columnheader"
+                    title="Toggle SortBy"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
+                      Date Time
+                    </div>
+                  </th>
 
                   <th
                     colSpan={1}
@@ -291,6 +304,14 @@ const Index = () => {
                               )
                             )}
                           </div>
+                        </p>
+                      </td>
+                      <td
+                        role="cell"
+                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                      >
+                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                        {format(new Date(data.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
                         </p>
                       </td>
                       <td
@@ -489,9 +510,9 @@ const Index = () => {
                   <div className="">
                     <span class="font-regular  text-sm text-end rounded-full font-semibold">
                       {" "}
-                      Transaction ID: <br />
+                      Date Time <br />
                       <span className="font-normal">
-                        {viewLead.stripe.id}
+                      {format(new Date(viewLead.createdAt), 'yyyy-MM-dd HH:mm:ss a')}
                       </span>{" "}
                     </span>
                   </div>
