@@ -9,7 +9,7 @@ const leadsSchema = new mongoose.Schema({
   step5: { type: Object },
   step6: { type: Object },
   stripe: { type: Object }
-});
+},{timestamps:true});
 
 const Lead = mongoose.models.Lead || mongoose.model("Lead", leadsSchema);
 

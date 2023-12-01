@@ -9,6 +9,8 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "sweetalert2/dist/sweetalert2.min.css";
+import { format } from 'date-fns';
+
 
 const Index = () => {
   const [Toggle, setToggle] = useState(false);
@@ -68,9 +70,10 @@ const Index = () => {
       const responseData = await response.json();
       if (responseData && Object.keys(responseData).length > 0) {
         setLeadsData(responseData);
+        console.log("All LEADS DATA DATE TIME IN ALL LEADS API",leadsData[0].createdAt)
       
       } else {
-       
+      
       }
     } catch (error) {
       console.error(error, "Error While Fetching Leads Data In order");
@@ -206,6 +209,19 @@ const Index = () => {
                     <div className="text-sm font-bold tracking-wide text-gray-800">
                       Hours
                     </div>
+                    
+                  </th>
+                  <th
+                    colSpan={1}
+                    role="columnheader"
+                    title="Toggle SortBy"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="text-sm font-bold tracking-wide text-gray-800">
+                      Date Time
+                    </div>
+                    
                   </th>
 
                   <th
@@ -289,6 +305,14 @@ const Index = () => {
                               )
                             )}
                           </div>
+                        </p>
+                      </td>
+                      <td
+                        role="cell"
+                        className="pt-[14px] pb-[16px] sm:text-[14px]"
+                      >
+                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                        {format(new Date(data.createdAt), 'yyyy-MM-dd HH:mm:ss')}
                         </p>
                       </td>
                       <td
