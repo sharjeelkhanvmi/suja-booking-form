@@ -46,7 +46,7 @@ export default function Formnav() {
 
       {/* )} */}
  
-      <div className={`w-full h-[80px] flex justify-center items-center ${router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/payment" && router.pathname !== "/bookings/thankyou" ? "lg:w-[calc(100vw-350px)]" : ""}`} style={{ opacity: 1, transform: "none" }}>
+      <div className={`w-full h-[80px] flex justify-center items-center ${router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/thankyou" ? "lg:w-[calc(100vw-350px)]" : ""}`} style={{ opacity: 1, transform: "none" }}>
   {(router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment" || router.pathname === "/bookings/thankyou")  && (
     <motion.div
       initial={{ opacity: (router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment" || router.pathname === "/bookings/thankyou") ? 0 : 1, marginRight: (router.pathname === "/bookings" || router.pathname === "/bookings/summary" || router.pathname === "/bookings/payment" || router.pathname === "/bookings/thankyou") ? -150 : 0 }}

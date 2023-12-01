@@ -15,20 +15,28 @@ import { loadStripe } from "@stripe/stripe-js";
 import dynamic from "next/dynamic";
 import axios from "axios";
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
+const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {ssr: false});
 const stripePromise = loadStripe("pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf")
 const Payment = ({ info }) => {
   const router = useRouter();
   const [changedData, setChangedData] = useState();
+  const [selectedPayment, setSelectedPayment] = useState(null);
   useEffect(() => {
     if (info == null) {
       router.replace('/bookings');
     }
       setChangedData(info);
-      // console.log(info);
     },
     [info]
   );
+
+  // useEffect(() => {
+  //     handleRadioChange(isChecked);
+  //     setChangedData();
+  //   },
+  //   []
+  // );
   
   let drType;
   let course_name;
@@ -78,6 +86,15 @@ const Payment = ({ info }) => {
   // subTotal = ((deposit) ? deposit : full)
 
   total = full + fast_track_theory + fast_track_practical;
+
+  // let checkFull = document.getElementbyId('full');
+
+  // const handleRadioChange = (e) => {
+  //   setIsChecked(!isChecked);
+  //   //setChangedData();
+  //   //console.log(changedData);
+  // };
+
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -139,7 +156,7 @@ const Payment = ({ info }) => {
     if (e.target.value == "Full") {
       amount = total;
     } else {
-      amount = deposit;
+      amount = deposit + fast_track_theory + fast_track_practical;
     }
     const step6 = { step6: { payment: e.target.value, amount: amount } };
     const formDatas = {
@@ -149,14 +166,15 @@ const Payment = ({ info }) => {
 
     localStorage.setItem("formData", JSON.stringify(formDatas));
     setChangedData(formDatas);
+    setSelectedPayment(e.target.value);
     // console.log(changedData)
   };
 
   return (
     <div>
       <Formnav />
-      {typeof formdata ? <OldUserLoader /> : null}
-      <div className="mt-[0px] flex justify-center items-top px-7 py-8">
+      {/* {typeof formdata ? <OldUserLoader /> : null} */}
+      <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
         <div className="w-full lg:max-w-[750px] pb-24 flex flex-wrap justify-center">
           <h2 className="w-full text-2xl font-bold mb-7 text-center">
             Secure Payment Options for Your Driving Course
@@ -185,9 +203,7 @@ const Payment = ({ info }) => {
                 <div className="text-secondary text-opacity-[0.65] text-sm false">
                   <p className="text-secondary leading-snug text-opacity-70 font-medium 
                                 text-[15px] mt-2">
-                    Pay a deposit securely by credit or debit card. This
-                    includes the price of PassProtect and the remaining £{total}{" "}
-                    isn't due until we've arranged your course.
+                    Securely pay a deposit by credit or debit card, covering the cost of all selected tests. The remaining £{total}{" "} is not due until we have arranged your course.
                   </p>
                 </div>
               </div>
@@ -203,7 +219,7 @@ const Payment = ({ info }) => {
               value="Full"
               onChange={e => {
                 setStepSeven(e);
-              }}
+              }}              
             />
             <label
               htmlFor="full"
@@ -227,6 +243,8 @@ const Payment = ({ info }) => {
             </label>
           </div>
 
+          {selectedPayment === "Deposit" || selectedPayment === "Full" ? (
+            
           <div className="mt-[10px] items-top py-8 w-full">
             <div className="w-full lg:max-w-[750px]">
               <div className="w-full mb-5 pr-4">
@@ -312,6 +330,9 @@ hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-
             </div>
           </div>
 
+          ) : null
+          }
+
           {/* <div className="block items-center justify-content-center">
 <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
 <span className="flex items-center justify-center">
@@ -325,6 +346,7 @@ Pay £840
 </button>
 </div> */}
         </div>
+        <Sidebar data={changedData} />
       </div>
       <Footnote />
     </div>

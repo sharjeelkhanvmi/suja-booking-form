@@ -23,15 +23,17 @@ let coursePkg;
 if (typeof window !== 'undefined') {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const dr_type = urlParams.get('dr_type');
+  let dr_type = urlParams.get('dr_type');
   const dr_course_type = urlParams.get('dr_course_name');
   const dr_course_price = urlParams.get('dr_pkg_hours');
   if(dr_type && dr_course_type && dr_course_price){
   if(dr_type == 'auto'){
     coursePkg = auto[dr_course_type]['course'][dr_course_price]
+    dr_type = 'automatic';
   }
   else{
     coursePkg = manual[dr_course_type]['course'][dr_course_price]
+    dr_type = 'manual';
   }
   urlData = {
     'step2' : {

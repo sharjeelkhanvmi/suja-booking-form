@@ -98,7 +98,7 @@ const router = useRouter();
           <Image alt="Suja Logo" width={110} height={69} src={Logo} className="w-auto h-auto filter brightness-200 invert-0" />
         </div>
         <div className="text-left mt-10">
-          <h1 className="text-xl leading-snug font-semibold bg-theme-red-color py-4 w-[calc(100%+48px)] border-y-2 border-white ml-[-24px] text-center">Cart Summary</h1>  
+          <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>  
         </div>
         <div className="mt-8">        
           
@@ -167,8 +167,8 @@ const router = useRouter();
 
         ) : '' }
 
-        
-          <div className="mt-14 flex justify-between items-center bg-white py-3 w-[calc(100%+48px)] ml-[-24px] px-7 text-gray-900 border-x-4 border-[#0c1936] rounded-full">
+        <hr className="mt-10" />
+          <div className="pt-4 flex justify-between items-center text-white">
           <h4 className="font-bold uppercase text-[13px] tracking-wide">
             Total
           </h4>
