@@ -14,6 +14,7 @@ const ThankYou = ({ info }) => {
 
   const router = useRouter();
   const [changedData, setChangedData] = useState();
+  const [isLoader, setLoader] = useState(false);
   useEffect(() => {
     console.log(info)
     if (info == null) {
@@ -68,12 +69,14 @@ const paymentButtonClick = () =>
   router.push('/bookings/payment');
 };
 
+function enableLoader(){
+  setLoader(true);
+}
 
 return (
 
 <div>
 <Formnav />
-{typeof formdata ? <OldUserLoader /> : null}
 <div className="mt-[0px] flex justify-center items-top px-7 py-8">
 <div className='w-full lg:max-w-[750px] pb-24'>
 <div className="mt-[10px] items-center py-5">
@@ -307,7 +310,7 @@ return (
         </div> */}
        
 
-<button onClick={paymentButtonClick} className="my-8 bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
+<button onClick={() => { paymentButtonClick(); enableLoader(); }} className="my-8 bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
 <span className="flex items-center justify-center">
 Continue to Payment Method
 <span className="ml-4">
@@ -465,6 +468,7 @@ Continue to Payment Method
 </div>
 
     <Footnote />
+    {isLoader && <OldUserLoader />}
 </div>
 );
 }

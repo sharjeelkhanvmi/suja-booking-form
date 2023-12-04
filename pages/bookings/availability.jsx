@@ -17,6 +17,7 @@ intensiveCourse: Yup.string()
 });
 const availablity = () => {
     const [info, setInfo] = useState();
+    const [isLoader, setLoader] = useState(false);
     let formdata;
     if (typeof localStorage !== 'undefined') {
       formdata = JSON.parse(localStorage.getItem("formData"));
@@ -30,6 +31,9 @@ const availablity = () => {
         }
       setInfo(formdata)
     }, [])
+    function enableLoader(){
+        setLoader(true);
+      }
 
 const router = useRouter();
 const [isHintOpen_1, setHintOpen_1] = useState(false)
@@ -64,7 +68,6 @@ return (
     {formikProps => (
     <Form>
         <Formnav />
-        {typeof formdata ? <OldUserLoader /> : null}
         <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
             <div className='w-full lg:max-w-[750px] pb-24'>
                 <div className="mt-[10px] items-top py-8">
@@ -185,7 +188,7 @@ return (
 </div>
 </div>
     <div className="block items-center justify-content-center">
-        <button type="submit" className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
+        <button type="submit" onClick={enableLoader} className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
             <span className="flex items-center justify-center">
                 Continue
                 <span className="ml-4">
@@ -203,6 +206,7 @@ return (
     )}
     </Formik>
     <Footnote />
+    {isLoader && <OldUserLoader />}
 </div>
 );
 }

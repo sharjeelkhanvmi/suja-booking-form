@@ -22,6 +22,7 @@ const Payment = ({ info }) => {
   const router = useRouter();
   const [changedData, setChangedData] = useState();
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const [isLoader, setLoader] = useState(false);
   useEffect(() => {
     if (info == null) {
       router.replace('/bookings');
@@ -169,6 +170,10 @@ const Payment = ({ info }) => {
     setSelectedPayment(e.target.value);
     // console.log(changedData)
   };
+
+  function enableLoader(){
+    setLoader(true);
+  }
 
   return (
     <div>
@@ -349,6 +354,7 @@ Pay £840
         <Sidebar data={changedData} />
       </div>
       <Footnote />
+      {isLoader && <OldUserLoader />}
     </div>
   );
 };
