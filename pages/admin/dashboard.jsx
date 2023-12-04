@@ -7,7 +7,6 @@ import { IoDocuments } from "react-icons/io5";
 import { MdBarChart, MdDashboard } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 
-
 import {
   columnsDataCheck,
   columnsDataComplex
@@ -22,27 +21,29 @@ import tableDataCheck from "@/app/components/default/variables/tableDataCheck.js
 import tableDataComplex from "@/app/components/default/variables/tableDataComplex.json";
 import Link from "next/link";
 import { FaBasketShopping } from "react-icons/fa6";
-
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
+  const router = useRouter();
+  const isCustomerRoute = router.pathname.startsWith("/customer");
   return (
     <div>
       {/* Card widget */}
 
       <div className="mt-3 flex gap-2">
-        <Link href="/admin/orders">
+        <Link href={isCustomerRoute ? "/customer/orders" : "/admin/orders"}>
           <Widget
-            icon={<FaBasketShopping  className="h-7 w-7" />}
+            icon={<FaBasketShopping className="h-7 w-7" />}
             title={"View "}
             subtitle={"Order"}
           />
         </Link>
-        <Link href="/admin/profile">
+        <Link href={isCustomerRoute ? "/customer/profile" : "/admin/profile"}>
           <Widget
             icon={<FaUser className="h-6 w-6" />}
             title={"View"}
             subtitle={"Profile"}
-          />  
+          />
         </Link>
         {/* <Widget
           icon={<MdBarChart className="h-7 w-7" />}
