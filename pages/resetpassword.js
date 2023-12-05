@@ -1,69 +1,109 @@
+// Import necessary libraries and components
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
+import decodeToken from "jwt-decode";
+import Layout from "@/app/components/Layout";
 
+const ChangePassword = () => {
+  const [password, setPassword] = useState({
+    password: "",
+    confirm_password: ""
+  });
 
+  const cookie = Cookies.get("token");
+  let user = false;
 
+  if (cookie) {
+    user = decodeToken(cookie);
+  }
 
+  const handlePassword = async e => {
+    e.preventDefault();
 
+    try {
+      // const salt = await bcrypt.genSalt(10);
+      // const hashedPassword = await bcrypt.hash(password.password, salt);
+      const response = await axios.post("/api/user/changepassword", {
+        password: password,
+        id: user.id
+      });
 
-
-
-import { login_user } from "@/app/service/mailService";
-import Head from 'next/head'
-import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Cookies from 'js-cookie';
-import Router from 'next/router';
-import jwt_decode from "jwt-decode";
-
-
-export default function resetpassword() {
+      if (response.data.success) {
+        console.log("PASSWORD UPDATED SUCCESSFULLY");
+        toast.success("Password updated successfully");
+      } else {
+        console.log("Failed to update password");
+        toast.error("Failed to update password");
+      }
+    } catch (error) {
+      console.error("Error updating password:", error);
+      toast.error("Error updating password");
+    }
+  };
 
   return (
-    <>
-     
-      <section className="bg-[#f8f8f8] text-center text-navy-700 md:mt-10">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:mt-10 lg:py-0">
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-red-800 dark:border-red-700">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-red-600 md:text-2xl dark:text-white">
-                FORGOT PASSWORD
-              </h1>
-              <form className=" space-y-4 " action="#">
-                <div className='text-left'>
-                  <label htmlFor="password" className="block mb-2 text-sm font-medium text-black dark:text-white">Password</label>
-                  <input  type="password" name="password" id="password" className="bg-indigo-50 border border-indigo-300 text-indigo-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-indigo-700 dark:border-indigo-600 dark:placeholder-indigo-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required="" />
-                </div>
-                <div className='text-left'>
-                  <label htmlFor="confirmpassword" className="block mb-2 text-sm font-medium text-black dark:text-white">Confirm Password</label>
-                  <input  type="password" name="confirmpassword" id="confirmpassword" className="bg-indigo-50 border border-indigo-300 text-indigo-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-indigo-700 dark:border-indigo-600 dark:placeholder-indigo-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Confirm Password" required="" />
-                </div>
-                <button type="submit" className="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit</button>
-               
-              </form>
-            </div>
+    <Layout>
+      <form
+        className="pb-5 w-1/3 mx-auto p-10 rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500"
+        onSubmit={handlePassword}
+      >
+        <div className="mx-3">
+          <div className="w-full pt-7 px-3">
+            <label
+              className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
+              htmlFor="grid-changepassword"
+            >
+              Change Password
+            </label>
+            <input
+              value={password.password}
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-changepassword"
+              type="password"
+              placeholder="******************"
+              onChange={e => {
+                setPassword(prevData => ({
+                  ...prevData,
+                  password: e.target.value
+                }));
+              }}
+            />
           </div>
+          <div className="w-full pt-7 px-3">
+            <label
+              className="block uppercase text-sm tracking-wide text-gray-900 text-black-400 font-bold mb-2"
+              htmlFor="grid-confirmchangepassword"
+            >
+              Confirm Change Password
+            </label>
+            <input
+              value={password.confirm_password}
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-confirmchangepassword"
+              type="password"
+              placeholder="******************"
+              onChange={e => {
+                setPassword(prevData => ({
+                  ...prevData,
+                  confirm_password: e.target.value
+                }));
+              }}
+            />
+          </div>
+          <button
+            type="submit"
+            className="rounded-full mt-5 py-3 px-8 text-lg uppercase font-semibold text-white shadow-sm
+              bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Update Password
+          </button>
         </div>
-      </section>
-      <ToastContainer />
-    </>
-  )
-}
+      </form>
+    </Layout>
+  );
+};
 
-
-
-export async function getServerSideProps(context) {
-  const token = context.req.cookies.token
-
-  if (token) {
-    return {
-      redirect: {
-        destination: '/home',
-        permanent: false,
-      },
-    }
-  }
-
-  return {
-    props: {},
-  }
-}
+export default ChangePassword;

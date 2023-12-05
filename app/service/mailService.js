@@ -1,4 +1,5 @@
 var nodemailer = require("nodemailer");
+import jwt from "jsonwebtoken";
 //-----------------------------------------------------------------------------
 export async function sendMail(subject, toEmail, otpText) {
   var transport = nodemailer.createTransport({
@@ -57,8 +58,22 @@ export const login_user = async formData => {
     return data;
   } catch (error) {
     console.log("Error in login_user (service) => ", error);
-    console.log("CUSTOM SYSTUMMMM ", res, formData);
+    // console.log("C ", res, formData);
     return error.message;
+  }
+};
+
+export const autoLogin =  user => {
+
+  if (user && user.email && user._id && user.fname && user.lname && user.phone && user.role) {
+    const  token = jwt.sign(
+      { email: user.email, id: user._id, fname: user.fname, lname: user.lname, phone: user.phone, role: user.role },
+      "secret",
+      { expiresIn: "1h" }
+    );
+    return token;
+  } else {
+    return false;
   }
 };
 

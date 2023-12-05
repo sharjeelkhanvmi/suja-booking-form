@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 // import Sidebar from "@/app/components/sidebar/sidebar";
 // import { Formik, Field, Form, ErrorMessage } from "formik";
+import {autoLogin} from "@/app/service/mailService"
 import Footnote from "@/app/components/Footnote";
 import Formnav from "@/app/components/Formnav";
 import Amex from "@/public/assets/amex.f54f9bb1.svg";
@@ -12,6 +13,7 @@ import Googlepay from "@/public/assets/google_pay.svg";
 import Image from "next/image";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Cookies from 'js-cookie';
 import dynamic from "next/dynamic";
 import axios from "axios";
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
@@ -103,10 +105,7 @@ const Payment = ({ info }) => {
 
   const handlePaymentSuccess = async (paymentMethod) => {
 
-    const login = {
-      email: changedData.step4.email,
-      password: changedData.step4.password
-    }
+    
     const userData = {
       fname: changedData.step4.firstName,
       lname: changedData.step4.surname,
@@ -143,7 +142,11 @@ const Payment = ({ info }) => {
         const leadresponse = await axios.post("/api/leads/post", leadData);
         const lead = await leadresponse.data
         await axios.post("/api/api_mailer", { formdata: lead });
-        //login_user(login)
+        const token = autoLogin(user)
+        if(token)
+        {
+          Cookies.set("token", token);
+        }
       } catch (error) {
         console.error(error);
         console.log("Error");
