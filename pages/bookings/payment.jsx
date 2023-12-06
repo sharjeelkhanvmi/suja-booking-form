@@ -25,6 +25,7 @@ const Payment = ({ info }) => {
   const [changedData, setChangedData] = useState();
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [isLoader, setLoader] = useState(false);
+  
   useEffect(() => {
     if (info == null) {
       router.replace('/bookings');
@@ -104,8 +105,11 @@ const Payment = ({ info }) => {
   }
 
   const handlePaymentSuccess = async (paymentMethod) => {
-
     
+    const login = {
+      email: changedData.step4.email,
+      password: changedData.step4.password
+    }
     const userData = {
       fname: changedData.step4.firstName,
       lname: changedData.step4.surname,
@@ -174,9 +178,7 @@ const Payment = ({ info }) => {
     // console.log(changedData)
   };
 
-  function enableLoader(){
-    setLoader(true);
-  }
+
 
   return (
     <div>
@@ -332,6 +334,8 @@ hover:bg-[#17B745] focus:bg-[#17B745] flex border relative items-center justify-
                   <PaymentForm
                     onSuccess={handlePaymentSuccess}
                     data={changedData}
+                    isLoader={isLoader}
+                    setLoader={setLoader}
                   />
                 </Elements>
               </div>

@@ -15,7 +15,7 @@ const stripePromise = loadStripe(
   'pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf'
 );
 
-const PaymentForm = ({ onSuccess, data }) => {
+const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
@@ -77,6 +77,7 @@ const PaymentForm = ({ onSuccess, data }) => {
   };
 
   const handleSubmit = async (event) => {
+    
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -108,6 +109,7 @@ const PaymentForm = ({ onSuccess, data }) => {
       if (error) {
         setPaymentError(error.message);
       } else {
+        setLoader(true)
         console.log('PaymentMethod:', paymentMethod);
         console.log('Product Details:', { productName, productPrice });
         onSuccess(paymentMethod);
