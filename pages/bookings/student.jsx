@@ -51,7 +51,8 @@ const getCharacterValidationError = (str) => {
 const student = () => {
 
     const [info, setInfo] = useState();
-    const [isLoader, setLoader] = useState(false);
+    const [isLoader, setLoader] = useState();
+    const [valid, setValid] = useState();
     let formdata;
     if (typeof localStorage !== 'undefined') {
       formdata = JSON.parse(localStorage.getItem("formData"));
@@ -69,9 +70,27 @@ const student = () => {
 const router = useRouter();
 const [changedData, setChangedData] = useState(formdata);
 const step4 = formdata ? formdata.step4 : '';
+
+const checkAndSetLoader = (valid) => {
+    //const step2 = changedData.step2
+    const hasRequiredKeys =
+    valid &&
+    valid?.title &&
+    valid?.surname &&
+    valid?.firstName &&
+    valid?.email &&
+    valid?.password &&
+    valid?.confirm_password &&
+    valid?.phone_number &&
+    valid?.terms == true;
+    const loader = hasRequiredKeys ? true : false;
+    return loader;
+  };
+
 function enableLoader(){
-    setLoader(true);
-  }
+    // console.log(checkAndSetLoader(valid));
+    setLoader(checkAndSetLoader(valid));
+ }
 return (
 <div>
     <Formik
@@ -100,6 +119,7 @@ return (
     >
     {({values, setFieldValue}) => (
     <Form>
+        {setValid(values)}        
         <Formnav />
         
         <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">

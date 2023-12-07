@@ -17,7 +17,7 @@ intensiveCourse: Yup.string()
 });
 const availablity = () => {
     const [info, setInfo] = useState();
-    const [isLoader, setLoader] = useState(false);
+    
     let formdata;
     if (typeof localStorage !== 'undefined') {
       formdata = JSON.parse(localStorage.getItem("formData"));
@@ -38,12 +38,18 @@ const availablity = () => {
 const router = useRouter();
 const [isHintOpen_1, setHintOpen_1] = useState(false)
 const [changedData, setChangedData] = useState(formdata);
+const [isLoader, setLoader] = useState();
+const [valid, setValid] = useState();
 const step5 = formdata ? formdata.step5 : '';
 
 const variants = {
 open: { opacity: 1, height: 'auto', position: 'relative', 'z-index': 1  },
 closed: { opacity: 0, height: 0, position: 'relative', 'z-index': -1 },
 }
+
+function enableLoader(){
+    setLoader(valid);
+ }
 
 return (
 <div>
@@ -67,6 +73,9 @@ return (
     >
     {formikProps => (
     <Form>
+
+    {setValid(formikProps.dirty)}
+
         <Formnav />
         <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
             <div className='w-full lg:max-w-[750px] pb-24'>

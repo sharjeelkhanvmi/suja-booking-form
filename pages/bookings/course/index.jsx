@@ -31,7 +31,11 @@ const index = () => {
    const validationSchema = Yup.object().shape({
       dr_type: Yup.string().required('Field is required'),
       dr_course_type: Yup.string().required('Field is required'),
-      dr_course_price: Yup.string().required('Field is required'),
+      // dr_course_price: Yup.object().shape({
+      //    // Define the structure of the object fields
+      //    dr_course_type: Yup.string().required('Amount is required'),
+      //    dr_type: Yup.string().required('Currency is required'),
+      //  }).required('dr_course_price is required'),
    });
    
 
@@ -46,6 +50,27 @@ const [changedData, setChangedData] = useState(formdata);
 const [isLoader, setLoader] = useState(false);
 const [valid, setValid] = useState();
 const [info,setInfo] = useState();
+
+const checkAndSetLoader = (changedData) => {
+   // Check if the required keys are present in the step2 object
+   const step2 = changedData.step2
+   //console.info('loader: ',step2)
+   const hasRequiredKeys =
+   step2 &&
+   step2?.dr_type &&
+   step2?.dr_course_type &&
+   step2?.dr_course_price;
+ 
+   // Set loader to true if the required keys are present, otherwise set it to false
+   const loader = hasRequiredKeys ? true : false;
+ 
+   // Use the loader variable as needed (for example, setLoader(loader) if using React state)
+   //console.log('Loader:', loader);
+ 
+   return loader;
+ };
+
+
 useEffect(() => {
    if (formdata == null) {
       router.replace('/bookings');
@@ -93,7 +118,7 @@ const courseOptions = Object.keys(course.course).map((key) => ({
 
 
  function enableLoader(){
-   setLoader(valid);
+   setLoader(checkAndSetLoader(changedData));
 }
 
 
@@ -110,7 +135,7 @@ initialValues={
      : { dr_type: '', dr_course_type: '', dr_course_price: {} }
  }
    enableReinitialize={false}
-   // validationSchema={validationSchema}
+   validationSchema={validationSchema}
    onSubmit={async (values) => {
    await new Promise(r => setTimeout(r, 500));
 
@@ -136,6 +161,7 @@ initialValues={
 
 <Form>
 {setValid(dirty)}
+
 
 {values.dr_type.length > 0 && (
    setIsOpen(isOpen => true),
@@ -681,9 +707,14 @@ showCoursePricing(values.dr_course_type)
                   <p className="font-semibold text-xs">{option.variant}</p>
                   <div className="display-block">£{option.full}</div>
                </div>
-            </label>
-          </div>
+            </label>          
+         </div>
         ))}
+        <ErrorMessage
+          name="dr_course_price"
+          component="p"
+          className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+         />
          {/* /////////////////// */}
 
       </div>
