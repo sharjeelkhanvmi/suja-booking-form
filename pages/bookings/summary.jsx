@@ -77,8 +77,8 @@ return (
 
 <div>
 <Formnav />
-<div className="mt-[0px] flex justify-center items-top px-7 py-8">
-<div className='w-full lg:max-w-[750px] pb-24'>
+<div className="mt-[0px] flex justify-center items-top md:px-7 px-5 md:py-8 py-5">
+<div className='w-full lg:max-w-[750px] md:pb-24 pb-0'>
 <div className="mt-[10px] items-center py-5">
     <div className="w-full lg:max-w-[750px] text-center">
 

@@ -122,12 +122,12 @@ return (
         {setValid(values)}        
         <Formnav />
         
-        <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
-            <div className='w-full lg:max-w-[750px] pb-24'>
-                <div className="mt-[10px] items-top py-8">
+        <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top md:px-7 px-5 md:py-8 py-5">
+            <div className='w-full lg:max-w-[750px] md:pb-24 pb-5'>
+                <div className="mt-[10px] items-top md:py-5 py-3">
                     <div className="w-full lg:max-w-[750px]">
                         <div className="w-full mb-5 pr-4">
-                            <h1 className="text-[26px] text-neutral-950	 font-bold">
+                            <h1 className="md:text-[26px] text-[24px] text-neutral-950	 font-bold">
                                 Let's get to know each other 
                             </h1>
                             <p className="text-current font-regular text-[17px] mt-2">

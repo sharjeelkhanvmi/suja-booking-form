@@ -98,7 +98,7 @@ function enableLoader(){
             {setValid(formikProps.dirty)}
             <Formnav />
             
-            <div className="space-y-12 mx-auto w-full lg:max-w-[48%] px-4 lg:px-0 pt-36 pb-10 py-24">
+            <div className="md:space-y-12 space-y-12 mx-auto w-full lg:max-w-[48%] px-4 lg:px-0 md:pt-36 pt-10 pb-10 md:py-24 py-10">
               <div>
                 <h2 className="font-semibold text-2xl text-gray-900 text-start">
                   Let's pass you fast. Where would you like your lessons to
