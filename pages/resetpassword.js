@@ -12,6 +12,15 @@ const ChangePassword = () => {
     password: "",
     confirm_password: ""
   });
+  const [token, setToken] = useState(null); // State to store the token
+  useEffect(() => {
+    // Extract the token from the URL
+    const queryParams = new URLSearchParams(window.location.search);
+    const urlToken = queryParams.get("token");
+
+    // Set the token in the state
+    setToken(urlToken);
+  }, []);
 
   const cookie = Cookies.get("token");
   let user = false;
@@ -20,29 +29,27 @@ const ChangePassword = () => {
     user = decodeToken(cookie);
   }
 
-  const handlePassword = async e => {
+  const handlePassword = async (e) => {
     e.preventDefault();
-
+  
     try {
-      // const salt = await bcrypt.genSalt(10);
-      // const hashedPassword = await bcrypt.hash(password.password, salt);
-      const response = await axios.post("/api/user/changepassword", {
-        password: password,
-        id: user.id
+      const response = await axios.post("/api/user/resetPass", {
+        password: password.password,
+        token: token,
+        // Add other necessary fields if required
       });
-
+  
       if (response.data.success) {
         console.log("PASSWORD UPDATED SUCCESSFULLY");
-        toast.success("Password updated successfully");
-      } else {
-        console.log("Failed to update password");
-        toast.error("Failed to update password");
-      }
+         setPassword({ password: "", confirm_password: "" });
+      } 
+
     } catch (error) {
       console.error("Error updating password:", error);
-      toast.error("Error updating password");
+      // toast.error("Error updating password");
     }
   };
+  
 
   return (
     <Layout>
@@ -100,7 +107,9 @@ const ChangePassword = () => {
           >
             Update Password
           </button>
+          <ToastContainer></ToastContainer>
         </div>
+       
       </form>
     </Layout>
   );

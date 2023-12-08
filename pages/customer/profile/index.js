@@ -65,7 +65,7 @@ const Index = () => {
         id: user.id
       });
       if (response.data.success) {
-        console.log("PASSWORD UPDATED SUCCESSFULLY");
+        console.log("Password updated successfully");
         toast.success("Password updated successfully");
       } else {
         console.log("Failed to update password");
@@ -219,7 +219,7 @@ const Index = () => {
             </button>
           </div>
         </form>
-        <ToastContainer></ToastContainer>
+        <ToastContainer className='capitalize'></ToastContainer>
       </div>{" "}
       {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
     </Layout>
