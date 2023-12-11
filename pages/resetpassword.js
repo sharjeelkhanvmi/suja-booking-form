@@ -6,21 +6,66 @@ import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import decodeToken from "jwt-decode";
 import Layout from "@/app/components/Layout";
+import * as Yup from "yup";
 
 const ChangePassword = () => {
   const [password, setPassword] = useState({
     password: "",
     confirm_password: ""
   });
-  const [token, setToken] = useState(null); // State to store the token
+
+  const validationSchema = Yup.object().shape({
+    password: Yup.string()
+      .required("Please enter a password")
+      .min(8, "Password must have at least 8 characters")
+      .matches(/[0-9]/, "Password must contain at least one digit")
+      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .matches(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character"),
+    confirm_password: Yup.string()
+      .required("Please re-type your password")
+      .oneOf([Yup.ref("password")], "Passwords do not match")
+  });
+
+  const [errors, setErrors] = useState({
+    password: "",
+    confirm_password: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPassword((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleBlur = async () => {
+    try {
+      await validationSchema.validate(password, { abortEarly: false });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "",
+        confirm_password: ""
+      }));
+    } catch (validationErrors) {
+      const newErrors = {};
+      validationErrors.inner.forEach((error) => {
+        newErrors[error.path] = error.message;
+      });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        ...newErrors
+      }));
+    }
+  };
+
+  const [token, setToken] = useState(null);
   useEffect(() => {
-    // Extract the token from the URL
     const queryParams = new URLSearchParams(window.location.search);
     const urlToken = queryParams.get("token");
-
-    // Set the token in the state
     setToken(urlToken);
-  }, []);
+  }, [token]);
 
   const cookie = Cookies.get("token");
   let user = false;
@@ -31,25 +76,23 @@ const ChangePassword = () => {
 
   const handlePassword = async (e) => {
     e.preventDefault();
-  
+
     try {
+      await validationSchema.validate(password, { abortEarly: false });
       const response = await axios.post("/api/user/resetPass", {
         password: password.password,
-        token: token,
+        token: token
         // Add other necessary fields if required
       });
-  
-      if (response.data.success) {
-        console.log("PASSWORD UPDATED SUCCESSFULLY");
-         setPassword({ password: "", confirm_password: "" });
-      } 
 
+        console.log("PASSWORD UPDATED SUCCESSFULLY");
+        setPassword({ password: "", confirm_password: "" });
+        toast.success("Password updated");
     } catch (error) {
       console.error("Error updating password:", error);
-      // toast.error("Error updating password");
+      toast.error("Error updating password");
     }
   };
-  
 
   return (
     <Layout>
@@ -67,17 +110,21 @@ const ChangePassword = () => {
             </label>
             <input
               value={password.password}
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                errors.password ? "border-red-500" : ""
+              }`}
               id="grid-changepassword"
               type="password"
+              name="password"
               placeholder="******************"
-              onChange={e => {
-                setPassword(prevData => ({
-                  ...prevData,
-                  password: e.target.value
-                }));
-              }}
+              onBlur={handleBlur}
+              onChange={handleChange}
             />
+            {errors.password && (
+              <div className="error-message text-red-500">
+                {errors.password}
+              </div>
+            )}
           </div>
           <div className="w-full pt-7 px-3">
             <label
@@ -88,28 +135,30 @@ const ChangePassword = () => {
             </label>
             <input
               value={password.confirm_password}
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                errors.confirm_password ? "border-red-500" : ""
+              }`}
               id="grid-confirmchangepassword"
               type="password"
+              name="confirm_password"
               placeholder="******************"
-              onChange={e => {
-                setPassword(prevData => ({
-                  ...prevData,
-                  confirm_password: e.target.value
-                }));
-              }}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
+            {errors.confirm_password && (
+              <div className="error-message text-red-500">
+                {errors.confirm_password}
+              </div>
+            )}
           </div>
           <button
             type="submit"
-            className="rounded-full mt-5 py-3 px-8 text-lg uppercase font-semibold text-white shadow-sm
-              bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="rounded-full mt-5 py-3 px-8 text-lg uppercase font-semibold text-white shadow-sm bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Update Password
           </button>
-          <ToastContainer></ToastContainer>
+          <ToastContainer />
         </div>
-       
       </form>
     </Layout>
   );
