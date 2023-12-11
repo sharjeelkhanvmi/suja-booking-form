@@ -154,22 +154,23 @@
 
 
 @media only screen and (max-width: 600px) {
+.sidbarcustom {
+  position: fixed;
+  top: auto;
+  bottom: 0px;
+  width: 100% !important;
+} 
 .sidbarcustom img{
     display:none;
 }
 .sidbarcustom h1{
-    display:none;
+  display:none;
 }
 .sidbarcustom .theory-test {
-    display:none;
+  display:none;
 }
 .sidbarcustom .course-title {
-    display:none;
-}
-.sidbarcustom {
-  position:fixed;
-  top: auto;
-  bottom: 0px;
+  display:none;
 }
 .sidbarcustom .pkg-item {
   display:none;
