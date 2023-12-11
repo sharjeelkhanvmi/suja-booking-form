@@ -20,7 +20,9 @@ const Navbar = props => {
   const { name, user } = props;
   const logout = () => {
     Cookies.remove("token");
-    Router.push("/admin");
+    setTimeout(() => {
+      Router.push("/admin");
+    }, 1000);
   };
 
   const { onOpenSidenav, brandText } = props;
@@ -216,13 +218,24 @@ const Navbar = props => {
               </div>
               <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
               <div className="flex flex-col p-4">
-                { <Link
-                   href={Router.pathname.startsWith('/admin') ? '/admin/profile' : '/customer/profile'}
-                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white">
-                  Profile
-                </Link>}
+                {
+                  <Link
+                    href={
+                      Router.pathname.startsWith("/admin")
+                        ? "/admin/profile"
+                        : "/customer/profile"
+                    }
+                    className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                  >
+                    Profile
+                  </Link>
+                }
                 <Link
-                  href={Router.pathname.startsWith('/admin') ? '/admin/orders' : '/customer/orders'}
+                  href={
+                    Router.pathname.startsWith("/admin")
+                      ? "/admin/orders"
+                      : "/customer/orders"
+                  }
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
                   Order
