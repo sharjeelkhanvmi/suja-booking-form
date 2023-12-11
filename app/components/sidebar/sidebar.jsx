@@ -88,75 +88,58 @@ const router = useRouter();
       animate={{ opacity: 1, marginRight: 0 }}
       exit={{ opacity: 1, marginRight: -360 }}
       transition={{ delay: 0.1, duration: 0.4 }}
-      className="fixed pt-8 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto p-6 h-full"
+      className="fixed md:pt-8 pt-4 top-20 right-0 z-10 w-[350px] sidbarcustom bg-[#0c1936] text-white md:overflow-y-auto md:p-6 p-4 md:h-full"
     >
 
     {data && data.step2 && data.step2.dr_course_price ? (
         
-        <div className="flex flex-col w-full h-full">
+        <div className="flex flex-col w-full md:h-full">
         <div className="text-center rounded-full self-center">
           <Image alt="Suja Logo" width={110} height={69} src={Logo} className="w-auto h-auto filter brightness-200 invert-0" />
         </div>
-        <div className="text-left mt-10">
+        <div className="text-left md:mt-10 mt-0">
           <h1 className="text-xl leading-snug font-semibold">Cart Summary</h1>  
         </div>
-        <div className="mt-8">        
-          
-          <div className={`w-max py-1 px-3 font-semibold  text-xs rounded-full text-gray-900 ${bg_color}`}>{course_name}</div>            
-          
-          <div className="mt-2 w-full font-semibold flex items-center">
+        <div className="md:mt-8 mt-0">                 
+          <div className={`w-max py-1 px-3 font-semibold  text-xs rounded-full course-title text-gray-900 ${bg_color}`}>{course_name}</div>                    
+          <div className="mt-2 w-full font-semibold flex pkg-item  items-center">
             <span className="flex items-center leading-4 w-full">{ hours_value +' '+ variant +' - '+ drType}</span>
             <div className="text-right">
               <span className="text-white text-opacity-60 ml-4">£{ full }</span>
             </div>
           </div>
         </div>
-
         { (data && data.step3 && data.step3.fast_track_theory || data && data.step3 && data.step3.fast_track_practical)  ? (
-
           <div>
-
-          <div className="mt-5">
+          <div className="mt-5 theory-test">
           <h4 className="text-white text-opacity-50 font-bold uppercase text-[13px] tracking-wide">
             Tests
           </h4>
-
-
           {data && data.step3 && data.step3.fast_track_theory ? (
-
             <div className="mt-2 w-full font-semibold flex">
             <span className="w-full">Theory Test</span>
             <div className="text-right">
               <span className="text-white text-opacity-60 ml-4">£{data.step3.fast_track_theory}</span>
             </div>
             </div>
-
           ) : ''}
           {data && data.step3 && data.step3.fast_track_practical ? (
-
             <div className="mt-2 w-full font-semibold flex">
             <span className="w-full">Practical Test</span>
             <div className="text-right">
               <span className="text-white text-opacity-60 ml-4">£{data.step3.fast_track_practical}</span>
             </div>
             </div>
-
           ) : ''}
-
           </div>
-
           </div>
-
         ) : ''}
 
-
         {(data && data.step6 && data.step6.pass_protect) ? (
-
         <div className="mt-5">
         <h4 className="text-white text-opacity-50 font-bold uppercase text-[13px] tracking-wide">
           Add-ons
         </h4>
-
         <div className="mt-2 w-full font-semibold flex">
         <span className="w-full">Pass Protect</span>
         <div className="text-right">
@@ -164,11 +147,10 @@ const router = useRouter();
         </div>
         </div>
         </div>
-
         ) : '' }
 
-        <hr className="mt-10" />
-          <div className="pt-4 flex justify-between items-center text-white">
+        <hr className="md:mt-10 mt-5" />
+          <div className="md:pt-4 pt-0 flex justify-between items-center text-white">
           <h4 className="font-bold uppercase text-[13px] tracking-wide">
             Total
           </h4>

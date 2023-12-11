@@ -173,10 +173,10 @@ showCoursePricing(values.dr_course_type)
 
    <Formnav />
    
-   <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
-   <div className='w-full lg:max-w-[750px] pb-24'>
-   <div className=" mt-[80px] items-top px-7 py-8">
-      <div className="w-full lg:max-w-[750px] pb-24">
+   <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top md:px-7 px-0 md:py-8 py-7">
+   <div className='w-full lg:max-w-[750px] md:pb-24 pb-5'>
+   <div className="md:mt-[80px] mt-[50] items-top md:px-7 px-5 py-8">
+      <div className="w-full lg:max-w-[750px] lg:pb-24 pb-10">
          <div className="grid grid-cols-2 gap-4">
             <div>
                <Field
@@ -323,7 +323,7 @@ showCoursePricing(values.dr_course_type)
         transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}        
         >
       <div className="flex justify-between items-center gap-x-5">
-         <h1 className=" text-[21px] leading-snug font-semibold">How's your driving going so far?</h1>
+      <h1 class=" md:text-[21px] text-[20] leading-snug font-semibold">How's your driving going so far?</h1>
          <div className="cursor-pointer" onClick={(e) => setHintOpen_1(isHintOpen_1 => !isHintOpen_1)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -611,7 +611,7 @@ showCoursePricing(values.dr_course_type)
         variants={variants}
         transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}        
         >
-      <div className=" flex justify-between items-center mt-20 gap-x-5">
+      <div className=" flex justify-between items-center md:mt-20 mt-16 gap-x-5">
          <h1 className=" text-[21px] leading-snug font-semibold">
             { course.name }
          </h1>

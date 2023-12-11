@@ -19,17 +19,17 @@ const thankyou = () => {
   return (
     <div>
       <Formnav />
-      <div className="mt-[0px] flex justify-center items-top px-7 py-8">
-        <div className="w-full lg:max-w-[750px] pb-24">
-          <div className="mt-[10px] items-center pt-20 pb-36">
+      <div className="mt-[0px] flex justify-center items-top md:px-7 px-5 py-8">
+        <div className="w-full lg:max-w-[750px] md:pb-24 md:5">
+          <div className="md:mt-[10px] mt-0 items-center md:pt-20 pt-7 md:pb-24 pb-5">
             <div className="w-full lg:max-w-[750px] items-center text-center">
               <div className="flex justify-center mb-8">
                 <FaCheckCircle className="text-green-400 text-9xl" />
               </div>
-              <h1 className="text-black font-bold lg:text-6xl text-5xl text-center">
+              <h1 className="text-black font-bold lg:text-6xl text-3xl text-center">
                 Booking Confirmed
               </h1>
-              <p className="text-center lg:my-10 my-4 text-xl text-dark font-medium">
+              <p className="text-center lg:my-10 md:pb-0 pb-3 my-4 md:text-xl text-lg text-dark font-medium">
                 Thank you for booking with us. Your payment has been received.
                 We will contact you shortly to confirm the details. If you have
                 any urgent inquiries, please feel free to call us now. You can
@@ -37,8 +37,14 @@ const thankyou = () => {
                 button below.
               </p>
               <a
+<<<<<<< HEAD
+                href="http://localhost:3000/customer"
+                className="red-btn tracking-wide uppercase lg:p-4 p-3 font-bold lg:px-8 px-5 rounded-full
+                 bg-red-700 hover:bg-red-600 hover:text-white md:text-2xl text-xl text-center text-white inline-flex items-center btnanimate mr-2"
+=======
                 href="/customer"
                 className="red-btn tracking-wide uppercase lg:p-4 p-3 font-bold lg:px-8 px-5 rounded-full bg-red-700 hover:bg-red-600 hover:text-white text-2xl text-center text-white inline-flex items-center btnanimate mr-2"
+>>>>>>> e75be8578ded2b9a73ea49c0c62b8adeac928c90
               >
                 Go to Dashboard
                 <svg

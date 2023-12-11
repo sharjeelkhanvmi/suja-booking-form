@@ -184,12 +184,12 @@ const Payment = ({ info }) => {
     <div>
       <Formnav />
       {/* {typeof formdata ? <OldUserLoader /> : null} */}
-      <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
-        <div className="w-full lg:max-w-[750px] pb-24 flex flex-wrap justify-center">
-          <h2 className="w-full text-2xl font-bold mb-7 text-center">
+      <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top md:px-7 px-5 py-8">
+        <div className="w-full lg:max-w-[750px] md:pb-24 pb-5 flex flex-wrap justify-center">
+          <h2 className="w-full md:text-2xl text-xl font-bold md:mb-10 mb-16 text-center">
             Secure Payment Options for Your Driving Course
           </h2>
-          <div className="w-1/2 pe-3">
+          <div className="md:w-1/2 w-full pe-3">
             <input
               type="radio"
               name="payment"
@@ -220,7 +220,7 @@ const Payment = ({ info }) => {
             </label>
           </div>
 
-          <div className="w-1/2 ps-3">
+          <div className="md:w-1/2 w-full ps-3">
             <input
               type="radio"
               name="payment"

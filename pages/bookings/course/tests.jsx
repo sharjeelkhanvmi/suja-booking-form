@@ -84,9 +84,9 @@ const tests = () => {
             {/* {console.log('Form values in render:', values.fast_track_theory === false)} */}
             <Formnav />
             {/* {typeof formdata ? <OldUserLoader /> : null} */}
-            <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top px-7 py-8">
-              <div className='w-full lg:max-w-[750px] pb-24'>
-                <div className=" mt-[80px] items-top py-8">
+            <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top md:px-7 px-0 md:py-8 py-5">
+              <div className='w-full lg:max-w-[750px] md:pb-24 px-5'>
+                <div className="md:mt-[80px] mt-[40] items-top md:py-8 py-5">
                   <div className="w-full lg:max-w-[750px]">
                     <div className="w-full mb-5 pr-4">
                       <h1 className="text-[26px] text-neutral-950	 pb-3 font-bold">
