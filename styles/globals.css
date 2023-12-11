@@ -154,9 +154,29 @@
 
 
 @media only screen and (max-width: 600px) {
-  .sidbarcustom{
+.sidbarcustom img{
     display:none;
-  }
+}
+.sidbarcustom h1{
+    display:none;
+}
+.sidbarcustom .theory-test {
+    display:none;
+}
+.sidbarcustom .course-title {
+    display:none;
+}
+.sidbarcustom {
+  position:fixed;
+  top: auto;
+  bottom: 0px;
+}
+.sidbarcustom .pkg-item {
+  display:none;
+}
+.sidbarcustom hr {
+  display:none;
+}
 }
 
 
