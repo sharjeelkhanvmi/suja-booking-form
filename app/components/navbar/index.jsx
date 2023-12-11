@@ -21,7 +21,7 @@ const Navbar = props => {
   const logout = () => {
     Cookies.remove("token");
     setTimeout(() => {
-      Router.push("/admin");
+      Router.push("/");
     }, 1000);
   };
 
