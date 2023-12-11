@@ -1,7 +1,9 @@
 var nodemailer = require("nodemailer");
 import jwt from "jsonwebtoken";
 //-----------------------------------------------------------------------------
+
 export async function sendMail(subject, toEmail, otpText) {
+  
   var transport = nodemailer.createTransport({
     host: process.env.SMTPHOST,
     port: process.env.SMTPPORT,
@@ -11,6 +13,8 @@ export async function sendMail(subject, toEmail, otpText) {
     }
   });
 
+
+ // console.log(transport);
   let mailOptions = {
     from: process.env.SMTPUSERNAME,
     to: toEmail,
@@ -77,23 +81,5 @@ export const autoLogin =  user => {
   }
 };
 
-
-export const forgotPassword = async () => {
-  return false;
-  // try {
-  //   const res = await fetch("/api/user");
-  //   if (!res.ok) {
-  //     throw new Error(`Failed to fetch user data. Status: ${res.status}`);
-  //   }
-  //   const contentType = res.headers.get("content-type");
-  //   if (!contentType || !contentType.includes("application/json")) {
-  //     throw new Error("Invalid response type. Expected JSON.");
-  //   }
-  //   const data = await res.json();
-  //   console.log(data);
-  // } catch (error) {
-  //   console.error("Error fetching user data:", error.message);
-  // }
-};
 
 

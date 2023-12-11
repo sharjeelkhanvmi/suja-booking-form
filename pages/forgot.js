@@ -1,5 +1,6 @@
 
 import { forgotPassword } from "@/app/service/mailService";
+import { sendMail } from "@/app/service/mailService";
 import Head from 'next/head'
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,7 +11,7 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 import Link from 'next/link';
 import jwt_decode from "jwt-decode";
-
+import axios from "axios";
 
 export default function Home() {
   const [formData, setFormData] = useState({ email: ""});
@@ -18,17 +19,12 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await forgotPassword(formData);
-    // if (res.success) {
-    //   toast.success(res.message);
-    //   const user = jwt_decode(res.token);
-    //   Cookies.set("token", res.token);
-    //   // setTimeout(() => {
-    //     Router.push("/"+user.role);
-    //   // }, 1000);
-    // } else {
-    //   toast.error(res.message);
-    // }
+  const response =  await axios.post("/api/forget_api_mailer", { formdata: formData });
+    if (response.status == 200) {
+      toast.success("Email sent Successfully");
+    } if(response.status == 404) {
+      toast.error("Email is not Valid");
+    }
   };
 
   return (
@@ -57,13 +53,15 @@ export default function Home() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M12 5l-7 7 7 7"></path></svg>
                 <Link href="/login" className="text-sm px-2 font-medium text-primary-600 hover:underline dark:text-primary-500">Back to login</Link>
                 </div>  
-
+                
               </form>
             </div>
           </div>
+          <ToastContainer />
         </div>
+
       </section>
-      <ToastContainer />
+      
     </>
   )
 }

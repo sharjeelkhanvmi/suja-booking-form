@@ -88,7 +88,7 @@ const router = useRouter();
       animate={{ opacity: 1, marginRight: 0 }}
       exit={{ opacity: 1, marginRight: -360 }}
       transition={{ delay: 0.1, duration: 0.4 }}
-      className="fixed pt-8 top-20 right-0 z-10 w-[350px] bg-[#0c1936] text-white overflow-y-auto p-6 h-full"
+      className="fixed pt-8 top-20 right-0 z-10 w-[350px] sidbarcustom bg-[#0c1936] text-white overflow-y-auto p-6 h-full"
     >
 
     {data && data.step2 && data.step2.dr_course_price ? (

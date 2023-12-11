@@ -37,9 +37,14 @@ const thankyou = () => {
                 button below.
               </p>
               <a
+<<<<<<< HEAD
                 href="http://localhost:3000/customer"
                 className="red-btn tracking-wide uppercase lg:p-4 p-3 font-bold lg:px-8 px-5 rounded-full
                  bg-red-700 hover:bg-red-600 hover:text-white md:text-2xl text-xl text-center text-white inline-flex items-center btnanimate mr-2"
+=======
+                href="/customer"
+                className="red-btn tracking-wide uppercase lg:p-4 p-3 font-bold lg:px-8 px-5 rounded-full bg-red-700 hover:bg-red-600 hover:text-white text-2xl text-center text-white inline-flex items-center btnanimate mr-2"
+>>>>>>> e75be8578ded2b9a73ea49c0c62b8adeac928c90
               >
                 Go to Dashboard
                 <svg
