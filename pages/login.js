@@ -106,15 +106,17 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 import Link from 'next/link';
 import jwt_decode from "jwt-decode";
+import { BiLoaderAlt } from "react-icons/bi";
 
 
 
 export default function Home() {
+  const [isLoader, setLoader] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
 
-
-  const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoader(true);
     const res = await login_user(formData);
     if (res.success) {
       toast.success(res.message);
@@ -125,6 +127,7 @@ export default function Home() {
       // }, 1000);
     } else {
       toast.error(res.message);
+      setLoader(false);
     }
   };
 
@@ -164,7 +167,14 @@ export default function Home() {
                   </div>
                   <Link href="/forgot" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</Link>
                 </div>
-                <button type="submit" className="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                <button type="submit" className="flex justify-center relative w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                >
+                  {isLoader ? (
+                    <>
+                    Sign in <BiLoaderAlt className="animate-spin text-2xl absolute ml-[80px]" />
+                    </>
+                  ) : 'Sign in'}
+                </button>
                 {/* <p className="text-sm font-light text-black dark:text-indigo-400">
                   Don't have an account yet? <Link href="/register" className="font-medium text-dark hover:underline dark:text-primary-500 text-red-600">Sign up</Link>
                 </p> */}

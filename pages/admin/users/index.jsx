@@ -220,20 +220,20 @@ const Index = () => {
 
                         <td
                           role="cell"
-                          class=" flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
+                          className=" flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
                         >
                           <span
                             onClick={() => {
                               handleDelete(data.user._id)
                             }}
-                            class="text-sm font-bold text-red-700 dark:text-white"
+                            className="text-sm font-bold text-red-700 dark:text-white"
                           >
                             <svg
                               stroke="currentColor"
                               fill="currentColor"
                               stroke-width="0"
                               viewBox="0 0 1024 1024"
-                              class="text-2xl cursor-pointer"
+                              className="text-2xl cursor-pointer"
                               height="1em"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -246,14 +246,14 @@ const Index = () => {
                             onClick={() => {
                               openModal(data.user);
                             }}
-                            class="text-sm font-bold text-gray-800 dark:text-white"
+                            className="text-sm font-bold text-gray-800 dark:text-white"
                           >
                             <svg
                               stroke="currentColor"
                               fill="currentColor"
                               stroke-width="0"
                               viewBox="0 0 1024 1024"
-                              class="text-2xl cursor-pointer"
+                              className="text-2xl cursor-pointer"
                               height="1em"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
@@ -381,7 +381,7 @@ const Index = () => {
         
         <button
           type="submit"
-          class="rounded-full py-3  px-8  text-lg uppercase  font-semibold text-white shadow-sm
+          className="rounded-full py-3  px-8  text-lg uppercase  font-semibold text-white shadow-sm
 bg-red-500 hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Save Profile

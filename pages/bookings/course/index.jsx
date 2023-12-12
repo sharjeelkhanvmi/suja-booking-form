@@ -52,21 +52,14 @@ const [valid, setValid] = useState();
 const [info,setInfo] = useState();
 
 const checkAndSetLoader = (changedData) => {
-   // Check if the required keys are present in the step2 object
    const step2 = changedData.step2
-   //console.info('loader: ',step2)
    const hasRequiredKeys =
    step2 &&
    step2?.dr_type &&
    step2?.dr_course_type &&
    step2?.dr_course_price;
- 
-   // Set loader to true if the required keys are present, otherwise set it to false
-   const loader = hasRequiredKeys ? true : false;
- 
-   // Use the loader variable as needed (for example, setLoader(loader) if using React state)
-   //console.log('Loader:', loader);
- 
+
+   const loader = hasRequiredKeys ? true : false; 
    return loader;
  };
 

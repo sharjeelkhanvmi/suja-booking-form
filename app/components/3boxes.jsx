@@ -35,7 +35,7 @@ export default function ThreeBoxes() {
           id="toggleButton1"
         >
           <div className="p-3 mx-3 bg-gray-200 opacity-1 transition-all rounded-xl">
-          <svg class="w-8 h-8 text-black-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-8 h-8 text-black-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
 </svg>
 
@@ -64,7 +64,7 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer bg-gray-200 hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-          <svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.6 7.6L12 15.2l-3.6-3.6M8 12h8"/>
 </svg>
 
@@ -94,7 +94,7 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-<svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<svg className="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM12 2v4m0 16v-4m6-10h-4m-2 0H8m2 0v6h8v-6z"/>
 </svg>
 
@@ -124,7 +124,7 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-<svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<svg className="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6zm-1 9H8v3H7v2h3v-2H9v-3zm6 0h-2v3h-1v2h3v-2h-1v-3z"/>
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-1v-2l-4 1v2zM13 19l4 1v-2l-4-1v2z"/>
 </svg>
@@ -156,7 +156,7 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-          <svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 1h16c1.104 0 2 .896 2 2v18c0 1.104-.896 2-2 2H4c-1.104 0-2-.896-2-2V3c0-1.104.896-2 2-2zm7 16v2m0 0v2m0-2h3m-3 0h3m-4-3v6"/>
 </svg>
    {" "}
@@ -185,7 +185,7 @@ export default function ThreeBoxes() {
       px-0 cursor-pointer hover:bg-gray-300 hover:bg-opacity-50 group "
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
-          <svg class="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <circle cx="12" cy="12" r="10" stroke-width="2" />
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 16v-4m0-4h.01" />
 </svg>

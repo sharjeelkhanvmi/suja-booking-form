@@ -499,7 +499,7 @@ const Index = () => {
               <h4 className="text-center w-full text-2xl  text-dark font-semibold">
                 Order# {viewLead._id}
               </h4>
-              {/* <span class="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
+              {/* <span className="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
             </div>
             <div className="overflow-y-auto">
               <div className="orderCustomerDetails p-7 pb-3">
@@ -508,14 +508,14 @@ const Index = () => {
                     <h3 className="text-xl font-bold mb-2">Customer Details</h3>
                     <h4 className="font-semibold mb-3">
                       Postal Code
-                      <span class="bg-teal-200 ms-3 py-1 px-3 font-semibold  text-xs rounded-full">
+                      <span className="bg-teal-200 ms-3 py-1 px-3 font-semibold  text-xs rounded-full">
                         {" "}
                         {viewLead.step1.postal_code}
                       </span>
                     </h4>
                   </div>
                   <div className="text-start">
-                    <span class="font-bold text-lg text-start ">
+                    <span className="font-bold text-lg text-start ">
                       {" "}
                       Date Time <br />
                       <span className="font-normal text-start">
@@ -525,7 +525,7 @@ const Index = () => {
                     </span>
                   </div>
                    {/*  <div className="">
-                  <span class="font-regular  text-sm text-end rounded-full font-semibold">
+                  <span className="font-regular  text-sm text-end rounded-full font-semibold">
                       {" "}
                       Transaction ID <br />
                       <span className="font-normal">
@@ -567,7 +567,7 @@ const Index = () => {
                     </span>
                     </div>
                     <div>
-                    <span class="font-regular  text-sm text-start rounded-full font-semibold">
+                    <span className="font-regular  text-sm text-start rounded-full font-semibold">
                      <h4 className="font-bold text-lg pt-5"> Transaction ID</h4>
                       <span className="font-normal">
                       {viewLead.stripe.id}
@@ -578,26 +578,26 @@ const Index = () => {
                 </div>
               </div>
 
-              <div class="order-details p-4 pb-8 relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left border rtl:text-right">
+              <div className="order-details p-4 pb-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table className="w-full text-sm text-left border rtl:text-right">
                   <tbody>
                     <tr className="border  bg-gray-200">
                       <th
                         scope="col"
-                        class="px-6 py-3 text-dark font-bold text-sm"
+                        className="px-6 py-3 text-dark font-bold text-sm"
                       >
                         Course Details
                       </th>
-                      <th scope="col" class="px-6 py-3 font-bold text-sm">
+                      <th scope="col" className="px-6 py-3 font-bold text-sm">
                         Price
                       </th>
                     </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                       <td
                         scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <span class="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">
+                        <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">
                           Speedster Course
                         </span>
                         {viewLead.step2.dr_course_price ? (
@@ -627,7 +627,7 @@ const Index = () => {
                           <span>No course price available</span>
                         )}
                       </td>
-                      <td class="px-6 py-4 font-semibold text-sm">
+                      <td className="px-6 py-4 font-semibold text-sm">
                         {viewLead.step6.payment === "Full" && (
                           <div>
                             {Object.keys(viewLead.step2.dr_course_price).map(
@@ -646,47 +646,47 @@ const Index = () => {
                       </td>
                     </tr>
                     {viewLead.step3.fast_track_practical != "" && (
-                      <tr class="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
+                      <tr className="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
                         <td
                           scope="row"
-                          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          <span class="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                          <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
                             Add-ons
                           </span>
                           <span className="block mt-2 ms-1">
                             Practical Test
                           </span>
                         </td>
-                        <td class="px-6 py-4 font-semibold text-sm">
+                        <td className="px-6 py-4 font-semibold text-sm">
                           £{viewLead.step3.fast_track_practical}
                         </td>
                       </tr>
                     )}
                     {viewLead.step3.fast_track_theory != "" && (
-                      <tr class="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
+                      <tr className="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
                         <td
                           scope="row"
-                          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          <span class="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                          <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
                             Add-ons
                           </span>
                           <span className="block mt-2 ms-1">Theory Test</span>
                         </td>
-                        <td class="px-6 py-4 font-semibold text-sm">
+                        <td className="px-6 py-4 font-semibold text-sm">
                           £{viewLead.step3.fast_track_theory}
                         </td>
                       </tr>
                     )}
-                    <tr class="border-b  p-3 bg-gray-200 dark:border-gray-700">
+                    <tr className="border-b  p-3 bg-gray-200 dark:border-gray-700">
                       <td
                         scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
                         <span className="block mt-2 ms-1">Total</span>
                       </td>
-                      <td class="px-6 py-4 font-semibold text-sm">
+                      <td className="px-6 py-4 font-semibold text-sm">
                         £{viewLead.step6.amount}
                       </td>
                     </tr>

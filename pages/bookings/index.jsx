@@ -19,7 +19,7 @@ const [info,setInfo] = useState();
 const [isLoader, setLoader] = useState(false);
 const [valid, setValid] = useState();
 let formdata;
-let urlData;
+let urlData = {};
 let coursePkg;
 
 if (typeof window !== 'undefined') {
@@ -28,6 +28,13 @@ if (typeof window !== 'undefined') {
   let dr_type = urlParams.get('dr_type');
   const dr_course_type = urlParams.get('dr_course_name');
   const dr_course_price = urlParams.get('dr_pkg_hours');
+  const postal_code = urlParams.get('postal_code');
+
+  if(postal_code){
+    urlData['step1'] = {postal_code};
+    localStorage.setItem("formData", JSON.stringify(urlData));
+  }
+  
   if(dr_type && dr_course_type && dr_course_price){
   if(dr_type == 'auto'){
     coursePkg = auto[dr_course_type]['course'][dr_course_price]

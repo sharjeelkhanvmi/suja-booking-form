@@ -7,8 +7,11 @@ import Cookies from "js-cookie";
 import decodeToken from "jwt-decode";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import * as Yup from 'yup';
 import "react-toastify/dist/ReactToastify.css";
 // import bcrypt from "bcryptjs";
+
+const getCharacterValidationError = (type) => `Password must contain at least one ${type}`;
 
 const Index = () => {
   const [profile, setprofile] = useState({
@@ -16,10 +19,61 @@ const Index = () => {
     lname: "",
     phone: ""
   });
-  const [password, setpassword] = useState({
+
+  // new code
+  const [password, setPassword] = useState({
     password: "",
     confirm_password: ""
   });
+  const [errors, setErrors] = useState({
+    password: "",
+    confirm_password: ""
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPassword((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleBlur = async () => {
+    try {
+      await validationSchema.validate(password, { abortEarly: false });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "",
+        confirm_password: ""
+      }));
+    } catch (validationErrors) {
+      const newErrors = {};
+      validationErrors.inner.forEach((error) => {
+        newErrors[error.path] = error.message;
+      });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        ...newErrors
+      }));
+    }
+  };
+
+  const validationSchema = Yup.object({
+    password: Yup.string()
+      .required('Please enter a password')
+      .min(8, 'Password must have at least 8 characters')
+      .matches(/[0-9]/, getCharacterValidationError('digit'))
+      .matches(/[a-z]/, getCharacterValidationError('lowercase'))
+      .matches(/[A-Z]/, getCharacterValidationError('uppercase')),
+    confirm_password: Yup.string()
+      .required('Please re-type your password')
+      .oneOf([Yup.ref('password')], 'Passwords do not match'),
+  });
+
+  // new code
+  // const [password, setpassword] = useState({
+  //   password: "",
+  //   confirm_password: ""
+  // });
   const cookie = Cookies.get("token");
   let user = false;
   if (cookie) {
@@ -32,7 +86,7 @@ const Index = () => {
       const response = await axios.get(`/api/user`);
       let data = await response.data[0].user;
       setprofile(data);
-      console.log("State Data Handle User Function", data);
+      //console.log("State Data Handle User Function", data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -79,7 +133,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-3 justify-center align-middle text-white bg-black flex-col tracking-widest uppercase">
+      <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-3 justify-center align-middle text-white bg-black flex-col">
         <form
           className="pb-5 w-1/1  rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500"
           onSubmit={handleSubmit}
@@ -154,7 +208,7 @@ const Index = () => {
 
             <button
               type="submit"
-              class="rounded-full mt-5 py-3  px-8  text-lg uppercase  font-semibold text-white shadow-sm
+              className="rounded-full mt-5 py-3  px-8  text-lg uppercase  font-semibold text-white shadow-sm
      bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save Profile
@@ -177,17 +231,17 @@ const Index = () => {
               </label>
               <input
                 value={password.password}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                  errors.password ? 'border-red-500' : ''
+                }`}
                 id="grid-changepassword"
                 type="password"
                 placeholder="******************"
-                onChange={e => {
-                  setpassword(prevData => ({
-                    ...prevData,
-                    password: e.target.value
-                  }));
-                }}
+                name="password"
               />
+              {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
             </div>
             <div className="w-full pt-7 px-3">
               <label
@@ -198,21 +252,23 @@ const Index = () => {
               </label>
               <input
                 value={password.confirm_password}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                  errors.confirm_password ? 'border-red-500' : ''
+                }`}
                 id="grid-confirmchangepassword"
                 type="password"
                 placeholder="******************"
-                onChange={e => {
-                  setpassword(prevData => ({
-                    ...prevData,
-                    confirm_password: e.target.value
-                  }));
-                }}
+                name="confirm_password"
               />
+              {errors.confirm_password && (
+                <p className="text-red-500 text-xs">{errors.confirm_password}</p>
+              )}
             </div>
             <button
               type="submit"
-              class="rounded-full mt-5 py-3  px-8 text-lg uppercase  font-semibold text-white shadow-sm
+              className="rounded-full mt-5 py-3  px-8 text-lg uppercase  font-semibold text-white shadow-sm
      bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Udpate Password
