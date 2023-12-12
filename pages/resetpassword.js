@@ -90,7 +90,7 @@ const ChangePassword = () => {
         console.log("PASSWORD UPDATED SUCCESSFULLY");
         setPassword({ password: "", confirm_password: "" });
         toast.success("Password updated");
-        router('/login')
+        router.push('/login')
         
     } catch (error) {
       console.error("Error updating password:", error);
