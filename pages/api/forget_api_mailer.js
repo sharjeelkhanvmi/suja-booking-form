@@ -23,8 +23,9 @@ const handler = async (req, res) => {
           if (checkEmailFromUser.length > 0) {
             const userPassword = checkEmailFromUser[0].password;
             console.log("Password From Email ",userPassword);
-
-            const emailContent = `<a href="http://suja-booking-form.vercel.app/resetpassword?token=${userPassword}">Click to reset password</a>`;
+            let url1= 'localhost:3000';
+            let url2='suja-booking-form.vercel.app';
+            const emailContent = `<a href="http://${url1}/resetpassword?token=${userPassword}">Click to reset password</a>`;
             await sendMail("Suja Forget Password", email, emailContent);
            
             res.status(200).send({success:true,message:"Success"});
