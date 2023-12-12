@@ -9,6 +9,8 @@ import Layout from "@/app/components/Layout";
 import * as Yup from "yup";
 
 const ChangePassword = () => {
+
+  const router = useRouter();
   const [password, setPassword] = useState({
     password: "",
     confirm_password: ""
@@ -88,6 +90,8 @@ const ChangePassword = () => {
         console.log("PASSWORD UPDATED SUCCESSFULLY");
         setPassword({ password: "", confirm_password: "" });
         toast.success("Password updated");
+        router('/login')
+        
     } catch (error) {
       console.error("Error updating password:", error);
       toast.error("Error updating password");
