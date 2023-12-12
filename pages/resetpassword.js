@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import decodeToken from "jwt-decode";
 import Layout from "@/app/components/Layout";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 
 const ChangePassword = () => {
 
