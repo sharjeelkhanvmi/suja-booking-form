@@ -8,7 +8,11 @@ import decodeToken from "jwt-decode";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as Yup from 'yup';
 // import bcrypt from "bcryptjs";
+
+
+const getCharacterValidationError = (type) => `Password must contain at least one ${type}`;
 
 const Index = () => {
   const [profile, setprofile] = useState({
@@ -16,10 +20,7 @@ const Index = () => {
     lname: "",
     phone: ""
   });
-  const [password, setpassword] = useState({
-    password: "",
-    confirm_password: ""
-  });
+  
   const cookie = Cookies.get("token");
   let user = false;
   if (cookie) {
@@ -31,7 +32,7 @@ const Index = () => {
     const response = await axios.get(`/api/user`);
     let data = await response.data[0].user;
     setprofile(data);
-    console.log("State Data", data);
+    // console.log("State Data", data);
   };
   useEffect(() => {
     handleUser();
@@ -56,7 +57,82 @@ const Index = () => {
     }
   };
 
+// password change
+  const [formData, setFormData] = useState({
+    password: '',
+    confirm_password: '',
+  });
+  const [errors, setErrors] = useState({
+    password: "",
+    confirm_password: ""
+  });
 
+  const validationSchema = Yup.object({
+    password: Yup.string()
+      .required('Please enter a password')
+      .min(8, 'Password must have at least 8 characters')
+      .matches(/[0-9]/, getCharacterValidationError('digit'))
+      .matches(/[a-z]/, getCharacterValidationError('lowercase'))
+      .matches(/[A-Z]/, getCharacterValidationError('uppercase')),
+    confirm_password: Yup.string()
+      .required('Please re-type your password')
+      .oneOf([Yup.ref('password')], 'Passwords do not match'),
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleBlur = async () => {
+    try {
+      await validationSchema.validate(formData, { abortEarly: false });
+      setErrors({ ...errors, password: '', confirm_password: '' });
+    } catch (error) {
+      const newErrors = {};
+      error.inner.forEach((e) => {
+        newErrors[e.path] = e.message;
+      });
+      setErrors(newErrors);
+    }
+  };
+
+  const handlePassword = async (e) => {
+    e.preventDefault();
+
+    try {
+      await validationSchema.validate(formData, { abortEarly: false });
+        try {
+          const response = await axios.post("/api/user/changepassword", {
+            password: formData,
+            id: user.id
+          });
+          if (response.data.success) {
+            //console.log("Password updated successfully");
+            toast.success("Password updated successfully");
+          } else {
+            //console.log("Failed to update password");
+            toast.error("Failed to update password");
+          }
+        } catch (error) {
+          //console.error("Error updating password:", error);
+          toast.error("Error updating password");
+        }
+      // console.log('Form submitted successfully');
+    } catch (error) {
+      const newErrors = {};
+      error.inner.forEach((e) => {
+        newErrors[e.path] = e.message;
+      });
+      setErrors(newErrors);
+      toast.error("Error updating password");
+    }
+  };
+
+/*
   const handlePassword = async e => {
     e.preventDefault();
 
@@ -80,11 +156,11 @@ const Index = () => {
     }
   };
 
-  console.log(password)
+  */
 
   return (
     <Layout>
-      <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-3 justify-center align-middle text-white bg-black flex-col tracking-widest uppercase">
+      <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-3 justify-center align-middle text-white bg-black flex-col">
         <form
           className="pb-5 w-1/1  rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500"
           onSubmit={handleSubmit}
@@ -159,7 +235,7 @@ const Index = () => {
 
             <button
               type="submit"
-              className="rounded-full mt-5 py-3  px-8  text-lg uppercase  font-semibold text-white shadow-sm
+              className="rounded-full mt-3 py-3 text-sm ms-3 px-8  text-lg uppercase  font-semibold text-white shadow-sm
      bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save Profile
@@ -167,7 +243,7 @@ const Index = () => {
           </div>
         </form>
 
-        {/* PASSWORD */}
+
         <form
           className="pb-5 w-1/1  rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500"
           onSubmit={handlePassword}
@@ -181,18 +257,18 @@ const Index = () => {
                 Change Password
               </label>
               <input
-                value={password.password}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={formData.password}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                  errors.password ? 'border-red-500' : ''
+                }`}
                 id="grid-changepassword"
                 type="password"
                 placeholder="******************"
-                onChange={e => {
-                  setpassword(prevData => ({
-                    ...prevData,
-                    password: e.target.value
-                  }));
-                }}
+                name="password"
               />
+              {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
             </div>
             <div className="w-full pt-7 px-3">
               <label
@@ -202,28 +278,31 @@ const Index = () => {
                 Confirm Change Password
               </label>
               <input
-                value={password.confirm_password}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={formData.confirm_password}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                  errors.confirm_password ? 'border-red-500' : ''
+                }`}
                 id="grid-confirmchangepassword"
                 type="password"
                 placeholder="******************"
-                onChange={e => {
-                  setpassword(prevData => ({
-                    ...prevData,
-                    confirm_password: e.target.value
-                  }));
-                }}
+                name="confirm_password"
               />
+              {errors.confirm_password && (
+                <p className="text-red-500 text-xs">{errors.confirm_password}</p>
+              )}
             </div>
             <button
               type="submit"
-              className="rounded-full mt-5 py-3  px-8 text-lg uppercase  font-semibold text-white shadow-sm
+              className="rounded-full text-sm ms-3 mt-5 py-3  px-8 text-lg uppercase  font-semibold text-white shadow-sm
      bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Udpate Passowrd
             </button>
           </div>
         </form>
+        <ToastContainer className='capitalize'></ToastContainer>
       </div>{" "}
       {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
     </Layout>
