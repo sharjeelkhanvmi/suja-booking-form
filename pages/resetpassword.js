@@ -166,9 +166,10 @@ const ChangePassword = () => {
 
           <button
             type="submit"
-            className=" flex items-center rounded-full mt-5 py-3 ps-10 pe-16 p-14 relative text-lg uppercase font-semibold text-white shadow-sm bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className={`flex items-center rounded-full mt-5 py-3  ${isLoader ? 'pe-10' : 'ps-10'} p-12 relative text-lg uppercase 
+            font-semibold text-white shadow-sm bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
           >
-            {!isLoader ? (
+            {isLoader ? (
               <>
                 Update  <BiLoaderAlt className="animate-spin text-2xl absolute ml-[80px]" />
               </>
