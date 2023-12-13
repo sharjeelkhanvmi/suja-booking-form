@@ -33,6 +33,13 @@ const Index = () => {
     }
   });
 
+// Truncate Id Start
+const truncateID = (id, length) => {
+  const truncatedID = id.toString().substring(0, length);
+  return truncatedID;
+};
+// Truncate Id End
+
   const handleEdit = async (lead) => {
     setFormData(lead);
     setToggle(true);
@@ -490,8 +497,8 @@ const Index = () => {
           >
             <div className="flex justify-between py-4 px-5 bg-red-400 rounded-t-xl pb-3">
               <h4 className="text-center w-full text-2xl  text-dark font-semibold">
-                Order# {viewLead._id}
-              </h4>
+              Order# {truncateID(viewLead._id, 5)}
+              </h4> 
               {/* <span className="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
             </div>
             <div className="overflow-y-auto">
@@ -513,7 +520,8 @@ const Index = () => {
                       Date Time <br />
                       <span className="font-normal">
                       {moment(viewLead.createdAt).format('YYYY-MM-DD HH:mm:ss A')}
-                      </span>{" "}
+                      </span>
+                      {" "}
                     </span>
                   </div>
                 </div>  
