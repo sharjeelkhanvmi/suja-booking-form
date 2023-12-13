@@ -21,41 +21,14 @@ const Index = () => {
   });
 
   // new code
-  const [password, setPassword] = useState({
-    password: "",
-    confirm_password: ""
+  const [formData, setFormData] = useState({
+    password: '',
+    confirm_password: '',
   });
   const [errors, setErrors] = useState({
     password: "",
     confirm_password: ""
   });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPassword((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
-
-  const handleBlur = async () => {
-    try {
-      await validationSchema.validate(password, { abortEarly: false });
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "",
-        confirm_password: ""
-      }));
-    } catch (validationErrors) {
-      const newErrors = {};
-      validationErrors.inner.forEach((error) => {
-        newErrors[error.path] = error.message;
-      });
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        ...newErrors
-      }));
-    }
-  };
 
   const validationSchema = Yup.object({
     password: Yup.string()
@@ -69,17 +42,11 @@ const Index = () => {
       .oneOf([Yup.ref('password')], 'Passwords do not match'),
   });
 
-  // new code
-  // const [password, setpassword] = useState({
-  //   password: "",
-  //   confirm_password: ""
-  // });
   const cookie = Cookies.get("token");
   let user = false;
   if (cookie) {
     user = decodeToken(cookie);
   }
-  // console.log(cookie,"COOKIE");
 
   const handleUser = async () => {
     try {
@@ -110,9 +77,63 @@ const Index = () => {
     }
   };
 
-  const handlePassword = async e => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleBlur = async () => {
+    try {
+      await validationSchema.validate(formData, { abortEarly: false });
+      setErrors({ ...errors, password: '', confirm_password: '' });
+    } catch (error) {
+      const newErrors = {};
+      error.inner.forEach((e) => {
+        newErrors[e.path] = e.message;
+      });
+      setErrors(newErrors);
+    }
+  };
+
+  const handlePassword = async (e) => {
     e.preventDefault();
 
+    try {
+      await validationSchema.validate(formData, { abortEarly: false });
+        try {
+          const response = await axios.post("/api/user/changepassword", {
+            password: formData,
+            id: user.id
+          });
+          if (response.data.success) {
+            //console.log("Password updated successfully");
+            toast.success("Password updated successfully");
+          } else {
+            //console.log("Failed to update password");
+            toast.error("Failed to update password");
+          }
+        } catch (error) {
+          //console.error("Error updating password:", error);
+          toast.error("Error updating password");
+        }
+      // console.log('Form submitted successfully');
+    } catch (error) {
+      const newErrors = {};
+      error.inner.forEach((e) => {
+        newErrors[e.path] = e.message;
+      });
+      setErrors(newErrors);
+      toast.error("Error updating password");
+    }
+  };
+
+  //const handlePassword = async e => {
+    //e.preventDefault();
+    //console.log(errors)
+/*
     try {
       const response = await axios.post("/api/user/changepassword", {
         password: password,
@@ -129,7 +150,8 @@ const Index = () => {
       console.error("Error updating password:", error);
       toast.error("Error updating password");
     }
-  };
+    */
+  //};
 
   return (
     <Layout>
@@ -208,7 +230,7 @@ const Index = () => {
 
             <button
               type="submit"
-              className="rounded-full mt-5 py-3  px-8  text-lg uppercase  font-semibold text-white shadow-sm
+              className="rounded-full mt-3 ml-3 text-sm py-3  px-8  text-lg uppercase  font-semibold text-white shadow-sm
      bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save Profile
@@ -230,10 +252,10 @@ const Index = () => {
                 Change Password
               </label>
               <input
-                value={password.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                value={formData.password}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
                   errors.password ? 'border-red-500' : ''
                 }`}
                 id="grid-changepassword"
@@ -251,10 +273,10 @@ const Index = () => {
                 Confirm Change Password
               </label>
               <input
-                value={password.confirm_password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
+                value={formData.confirm_password}
+                className={`appearance-none block w-full bg-gray-200 text-gray-700 border rounded-md py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${
                   errors.confirm_password ? 'border-red-500' : ''
                 }`}
                 id="grid-confirmchangepassword"
@@ -268,7 +290,7 @@ const Index = () => {
             </div>
             <button
               type="submit"
-              className="rounded-full mt-5 py-3  px-8 text-lg uppercase  font-semibold text-white shadow-sm
+              className="rounded-full mt-5 ml-4 py-3  px-8 text-lg uppercase font-semibold text-white shadow-sm text-sm
      bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Udpate Password
