@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 
 const Layout = ({ children }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true); // Add a loading state
 
