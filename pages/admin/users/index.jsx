@@ -104,15 +104,7 @@ const Index = () => {
             >
               <thead>
                 <tr role="row bg-gray-500">
-                <th className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700">
-                <input
-                type="checkbox"
-                id="customerCheckAll"
-                className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
-        checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
-                              name="weekly"
-                            /></th>
-                  <th
+                <th
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
@@ -127,10 +119,10 @@ const Index = () => {
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
-                    className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
+                    className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold text-gray-800">
+                    <div className="text-sm font-bold  text-gray-800">
                       Email
                     </div>
                   </th>
@@ -141,8 +133,8 @@ const Index = () => {
                     className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
                     style={{ cursor: "pointer" }}
                   >
-                    <div className="text-sm font-bold  text-gray-800">
-                      Postal Code
+                    <div className="text-sm font-bold text-gray-800">
+                    Postal Code
                     </div>
                   </th>
                   <th
@@ -153,10 +145,21 @@ const Index = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <div className="text-sm font-bold  text-gray-800">
-                      Mobile
+                    Mobile
                     </div>
                   </th>
                   <th
+                    colSpan={1}
+                    role="columnheader"
+                    title="Toggle SortBy"
+                    className="border-b border-gray-200 pb-5 text-start dark:!border-navy-700"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="text-sm font-bold  text-gray-800">
+                    Action
+                    </div>
+                  </th>
+                  {/* <th
                     colSpan={1}
                     role="columnheader"
                     title="Toggle SortBy"
@@ -166,7 +169,7 @@ const Index = () => {
                     <div className="text-end text-sm font-bold  text-gray-800">
                       Action
                     </div>
-                  </th>
+                  </th> */}
                 </tr>
               </thead>
               <tbody role="rowgroup">
@@ -174,12 +177,12 @@ const Index = () => {
                   usersData.map((data) => (
                     <>
                       <tr role="row">
-                        <td> <input
+                        {/* <td> <input
                           type="checkbox"                          
                           className="defaultCheckbox customerCheck relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
                       checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
                           name="weekly"
-                        /></td>
+                        /></td> */}
                         <td
                           role="cell"
                           className="pt-[14px] pb-[16px] sm:text-[14px]"
@@ -220,7 +223,7 @@ const Index = () => {
 
                         <td
                           role="cell"
-                          className=" flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
+                          className=" flex flex-1 justify-start pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
                         >
                           <span
                             onClick={() => {
