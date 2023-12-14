@@ -88,7 +88,7 @@ const router = useRouter();
       animate={{ opacity: 1, marginRight: 0 }}
       exit={{ opacity: 1, marginRight: -360 }}
       transition={{ delay: 0.1, duration: 0.4 }}
-      className="fixed md:pt-8 pt-4 top-20 right-0 z-10 w-[350px] sidbarcustom bg-[#0c1936] text-white md:overflow-y-auto md:p-6 p-4 md:h-full"
+      className="fixed md:pt-8 pt-3 top-20 right-0 z-10 w-[350px] sidbarcustom bg-[#0c1936] text-white md:overflow-y-auto md:p-6 p-4 md:h-full"
     >
 
     {data && data.step2 && data.step2.dr_course_price ? (
@@ -166,9 +166,9 @@ const router = useRouter();
       ) : (
         
         // empty card html
-        <div className="h-full w-full p-4 flex items-center justify-center flex-col text-center">
+        <div className="h-full w-full md:p-4 p-0 flex items-center justify-center flex-col text-center">
         <div className="flex items-center justify-center flex-col text-center">
-          <div className="rounded-full bg-white bg-opacity-10 p-8 flex items-center justify-center">
+          <div className="rounded-full bg-white bg-opacity-10 md:p-8 p-4 flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -185,8 +185,8 @@ const router = useRouter();
               />
             </svg>
           </div>
-          <p className="font-semibold mt-4">Your cart is empty</p>
-          <p className="text-sm text-white text-opacity-70 mt-4">
+          <p className="font-semibold md:mt-4 mt-2">Your cart is empty</p>
+          <p className="text-sm text-white text-opacity-70 md:mt-4 mt-0">
             Start by selecting your course to see it in your cart.
           </p>
         </div>

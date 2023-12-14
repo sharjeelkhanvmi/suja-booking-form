@@ -138,7 +138,7 @@ function enableLoader(){
                 <button
                 onClick={enableLoader}
                   type="submit"
-                  className={`bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600 ${
+                  className={`bg-theme-red-color hover:bg-red-900 md:w-full w-96 m-auto block hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600 ${
                     formikProps.isSubmitting ? "opacity-75 cursor-not-allowed" : ""
                   }`}
                   disabled={formikProps.isSubmitting}

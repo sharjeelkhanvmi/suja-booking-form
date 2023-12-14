@@ -168,7 +168,7 @@ showCoursePricing(values.dr_course_type)
    
    <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top md:px-7 px-0 md:py-8 py-7">
    <div className='w-full lg:max-w-[750px] md:pb-24 pb-5'>
-   <div className="md:mt-[80px] mt-[50] items-top md:px-7 px-5 py-8">
+   <div className="md:mt-[80px] mt-[50] items-top md:px-7 px-5 md:py-7 py-5">
       <div className="w-full lg:max-w-[750px] lg:pb-24 pb-10">
          <div className="grid grid-cols-2 gap-4">
             <div>
@@ -204,7 +204,7 @@ showCoursePricing(values.dr_course_type)
                    }}
                
                />
-               <label htmlFor="manual" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
+               <label htmlFor="manual" className="w-full flex items-center text-left  bg-emerald-100	py-4 md:px-5 px-3 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
                      <div className="flex items-center">
                         <div className="pr-5 false">
@@ -365,7 +365,7 @@ showCoursePricing(values.dr_course_type)
                       });
                    }}
                />
-               <label htmlFor="dr_rc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
+               <label htmlFor="dr_rc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 md:px-5 px-3 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
                      <div className="flex items-center">
                         <div className="pr-5 false">
@@ -480,7 +480,7 @@ showCoursePricing(values.dr_course_type)
                       });
                    }}
                />
-               <label htmlFor="dr_sc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
+               <label htmlFor="dr_sc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 md:px-5 px-3 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
                      <div className="flex items-center">
                         <div className="pr-5 false">
@@ -550,7 +550,7 @@ showCoursePricing(values.dr_course_type)
                       });
                    }}
                />
-               <label htmlFor="dr_gpc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
+               <label htmlFor="dr_gpc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 md:px-5 px-3 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
                   <div className="flex items-center">
                      <div className="pr-5 false">
@@ -604,7 +604,7 @@ showCoursePricing(values.dr_course_type)
         variants={variants}
         transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}        
         >
-      <div className=" flex justify-between items-center md:mt-20 mt-16 gap-x-5">
+      <div className=" flex justify-between items-center md:mt-20 md:mt-16 mt-10 gap-x-5">
          <h1 className=" text-[21px] leading-snug font-semibold">
             { course.name }
          </h1>
@@ -659,12 +659,12 @@ showCoursePricing(values.dr_course_type)
             </svg>
          </div>
       </div>
-      <div className="flex justify-center space-x-5  ">
+      <div className="flex justify-center md:space-x-5 space-x-3 course-pricehidebox">
 
 
          {/* /////////////////// */}
          {courseOptions.map((option) => (
-          <div key={option.id} className="w-1/3">
+          <div key={option.id} className="md:w-1/3 w-1/2">
             <Field
               type="radio"
               className="sr-only dr_course_price"
@@ -694,9 +694,11 @@ showCoursePricing(values.dr_course_type)
                 });
              }}
             />
-            <label htmlFor={option.id} className="w-full flex items-center text-center bg-gray-100 py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all h-full">
+            <label htmlFor={option.id} className="w-full flex items-center text-center bg-gray-100 py-4 
+            px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 
+            focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all h-full">
                <div className="w-full">
-                  <p className="font-bold text-2xl">{option.hour}</p>
+                  <p className="font-bold md:text-2xl text-xl">{option.hour}</p>
                   <p className="font-semibold text-xs">{option.variant}</p>
                   <div className="display-block">£{option.full}</div>
                </div>
@@ -717,7 +719,9 @@ showCoursePricing(values.dr_course_type)
   
             </div>
             <div className="flex items-center justify-content-center">
-               <button type="submit" onClick={enableLoader} className="bg-theme-red-color hover:bg-red-900 w-full hover:text-white rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
+               <button type="submit" onClick={enableLoader} className="bg-theme-red-color hover:bg-red-900 md:w-full w-96
+                hover:text-white mx-4 md:mx-0 rounded-md mb-5 px-12 py-4 text-md font-semibold text-white shadow-sm focus-visible:outline
+                 focus-visible:outline-2 focus-visible:outline-offset-2 ... focus-visible:outline-indigo-600">
                   <span className="flex items-center justify-center">
                      Continue
                      <span className="ml-4">
