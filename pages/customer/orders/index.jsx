@@ -529,7 +529,7 @@ const truncateID = (id, length) => {
                   <div>
                     <h4 className="font-bold text-lg">Full Name: </h4>
                     <span className="font-semibold">
-                      {viewLead.step4.title} {viewLead.step4.firstName}{" "}
+                      {viewLead.step4.title}. {viewLead.step4.firstName}{" "}
                       {viewLead.step4.surname}
                     </span>
                     <h4 className="font-bold text-lg pt-3">Email: </h4>
