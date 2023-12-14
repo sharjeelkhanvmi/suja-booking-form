@@ -24,7 +24,7 @@ const Index = () => {
 
   const handleUsersData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/admin");
+      const response = await fetch("/api/admin");
       const responseData = await response.json();
       setUsersData(responseData);
       console.log("Users Data in Orders", responseData);
