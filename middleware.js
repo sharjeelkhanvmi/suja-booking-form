@@ -54,28 +54,3 @@ export function middleware(request) {
     // return NextResponse.redirect(new URL(redirect,request.url))    
 }
 }
-// CORS SETTING
-
-// pages/api/admin.js
-import Cors from 'cors';
-import initMiddleware from './initMiddleware'
- // Create this file (see step 4)
-
-// Initialize the CORS middleware
-const cors = initMiddleware(
-  Cors({
-    methods: ['GET', 'POST', 'OPTIONS'],
-    origin: 'https://suja-booking-form.vercel.app',
-    // Add other CORS options as needed
-  })
-);
-
-// Example API route
-export default async function handler(req, res) {
-  // Run CORS middleware
-  await cors(req, res);
-
-  // Your API logic goes here
-
-  res.status(200).json({ message: 'Hello from the admin API endpoint' });
-}
