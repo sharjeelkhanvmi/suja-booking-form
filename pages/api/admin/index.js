@@ -1,5 +1,5 @@
 import Cors from 'cors';
-import initMiddleware from '@/lib/init-middleware';
+import initMiddleware from '@/initMiddleware';
 import connectionSuja from '@/database/dbconstr';
 import User from '@/database/models/User';
 import Lead from '@/database/models/Lead';
