@@ -9,11 +9,33 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import * as Yup from 'yup';
 import "react-toastify/dist/ReactToastify.css";
+import { css } from '@emotion/react';
+import { PropagateLoader } from 'react-spinners';
 // import bcrypt from "bcryptjs";
 
 const getCharacterValidationError = (type) => `Password must contain at least one ${type}`;
 
 const Index = () => {
+
+  const [loading, setLoading] = useState(true);
+
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
+useEffect(() => {
+  const customLoader = () => {
+    // Simulate loading delay for 2 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
+
+  customLoader();
+}, []);
+
   const [profile, setprofile] = useState({
     fname: "",
     lname: "",
@@ -155,6 +177,11 @@ const Index = () => {
 
   return (
     <Layout>
+    {loading ? (
+      <div className="flex justify-center items-center h-screen relative bottom-24">
+          <PropagateLoader css={override} size={15} color={'#B91C1C'} loading={loading} />
+        </div>
+    ) :<>
       <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-10  my-3 justify-center align-middle text-white bg-black flex-col">
         <form
           className="pb-5 w-1/1  rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500"
@@ -300,6 +327,7 @@ const Index = () => {
         <ToastContainer className='capitalize'></ToastContainer>
       </div>{" "}
       {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
+      </>}
     </Layout>
   );
 };

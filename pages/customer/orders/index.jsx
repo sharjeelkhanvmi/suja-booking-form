@@ -10,8 +10,18 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 import moment from 'moment';
+import { css } from '@emotion/react';
+import { PropagateLoader } from 'react-spinners';
+
 
 const Index = () => {
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
+const [loading, setLoading] = useState(true);
   const [Toggle, setToggle] = useState(false);
   const [viewLead, setViewLead] = useState(null);
   const [SecondToggle, setSecondToggle] = useState(false);
@@ -73,11 +83,16 @@ const truncateID = (id, length) => {
 
   const handleLeadsData = async () => {
     try {
+     
       const response = await fetch("/api/leads/userLeads");
       const responseData = await response.json();
       console.log("Response of User LEADS FROM FRONT END",responseData.leads)
       if (responseData && Object.keys(responseData).length > 0) {
+        setLoading(true);
         setLeadsData(responseData.leads);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       
       } else {
        
@@ -139,6 +154,11 @@ const truncateID = (id, length) => {
 
   return (
     <Layout>
+    {loading ? 
+      <div className="flex justify-center items-center h-screen relative bottom-24">
+        <PropagateLoader css={override} size={15} color={'#B91C1C'} loading={loading} />
+      </div>
+    : <>
       <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
           <div className="overflow-x-scroll xl:overflow-x-hidden p-10">
@@ -674,6 +694,8 @@ const truncateID = (id, length) => {
         )}
       </div>
       <ToastContainer />
+      </>
+    }
     </Layout>
   );
 };

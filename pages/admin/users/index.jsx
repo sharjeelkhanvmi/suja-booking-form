@@ -7,10 +7,21 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { css } from '@emotion/react';
+import { PropagateLoader } from 'react-spinners';
+
 
 
 const Index = () => {
+
+  const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
   const router = useRouter()
+  const [loading, setLoading] = useState(true);
   const [usersData, setUsersData] = useState(null);
   const [editUserData, setEditUserData] = useState({
     fname: "",
@@ -24,14 +35,22 @@ const Index = () => {
 
   const handleUsersData = async () => {
     try {
+       // Set loading to true
       const response = await fetch("/api/admin");
       const responseData = await response.json();
+      setLoading(true);
       setUsersData(responseData);
       console.log("Users Data in Orders", responseData);
+      setTimeout(() => {
+        setLoading(false); // Set loading to false when done
+      }, 1000);
     } catch (error) {
       console.error("Error While Fetching Leads Data In order", error);
+      setLoading(false); // Set loading to false in case of an error
     }
   };
+  
+  
 
   useEffect(() => {
     handleUsersData();
@@ -90,7 +109,12 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
+    {loading ?  
+      <div className="flex justify-center items-center h-screen relative bottom-24">
+        <PropagateLoader css={override} size={15} color={'#B91C1C'} loading={loading} />
+      </div>
+       : <>
+      <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col ">
         {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} /> */}
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
 
@@ -244,7 +268,6 @@ const Index = () => {
                               <path d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zm-200 0H360v-72h304v72z"></path>
                             </svg>
                           </span>
-
                           <span
                             onClick={() => {
                               openModal(data.user);
@@ -394,7 +417,9 @@ bg-red-500 hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-
         </div>
        
       </Modal>
-      <ToastContainer position="bottom-right" autoClose={5000} />
+      <ToastContainer position="bottom-right" autoClose={2000} />
+      </>
+    }
     </Layout>
   );
 };
