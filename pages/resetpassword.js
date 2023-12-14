@@ -8,10 +8,11 @@ import decodeToken from "jwt-decode";
 import Layout from "@/app/components/Layout";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
+import { BiLoaderAlt } from "react-icons/bi";
 
 const ChangePassword = () => {
-
   const router = useRouter();
+  const [isLoader, setLoader] = useState(false);
   const [password, setPassword] = useState({
     password: "",
     confirm_password: ""
@@ -24,7 +25,10 @@ const ChangePassword = () => {
       .matches(/[0-9]/, "Password must contain at least one digit")
       .matches(/[a-z]/, "Password must contain at least one lowercase letter")
       .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-      .matches(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character"),
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>]/,
+        "Password must contain at least one special character"
+      ),
     confirm_password: Yup.string()
       .required("Please re-type your password")
       .oneOf([Yup.ref("password")], "Passwords do not match")
@@ -87,12 +91,15 @@ const ChangePassword = () => {
         token: token
         // Add other necessary fields if required
       });
-
+      if (response) {
+        setLoader(true);
         console.log("PASSWORD UPDATED SUCCESSFULLY");
         setPassword({ password: "", confirm_password: "" });
         toast.success("Password updated");
-        router.push('/login')
-        
+        router.push("/login");
+      } else {
+        setLoader(false);
+      }
     } catch (error) {
       console.error("Error updating password:", error);
       toast.error("Error updating password");
@@ -156,11 +163,19 @@ const ChangePassword = () => {
               </div>
             )}
           </div>
+
           <button
             type="submit"
-            className="rounded-full mt-5 py-3 px-8 text-lg uppercase font-semibold text-white shadow-sm bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className={`flex items-center rounded-full mt-5 py-3  ${isLoader ? 'pe-10' : 'ps-10'} p-12 relative text-lg uppercase 
+            font-semibold text-white shadow-sm bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
           >
-            Update Password
+            {isLoader ? (
+              <>
+                Update  <BiLoaderAlt className="animate-spin text-2xl absolute ml-[80px]" />
+              </>
+            ) : (
+              "Update"
+            )}
           </button>
           <ToastContainer />
         </div>

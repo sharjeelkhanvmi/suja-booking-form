@@ -39,6 +39,11 @@ const Index = () => {
     setToggle(true);
   };
 
+  const truncateID = (id, length) => {
+    const truncatedID = id.toString().substring(0, length);
+    return truncatedID;
+  };
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -497,7 +502,7 @@ const Index = () => {
           >
             <div className="flex justify-between py-4 px-5 bg-red-400 rounded-t-xl pb-3">
               <h4 className="text-center w-full text-2xl  text-dark font-semibold">
-                Order# {viewLead._id}
+              Order# <span className="uppercase">{truncateID(viewLead._id, 5)}</span>
               </h4>
               {/* <span className="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
             </div>
@@ -540,7 +545,7 @@ const Index = () => {
                   <div>
                     <h4 className="font-bold text-lg">Full Name: </h4>
                     <span className="font-semibold">
-                      {viewLead.step4.title} {viewLead.step4.firstName}{" "}
+                      {viewLead.step4.title}. {viewLead.step4.firstName}{" "}
                       {viewLead.step4.surname}
                     </span>
                     {/* <h4 className="font-bold text-lg pt-3">Email: </h4>
@@ -554,7 +559,7 @@ const Index = () => {
                       {viewLead.step4.email}
                     </span>
                   </div>
-                    <div>
+                    <div className="ms-5">
                     <h4 className="font-bold text-lg">Mobile Number: </h4>
                     <span className="font-semibold text-sm">
                       {viewLead.step4.phone_number}
