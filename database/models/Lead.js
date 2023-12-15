@@ -4,7 +4,7 @@ const leadsSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     _id: {
-      type: Number,
+      type: String,
       required: true,
       unique: true
     },

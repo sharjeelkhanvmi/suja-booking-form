@@ -1,14 +1,15 @@
 import connectionSuja from "@/database/dbconstr";
 import Lead from "@/database/models/Lead";
+import crypto from 'crypto';
 
 export default async function POST(req, res) {
   await connectionSuja();
   const requestData = req.body;
 
   try {
-    // Use your custom random number as _id
-    const randomNumber = Math.floor(Math.random() * 10000) + 2;
-    requestData._id = randomNumber;
+    // Generate a crypto-based unique id
+    const uniqueId = crypto.randomBytes(2).toString('hex').toUpperCase();
+    requestData._id = uniqueId;
 
     const newLead = await new Lead(requestData);
     await newLead.save();
