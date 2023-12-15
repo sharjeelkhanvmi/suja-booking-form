@@ -1,12 +1,15 @@
 import connectionSuja from "@/database/dbconstr";
 import Lead from "@/database/models/Lead";
-import mongoose from "mongoose";
 
 export default async function POST(req, res) {
   await connectionSuja();
   const requestData = req.body;
-  // res.status(200).send(requestData)
+
   try {
+    // Use your custom random number as _id
+    const randomNumber = Math.floor(Math.random() * 10000) + 1;
+    requestData._id = randomNumber;
+
     const newLead = await new Lead(requestData);
     await newLead.save();
     res.status(200).json(newLead);
