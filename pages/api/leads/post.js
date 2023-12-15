@@ -7,7 +7,7 @@ export default async function POST(req, res) {
 
   try {
     // Use your custom random number as _id
-    const randomNumber = Math.floor(Math.random() * 10000) + 1;
+    const randomNumber = Math.floor(Math.random() * 10000) + 2;
     requestData._id = randomNumber;
 
     const newLead = await new Lead(requestData);
