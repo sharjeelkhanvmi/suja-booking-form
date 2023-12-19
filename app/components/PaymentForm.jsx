@@ -10,6 +10,7 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import axios from "axios";
 
 const stripePromise = loadStripe(
   'pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf'
@@ -106,13 +107,36 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
         },
       });
 
+      // if (error) {
+      //   setPaymentError(error.message);
+      // } else {
+      //   setLoader(true)
+      //   console.log('PaymentMethod:', paymentMethod);
+      //   console.log('Product Details:', { productName, productPrice });
+      //   onSuccess(paymentMethod);
+      // }
       if (error) {
         setPaymentError(error.message);
       } else {
-        setLoader(true)
+        setLoader(true);
         console.log('PaymentMethod:', paymentMethod);
         console.log('Product Details:', { productName, productPrice });
-        onSuccess(paymentMethod);
+    
+        // Charge the payment using the paymentMethod.id
+        const response = await axios.post('/api/payment', {
+          paymentMethodId: paymentMethod.id,
+          amount: productPrice * 100,
+        });
+        
+        console.log(response.status)
+        if (response.data.status == 'succeeded') {
+          const paymentConfirmation = await response.data;
+          console.log('Payment Confirmation:', paymentConfirmation);
+          onSuccess(paymentConfirmation);
+          // Handle the payment confirmation as needed
+        } else {
+          throw new Error('Payment failed. Please try again.');
+        }
       }
     } catch (error) {
       setPaymentError(error.message);

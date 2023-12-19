@@ -14,6 +14,10 @@ import { css } from '@emotion/react';
 import { PropagateLoader } from 'react-spinners';
 
 
+
+
+
+
 const Index = () => {
 
   const override = css`
@@ -591,7 +595,7 @@ const [loading, setLoading] = useState(true);
                     <span className="font-regular  text-sm text-start rounded-full font-semibold">
                      <h4 className="font-bold text-lg pt-5"> Transaction ID</h4>
                       <span className="font-normal">
-                      {viewLead.stripe.id}
+                      {viewLead.stripe.paymentId}
                       </span>
                     </span>
                     </div>
