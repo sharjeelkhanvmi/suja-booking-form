@@ -1,6 +1,6 @@
 import connectionSuja from "@/database/dbconstr";
 import Lead from "@/database/models/Lead";
-import crypto from 'crypto';
+import { v4 as uuidv4 } from "uuid";
 
 export default async function POST(req, res) {
   await connectionSuja();
@@ -8,8 +8,9 @@ export default async function POST(req, res) {
 
   try {
     // Generate a crypto-based unique id
-    const uniqueId = crypto.randomBytes(2).toString('hex').toUpperCase();
-    requestData._id = uniqueId;
+    const uniqueId = uuidv4();
+    const truncID = uniqueId.substring(0, 5);
+    requestData._id = truncID;
 
     const newLead = await new Lead(requestData);
     await newLead.save();
