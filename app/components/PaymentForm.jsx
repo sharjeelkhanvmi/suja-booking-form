@@ -1,5 +1,3 @@
-// PaymentForm.jsx
-
 import React, { useState, useEffect } from 'react';
 import {
   CardNumberElement,
@@ -17,6 +15,9 @@ const stripePromise = loadStripe(
 );
 
 const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
+
+
+
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
@@ -25,6 +26,8 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+
   useEffect(() => {
 
     let drType;
@@ -77,6 +80,13 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
     },
   };
 
+  const formDataFromLocalStorage = localStorage.getItem("formData");
+  const parseFormData = JSON.parse(formDataFromLocalStorage);
+  const parseFromDataFullname=parseFormData.step4.firstName +" "+ parseFormData.step4.surname;
+  const parseFromDataEmail = parseFormData.step4.email;
+  const parseFromDataPhone = parseFormData.step4.phone_number;
+  console.log("Parse Data: ",parseFormData.step4.phone_number);
+
   const handleSubmit = async (event) => {
     
     event.preventDefault();
@@ -95,9 +105,9 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
             country: 'PK',
             line1: 'Your Address Line 1',
           },
-          email: 'sharjeelkhanvmi@gmail.com',
-          name: 'Sharjeel Khan',
-          phone: '+923331279579',
+          email: parseFromDataEmail,
+          name: parseFromDataFullname,
+          phone: parseFromDataPhone,
         },
         metadata: {
           product: JSON.stringify({
