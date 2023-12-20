@@ -2,6 +2,7 @@
 import { sendMail } from "@/app/service/mailService";
 import connectionSuja from "@/database/dbconstr";
 import User from "@/database/models/User";
+import { useRouter } from 'next/router';
 
 const handler = async (req, res) => {
   try {
@@ -23,9 +24,11 @@ const handler = async (req, res) => {
           if (checkEmailFromUser.length > 0) {
             const userPassword = checkEmailFromUser[0].password;
             console.log("Password From Email ",userPassword);
+            let check= req.headers.host;
+            console.log(check,"DATAAAA");
             let url1= 'localhost:3000';
             let url2='suja-booking-form.vercel.app';
-            const emailContent = `<a href="http://${url1}/resetpassword?token=${userPassword}">Click to reset password</a>`;
+            const emailContent = `<a href="http://${check}/resetpassword?token=${userPassword}">Click to reset password</a>`;
             await sendMail("Suja Forget Password", email, emailContent);
            
             res.status(200).send({success:true,message:"Success"});

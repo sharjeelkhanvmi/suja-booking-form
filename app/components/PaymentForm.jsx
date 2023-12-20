@@ -86,6 +86,7 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
   const parseFromDataEmail = parseFormData.step4.email;
   const parseFromDataPhone = parseFormData.step4.phone_number;
   console.log("Parse Data: ",parseFormData.step4.phone_number);
+  
 
   const handleSubmit = async (event) => {
     
