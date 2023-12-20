@@ -83,7 +83,7 @@ return (
 <div className="w-full lg:max-w-[750px]">
     <div className="w-full mb-5 pr-4">
         <div className="flex justify-between items-center mb-5 gap-x-5">
-        <h1 class="md:text-[21px] text-[20px] leading-snug font-semibold">How fast do you want your course?</h1>
+        <h1 className="md:text-[21px] text-[20px] leading-snug font-semibold">How fast do you want your course?</h1>
             <div className="cursor-pointer" onClick={(e) => setHintOpen_1(isHintOpen_1 => !isHintOpen_1)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

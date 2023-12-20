@@ -25,12 +25,20 @@ const Payment = ({ info }) => {
   const [changedData, setChangedData] = useState();
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [isLoader, setLoader] = useState(false);
+
+  let formdata;
+    if (typeof localStorage !== 'undefined') {
+      formdata = JSON.parse(localStorage.getItem("formData"));
+    }
+    else {
+      formdata = '';
+    }
   
   useEffect(() => {
     if (info == null) {
       router.replace('/bookings');
     }
-      setChangedData(info);
+      setChangedData(formdata);
     },
     [info]
   );
@@ -53,6 +61,7 @@ const Payment = ({ info }) => {
   let fast_track_theory;
   let fast_track_practical;
   let pass_protect;
+  let remaining;
 
   if (
     changedData &&
@@ -90,6 +99,8 @@ const Payment = ({ info }) => {
   // subTotal = ((deposit) ? deposit : full)
 
   total = full + fast_track_theory + fast_track_practical;
+  deposit = deposit + fast_track_theory + fast_track_practical;
+  remaining = full + fast_track_theory + fast_track_practical - deposit;
 
   // let checkFull = document.getElementbyId('full');
 
@@ -213,7 +224,7 @@ const Payment = ({ info }) => {
                 <div className="text-secondary text-opacity-[0.65] text-sm false">
                   <p className="text-secondary leading-snug text-opacity-70 font-medium 
                                 text-[15px] mt-2">
-                    Securely pay a deposit by credit or debit card, covering the cost of all selected tests. The remaining £{total}{" "} is not due until we have arranged your course.
+                    Securely pay a deposit by credit or debit card, covering the cost of all selected tests. The remaining £{remaining} is not due until we have arranged your course.
                   </p>
                 </div>
               </div>

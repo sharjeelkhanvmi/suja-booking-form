@@ -15,12 +15,21 @@ const ThankYou = ({ info }) => {
   const router = useRouter();
   const [changedData, setChangedData] = useState();
   const [isLoader, setLoader] = useState(false);
+
+  let formdata;
+  if (typeof localStorage !== 'undefined') {
+    formdata = JSON.parse(localStorage.getItem("formData"));
+  }
+  else {
+    formdata = '';
+  }
+
   useEffect(() => {
-    console.log(info)
+    //console.log(info)
     if (info == null) {
       router.replace('/bookings');
     }
-    setChangedData(info)
+    setChangedData(formdata)
   }, [info])
 
   // const [info, setInfo] = useState();
