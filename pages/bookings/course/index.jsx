@@ -316,7 +316,7 @@ showCoursePricing(values.dr_course_type)
         transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}        
         >
       <div className="flex justify-between items-center gap-x-5">
-      <h1 class=" md:text-[21px] text-[20] leading-snug font-semibold">How's your driving going so far?</h1>
+      <h1 className=" md:text-[21px] text-[20] leading-snug font-semibold">How's your driving going so far?</h1>
          <div className="cursor-pointer" onClick={(e) => setHintOpen_1(isHintOpen_1 => !isHintOpen_1)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
