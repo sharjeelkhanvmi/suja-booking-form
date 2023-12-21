@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     const paymentIntent = await stripe.paymentIntents.create({
       payment_method: paymentMethodId,
       amount,
-      currency: 'usd', // Replace with your desired currency
+      currency: 'gbp', // Replace with your desired currency
       confirm: true,
     });
 
