@@ -535,9 +535,9 @@ const truncateID = (id, length) => {
                     </h4>
                   </div>
                   <div className="">
-                    <span className="font-regular  text-sm text-end rounded-full font-semibold">
+                    <span className="">
                       {" "}
-                      Date Time <br />
+                      <span className="text-xl font-bold mb-2"> Date Time </span> <br />
                       <span className="font-normal">
                       {moment(viewLead.createdAt).format('YYYY-MM-DD HH:mm:ss A')}
                       </span>
@@ -558,7 +558,7 @@ const truncateID = (id, length) => {
                     </span>
                   </div>
                   <div>
-                    <h4 className="font-bold text-lg pt-3">Mobile Number: </h4>
+                    <h4 className="font-bold text-lg">Mobile Number: </h4>
                     <span className="font-semibold text-sm">
                       {viewLead.step4.phone_number}
                     </span>
