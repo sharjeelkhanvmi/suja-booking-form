@@ -540,9 +540,9 @@ const [loading, setLoading] = useState(true);
                     </h4>
                   </div>
                   <div className="text-start">
-                    <span className="font-bold text-lg text-start ">
+                    <span className="">
                       {" "}
-                      Date Time <br />
+                      <span className="text-xl font-bold mb-2"> Date Time </span>  <br />
                       <span className="font-normal text-start">
                       {console.log('createdAt:', viewLead.createdAt)}
                       {moment(viewLead.createdAt).format('YYYY-MM-DD HH:mm:ss A')}
