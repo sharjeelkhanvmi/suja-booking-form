@@ -107,8 +107,7 @@ const [loading, setLoading] = useState(true);
 
 
   const handleDelete = async (leadId) => {
-
-
+    
     try {
       const result = await Swal.fire({
         title: "Are you sure?",
@@ -121,7 +120,7 @@ const [loading, setLoading] = useState(true);
       });
 
       if (result.isConfirmed) {
-        const response = await fetch(`/api/leads/del?leadId=${leadId}`, {
+        const response = await fetch(`/api/leads/softDelete?leadId=${leadId}`, {
           method: "DELETE"
         });
 
@@ -150,6 +149,7 @@ const [loading, setLoading] = useState(true);
 
  ;
 
+ console.log(viewLead);
   return (
     <Layout>
     {loading ?  
@@ -263,7 +263,7 @@ const [loading, setLoading] = useState(true);
                 </tr>
               </thead>
               <tbody role="rowgroup">
-                {leadsData ? (
+                {leadsData.length > 0 ? (
                   leadsData.map((data) => (
                     <tr key={data._id}>
                       <td
@@ -352,7 +352,7 @@ const [loading, setLoading] = useState(true);
                           <AiFillDelete
                             className="text-2xl cursor-pointer"
                             onClick={() => {
-                              handleDelete(data._id);
+                              handleDelete(data._id,0);
                             }}
                           />
                         </span>
@@ -375,7 +375,7 @@ const [loading, setLoading] = useState(true);
                     </tr>
                   ))
                 ) : (
-                  <h1>No Data</h1>
+                  <h1 className="text-xl text-gray-800 mt-3">No Data</h1>
                 )}
               </tbody>
             </table>
@@ -431,15 +431,16 @@ const [loading, setLoading] = useState(true);
                   className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                   value={formData?.step6.amount}
                   type="text"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      step4: {
-                        ...formData.step6,
-                        amount: e.target.value
-                      }
-                    })
-                  }
+                  readOnly
+                  // onChange={(e) =>
+                  //   setFormData({
+                  //     ...formData,
+                  //     step6: {
+                  //       ...formData.step6,
+                  //       amount: e.target.value
+                  //     }
+                  //   })
+                  // }
                 />
               </div>
               <div className="flex flex-col w-1/2 mr-3">
@@ -634,7 +635,7 @@ const [loading, setLoading] = useState(true);
                                   {
                                     viewLead.step2.dr_course_price[courseKey]
                                       .value
-                                  }{" "}
+                                  }
                                   {
                                     viewLead.step2.dr_course_price[courseKey]
                                       .variant
@@ -649,7 +650,7 @@ const [loading, setLoading] = useState(true);
                             )}
                           </span>
                         ) : (
-                          <span>No course price available</span>
+                          <span className="text-gray-800">No course price available</span>
                         )}
                       </td>
                       <td className="px-6 py-4 font-semibold text-sm">

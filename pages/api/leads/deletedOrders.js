@@ -8,7 +8,7 @@ export default async function GET(req, res) {
 
   try {
     await connectionSuja();
-    const leads = await Lead.find({del:0})
+    const leads = await Lead.find({del:1})
       .limit(Limit)
       .skip(skip)
       .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field

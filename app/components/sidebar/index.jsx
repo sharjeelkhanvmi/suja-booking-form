@@ -13,6 +13,10 @@ import Cookies from "js-cookie";
 import decodeToken from "jwt-decode";
 import { FaUsers } from "react-icons/fa6";
 import { AiOutlineUser } from "react-icons/ai";
+import { FaRegTrashAlt } from "react-icons/fa";
+
+
+
 
 
 
@@ -203,6 +207,30 @@ const Sidebar = ({ open, onClose }) => {
                 </p>
               </li>
               {router.pathname === "/admin/profile" &&
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-700 end-0 dark:bg-brand-400" />}
+            </div>
+          </Link>
+          <Link href="/admin/recycleBin">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className="my-[3px] flex cursor-pointer items-center px-8">
+                <span
+                  className={`font-bold dark:text-white ${router.pathname ===
+                  "/admin/recycleBin"
+                    ? "text-red-500 border-b-red-500"
+                    : "text-gray-600"}`}
+                >
+                  <FaRegTrashAlt  className="h-5 w-6"></FaRegTrashAlt>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${router.pathname ===
+                  `/admin/recycleBin`
+                    ? "text-navy-700"
+                    : "text-gray-800"}`}
+                >
+                  Trash
+                </p>
+              </li>
+              {router.pathname === "/admin/recycleBin" &&
                 <div className="absolute top-px h-9 w-1 rounded-lg bg-red-700 end-0 dark:bg-brand-400" />}
             </div>
           </Link>

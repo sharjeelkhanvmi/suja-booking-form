@@ -14,7 +14,8 @@ const leadsSchema = new mongoose.Schema(
     step4: { type: Object },
     step5: { type: Object },
     step6: { type: Object },
-    stripe: { type: Object }
+    stripe: { type: Object },
+    del: { type: Boolean, default: 0 }
   },
   { timestamps: true }
 );
