@@ -550,7 +550,7 @@ showCoursePricing(values.dr_course_type)
                       });
                    }}
                />
-               <label htmlFor="dr_gpc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 md:px-5 px-3 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
+               <label htmlFor="dr_gpc_type" className="w-full flex items-center text-left  bg-emerald-100 py-4 md:px-5 px-3 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
                   <div className=" w-full flex justify-between items-center">
                   <div className="flex items-center">
                      <div className="pr-5 false">
@@ -584,7 +584,7 @@ showCoursePricing(values.dr_course_type)
                      </div>
                   </div>
                   <div className="pl-7 w-auto">
-                     <div className="bg-teal-200	 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                     <div className="bg-teal-200 w-max py-1 px-3 font-semibold  text-xs rounded-full">
                         Guaranteed Pass Course
                      </div>
                   </div>

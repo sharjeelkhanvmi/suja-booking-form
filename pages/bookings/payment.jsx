@@ -200,7 +200,7 @@ const Payment = ({ info }) => {
           <h2 className="w-full md:text-2xl text-xl font-bold md:mb-10 mb-16 text-center">
             Secure Payment Options for Your Driving Course
           </h2>
-          <div className="md:w-1/2 w-full pe-3">
+          <div className="md:w-1/2 w-full md:pe-3 pe-0">
             <input
               type="radio"
               name="payment"
@@ -231,7 +231,7 @@ const Payment = ({ info }) => {
             </label>
           </div>
 
-          <div className="md:w-1/2 w-full ps-3">
+          <div className="md:w-1/2 w-full md:ps-3 ps-0">
             <input
               type="radio"
               name="payment"
@@ -268,7 +268,7 @@ const Payment = ({ info }) => {
             
           <div className="mt-[10px] items-top py-8 w-full">
             <div className="w-full lg:max-w-[750px]">
-              <div className="w-full mb-5 pr-4">
+              <div className="w-full mb-5 md:pr-4 pr-0">
                 <h1 className="text-[24px] font-semibold">Payment Details</h1>
                 <p className="mb-4 font-regular text-stone-500   text-[16px] mt-2">
                   Secure your course today! We accept all major credit and debit

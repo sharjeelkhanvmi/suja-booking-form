@@ -166,9 +166,9 @@ const router = useRouter();
       ) : (
         
         // empty card html
-        <div className="h-full w-full md:p-4 p-0 flex items-center justify-center flex-col text-center">
-        <div className="flex items-center justify-center flex-col text-center">
-          <div className="rounded-full bg-white bg-opacity-10 md:p-8 p-4 flex items-center justify-center">
+        <div className="h-full w-full md:p-4  flex items-center justify-center md:flex-col flex-row text-center md:gap-0 gap-8">
+        <div className="flex items-center gap-6 justify-center md:flex-col flex-row text-center">
+          <div className="rounded-full bg-white bg-opacity-10 md:p-8 p-5 flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -185,7 +185,7 @@ const router = useRouter();
               />
             </svg>
           </div>
-          <p className="font-semibold md:mt-4 mt-2">Your cart is empty</p>
+          <p className="font-semibold text-sm leading-4	md:mt-4 mt-0">Your cart is empty</p>
           <p className="text-sm text-white text-opacity-70 md:mt-4 mt-0">
             Start by selecting your course to see it in your cart.
           </p>

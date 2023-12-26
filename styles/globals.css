@@ -178,6 +178,9 @@
 .sidbarcustom hr {
   display:none;
 }
+.ReactModal__Content {
+  left: 50% !important;
+}
 }
 
 
