@@ -180,6 +180,7 @@
 }
 .ReactModal__Content {
   left: 50% !important;
+  width: 90%;
 }
 }
 

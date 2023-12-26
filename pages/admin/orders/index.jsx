@@ -284,7 +284,7 @@ const [loading, setLoading] = useState(true);
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[18%]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] md:w-[18%] w-[14%]"
                       >
                         <div className="flex items-center">
                           <p className="text-sm font-bold text-navy-700 dark:text-white">
@@ -337,7 +337,7 @@ const [loading, setLoading] = useState(true);
                       </td>
                       <td
                         role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px] w-[14%]"
+                        className="pt-[14px] pb-[16px] sm:text-[14px] md:w-[14%] w-[20%]"
                       >
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                         {moment(data.createdAt).format('YYYY-MM-DD HH:mm:ss A')}
@@ -390,11 +390,11 @@ const [loading, setLoading] = useState(true);
             onSubmit={handleEditSubmit}
             className="text-gray-800 w-full mt-2"
           >
-            <h2 className="text-center text-4xl text-gray-900 mb-7 font-bold">
+            <h2 className="text-center md:text-4xl text-3xl text-gray-900 mb-7 font-bold">
               Edit Leads
             </h2>
-            <div className="flex justify-center w-full gap-4 px-10">
-              <div className="flex flex-col w-1/2 mr-3">
+            <div className="flex justify-center w-full gap-4 md:px-10 px-5">
+              <div className="flex flex-col md:w-1/2 w-full md:mr-3 mr-0">
                 <label className="mb-1 font-semibold text-gray-900">
                   Postal Code
                 </label>
@@ -443,7 +443,7 @@ const [loading, setLoading] = useState(true);
                   // }
                 />
               </div>
-              <div className="flex flex-col w-1/2 mr-3">
+              <div className="flex flex-col md:w-1/2 w-full md:mr-3 mr-0">
                 <label className="mb-1 font-semibold text-gray-900">
                   First name
                 </label>
@@ -531,10 +531,10 @@ const [loading, setLoading] = useState(true);
               <div className="orderCustomerDetails md:p-7 p-4 pb-3">
                 <div className="flex justify-between ">
                   <div className="">
-                    <h3 className="text-xl font-bold mb-2">Customer Details</h3>
+                    <h3 className="md:text-xl text-sm font-bold mb-2">Customer Details</h3>
                     <h4 className="font-semibold text-sm mb-3">
                       Postal Code
-                      <span className="bg-teal-200 ms-3 py-1 px-3 font-semibold  text-xs rounded-full">
+                      <span className="bg-teal-200 md:ms-3 ms-0 py-1 px-3 font-semibold md:inline block text-xs rounded-full">
                         {" "}
                         {viewLead.step1.postal_code}
                       </span>
@@ -544,7 +544,7 @@ const [loading, setLoading] = useState(true);
                     <span className="font-bold md:text-lg text-sm text-start ">
                     <span className="">
                       {" "}
-                      <span className="text-xl font-bold mb-2"> Date Time </span>  <br />
+                      <span className="md:text-xl text-sm font-bold mb-2"> Date Time </span>  <br />
                       <span className="font-normal text-start">
                       {console.log('createdAt:', viewLead.createdAt)}
                       {moment(viewLead.createdAt).format('YYYY-MM-DD HH:mm:ss A')}
@@ -564,10 +564,10 @@ const [loading, setLoading] = useState(true);
                 </div>
                 <div>
                  
-                  <div className="grid grid-cols-3 mt-5">
+                  <div className="grid md:grid-cols-3 grid-cols-2 mt-5">
                   <div>
                     <h4 className="font-bold md:text-lg text-sm">Full Name: </h4>
-                    <span className="font-semibold">
+                    <span className="font-semibold text-sm">
                       {viewLead.step4.title}. {viewLead.step4.firstName}{" "}
                       {viewLead.step4.surname}
                     </span>
@@ -582,21 +582,21 @@ const [loading, setLoading] = useState(true);
                       {viewLead.step4.email}
                     </span>
                   </div>
-                    <div className="ms-5">
+                    <div className="md:ms-5 ms-0 md:my-0 my-4">
                     <h4 className="font-bold md:text-lg text-sm">Mobile Number: </h4>
                     <span className="font-semibold md:text-lg text-sm">
                       {viewLead.step4.phone_number}
                     </span>
                     </div>
                     <div>
-                    <h4 className="font-bold text-lg pt-5">Course Speed: </h4>
+                    <h4 className="font-bold md:text-lg text-sm pt-5">Course Speed: </h4>
                     <span className="font-semibold md:text-lg text-sm">
                       {viewLead.step5.intensiveCourse}
                     </span>
                     </div>
                     <div>
                     <span className="font-regular  text-sm text-start rounded-full font-semibold">
-                     <h4 className="font-bold text-lg pt-5"> Transaction ID</h4>
+                     <h4 className="font-bold md:text-lg text-sm pt-5"> Transaction ID</h4>
                       <span className="font-normal">
                       {viewLead.stripe.paymentId}
                       </span>
