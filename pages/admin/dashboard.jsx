@@ -26,6 +26,7 @@ import { useRouter } from "next/router";
 const Dashboard = () => {
   const router = useRouter();
   const isCustomerRoute = router.pathname.startsWith("/customer");
+  
   return (
     <div>
       {/* Card widget */}
