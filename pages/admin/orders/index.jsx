@@ -519,7 +519,7 @@ const [loading, setLoading] = useState(true);
           <Modal
             isOpen={SecondToggle}
             onRequestClose={closeModal}
-            className="mx-auto bg-gray-50 w-[40%] rounded-3xl flex flex-col"
+            className="mx-auto bg-gray-50 md:w-[40%] w-96 rounded-3xl flex flex-col"
           >
             <div className="flex justify-between py-4 px-5 bg-red-400 rounded-t-xl pb-3">
               <h4 className="text-center w-full text-2xl  text-dark font-semibold">
@@ -528,11 +528,11 @@ const [loading, setLoading] = useState(true);
               {/* <span className="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
             </div>
             <div className="overflow-y-auto">
-              <div className="orderCustomerDetails p-7 pb-3">
+              <div className="orderCustomerDetails md:p-7 p-4 pb-3">
                 <div className="flex justify-between ">
                   <div className="">
                     <h3 className="text-xl font-bold mb-2">Customer Details</h3>
-                    <h4 className="font-semibold mb-3">
+                    <h4 className="font-semibold text-sm mb-3">
                       Postal Code
                       <span className="bg-teal-200 ms-3 py-1 px-3 font-semibold  text-xs rounded-full">
                         {" "}
@@ -541,6 +541,7 @@ const [loading, setLoading] = useState(true);
                     </h4>
                   </div>
                   <div className="text-start">
+                    <span className="font-bold md:text-lg text-sm text-start ">
                     <span className="">
                       {" "}
                       <span className="text-xl font-bold mb-2"> Date Time </span>  <br />
@@ -548,6 +549,7 @@ const [loading, setLoading] = useState(true);
                       {console.log('createdAt:', viewLead.createdAt)}
                       {moment(viewLead.createdAt).format('YYYY-MM-DD HH:mm:ss A')}
                       </span>{" "}
+                    </span>
                     </span>
                   </div>
                    {/*  <div className="">
@@ -564,7 +566,7 @@ const [loading, setLoading] = useState(true);
                  
                   <div className="grid grid-cols-3 mt-5">
                   <div>
-                    <h4 className="font-bold text-lg">Full Name: </h4>
+                    <h4 className="font-bold md:text-lg text-sm">Full Name: </h4>
                     <span className="font-semibold">
                       {viewLead.step4.title}. {viewLead.step4.firstName}{" "}
                       {viewLead.step4.surname}
@@ -575,20 +577,20 @@ const [loading, setLoading] = useState(true);
                     </span> */}
                   </div>
                   <div>
-                  <h4 className="font-bold text-lg">Email: </h4>
-                    <span className="font-semibold">
+                  <h4 className="font-bold md:text-lg text-sm">Email: </h4>
+                    <span className="font-semibold md:text-lg text-sm">
                       {viewLead.step4.email}
                     </span>
                   </div>
                     <div className="ms-5">
-                    <h4 className="font-bold text-lg">Mobile Number: </h4>
-                    <span className="font-semibold text-sm">
+                    <h4 className="font-bold md:text-lg text-sm">Mobile Number: </h4>
+                    <span className="font-semibold md:text-lg text-sm">
                       {viewLead.step4.phone_number}
                     </span>
                     </div>
                     <div>
                     <h4 className="font-bold text-lg pt-5">Course Speed: </h4>
-                    <span className="font-semibold text-sm">
+                    <span className="font-semibold md:text-lg text-sm">
                       {viewLead.step5.intensiveCourse}
                     </span>
                     </div>

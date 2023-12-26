@@ -101,7 +101,7 @@ export default function ThreeBoxes() {
 {" "}
           </div>
           <div className="mx-4 mt-2">
-            <p>Only £250 Deposit</p>
+            <p>Deposit Option</p>
               <motion.p
                 className="overflow-y-hidden text-secondary leading-snug text-opacity-70 font-normal text-[15px] mt-2"
                 id="detail-paragraph"
