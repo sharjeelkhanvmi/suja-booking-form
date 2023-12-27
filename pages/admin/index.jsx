@@ -31,7 +31,7 @@ export default function Home() {
           <PropagateLoader css={override} size={15} color={'#B91C1C'} loading={loading} />
         </div>
       ) : (
-        <div className="p-5 grid grid-cols-2 text-white bg-black flex-col tracking-widest capitalize">
+        <div className="md:p-5 ps-0  grid grid-cols-2 text-white bg-black flex-col tracking-widest capitalize">
           {/* <p className="text-4xl font-semibold my-10 text-gray-800 dark:text-white">
             Welcome to Admin
           </p> */}

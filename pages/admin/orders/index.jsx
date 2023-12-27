@@ -159,7 +159,7 @@ const [loading, setLoading] = useState(true);
        : <>
       <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
         <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
-          <div className="overflow-x-scroll xl:overflow-x-hidden p-10">
+          <div className="overflow-x-scroll xl:overflow-x-hidden md:p-10 p-5">
             <table
               role="table"
               className="w-full table-auto"

@@ -5,9 +5,10 @@ import Sidebar from "@/app/components/sidebar";
 import Navbar from "@/app/components/navbar";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
+import { isMobile } from 'react-device-detect';
 
 const Layout = ({ children }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(!isMobile);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true); // Add a loading state
 
@@ -21,6 +22,10 @@ const Layout = ({ children }) => {
       setLoading(false); // Set loading to false when data is fetched
     };
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    setOpen(!isMobile);
   }, []);
 
   if (loading) {

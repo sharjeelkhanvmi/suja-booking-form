@@ -30,7 +30,7 @@ const Dashboard = () => {
   return (
     <div>
       {/* Card widget */}
-      <div className="mt-3 flex gap-2">
+      <div className="mt-3 flex flex-wrap gap-2">
         <Link href={isCustomerRoute ? "/customer/orders" : "/admin/orders"}>
           <Widget
             icon={<FaBasketShopping className="h-7 w-7" />}

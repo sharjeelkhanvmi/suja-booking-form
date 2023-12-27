@@ -16,11 +16,6 @@ import { AiOutlineUser } from "react-icons/ai";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 
-
-
-
-
-
 const Sidebar = ({ open, onClose }) => {
   let cookie = Cookies.get("token");
   let userData;
