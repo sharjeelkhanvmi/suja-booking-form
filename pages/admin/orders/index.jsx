@@ -261,6 +261,17 @@ const handleuserData = async()=>{
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-sm font-bold tracking-wide text-gray-800">
+                          Id
+                        </div>
+                      </th>
+                      <th
+                        colSpan={1}
+                        role="columnheader"
+                        title="Toggle SortBy"
+                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        style={{ cursor: "pointer" }}
+                      >
+                        <div className="text-sm font-bold tracking-wide text-gray-800">
                           Name
                         </div>
                       </th>
@@ -348,6 +359,22 @@ const handleuserData = async()=>{
                     {leadsData.length > 0 ? (
                       leadsData.map((data) => (
                         <tr key={data._id}>
+                          <td
+                            role="cell"
+                            className="pt-[14px] pb-[16px] sm:text-[14px]"
+                          >
+                            <div className="flex items-center gap-2">
+                              {/* <input
+                            type="checkbox"
+                            className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
+                          checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
+                            name="weekly"
+                          /> */}
+                              <p className="text-sm font-bold text-gray-900 dark:text-white">
+                                #{data._id}
+                              </p>
+                            </div>
+                          </td>
                           <td
                             role="cell"
                             className="pt-[14px] pb-[16px] sm:text-[14px]"
