@@ -8,12 +8,12 @@ export default async function POST(req, res) {
     await connectionSuja();
     // Check if orderId is provided
     if (!orderId ) {
-      return res.status(200).json({ error: "orderId is required" });
+      return res.status(400).json({ error: "orderId is required" });
     }
     const result = await Lead.findById({ _id: orderId });
     // Check if order with the given orderId exists
     if (!result) {
-       return res.status(400).json({ error: "Order not found" });
+       return res.status(400).json({ error: "Orderid not found" });
     }
     res.status(200).json({ filterData: result });
   } catch (error) {

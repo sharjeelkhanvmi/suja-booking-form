@@ -16,9 +16,8 @@ export default async function POST(req, res) {
     const dateFilter = await Lead.find({
       createdAt: { $gte: startDate, $lt: endDate }
     });
-
     res.status(200).json({ msg: dateFilter });
-    console.log(dateFilter);
+    // console.log(dateFilter);
   } catch (error) {
     res.status(500).json({ msg: error });
   }

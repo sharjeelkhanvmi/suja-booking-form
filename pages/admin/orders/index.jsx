@@ -17,6 +17,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendar } from "react-icons/fa";
+import { IoCloseCircle } from "react-icons/io5";
+
 
 
 
@@ -147,13 +149,17 @@ const Index = () => {
         "/api/leads/userFilter",
         { orderId }
       );
-      console.log("Pure", result);
+     if(result.status === 200){
       let finalResult = await result.data.filterData;
       console.log("FINAL", finalResult);
       // setidFilter(finalResult);
       setLeadsData([finalResult]);
+     }
+     else if(result.status === 400){
+      console.log("else if Runiing");
+     }
     } catch (error) {
-      console.log("Error in handle filter function", error);
+      console.log("Error in handle filter function", error.response.data.filterData);
     }
   };
 
@@ -198,6 +204,8 @@ const handleuserData = async()=>{
       console.log("Users Data in Orders", responseData);
 }
 
+const [crossIconState, setcrossIconState] = useState(false)
+
 
   return (
     <Layout>
@@ -213,31 +221,39 @@ const handleuserData = async()=>{
         </div>
       ) : (
         <>
-        <div className="flex justify-between md:mt-10 mt-5 ">
+        <div className="flex md:mt-10 mt-5 ms-2">
           <div className="text-end relative">
+            
             <input
-              className="p-2 md:me-2 rounded-md border-white border-[2px]"
+              className={`p-2 md:me-2 rounded-md border-white border-[2px]`}
               type="text"
               value={orderId}
               onChange={(e) => {
                 setOrderId(e.target.value);
+                setcrossIconState(true)
               }}
-              placeholder="Enter Lead...."
+              placeholder="Search Order...."
             />
             <div className="absolute right-4 top-3 mb-1 text-lg text-gray-400">
               <span>
-                <AiOutlineSearch />
+              {crossIconState ? (  
+              <>
+              <IoCloseCircle onClick={()=>{
+                setOrderId("")
+                setcrossIconState(false)
+                }}/>
+              </>
+              ):(<><AiOutlineSearch /></>)}
               </span>
             </div>
           </div>
-          <div className="text-start ms-2 text-gray-400 relative">
+          <div className="text-start ms-2 text-gray-400 relative datepicker-wrap">
           <DatePicker
               showIcon
               selected={startDate}
               onChange={(date) => setstartDate(date)}
               icon={FaCalendar}
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              placeholderText="Calendar"
+              placeholderText="Select a date"
             />
           </div>
         </div>

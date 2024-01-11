@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+.datepicker-wrap .react-datepicker__view-calendar-icon input {
+  padding: 10px;
+  padding-left: 36px;
+  border-radius: 5px;
+}
+
+.datepicker-wrap  .react-datepicker__input-container .react-datepicker__calendar-icon {
+  top: 5px;
+  left: 3px;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
