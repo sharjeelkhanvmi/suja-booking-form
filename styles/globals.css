@@ -11,7 +11,8 @@
 .datepicker-wrap  .react-datepicker__input-container .react-datepicker__calendar-icon {
   top: 6px;
   left: auto;
-  right: 3px
+  right: 3px;
+  fill: grey;
 }
 
 :root {
