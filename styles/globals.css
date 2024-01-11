@@ -9,8 +9,9 @@
 }
 
 .datepicker-wrap  .react-datepicker__input-container .react-datepicker__calendar-icon {
-  top: 5px;
-  left: 3px;
+  top: 6px;
+  left: auto;
+  right: 3px
 }
 
 :root {

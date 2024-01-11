@@ -152,14 +152,12 @@ const Index = () => {
      if(result.status === 200){
       let finalResult = await result.data.filterData;
       console.log("FINAL", finalResult);
-      // setidFilter(finalResult);
       setLeadsData([finalResult]);
      }
-     else if(result.status === 400){
-      console.log("else if Runiing");
-     }
+     
     } catch (error) {
-      console.log("Error in handle filter function", error.response.data.filterData);
+      setLeadsData([]);
+      console.log("Error in handle filter function", error.response.data);
     }
   };
 
@@ -372,7 +370,7 @@ const [crossIconState, setcrossIconState] = useState(false)
                     </tr>
                   </thead>
                   <tbody role="rowgroup">
-                    {leadsData.length > 0 ? (
+                    {leadsData && leadsData.length > 0 ? (
                       leadsData.map((data) => (
                         <tr key={data._id}>
                           <td
@@ -502,7 +500,7 @@ const [crossIconState, setcrossIconState] = useState(false)
                         </tr>
                       ))
                     ) : (
-                      <h1 className="text-xl text-gray-800 mt-3">No Data Available</h1>
+                      <h1 className="text-xl text-gray-800 mt-3">No Data Found</h1>
                     )}
                   </tbody>
                 </table>
