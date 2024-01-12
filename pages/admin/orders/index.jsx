@@ -245,7 +245,7 @@ const [crossIconState, setcrossIconState] = useState(false)
               </span>
             </div>
           </div>
-          <div className="text-start ms-2 text-gray-400 relative datepicker-wrap">
+          <div className="text-start ms-2 text-gray-400 relative datepicker-wrap flex">
           <DatePicker
               showIcon
               selected={startDate}
@@ -253,7 +253,13 @@ const [crossIconState, setcrossIconState] = useState(false)
               icon={FaCalendar}
               placeholderText="Select a date"
             />
+            <button className="ms-5 px-2 py-[10px] rounded-md bg-[#B91C1C] text-white" onClick={()=>{
+              setOrderId('')
+              setstartDate('')
+              setcrossIconState(false)
+            }}>Reset</button>
           </div>
+          
         </div>
           <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
             <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
