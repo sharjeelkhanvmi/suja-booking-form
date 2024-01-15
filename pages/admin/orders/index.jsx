@@ -162,11 +162,14 @@ const Index = () => {
   };
 
 const [startDate, setstartDate] = useState();
+const [endDate, setendDate] = useState("");
 
-  const handleDateFilter =async()=>{
+  const handleDateFilter = async()=>{
     try {
-    const result = await axios.post('/api/leads/userFilter/datePicker',{start:startDate});
-    let finalResult = await result.data.msg;
+     
+    const result = await axios.post('/api/leads/userFilter/datePicker',{start:startDate,end:endDate});
+    console.log("result of date",result);
+    let finalResult =  result.data.msg;
     // finalResult = finalResult.json();
     setLeadsData(finalResult);
     console.log("handledata filter",finalResult);
@@ -188,13 +191,11 @@ const [startDate, setstartDate] = useState();
   }, [orderId]);
 
   useEffect(()=>{
-     if(startDate > 0){
+    if(startDate > 0 && endDate > 0){
       handleDateFilter();
     }
-    else{
-      handleLeadsData();
-    }
-  },[startDate])
+    
+  },[startDate,endDate])
 
 const handleuserData = async()=>{
   const response = await fetch("/api/admin");
@@ -245,18 +246,28 @@ const [crossIconState, setcrossIconState] = useState(false)
               </span>
             </div>
           </div>
-          <div className="text-start ms-2 text-gray-400 relative datepicker-wrap flex">
+          <div className="text-start ms-2 text-gray-400 relative datepicker-wrap flex gap-2">
           <DatePicker
               showIcon
               selected={startDate}
               onChange={(date) => setstartDate(date)}
               icon={FaCalendar}
-              placeholderText="Select a date"
+              placeholderText="Start date"
+              className=""
+            />
+             <DatePicker
+              showIcon
+              selected={endDate}
+              onChange={(date) => setendDate(date)}
+              icon={FaCalendar}
+              placeholderText="End date"
             />
             <button className="ms-5 px-2 py-[10px] rounded-md bg-[#B91C1C] text-white" onClick={()=>{
               setOrderId('')
               setstartDate('')
+              setendDate('')
               setcrossIconState(false)
+              handleLeadsData();
             }}>Reset</button>
           </div>
           

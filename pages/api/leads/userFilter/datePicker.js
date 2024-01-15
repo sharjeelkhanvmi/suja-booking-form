@@ -2,13 +2,14 @@ const { default: connectionSuja } = require("@/database/dbconstr");
 const { default: Lead } = require("@/database/models/Lead");
 
 export default async function POST(req, res) {
-  const { start } = req.body;
+  const { start ,end} = req.body;
   const startDate = new Date(start);
+  const endDate = new Date(end);
   
   // Set the end date to the end of the selected day
-  const endDate = new Date(startDate);
-  endDate.setDate(endDate.getDate() + 1);
-  endDate.setMilliseconds(endDate.getMilliseconds() - 1);
+  // const endDate = new Date(startDate);
+  // endDate.setDate(endDate.getDate() + 1);
+  // endDate.setMilliseconds(endDate.getMilliseconds() - 1);
 
   await connectionSuja();
 
