@@ -19,9 +19,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendar } from "react-icons/fa";
 import { IoCloseCircle } from "react-icons/io5";
 
-
-
-
 const Index = () => {
   const override = css`
     display: block;
@@ -30,10 +27,12 @@ const Index = () => {
   `;
 
   const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(false);
   const [Toggle, setToggle] = useState(false);
   const [viewLead, setViewLead] = useState(null);
   const [SecondToggle, setSecondToggle] = useState(false);
   const [leadsData, setLeadsData] = useState([]);
+  const [page, setPage] = useState(0);
   const [selectedLead, setSelectedLead] = useState();
   const [formData, setFormData] = useState({
     step1: {
@@ -87,17 +86,40 @@ const Index = () => {
 
   const handleLeadsData = async () => {
     try {
-      const response = await fetch("/api/leads");
+     
+      const response = await fetch("/api/leads/");
       const responseData = await response.json();
+
       setLoading(true);
       setLeadsData(responseData);
+
       setTimeout(() => {
         setLoading(false);
+        console.log("default", leadsData);
       }, 1000);
     } catch (error) {
       console.error(error, "Error While Fetching Leads Data In order");
       setLoading(false);
     }
+  };
+
+  const handleLoadMore = async () => {
+    try {
+      console.log("Page no",page);
+      const response = await fetch("/api/leads/?page=" + page);
+      const responseData = await response.json();
+
+      setLoad(true);
+      setLeadsData((prevData) => [...prevData, ...responseData]);
+      setLoad(false);
+    } catch (error) {
+      console.error(error, "Error While Fetching Leads Data In order");
+      setLoading(false);
+    }
+  };
+
+  const handleClickMore = () => {
+    setPage((prevPage) => prevPage + 1);
   };
 
   const handleDelete = async (leadId) => {
@@ -145,70 +167,67 @@ const Index = () => {
 
   const handleIdFilterData = async () => {
     try {
-      const result = await axios.post(
-        "/api/leads/userFilter",
-        { orderId }
-      );
-     if(result.status === 200){
-      let finalResult = await result.data.filterData;
-      console.log("FINAL", finalResult);
-      setLeadsData([finalResult]);
-     }
-     
+      const result = await axios.post("/api/leads/userFilter", { orderId });
+      if (result.status === 200) {
+        let finalResult = await result.data.filterData;
+        console.log("FINAL", finalResult);
+        setLeadsData([finalResult]);
+      }
     } catch (error) {
       setLeadsData([]);
       console.log("Error in handle filter function", error.response.data);
     }
   };
 
-const [startDate, setstartDate] = useState();
-const [endDate, setendDate] = useState("");
+  const [startDate, setstartDate] = useState();
+  const [endDate, setendDate] = useState("");
 
-  const handleDateFilter = async()=>{
+  const handleDateFilter = async () => {
     try {
-     
-    const result = await axios.post('/api/leads/userFilter/datePicker',{start:startDate,end:endDate});
-    console.log("result of date",result);
-    let finalResult =  result.data.msg;
-    // finalResult = finalResult.json();
-    setLeadsData(finalResult);
-    console.log("handledata filter",finalResult);
+      const result = await axios.post("/api/leads/userFilter/datePicker", {
+        start: startDate,
+        end: endDate
+      });
+      console.log("result of date", result);
+      let finalResult = result.data.msg;
+      // finalResult = finalResult.json();
+      setLeadsData(finalResult);
+      console.log("handledata filter", finalResult);
     } catch (error) {
-      console.log("Handle date filter",error);
+      console.log("Handle date filter", error);
     }
-  }
-
-
+  };
 
   useEffect(() => {
     if (orderId !== "") {
       handleIdFilterData();
-    } 
-    else {
+    } else {
       handleuserData();
       handleLeadsData();
     }
   }, [orderId]);
 
-  useEffect(()=>{
-    if(startDate > 0 && endDate > 0){
+  useEffect(() => {
+    if (startDate > 0 && endDate > 0) {
       handleDateFilter();
     }
+  }, [startDate, endDate]);
+
+  const handleuserData = async () => {
+    const response = await fetch("/api/admin");
+    const responseData = await response.json();
+    console.log("Users Data in Orders", responseData);
+  };
+
+  const [crossIconState, setcrossIconState] = useState(false);
+
+  useEffect(() => {
+    if(page > 0){handleLoadMore();}
     
-  },[startDate,endDate])
-
-const handleuserData = async()=>{
-  const response = await fetch("/api/admin");
-      const responseData = await response.json();
-      console.log("Users Data in Orders", responseData);
-}
-
-const [crossIconState, setcrossIconState] = useState(false)
-
+  }, [page]);
 
   return (
     <Layout>
-    
       {loading ? (
         <div className="flex justify-center items-center h-screen relative bottom-24">
           <PropagateLoader
@@ -220,58 +239,75 @@ const [crossIconState, setcrossIconState] = useState(false)
         </div>
       ) : (
         <>
-        <div className="flex md:mt-10 mt-5 ms-2">
-          <div className="text-end relative">
-            
-            <input
-              className={`p-2 md:me-2 rounded-md border-white border-[2px]`}
-              type="text"
-              value={orderId}
-              onChange={(e) => {
-                setOrderId(e.target.value);
-                setcrossIconState(true)
-              }}
-              placeholder="Search Order...."
-            />
-            <div className="absolute right-4 top-3 mb-1 text-lg text-gray-400">
-              <span>
-              {crossIconState ? (  
-              <>
-              <IoCloseCircle onClick={()=>{
-                setOrderId("")
-                setcrossIconState(false)
-                }}/>
-              </>
-              ):(<><AiOutlineSearch /></>)}
-              </span>
+          <div className="flex md:mt-10 mt-5 ms-2 justify-between">
+            <div className="text-start ms-2 text-gray-400 relative datepicker-wrap flex gap-2">
+              <DatePicker
+                showIcon
+                selected={startDate}
+                onChange={(date) => setstartDate(date)}
+                icon={FaCalendar}
+                placeholderText="Start date"
+                className=""
+              />
+              <DatePicker
+                showIcon
+                selected={endDate}
+                onChange={(date) => setendDate(date)}
+                icon={FaCalendar}
+                placeholderText="End date"
+              />
+              <button
+                className="ms-5 px-2 py-[10px] rounded-md bg-[#B91C1C] text-white"
+                onClick={() => {
+                  setPage(0);
+                  setOrderId("");
+                  setstartDate("");
+                  setendDate("");
+                  setcrossIconState(false);
+                  handleLeadsData();
+                  
+                }}
+              >
+                Reset
+              </button>
+            </div>
+            <div className="flex justify-between">
+              {/* <div className="text-gray-400 mr-4 my-2">
+                <strong>Total Count: </strong>{" "}
+                {leadsData && leadsData.length > 0 ? leadsData.length : 0}
+              </div> */}
+              <div className="text-end relative">
+                <input
+                  className={`p-2 md:me-2 rounded-md border-white border-[2px]`}
+                  type="text"
+                  value={orderId}
+                  onChange={(e) => {
+                    setOrderId(e.target.value);
+                    setcrossIconState(true);
+                  }}
+                  placeholder="Search Order...."
+                />
+                <div className="absolute right-4 top-3 mb-1 text-lg text-gray-400">
+                  <span>
+                    {crossIconState ? (
+                      <>
+                        <IoCloseCircle
+                          onClick={() => {
+                            setOrderId("");
+                            setcrossIconState(false);
+                          }}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <AiOutlineSearch />
+                      </>
+                    )}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="text-start ms-2 text-gray-400 relative datepicker-wrap flex gap-2">
-          <DatePicker
-              showIcon
-              selected={startDate}
-              onChange={(date) => setstartDate(date)}
-              icon={FaCalendar}
-              placeholderText="Start date"
-              className=""
-            />
-             <DatePicker
-              showIcon
-              selected={endDate}
-              onChange={(date) => setendDate(date)}
-              icon={FaCalendar}
-              placeholderText="End date"
-            />
-            <button className="ms-5 px-2 py-[10px] rounded-md bg-[#B91C1C] text-white" onClick={()=>{
-              setOrderId('')
-              setstartDate('')
-              setendDate('')
-              setcrossIconState(false)
-              handleLeadsData();
-            }}>Reset</button>
-          </div>
-          
-        </div>
           <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
             <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
               <div className="overflow-x-scroll xl:overflow-x-hidden p-10">
@@ -517,12 +553,17 @@ const [crossIconState, setcrossIconState] = useState(false)
                         </tr>
                       ))
                     ) : (
-                      <h1 className="text-xl text-gray-800 mt-3">No Data Found</h1>
+                      <h1 className="text-xl text-gray-800 mt-3">
+                        No Data Found
+                      </h1>
                     )}
                   </tbody>
                 </table>
               </div>
             </div>
+            <button className="bg-red-500 p-3 rounded-md mt-4" disabled={load} onClick={handleClickMore}>
+              {load ? 'Loading...' : 'Load More'}
+            </button>
             <Modal
               isOpen={Toggle}
               onRequestClose={closeModal}

@@ -10,7 +10,7 @@ export default async function POST(req, res) {
     if (!orderId) {
       return res.status(400).json({ error: "orderId is required" });
     }
-    const result = await Lead.findById({ _id: orderId });
+    const result = await Lead.findOne({ _id: orderId,  del:0 });
     console.log("RESULT ORDER ID:",result);
     // Check if order with the given orderId exists
     if (!result) {
