@@ -216,6 +216,10 @@ const Index = () => {
     }
   }, [startDate, endDate]);
 
+  useEffect(()=>{
+    handleLeadsData();
+  },[])
+
   const handleuserData = async () => {
     const response = await fetch("/api/admin");
     const responseData = await response.json();
