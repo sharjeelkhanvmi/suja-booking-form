@@ -34,6 +34,7 @@ const Index = () => {
   const [leadsData, setLeadsData] = useState([]);
   const [page, setPage] = useState(0);
   const [selectedLead, setSelectedLead] = useState();
+  const [total, setTotal] = useState(0);
   const [formData, setFormData] = useState({
     step1: {
       postal_code: selectedLead?.step1?.postal_code
@@ -106,11 +107,13 @@ const Index = () => {
   const handleLoadMore = async () => {
     try {
       console.log("Page no",page);
-      const response = await fetch("/api/leads/?page=" + page);
+      const response = await fetch("/api/leads/loadMore/?page=" + page);
       const responseData = await response.json();
+      console.log("handleLoadMore",responseData);
 
       setLoad(true);
-      setLeadsData((prevData) => [...prevData, ...responseData]);
+      setTotal(responseData.totalCount);
+      setLeadsData((prevData) => [...prevData, ...responseData.leads]);
       setLoad(false);
     } catch (error) {
       console.error(error, "Error While Fetching Leads Data In order");
@@ -272,10 +275,10 @@ const Index = () => {
               </button>
             </div>
             <div className="flex justify-between">
-              {/* <div className="text-gray-400 mr-4 my-2">
+              <div className="text-gray-400 mr-4 my-2">
                 <strong>Total Count: </strong>{" "}
                 {leadsData && leadsData.length > 0 ? leadsData.length : 0}
-              </div> */}
+              </div> 
               <div className="text-end relative">
                 <input
                   className={`p-2 md:me-2 rounded-md border-white border-[2px]`}
@@ -561,9 +564,15 @@ const Index = () => {
                 </table>
               </div>
             </div>
+            {leadsData && leadsData.length != total &&
+            (
+              <>
             <button className="bg-red-500 p-3 rounded-md mt-4" disabled={load} onClick={handleClickMore}>
               {load ? 'Loading...' : 'Load More'}
             </button>
+            </>
+            )
+            }
             <Modal
               isOpen={Toggle}
               onRequestClose={closeModal}
