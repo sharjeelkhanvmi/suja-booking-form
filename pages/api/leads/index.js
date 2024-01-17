@@ -1,26 +1,54 @@
+// import connectionSuja from "@/database/dbconstr";
+// import Lead from "@/database/models/Lead";
+
+// export default async function GET(req, res) {
+//   let pageNo = req.query.page ? req.query.page : 0;
+//   let Limit = req.query.limit ? req.query.limit : 5;
+//   let skip = pageNo * Limit;
+//   console.log(pageNo,Limit,skip);
+//   try {
+//     await connectionSuja();
+//     const leads = await Lead.find({del:0})
+//       .limit(Limit)
+//       .skip(skip)
+//       .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field
+//       .populate("user")
+//       .then(user => {
+//         res.json(user);
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+//     res.send(leads);
+//     console.log("LEADS INDEX API");
+//   } catch (error) {
+//     console.error("Error fetching leads:", error);
+//     res.status(500).json({ success: false, error: "Internal Server Error" });
+//   }
+// }
+
 import connectionSuja from "@/database/dbconstr";
 import Lead from "@/database/models/Lead";
 
 export default async function GET(req, res) {
   let pageNo = req.query.page ? req.query.page : 0;
-  let Limit = req.query.limit ? req.query.limit : 5;
-  let skip = pageNo * Limit;
-  console.log(pageNo,Limit,skip);
+  let limit = req.query.limit ? req.query.limit : 5;
+  let skip = pageNo * limit;
+  console.log(pageNo, limit, skip);
+
   try {
     await connectionSuja();
-    const leads = await Lead.find({del:0})
-      .limit(Limit)
+
+    const leads = await Lead.find({ del: 0 })
+      .limit(limit)
       .skip(skip)
-      .sort({ createdAt: -1 }) // Sort in descending order based on createdAt field
-      .populate("user")
-      .then(user => {
-        res.json(user);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    res.send(leads);
+      .sort({ createdAt: -1 })
+      .populate("user");
+
     console.log("LEADS INDEX API");
+    
+    // Sending the response with the leads
+    res.json(leads);
   } catch (error) {
     console.error("Error fetching leads:", error);
     res.status(500).json({ success: false, error: "Internal Server Error" });

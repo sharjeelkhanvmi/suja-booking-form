@@ -5,7 +5,7 @@ export default async function GET(req, res) {
   let pageNo = req.query.page ? parseInt(req.query.page) : 0;
   let Limit = req.query.limit ? parseInt(req.query.limit) : 5;
   let skip = pageNo * Limit;
-  console.log(pageNo, Limit, skip);
+  console.log("Load More",pageNo, Limit, skip);
 
   try {
     await connectionSuja();
