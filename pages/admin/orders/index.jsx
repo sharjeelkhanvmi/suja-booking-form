@@ -201,6 +201,11 @@ const Index = () => {
     }
   };
 
+  useEffect(()=>{
+    handleLeadsData();
+  },[])
+
+
   useEffect(() => {
     if (orderId !== "") {
       handleIdFilterData();
@@ -218,9 +223,7 @@ const Index = () => {
 
   // ADDED
 
-  useEffect(()=>{
-    handleLeadsData();
-  },[])
+ 
 
   const handleuserData = async () => {
     const response = await fetch("/api/admin");
