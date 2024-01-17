@@ -277,7 +277,7 @@ const Index = () => {
                   setstartDate("");
                   setendDate("");
                   setcrossIconState(false);
-                  handleLeadsData();
+                  // handleLeadsData();
                   
                 }}
               >
