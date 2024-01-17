@@ -209,6 +209,7 @@ const Index = () => {
 
 
   useEffect(()=>{
+    handleuserData();
     handleLeadsData();
   },[])
 
