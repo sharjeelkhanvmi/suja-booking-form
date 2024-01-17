@@ -201,6 +201,13 @@ const Index = () => {
     }
   };
 
+  const handleuserData = async () => {
+    const response = await fetch("/api/admin");
+    const responseData = await response.json();
+    console.log("Users Data in Orders", responseData);
+  };
+
+
   useEffect(()=>{
     handleLeadsData();
   },[])
@@ -221,22 +228,16 @@ const Index = () => {
     }
   }, [startDate, endDate]);
 
-  // ADDED
-
- 
-
-  const handleuserData = async () => {
-    const response = await fetch("/api/admin");
-    const responseData = await response.json();
-    console.log("Users Data in Orders", responseData);
-  };
-
-  const [crossIconState, setcrossIconState] = useState(false);
-
   useEffect(() => {
     if(page > 0){handleLoadMore();}
     
   }, [page]);
+ 
+
+ 
+  const [crossIconState, setcrossIconState] = useState(false);
+
+  
 
   return (
     <Layout>
