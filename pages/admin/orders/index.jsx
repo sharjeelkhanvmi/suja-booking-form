@@ -216,6 +216,8 @@ const Index = () => {
     }
   }, [startDate, endDate]);
 
+  // ADDED
+
   useEffect(()=>{
     handleLeadsData();
   },[])
