@@ -263,8 +263,8 @@ const Index = () => {
         </div>
       ) : (
         <>
-          <div className="flex md:mt-10 mt-5 ms-2 justify-between">
-            <div className="text-start ms-2 text-gray-400 relative datepicker-wrap flex gap-2">
+          <div className="flex md:mt-10 mt-5 ms-2 justify-between flex-wrap">
+            <div className="text-start lg:ms-2 text-gray-400 relative datepicker-wrap flex gap-2 md:flex-row flex-col">
               <DatePicker
                 showIcon
                 selected={startDate}
@@ -281,7 +281,7 @@ const Index = () => {
                 placeholderText="End date"
               />
               <button
-                className="ms-5 px-2 py-[10px] rounded-md bg-[#B91C1C] text-white"
+                className="md:ms-2 px-2 py-[10px] rounded-md bg-[#B91C1C] text-white"
                 onClick={() => {
                   setPage(0);
                   setOrderId("");
@@ -295,16 +295,16 @@ const Index = () => {
                 Reset
               </button>
             </div>
-            <div className="flex justify-between">
-              <div className="text-gray-400 mr-4 my-2">
-                <strong>Current Leads Count: </strong>{" "}
+            <div className="flex justify-between mt-2 sm:mt-0 ">
+              {/* <div className="text-gray-400 mr-4 my-2">
+                <strong>Current Order Count: </strong>{" "}
                 {leadsData && leadsData.length > 0 ? leadsData.length : 0}
               </div> 
               <div className="text-gray-400 mr-4 my-2">
-                <strong>Total Leads </strong>{" "}
+                <strong>Total Orders </strong>{" "}
                 {count}
-              </div>
-              <div className="text-end relative">
+              </div> */}
+              <div className="md:text-end relative">
                 <input
                   className={`p-2 md:me-2 rounded-md border-white border-[2px]`}
                   type="text"
@@ -587,6 +587,16 @@ const Index = () => {
                     )}
                   </tbody>
                 </table>
+              </div>
+            </div>
+            <div className="flex">
+            <div className="text-gray-400 mr-4 my-2">
+                <span>Current Order Count: </span>{" "}
+                <span className="font-bold">{leadsData && leadsData.length > 0 ? leadsData.length : 0} </span>
+              </div> 
+              <div className="text-gray-400 mr-4 my-2">
+                <span>Total Orders </span>{" "}
+               <span className="font-bold"> {count} </span>
               </div>
             </div>
             {leadsData && leadsData.length != total &&
