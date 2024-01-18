@@ -35,6 +35,7 @@ const Index = () => {
   const [page, setPage] = useState(0);
   const [selectedLead, setSelectedLead] = useState();
   const [total, setTotal] = useState(0);
+  const [count, setCount] = useState(0);
   const [formData, setFormData] = useState({
     step1: {
       postal_code: selectedLead?.step1?.postal_code
@@ -93,7 +94,6 @@ const Index = () => {
 
       setLoading(true);
       setLeadsData(responseData);
-
       setTimeout(() => {
         setLoading(false);
         console.log("default", leadsData);
@@ -110,9 +110,9 @@ const Index = () => {
       const response = await fetch("/api/leads/loadMore/?page=" + page);
       const responseData = await response.json();
       console.log("handleLoadMore",responseData);
-
       setLoad(true);
-      setTotal(responseData.totalCount);
+      setTotal((prev)=>responseData.totalCount);
+      console.log("Total Count",total);
       setLeadsData((prevData) => [...prevData, ...responseData.leads]);
       setLoad(false);
     } catch (error) {
@@ -233,6 +233,16 @@ const Index = () => {
     if(page > 0){handleLoadMore();}
     
   }, [page]);
+
+  useEffect(()=>{
+    const fetchTotal = async()=>{
+        const result = await fetch('/api/leads/loadMore/');
+        let fetchTotalLead = await result.json();
+        // console.log("Total Leads Count",fetchTotalLead.totalCount);
+        setCount(fetchTotalLead.totalCount)
+    }
+    fetchTotal();
+  },[])
  
 
  
@@ -287,9 +297,13 @@ const Index = () => {
             </div>
             <div className="flex justify-between">
               <div className="text-gray-400 mr-4 my-2">
-                <strong>Total Count: </strong>{" "}
+                <strong>Current Leads Count: </strong>{" "}
                 {leadsData && leadsData.length > 0 ? leadsData.length : 0}
               </div> 
+              <div className="text-gray-400 mr-4 my-2">
+                <strong>Total Leads </strong>{" "}
+                {count}
+              </div>
               <div className="text-end relative">
                 <input
                   className={`p-2 md:me-2 rounded-md border-white border-[2px]`}
