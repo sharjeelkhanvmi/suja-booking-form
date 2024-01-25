@@ -205,7 +205,7 @@ const Index = ({content}) => {
   const handleuserData = async () => {
     const response = await fetch("/api/admin");
     const responseData = await response.json();
-    //console.log("Users Data in Orders", responseData);
+    console.log("Users Data in Orders", responseData);
   };
 
 
@@ -998,7 +998,7 @@ export async function getServerSideProps() {
     let result = await users();
     return { props: { content: result } };
   } catch (error) {
-    return { props: { content: null } };
+    return { props: { content: 'danish' } };
   }
 }
 export default Index;
