@@ -2,6 +2,7 @@ import dbconstr from "@/database/dbconstr"; // Assume you have a utility functio
 import Lead from '@/database/models/Lead';
 
 const users = async () => {
+  return [1,2,3,4,5]
   try {
     await dbconstr();
 
