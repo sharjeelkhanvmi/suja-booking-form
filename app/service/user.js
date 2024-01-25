@@ -3,7 +3,7 @@ import Lead from '@/database/models/Lead';
 await dbconstr();
 const users = async () => {
   try {
-    const leads = await Lead.find({ del: 0 }).populate("user").exec();
+    const leads = await Lead.find({ del: 0 });
     return JSON.parse(JSON.stringify(leads));
   } catch (error) {
     throw error
