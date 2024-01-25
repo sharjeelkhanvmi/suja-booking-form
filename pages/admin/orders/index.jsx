@@ -18,8 +18,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendar } from "react-icons/fa";
 import { IoCloseCircle } from "react-icons/io5";
-
-const Index = () => {
+import {users} from '@/app/service/user'
+const Index = ({content}) => {
+  console.log("yeh mereaa data", content)
   const override = css`
     display: block;
     margin: 0 auto;
@@ -204,7 +205,7 @@ const Index = () => {
   const handleuserData = async () => {
     const response = await fetch("/api/admin");
     const responseData = await response.json();
-    console.log("Users Data in Orders", responseData);
+    //console.log("Users Data in Orders", responseData);
   };
 
 
@@ -992,5 +993,12 @@ const Index = () => {
     </Layout>
   );
 };
-
+export async function getServerSideProps() {
+  try {
+    let result = await users();
+    return { props: { content: result } };
+  } catch (error) {
+    return { props: { content: null } };
+  }
+}
 export default Index;
