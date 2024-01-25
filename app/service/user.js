@@ -15,7 +15,7 @@ const users = async () => {
     return JSON.parse(JSON.stringify(leads));
   } catch (error) {
     console.error(error);
-    throw error; // Rethrow the error to handle it in the calling function
+    return error; // Rethrow the error to handle it in the calling function
   }
 };
 
