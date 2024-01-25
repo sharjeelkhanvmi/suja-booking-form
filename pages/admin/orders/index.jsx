@@ -998,7 +998,7 @@ export async function getServerSideProps() {
     let result = await users();
     return { props: { content: result } };
   } catch (error) {
-    return { props: { content: error } };
+    return { props: { content: 'null' } };
   }
 }
 export default Index;
