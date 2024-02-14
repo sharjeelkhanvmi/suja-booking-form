@@ -219,7 +219,7 @@ const Payment = ({ info }) => {
             >
               <div className="">
                 <span className="w-full font-bold">
-                  Pay Deposit - £{deposit}
+                  Pay Deposit - £{deposit} {(fast_track_theory || fast_track_practical)? '+ £'+fast_track_theory + fast_track_practical : ''}
                 </span>
                 <div className="text-secondary text-opacity-[0.65] text-sm false">
                   <p className="text-secondary leading-snug text-opacity-70 font-medium 
@@ -250,7 +250,7 @@ const Payment = ({ info }) => {
             >
               <div className="">
                 <span className="w-full font-bold">
-                  Pay Full - £{full}
+                  Pay Full - £{full} {(fast_track_theory || fast_track_practical)? '+ £'+fast_track_theory + fast_track_practical : ''}
                 </span>
                 <div className="text-secondary text-opacity-[0.65] text-sm false">
                   <p className="text-secondary leading-snug text-opacity-70 font-medium 

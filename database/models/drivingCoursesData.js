@@ -96,7 +96,7 @@ export const manual = {
         'bg_color' : 'bg-amber-200',
     },
     'guaranteed_pass': {
-        'name': 'Guaranted Pass Course',
+        'name': 'Guaranteed Pass Course',
         'title': `How many hours of lessons do you think you'll need?`,
         'course': {
             '1_installment': {
@@ -221,7 +221,7 @@ export const auto = {
         'bg_color' : 'bg-amber-200',
     },
     'guaranteed_pass': {
-        'name': 'Guaranted Pass Course',
+        'name': 'Guaranteed Pass Course',
         'title': `How many hours of lessons do you think you'll need? 3`,
         'course': {
             '1_installment': {
