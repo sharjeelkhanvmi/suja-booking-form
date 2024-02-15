@@ -62,6 +62,7 @@ const Payment = ({ info }) => {
   let fast_track_practical;
   let pass_protect;
   let remaining;
+  let addon;
 
   if (
     changedData &&
@@ -101,6 +102,8 @@ const Payment = ({ info }) => {
   total = full + fast_track_theory + fast_track_practical;
   deposit = deposit + fast_track_theory + fast_track_practical;
   remaining = full + fast_track_theory + fast_track_practical - deposit;
+
+  addon = fast_track_theory + fast_track_practical;
 
   // let checkFull = document.getElementbyId('full');
 
@@ -219,7 +222,8 @@ const Payment = ({ info }) => {
             >
               <div className="">
                 <span className="w-full font-bold">
-                  Pay Deposit - £{deposit} {(fast_track_theory || fast_track_practical)? '+ £'+fast_track_theory + fast_track_practical : ''}
+                  Pay Deposit - £{deposit} {addon? '+ £'+ addon : ''}
+                  {addon? <span class="font-medium text-[15px]"> (addon)</span> : ''}
                 </span>
                 <div className="text-secondary text-opacity-[0.65] text-sm false">
                   <p className="text-secondary leading-snug text-opacity-70 font-medium 
@@ -250,8 +254,10 @@ const Payment = ({ info }) => {
             >
               <div className="">
                 <span className="w-full font-bold">
-                  Pay Full - £{full} {(fast_track_theory || fast_track_practical)? '+ £'+fast_track_theory + fast_track_practical : ''}
+                  Pay Full - £{full} {addon? '+ £'+ addon : ''}
+                  {addon? <span class="font-medium text-[15px]"> (addon)</span> : ''}
                 </span>
+               
                 <div className="text-secondary text-opacity-[0.65] text-sm false">
                   <p className="text-secondary leading-snug text-opacity-70 font-medium 
                                 text-[15px] mt-2">
