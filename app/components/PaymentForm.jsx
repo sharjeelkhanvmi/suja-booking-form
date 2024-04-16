@@ -1,95 +1,97 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   CardNumberElement,
   CardCvcElement,
   CardExpiryElement,
   Elements,
   useStripe,
-  useElements,
-} from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+  useElements
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
-const stripePromise = loadStripe(
-  'pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf'
-);
+const stripePromise = loadStripe("pk_test_tb5mqsT3m4KLs1VlkDVuOcJC");
 
 const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
-
-
-
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
-  const [productName, setProductName] = useState('Product Name');
+  const [productName, setProductName] = useState("Product Name");
   const [productPrice, setProductPrice] = useState();
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+  useEffect(
+    () => {
+      let drType;
+      let course_name;
+      let coursePriceObj;
+      let hours_value;
+      let variant;
+      let payment;
 
-  useEffect(() => {
-
-    let drType;
-    let course_name;
-    let coursePriceObj;
-    let hours_value;
-    let variant;
-    let payment;
-
-    if(data && data.step2 && data.step2.dr_course_price != undefined){
-      drType = capitalize(data.step2.dr_type);
-      course_name = data.step2.dr_course_type;
-      coursePriceObj = data.step2.dr_course_price[Object.keys(data.step2.dr_course_price)[0]];
-      hours_value = coursePriceObj.value;
-      variant = coursePriceObj.variant;
-    }
-    if(data && data.step6 && data.step6.payment != undefined){
-      payment = data.step6.payment;
-    }
-    setProductPrice((data && data.step6 && data.step6.amount) ? data.step6.amount : 0);
-    setProductName( hours_value +' '+ variant +' - '+ drType + ' - ' +  payment );
-  }, [data])
+      if (data && data.step2 && data.step2.dr_course_price != undefined) {
+        drType = capitalize(data.step2.dr_type);
+        course_name = data.step2.dr_course_type;
+        coursePriceObj =
+          data.step2.dr_course_price[
+            Object.keys(data.step2.dr_course_price)[0]
+          ];
+        hours_value = coursePriceObj.value;
+        variant = coursePriceObj.variant;
+      }
+      if (data && data.step6 && data.step6.payment != undefined) {
+        payment = data.step6.payment;
+      }
+      setProductPrice(
+        data && data.step6 && data.step6.amount ? data.step6.amount : 0
+      );
+      setProductName(
+        hours_value + " " + variant + " - " + drType + " - " + payment
+      );
+    },
+    [data]
+  );
   //console.log('payment page', data)
 
   const cardElementOptions = {
     style: {
       base: {
-        color: '#303238',
-        fontFamily: 'Arial, sans-serif',
-        fontSize: '16px',
-        '::placeholder': {
-          color: '#ccc',
-        },
+        color: "#303238",
+        fontFamily: "Arial, sans-serif",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#ccc"
+        }
       },
       invalid: {
-        color: '#e5424d',
-      },
+        color: "#e5424d"
+      }
     },
     classes: {
       base:
-        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+        "w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base",
       complete:
-        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+        "w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base",
       empty:
-        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+        "w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base",
       focus:
-        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
+        "w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base",
       invalid:
-        'w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base',
-    },
+        "w-full rounded-md px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none font-semibold text-base"
+    }
   };
 
   const formDataFromLocalStorage = localStorage.getItem("formData");
   const parseFormData = JSON.parse(formDataFromLocalStorage);
-  const parseFromDataFullname=parseFormData.step4.firstName +" "+ parseFormData.step4.surname;
+  const parseFromDataFullname =
+    parseFormData.step4.firstName + " " + parseFormData.step4.surname;
   const parseFromDataEmail = parseFormData.step4.email;
   const parseFromDataPhone = parseFormData.step4.phone_number;
-  console.log("Parse Data: ",parseFormData.step4.phone_number);
-  
+  console.log("Parse Data: ", parseFormData.step4.phone_number);
 
-  const handleSubmit = async (event) => {
-    
+  const handleSubmit = async event => {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -98,24 +100,24 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
 
     try {
       const { paymentMethod, error } = await stripe.createPaymentMethod({
-        type: 'card',
+        type: "card",
         card: elements.getElement(CardNumberElement),
         billing_details: {
           address: {
-            city: 'Karachi',
-            country: 'PK',
-            line1: 'Your Address Line 1',
+            city: "Karachi",
+            country: "PK",
+            line1: "Your Address Line 1"
           },
           email: parseFromDataEmail,
           name: parseFromDataFullname,
-          phone: parseFromDataPhone,
+          phone: parseFromDataPhone
         },
         metadata: {
           product: JSON.stringify({
             name: productName,
-            price: productPrice,
-          }),
-        },
+            price: productPrice
+          })
+        }
       });
 
       // if (error) {
@@ -130,23 +132,23 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
         setPaymentError(error.message);
       } else {
         setLoader(true);
-        console.log('PaymentMethod:', paymentMethod);
-        console.log('Product Details:', { productName, productPrice });
-    
+        console.log("PaymentMethod:", paymentMethod);
+        console.log("Product Details:", { productName, productPrice });
+
         // Charge the payment using the paymentMethod.id
-        const response = await axios.post('/api/payment', {
+        const response = await axios.post("/api/payment", {
           paymentMethodId: paymentMethod.id,
-          amount: productPrice * 100,
+          amount: productPrice * 100
         });
-        
-        console.log(response.status)
-        if (response.data.status == 'succeeded') {
+
+        console.log(response.status);
+        if (response.data.status == "succeeded") {
           const paymentConfirmation = await response.data;
-          console.log('Payment Confirmation:', paymentConfirmation);
+          console.log("Payment Confirmation:", paymentConfirmation);
           onSuccess(paymentConfirmation);
           // Handle the payment confirmation as needed
         } else {
-          throw new Error('Payment failed. Please try again.');
+          throw new Error("Payment failed. Please try again.");
         }
       }
     } catch (error) {
@@ -186,11 +188,10 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
       </div>
 
       <div className="block items-center justify-content-center mt-5">
-        {paymentError && (
-          <p className="mb-4" style={{ color: 'red' }}>
+        {paymentError &&
+          <p className="mb-4" style={{ color: "red" }}>
             {paymentError}
-          </p>
-        )}
+          </p>}
         <button
           type="submit"
           disabled={!stripe}
@@ -210,7 +211,7 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M5 12h13M12 5l7 7-7 7"></path>
+                <path d="M5 12h13M12 5l7 7-7 7" />
               </svg>
             </span>
           </span>
