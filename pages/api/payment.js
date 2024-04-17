@@ -9,6 +9,8 @@ export default async function handler(req, res) {
 
   const { paymentMethodId, amount } = req.body;
 
+  console.log("Request: ", req.body);
+
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       payment_method: paymentMethodId,
@@ -21,6 +23,6 @@ export default async function handler(req, res) {
     res.status(200).json({ paymentId: paymentIntent.id, status: paymentIntent.status });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'An error occurred while processing the payment.' });
+    res.status(500).json({ error: 'An error occurred while processing the payment.', error });
   }
 }

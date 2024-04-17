@@ -19,7 +19,7 @@ import axios from "axios";
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
 const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {ssr: false});
-const stripePromise = loadStripe("pk_test_51OCgAiLtI6eAAvg7XJGkaG35swVZUZF8RfzmeizRJ2WaE9SvASJaUUMD0POWNC34gIcWLwmGLuH7yltlphocFIIE00DATZf8Tf")
+const stripePromise = loadStripe("pk_test_51BYFp0JBAYr3SMoYxRwJkPOjM091MERYVeeaKGHriY9ZfHWHb6PfOpbtMV0E6xgfUhcDz3Wibgiezwd1SQSWwJuc00OoJDJuM5")
 const Payment = ({ info }) => {
   const router = useRouter();
   const [changedData, setChangedData] = useState();

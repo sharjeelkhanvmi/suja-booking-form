@@ -10,7 +10,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
-const stripePromise = loadStripe("pk_test_tb5mqsT3m4KLs1VlkDVuOcJC");
+// const stripePromise = loadStripe("pk_test_51BYFp0JBAYr3SMoYxRwJkPOjM091MERYVeeaKGHriY9ZfHWHb6PfOpbtMV0E6xgfUhcDz3Wibgiezwd1SQSWwJuc00OoJDJuM5");
 
 const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
   const stripe = useStripe();
