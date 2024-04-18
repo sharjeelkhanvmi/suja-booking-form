@@ -91,6 +91,8 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
   const parseFromDataPhone = parseFormData.step4.phone_number;
   console.log("Parse Data: ", parseFormData.step4.phone_number);
 
+
+
   const handleSubmit = async event => {
     event.preventDefault();
 
@@ -110,12 +112,14 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
           },
           email: parseFromDataEmail,
           name: parseFromDataFullname,
-          phone: parseFromDataPhone
+          phone: parseFromDataPhone,
+          
         },
         metadata: {
           product: JSON.stringify({
             name: productName,
-            price: productPrice
+            price: productPrice,
+            description: "Hello world" 
           })
         }
       });
@@ -132,16 +136,17 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
         setPaymentError(error.message);
       } else {
         setLoader(true);
-        console.log("PaymentMethod:", paymentMethod);
-        console.log("Product Details:", { productName, productPrice });
 
         // Charge the payment using the paymentMethod.id
         const response = await axios.post("/api/payment", {
           paymentMethodId: paymentMethod.id,
-          amount: productPrice * 100
+          amount: productPrice * 100,
+          
         });
 
-        console.log(response.status);
+        console.log("Front End Response",response);
+
+
         if (response.data.status == "succeeded") {
           const paymentConfirmation = await response.data;
           console.log("Payment Confirmation:", paymentConfirmation);

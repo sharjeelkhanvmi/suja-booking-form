@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   const { paymentMethodId, amount } = req.body;
 
-  console.log("Request: ", req.body);
+  console.log("TESTING BACKEND");
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -17,9 +17,9 @@ export default async function handler(req, res) {
       amount,
       currency: 'gbp', // Replace with your desired currency
       confirm: true,
+      description:`Suja Online Booking`
     });
 
-    // Return the payment confirmation details to the client
     res.status(200).json({ paymentId: paymentIntent.id, status: paymentIntent.status });
   } catch (error) {
     console.error(error);

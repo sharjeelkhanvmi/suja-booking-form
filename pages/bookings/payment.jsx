@@ -159,6 +159,7 @@ const Payment = ({ info }) => {
         }
         const leadresponse = await axios.post("/api/leads/post", leadData);
         const lead = await leadresponse.data
+        console.log('leadData', lead);
         await axios.post("/api/api_mailer", { formdata: lead });
         const token = autoLogin(user)
         if(token)
