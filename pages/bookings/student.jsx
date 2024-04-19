@@ -9,6 +9,9 @@ const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr:
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+import { InputMask } from 'primereact/inputmask';
+
 //let formdata = Cookies.get('formData');
 //const data = formdata ? JSON.parse(formdata) : { phone_number: "" };
 
@@ -22,7 +25,7 @@ const getCharacterValidationError = (str) => {
     phone_number: Yup.string()
       .required('Phone number is required')
       .matches(
-        /^(?:(?:\+44)|(?:0))(?:(?:1\d{9})|(?:[1-9]\d{9}))$/,
+        /^\+44\s?\(0\)\s?20\s?\d{4}\s?\d{4}$/,
         'Invalid UK phone number'
       ),
     terms: Yup.boolean()
@@ -40,20 +43,22 @@ const getCharacterValidationError = (str) => {
       .matches(/[0-9]/, getCharacterValidationError("digit"))
       .matches(/[a-z]/, getCharacterValidationError("lowercase"))
       .matches(/[A-Z]/, getCharacterValidationError("uppercase")),
-      confirm_password: Yup.string()
+    confirm_password: Yup.string()
       .required("Please re-type your password")
       .oneOf([Yup.ref("password")], "Passwords do not match"),
   });
+  
   
 
 // console.log(data)
 
 const student = () => {
-
+    const [value, setValue] = useState();
     const [info, setInfo] = useState();
     const [isLoader, setLoader] = useState();
     const [valid, setValid] = useState();
     let formdata;
+    console.log("State",value);
     if (typeof localStorage !== 'undefined') {
       formdata = JSON.parse(localStorage.getItem("formData"));
     }
@@ -117,7 +122,7 @@ return (
     router.push('/bookings/availability');
     }}
     >
-    {({values, setFieldValue}) => (
+    {({values, setFieldValue,handleChange,handleBlur}) => (
     <Form>
         {setValid(values)}        
         <Formnav />
@@ -249,14 +254,18 @@ return (
             <label className="uppercase text-xs tracking-wide font-medium text-gray-800" htmlFor="phone_number">Mobile number</label>
             <div className="mt-1">
                 <div className="relative w-full">
-                    <Field type="text" name="phone_number" className="w-full rounded-md font-semibold text-base 
+                    {/* <Field type="text" name="phone_number" className="w-full rounded-md font-semibold text-base 
                     placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none 
-                    focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all " id="phone_number"  />
+                    focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all " id="phone_number"  /> */}
+                    <InputMask name="phone_number" className="w-full rounded-md font-semibold text-base 
+                    placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none 
+                    focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all " id="phone_number"  value={values.phone_number}  mask="+99 (9)99 9999 9999"  onChange={handleChange} onBlur={handleBlur} />
                     <ErrorMessage
                         name="phone_number"
                         component="p"
                         className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
                     />
+                    
                 </div>
             </div>
         </div>

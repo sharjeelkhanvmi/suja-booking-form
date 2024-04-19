@@ -58,6 +58,7 @@
     "next": "latest",
     "next-auth": "^4.24.5",
     "nodemailer": "^6.9.5",
+    "primereact": "^10.6.3",
     "react": "latest",
     "react-apexcharts": "1.4.0",
     "react-calendar": "^3.9.0",
