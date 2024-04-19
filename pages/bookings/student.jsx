@@ -92,10 +92,14 @@ const checkAndSetLoader = (valid) => {
     return loader;
   };
 
-function enableLoader(){
-    // console.log(checkAndSetLoader(valid));
-    setLoader(checkAndSetLoader(valid));
- }
+  const enableLoader = ({formikProps}) => {
+    if (formikProps?.isValid) {
+      setLoader(true);
+    } else {
+      // Handle invalid form case here
+      console.log("Form is invalid, cannot proceed.");
+    }
+  };
 return (
 <div>
     <Formik
