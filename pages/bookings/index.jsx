@@ -8,6 +8,7 @@
   import Formnav from "@/app/components/Formnav";
   import OldUserLoader from "@/pages/bookings/OldUserLoader";
   import { auto, manual } from "@/database/models/drivingCoursesData";
+  import Head from 'next/head';
 
   const Index = () => {
     const [isLoader, setLoader] = useState(false);
@@ -58,16 +59,27 @@
     const handleSubmit = async (values, { setSubmitting }) => {
       // Simulate async submission
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      const formData = { step1: values };
       
-
+      // Retrieve existing form data from localStorage
+      const existingFormData = JSON.parse(localStorage.getItem("formData")) || {};
+      
+      // Merge new form values with existing form data
+      const formData = {
+        ...existingFormData,
+        step1: values
+      };
+    
       localStorage.setItem("formData", JSON.stringify(formData));
       router.push("/bookings/course/");
       setSubmitting(false);
     };
+    
 
     return (
       <div>
+       <Head>
+        <title>Postal Code</title>
+      </Head>
         <Formik
           initialValues={{
       postal_code: formValues.postal_code // Set the initial value for postal_code

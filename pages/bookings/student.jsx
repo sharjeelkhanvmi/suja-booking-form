@@ -11,6 +11,7 @@ import Formnav from '@/app/components/Formnav';
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { InputMask } from 'primereact/inputmask';
+import Head from 'next/head';
 
 //let formdata = Cookies.get('formData');
 //const data = formdata ? JSON.parse(formdata) : { phone_number: "" };
@@ -102,6 +103,9 @@ const checkAndSetLoader = (valid) => {
   };
 return (
 <div>
+    <Head>
+        <title>Personal Details</title>
+      </Head>
     <Formik
     initialValues={step4? step4 :{
       title: "",

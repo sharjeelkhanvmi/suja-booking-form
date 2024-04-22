@@ -12,6 +12,7 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import moment from 'moment';
 import { css } from '@emotion/react';
 import { PropagateLoader } from 'react-spinners';
+import Head from "next/head";
 
 
 const Index = () => {
@@ -154,6 +155,9 @@ const truncateID = (id, length) => {
 
   return (
     <Layout>
+      <Head>
+        <title>Orders</title>
+      </Head>
     {loading ? 
       <div className="flex justify-center items-center h-screen relative bottom-24">
         <PropagateLoader css={override} size={15} color={'#B91C1C'} loading={loading} />

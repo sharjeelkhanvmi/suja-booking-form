@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import "react-toastify/dist/ReactToastify.css";
 import { css } from '@emotion/react';
 import { PropagateLoader } from 'react-spinners';
+import Head from "next/head";
 // import bcrypt from "bcryptjs";
 
 const getCharacterValidationError = (type) => `Password must contain at least one ${type}`;
@@ -177,6 +178,9 @@ useEffect(() => {
 
   return (
     <Layout>
+    <Head>
+        <title>Profile</title>
+      </Head>
     {loading ? (
       <div className="flex justify-center items-center h-screen relative bottom-24">
           <PropagateLoader css={override} size={15} color={'#B91C1C'} loading={loading} />

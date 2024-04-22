@@ -17,6 +17,7 @@ import Cookies from 'js-cookie';
 import dynamic from "next/dynamic";
 import axios from "axios";
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
+import Head from "next/head";
 const Sidebar = dynamic(() => import('@/app/components/sidebar/sidebar'), { ssr: false })
 const PaymentForm = dynamic(() => import("@/app/components/PaymentForm"), {ssr: false});
 const stripePromise = loadStripe("pk_test_51BYFp0JBAYr3SMoYxRwJkPOjM091MERYVeeaKGHriY9ZfHWHb6PfOpbtMV0E6xgfUhcDz3Wibgiezwd1SQSWwJuc00OoJDJuM5")
@@ -197,6 +198,9 @@ const Payment = ({ info }) => {
 
   return (
     <div>
+    <Head>
+        <title>Payment options</title>
+      </Head>
       <Formnav />
       {/* {typeof formdata ? <OldUserLoader /> : null} */}
       <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top md:px-7 px-5 py-8">

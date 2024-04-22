@@ -11,7 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Cookies from "js-cookie";
 import decodeToken from "jwt-decode";
-import { FaUsers } from "react-icons/fa6";
+import { FaUser, FaUsers } from "react-icons/fa6";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaRegTrashAlt } from "react-icons/fa";
 
@@ -315,22 +315,10 @@ const Sidebar = ({ open, onClose }) => {
                     ? "text-red-500 border-b-red-500"
                     : "text-gray-600"}`}
                 >
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 24 24"
-                    className="h-6 w-6"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                  </svg>
+               <FaUser />
                 </span>
                 <p
-                  className={`leading-1 flex ms-4 font-bold dark:text-white ${router.pathname ===
+                  className={`leading-1 flex ms-6 font-bold dark:text-white ${router.pathname ===
                   `/customer/profile`
                     ? "text-navy-700"
                     : "text-gray-700"}`}

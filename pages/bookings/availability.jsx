@@ -9,6 +9,7 @@ import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
 import { motion } from "framer-motion";
+import Head from 'next/head';
 // let formdata = Cookies.get('formData');
 // const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
 const validationSchema = Yup.object().shape({
@@ -53,6 +54,9 @@ function enableLoader(){
 
 return (
 <div>
+<Head>
+        <title>Availability</title>
+      </Head>
     <Formik
     initialValues={ step5 ? step5 : {
     intensiveCourse: '',

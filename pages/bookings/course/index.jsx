@@ -15,6 +15,7 @@ import {auto, manual} from '@/database/models/drivingCoursesData';
 // const data = formdata ? JSON.parse(formdata) : {  };
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
 import { Redirect } from 'react-router-dom';
+import Head from 'next/head';
 
 
 const index = () => {
@@ -118,6 +119,9 @@ const courseOptions = Object.keys(course.course).map((key) => ({
 
 return (
 <div>
+<Head>
+        <title>Course Details</title>
+      </Head>
 <Formik
 initialValues={
    step2

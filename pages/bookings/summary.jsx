@@ -7,6 +7,7 @@ import { useRouter} from "next/router";
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
+import Head from 'next/head';
 //import Sidebar from '@/app/components/sidebar/sidebar';
 
 
@@ -85,6 +86,9 @@ function enableLoader(){
 return (
 
 <div>
+<Head>
+        <title>Summary</title>
+      </Head>
 <Formnav />
 <div className="mt-[0px] flex justify-center items-top md:px-7 px-5 md:py-8 py-5">
 <div className='w-full lg:max-w-[750px] md:pb-24 pb-0'>

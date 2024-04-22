@@ -14,7 +14,7 @@ const Footnote = () => {
                   className={`my-4 w-full text-sm font-semibold opacity-60 text-center ${router.pathname !== "/bookings" && router.pathname !== "/bookings/summary" && router.pathname !== "/bookings/thankyou" ? "lg:w-[calc(100vw-360px)]" : ""}`}
                   >
     <div className="w-full">
-      Copyright © {/* */}2023{/* */} by Suja Driving School
+      Copyright © {/* */}2024{/* */} by Suja Driving School
     </div>
   </motion.div>
   );

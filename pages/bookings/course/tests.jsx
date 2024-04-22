@@ -10,6 +10,7 @@ import { test } from '@/database/models/drivingCoursesData';
 import Footnote from '@/app/components/Footnote';
 import Formnav from '@/app/components/Formnav';
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
+import Head from 'next/head';
 // import ModalExample from '@/pages/bookings/Modal'
 // import Modal from '@/pages/bookings/Modal';
 // let formdata = Cookies.get('formData');
@@ -53,6 +54,9 @@ const tests = () => {
 
   return (
     <div>
+    <Head>
+        <title>Course Test</title>
+      </Head>
       <Formik
         initialValues={{
           fast_track_practical: (step3 && step3.fast_track_practical != '') ? true : false,

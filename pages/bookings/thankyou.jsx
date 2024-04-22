@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Formnav from "@/app/components/Formnav";
 import Footnote from "@/app/components/Footnote";
 import { FaCheckCircle } from "react-icons/fa";
+import Head from "next/head";
 
 const thankyou = () => {
   let formdata;
@@ -18,6 +19,9 @@ const thankyou = () => {
   }, []);
   return (
     <div>
+      <Head>
+        <title>Thank You</title>
+      </Head>
       <Formnav />
       <div className="mt-[0px] flex justify-center items-top md:px-7 px-5 py-8">
         <div className="w-full lg:max-w-[750px] md:pb-24 md:5">

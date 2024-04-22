@@ -5,6 +5,7 @@ import Dashboard from "../admin/dashboard";
 import Layout from "@/app/components/Layout";
 import { css } from '@emotion/react';
 import { PropagateLoader } from 'react-spinners';
+import Head from "next/head";
 
 
 export default function Home() {
@@ -30,6 +31,9 @@ useEffect(() => {
 
   return (
     <Layout>
+    <Head>
+        <title>Customer</title>
+      </Head>
     {loading ? (
       <div className="flex justify-center items-center h-screen relative bottom-24">
         <PropagateLoader css={override} size={15} color={'#B91C1C'} loading={loading} />
