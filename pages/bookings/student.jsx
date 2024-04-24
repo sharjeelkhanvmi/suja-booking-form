@@ -11,7 +11,7 @@ import Formnav from '@/app/components/Formnav';
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { InputMask } from 'primereact/inputmask';
-import Head from 'next/head';
+import Head from 'next/head';import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 //let formdata = Cookies.get('formData');
 //const data = formdata ? JSON.parse(formdata) : { phone_number: "" };
@@ -21,14 +21,19 @@ import Head from 'next/head';
 const getCharacterValidationError = (str) => {
     return `Your password must have at least 1 ${str} character`;
   };
+  const isValidPhoneNumber = (phoneNumber) => {
+    const parsedPhoneNumber = parsePhoneNumberFromString(phoneNumber, 'GB');
+    return parsedPhoneNumber ? parsedPhoneNumber.isValid() : false;
+};
+
+// Example usage:
+console.log(isValidPhoneNumber('+44 20 7123 4567')); // true
+console.log(isValidPhoneNumber('+44 7123 456789'));
 
   const validationSchema = Yup.object().shape({
     phone_number: Yup.string()
       .required('Phone number is required')
-      .matches(
-        /^\+44\s?\(0\)\s?20\s?\d{4}\s?\d{4}$/,
-        'Invalid UK phone number'
-      ),
+      .test('phone-number', 'Invalid UK phone number', (value) => isValidPhoneNumber(value)),
     terms: Yup.boolean()
       .oneOf([true], 'You must accept the terms')
       .required('You must accept the terms'),
@@ -101,6 +106,9 @@ const checkAndSetLoader = (valid) => {
       console.log("Form is invalid, cannot proceed.");
     }
   };
+
+  // Function to validate UK phone numbers
+
 return (
 <div>
     <Head>
@@ -267,7 +275,7 @@ return (
                     focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all " id="phone_number"  /> */}
                     <InputMask name="phone_number" className="w-full rounded-md font-semibold text-base 
                     placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none 
-                    focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all " id="phone_number"  value={values.phone_number}  mask="+99 (9)99 9999 9999"  onChange={handleChange} onBlur={handleBlur} />
+                    focus:ring-2 focus:ring-secondary focus:ring-offset-1 transition-all " id="phone_number"  value={values.phone_number}  mask="+99 99 9999 9999"  onChange={handleChange} onBlur={handleBlur} />
                     <ErrorMessage
                         name="phone_number"
                         component="p"

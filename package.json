@@ -53,6 +53,7 @@
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
+    "libphonenumber-js": "^1.10.61",
     "moment": "^2.29.4",
     "mongoose": "^7.5.3",
     "next": "latest",
