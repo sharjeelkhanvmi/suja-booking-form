@@ -336,7 +336,7 @@ const Index = () => {
             </div>
           </div>
           <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
-            <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none w-full h-full sm:overflow-auto">
+            <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 w-full h-full sm:overflow-auto">
               <div className="overflow-x-scroll xl:overflow-x-hidden p-10">
                 <table
                   role="table"
@@ -351,7 +351,7 @@ const Index = () => {
                         colSpan={1}
                         role="columnheader"
                         title="Toggle SortBy"
-                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        className="border-b border-gray-200  pb-5 text-start "
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -362,7 +362,7 @@ const Index = () => {
                         colSpan={1}
                         role="columnheader"
                         title="Toggle SortBy"
-                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        className="border-b border-gray-200  pb-5 text-start "
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -373,7 +373,7 @@ const Index = () => {
                         colSpan={1}
                         role="columnheader"
                         title="Toggle SortBy"
-                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        className="border-b border-gray-200  pb-5 text-start "
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -395,7 +395,7 @@ const Index = () => {
                         colSpan={1}
                         role="columnheader"
                         title="Toggle SortBy"
-                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        className="border-b border-gray-200  pb-5 text-start "
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -406,7 +406,7 @@ const Index = () => {
                         colSpan={1}
                         role="columnheader"
                         title="Toggle SortBy"
-                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        className="border-b border-gray-200  pb-5 text-start "
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -417,7 +417,7 @@ const Index = () => {
                         colSpan={1}
                         role="columnheader"
                         title="Toggle SortBy"
-                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        className="border-b border-gray-200  pb-5 text-start "
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -428,7 +428,7 @@ const Index = () => {
                         colSpan={1}
                         role="columnheader"
                         title="Toggle SortBy"
-                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        className="border-b border-gray-200  pb-5 text-start "
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-sm font-bold tracking-wide text-gray-800">
@@ -440,7 +440,7 @@ const Index = () => {
                         colSpan={1}
                         role="columnheader"
                         title="Toggle SortBy"
-                        className="border-b border-gray-200  pb-5 text-start dark:!border-navy-700"
+                        className="border-b border-gray-200  pb-5 text-start "
                         style={{ cursor: "pointer" }}
                       >
                         <div className="text-end text-sm font-bold  text-gray-800">
@@ -464,7 +464,7 @@ const Index = () => {
                           checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
                             name="weekly"
                           /> */}
-                              <p className="text-sm font-bold text-gray-900 dark:text-white">
+                              <p className="text-sm font-bold text-gray-900 ">
                                 #{data._id}
                               </p>
                             </div>
@@ -480,7 +480,7 @@ const Index = () => {
                           checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400 undefined"
                             name="weekly"
                           /> */}
-                              <p className="text-sm font-bold text-gray-900 dark:text-white">
+                              <p className="text-sm font-bold text-gray-900 ">
                                 {data.step4.firstName}
                               </p>
                             </div>
@@ -490,7 +490,7 @@ const Index = () => {
                             className="pt-[14px] pb-[16px] sm:text-[14px] md:w-[18%] w-[14%]"
                           >
                             <div className="flex items-center">
-                              <p className="text-sm font-bold text-navy-700 dark:text-white">
+                              <p className="text-sm font-bold text-navy-700 ">
                                 {data.step4.email}
                               </p>
                             </div>
@@ -507,7 +507,7 @@ const Index = () => {
                             role="cell"
                             className="pt-[14px] pb-[16px] sm:text-[14px]"
                           >
-                            <p className="text-sm font-bold text-navy-700 dark:text-white">
+                            <p className="text-sm font-bold text-navy-700 ">
                               {data.step4.phone_number}
                             </p>
                           </td>
@@ -515,7 +515,7 @@ const Index = () => {
                             role="cell"
                             className="pt-[14px] pb-[16px] sm:text-[14px] "
                           >
-                            <p className="text-sm font-bold text-navy-700 dark:text-white">
+                            <p className="text-sm font-bold text-navy-700 ">
                               {data.step1.postal_code}
                             </p>
                           </td>
@@ -523,7 +523,7 @@ const Index = () => {
                             role="cell"
                             className="pt-[14px] pb-[16px] sm:text-[14px] w-[18%]"
                           >
-                            <p className="text-sm font-bold text-navy-700 dark:text-white">
+                            <p className="text-sm font-bold text-navy-700 ">
                               <div className="flex gap-2">
                                 {Object.keys(data.step2.dr_course_price).map(
                                   (courseKey, index) => (
@@ -543,7 +543,7 @@ const Index = () => {
                             role="cell"
                             className="pt-[14px] pb-[16px] sm:text-[14px] md:w-[14%] w-[20%]"
                           >
-                            <p className="text-sm font-bold text-navy-700 dark:text-white">
+                            <p className="text-sm font-bold text-navy-700 ">
                               {moment(data.createdAt).format(
                                 "YYYY-MM-DD HH:mm:ss A"
                               )}
@@ -553,7 +553,7 @@ const Index = () => {
                             role="cell"
                             className="flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
                           >
-                            <span className="text-sm font-bold text-red-700 dark:text-white">
+                            <span className="text-sm font-bold text-red-700 ">
                               <AiFillDelete
                                 className="text-2xl cursor-pointer"
                                 onClick={() => {
@@ -561,13 +561,13 @@ const Index = () => {
                                 }}
                               />
                             </span>
-                            <span className="text-sm font-bold text-gray-800 dark:text-white">
+                            <span className="text-sm font-bold text-gray-800 ">
                               <AiFillEdit
                                 className="text-2xl cursor-pointer"
                                 onClick={() => handleEdit(data)}
                               />
                             </span>
-                            <span className="text-sm font-bold text-gray-800 dark:text-white">
+                            <span className="text-sm font-bold text-gray-800 ">
                               <IoEye
                                 className="text-2xl cursor-pointer"
                                 onClick={() => {
@@ -876,10 +876,10 @@ const Index = () => {
                             Price
                           </th>
                         </tr>
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <tr className="bg-white border-b  ">
                           <td
                             scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                           >
                             <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">
                               Speedster Course
@@ -932,10 +932,10 @@ const Index = () => {
                           </td>
                         </tr>
                         {viewLead.step3.fast_track_practical != "" && (
-                          <tr className="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
+                          <tr className="bg-white border-b  p-3 ">
                             <td
                               scope="row"
-                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                             >
                               <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
                                 Add-ons
@@ -950,10 +950,10 @@ const Index = () => {
                           </tr>
                         )}
                         {viewLead.step3.fast_track_theory != "" && (
-                          <tr className="bg-white border-b dark:bg-gray-800 p-3 dark:border-gray-700">
+                          <tr className="bg-white border-b  p-3 ">
                             <td
                               scope="row"
-                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                             >
                               <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
                                 Add-ons
@@ -967,10 +967,10 @@ const Index = () => {
                             </td>
                           </tr>
                         )}
-                        <tr className="border-b  p-3 bg-gray-200 dark:border-gray-700">
+                        <tr className="border-b  p-3 bg-gray-200 ">
                           <td
                             scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                           >
                             <span className="block mt-2 ms-1">Total</span>
                           </td>

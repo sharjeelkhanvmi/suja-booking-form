@@ -90,24 +90,24 @@ export default function SignIn() {
     <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       {/* Sign in section */}
       <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-        <h4 className="mb-2.5 text-4xl font-bold text-red-700 dark:text-white">
+        <h4 className="mb-2.5 text-4xl font-bold text-red-700 ">
           Sign In
         </h4>
         <p className="mb-9 ml-1 text-base text-gray-600">
           Enter your email and password to sign in!
         </p>
-        <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800">
+        <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer ">
           <div className="rounded-full text-xl">
             <FcGoogle />
           </div>
-          <h5 className="text-sm font-medium text-red-700 dark:text-white">
+          <h5 className="text-sm font-medium text-red-700">
             Sign In with Google
           </h5>
         </div>
         <div className="mb-6 flex items-center  gap-3">
-          <div className="h-px w-full bg-gray-200 dark:bg-red-700" />
-          <p className="text-base text-gray-600 dark:text-white"> or </p>
-          <div className="h-px w-full bg-gray-200 dark:bg-red-700" />
+          <div className="h-px w-full bg-gray-200 " />
+          <p className="text-base text-gray-600 "> or </p>
+          <div className="h-px w-full bg-gray-200 " />
         </div>
         {/* Email */}
         <InputField
@@ -132,27 +132,27 @@ export default function SignIn() {
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
             <Checkbox />
-            <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
+            <p className="ml-2 text-sm font-medium text-navy-700 ">
               Keep me logged In
             </p>
           </div>
           <a
-            className="text-sm font-medium text-red-700 hover:text-red-600 dark:text-white"
+            className="text-sm font-medium text-red-700 hover:text-red-600"
             href=" "
           >
             Forgot Password?
           </a>
         </div>
-        <button className="linear mt-2 w-full rounded-xl bg-red-700 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
+        <button className="linear mt-2 w-full rounded-xl bg-red-700 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 ">
           Sign In
         </button>
         <div className="mt-4">
-          <span className=" text-sm font-medium text-red-700 dark:text-gray-600">
+          <span className=" text-sm font-medium text-red-700">
             Not registered yet?
           </span>
           <a
             href=" "
-            className="ml-1 text-sm font-medium text-red-700 hover:text-red-600 dark:text-white"
+            className="ml-1 text-sm font-medium text-red-700 hover:text-red-600 "
           >
             Create an account
           </a>
