@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import * as Yup from 'yup';
 import { css } from '@emotion/react';
 import { PropagateLoader } from 'react-spinners';
+import Head from "next/head";
 // import bcrypt from "bcryptjs";
 
 
@@ -186,6 +187,11 @@ useEffect(() => {
 
   return (
     <Layout>
+    <div>
+        <Head>
+        <title>Profile</title>
+        </Head>
+      </div>
     {loading ? (
       <div className="flex justify-center items-center h-screen relative bottom-24">
           <PropagateLoader css={override} size={15} color={'#B91C1C'} loading={loading} />

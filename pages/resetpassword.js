@@ -9,6 +9,7 @@ import Layout from "@/app/components/Layout";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import { BiLoaderAlt } from "react-icons/bi";
+import Head from "next/head";
 
 const ChangePassword = () => {
   const router = useRouter();
@@ -108,6 +109,9 @@ const ChangePassword = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Forgot Password</title>
+      </Head>
       <form
         className="pb-5 w-1/3 mx-auto p-10 rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500"
         onSubmit={handlePassword}
@@ -166,12 +170,15 @@ const ChangePassword = () => {
 
           <button
             type="submit"
-            className={`flex items-center rounded-full mt-5 py-3  ${isLoader ? 'pe-10' : 'ps-10'} p-12 relative text-lg uppercase 
+            className={`flex items-center rounded-full mt-5 py-3  ${
+              isLoader ? "pe-10" : "ps-10"
+            } p-12 relative text-lg uppercase 
             font-semibold text-white shadow-sm bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
           >
             {isLoader ? (
               <>
-                Update  <BiLoaderAlt className="animate-spin text-2xl absolute ml-[80px]" />
+                Update{" "}
+                <BiLoaderAlt className="animate-spin text-2xl absolute ml-[80px]" />
               </>
             ) : (
               "Update"

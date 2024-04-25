@@ -14,6 +14,7 @@ import { css } from "@emotion/react";
 import { PropagateLoader } from "react-spinners";
 import axios from "axios";
 import { TbRestore } from "react-icons/tb";
+import Head from "next/head";
 
 const Index = () => {
   const override = css`
@@ -125,6 +126,11 @@ const Index = () => {
 
   return (
     <Layout>
+      <div>
+        <Head>
+          <title>Trash</title>
+        </Head>
+      </div>
       <div className="relative top-5 right-0 text-end me-4">
         <button
           onClick={handleDeleteAll}

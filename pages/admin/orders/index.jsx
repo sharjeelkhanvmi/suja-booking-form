@@ -18,6 +18,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendar } from "react-icons/fa";
 import { IoCloseCircle } from "react-icons/io5";
+import Head from "next/head";
 const Index = () => {
   const override = css`
     display: block;
@@ -251,6 +252,11 @@ const Index = () => {
 
   return (
     <Layout>
+    <div>
+        <Head>
+        <title>Orders</title>
+        </Head>
+      </div>
       {loading ? (
         <div className="flex justify-center items-center h-screen relative bottom-24">
           <PropagateLoader

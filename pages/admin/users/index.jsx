@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { css } from "@emotion/react";
 import { PropagateLoader } from "react-spinners";
+import Head from "next/head";
 
 const Index = () => {
   const override = css`
@@ -109,6 +110,11 @@ const Index = () => {
 
   return (
     <Layout>
+    <div>
+        <Head>
+        <title>Users</title>
+        </Head>
+      </div>
       {loading ? (
         <div className="flex justify-center items-center h-screen relative bottom-24">
           <PropagateLoader

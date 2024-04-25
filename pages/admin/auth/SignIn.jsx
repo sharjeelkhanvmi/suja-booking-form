@@ -84,10 +84,14 @@
 import InputField from "@/app/components/fields/InputField";
 import { FcGoogle } from "react-icons/fc";
 import Checkbox from "@/app/components/checkbox";
+import Head from "next/head";
 
 export default function SignIn() {
   return (
     <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+      <div>
+        <Head>Sing In</Head>
+      </div>
       {/* Sign in section */}
       <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <h4 className="mb-2.5 text-4xl font-bold text-red-700 ">
