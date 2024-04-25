@@ -8,7 +8,7 @@ import { FiSearch } from "react-icons/fi";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
 import {
   IoMdNotificationsOutline,
-  IoMdInformationCircleOutline,
+  IoMdInformationCircleOutline
 } from "react-icons/io";
 import avatar from "assets/img/avatars/avatar4.png";
 
@@ -17,27 +17,28 @@ const Navbar = (props) => {
   const [darkmode, setDarkmode] = React.useState(false);
 
   return (
-    <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
+    <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl
+     bg-white/10 p-2 backdrop-blur-xl ">
       <div className="ms-[6px]">
         <div className="h-6 w-[224px] pt-1">
           <a
-            className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+            className="text-sm font-normal text-navy-700 hover:underline "
             href=" "
           >
             Pages
-            <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
+            <span className="mx-1 text-sm text-navy-700 hover:text-navy-700">
               {" "}
               /{" "}
             </span>
           </a>
           <Link
-            className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+            className="text-sm font-normal capitalize text-navy-700 hover:underline "
             to="#"
           >
             {brandText}
           </Link>
         </div>
-        <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
+        <p className="shrink text-[33px] capitalize text-navy-700 ">
           <Link
             to="#"
             className="font-bold capitalize hover:text-navy-700 dark:hover:text-white"
@@ -112,7 +113,9 @@ const Navbar = (props) => {
               </button>
             </div>
           }
-          classNames={"py-2 top-4 left-0 -start-[230px] md:-start-[440px] w-max"}
+          classNames={
+            "py-2 top-4 left-0 -start-[230px] md:-start-[440px] w-max"
+          }
         />
         {/* start Horizon PRO */}
         <Dropdown
@@ -127,7 +130,7 @@ const Navbar = (props) => {
                 style={{
                   backgroundImage: `url(${navbarimage})`,
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
+                  backgroundSize: "cover"
                 }}
                 className="mb-2 aspect-video w-full rounded-lg"
               />
@@ -154,7 +157,9 @@ const Navbar = (props) => {
               </a>
             </div>
           }
-          classNames={"py-2 top-6 left-0 -start-[250px] md:-start-[330px] w-max"}
+          classNames={
+            "py-2 top-6 left-0 -start-[250px] md:-start-[330px] w-max"
+          }
           animation="origin-[75%_0%] md:origin-top-end transition-all duration-300 ease-in-out"
         />
         <div

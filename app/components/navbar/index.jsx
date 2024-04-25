@@ -16,7 +16,7 @@ import avatar from "@/public/assets/favicon-suja.png";
 import Link from "next/link";
 import jwt_decode from "jwt-decode";
 
-const Navbar = props => {
+const Navbar = (props) => {
   const { name, user } = props;
   const logout = () => {
     Cookies.remove("token");
@@ -39,41 +39,47 @@ const Navbar = props => {
   }
 
   return (
-    <nav className="md:sticky relative top-4 z-40 flex flex-row md:flex-wrap flex-wrap-reverse	 items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
+    <nav className="md:sticky relative top-4 z-40 flex flex-row md:flex-wrap flex-wrap-reverse	 items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl">
       <div className="ml-[6px]">
         <div className="h-6 w-[224px] pt-1">
-          {user.role == "admin" || "customer"
-            ? <a
-                className="pointer-events-none text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-                href="/"
-              >
-                Dashboard{" /"}
-                <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white capitalize">
-                  {lastPath}
-                </span>
-              </a>
-            : ""}
+          {user.role == "admin" || "customer" ? (
+            <a
+              className="pointer-events-none text-sm font-normal text-navy-700 hover:underline "
+              href="/"
+            >
+              Dashboard{" /"}
+              <span className="mx-1 text-sm text-navy-700 hover:text-navy-700  capitalize">
+                {lastPath}
+              </span>
+            </a>
+          ) : (
+            ""
+          )}
           <Link
-            className="pointer-events-none text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+            className="pointer-events-none text-sm font-normal capitalize text-navy-700 hover:underline "
             href="/"
           >
             {brandText}
           </Link>
         </div>
-        <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
+        <p className="shrink text-[33px] capitalize text-navy-700 ">
           <Link
             href="/"
-            className="font-bold capitalize hover:text-navy-700 dark:hover:text-white pointer-events-none"
+            className="font-bold capitalize hover:text-navy-700  pointer-events-none"
           >
             {userRole === "admin"
-              ? lastPath === "admin" ? "Dashboard" : lastPath
+              ? lastPath === "admin"
+                ? "Dashboard"
+                : lastPath
               : userRole === "customer"
-                ? lastPath === "customer" ? "Dashboard" : lastPath
-                : null}
+              ? lastPath === "customer"
+                ? "Dashboard"
+                : lastPath
+              : null}
           </Link>
         </p>
       </div>
-      <div className="relative mt-[3px] flex h-[61px] w-[355px] flex-grow items-center md:justify-around justify-between gap-2  px-2 py-2 dark:!bg-navy-800 dark:shadow-none md:w-[365px] md:flex-grow-0 md:gap-1 xl:w-[365px] xl:gap-2">
+      <div className="relative mt-[3px] flex h-[61px] w-[355px] flex-grow items-center md:justify-around justify-between gap-2  px-2 py-2  md:w-[365px] md:flex-grow-0 md:gap-1 xl:w-[365px] xl:gap-2">
         {/* <div className="flex h-full items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
           <p className="pl-3 pr-2 text-xl">
             <FiSearch className="h-4 w-4 text-gray-400 dark:text-white" />
@@ -85,7 +91,7 @@ const Navbar = props => {
           />
         </div> */}
         <span
-          className="flex cursor-pointer text-xl text-gray-600 dark:text-white xl:hidden"
+          className="flex cursor-pointer text-xl text-gray-600  xl:hidden"
           onClick={onOpenSidenav}
         >
           <FiAlignJustify className="h-5 w-5" />
@@ -99,12 +105,12 @@ const Navbar = props => {
           // }
           animation="origin-[65%_0%] md:origin-top-right transition-all duration-300 ease-in-out"
           children={
-            <div className="flex w-[360px] flex-col gap-3 rounded-[20px] bg-white p-4 shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none sm:w-[460px]">
+            <div className="flex w-[360px] flex-col gap-3 rounded-[20px] bg-white p-4 shadow-xl shadow-shadow-500 sm:w-[460px]">
               <div className="flex items-center justify-between">
-                <p className="text-base font-bold text-navy-700 dark:text-white">
+                <p className="text-base font-bold text-navy-700 ">
                   Notification
                 </p>
-                <p className="text-sm font-bold text-navy-700 dark:text-white">
+                <p className="text-sm font-bold text-navy-700 ">
                   Mark all read
                 </p>
               </div>
@@ -113,10 +119,10 @@ const Navbar = props => {
                   <BsArrowBarUp />
                 </div>
                 <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
-                  <p className="mb-1 text-left text-base font-bold text-gray-900 dark:text-white">
+                  <p className="mb-1 text-left text-base font-bold text-gray-900 ">
                     New Update: Horizon UI Dashboard PRO
                   </p>
-                  <p className="font-base text-left text-xs text-gray-900 dark:text-white">
+                  <p className="font-base text-left text-xs text-gray-900 ">
                     A new update for your downloaded item is available!
                   </p>
                 </div>
@@ -126,10 +132,10 @@ const Navbar = props => {
                   <BsArrowBarUp />
                 </div>
                 <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
-                  <p className="mb-1 text-left text-base font-bold text-gray-900 dark:text-white">
+                  <p className="mb-1 text-left text-base font-bold text-gray-900 ">
                     New Update: Horizon UI Dashboard PRO
                   </p>
-                  <p className="font-base text-left text-xs text-gray-900 dark:text-white">
+                  <p className="font-base text-left text-xs text-gray-900 ">
                     A new update for your downloaded item is available!
                   </p>
                 </div>
@@ -146,7 +152,7 @@ const Navbar = props => {
           //   </p>
           // }
           children={
-            <div className="flex w-[350px] flex-col gap-2 rounded-[20px] bg-white p-4 shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">
+            <div className="flex w-[350px] flex-col gap-2 rounded-[20px] bg-white p-4 shadow-xl shadow-shadow-500  ">
               <div
                 style={{
                   backgroundImage: `url(${navbarimage})`,
@@ -158,21 +164,21 @@ const Navbar = props => {
               <a
                 target="blank"
                 href="https://horizon-ui.com/pro?ref=live-free-tailwind-react"
-                className="px-full linear flex cursor-pointer items-center justify-center rounded-xl bg-brand-500 py-[11px] font-bold text-white transition duration-200 hover:bg-brand-600 hover:text-white active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:bg-brand-200"
+                className="px-full linear flex cursor-pointer items-center justify-center rounded-xl bg-brand-500 py-[11px] font-bold text-white transition duration-200 hover:bg-brand-600 hover:text-white active:bg-brand-700 "
               >
                 Buy Horizon UI PRO
               </a>
               <a
                 target="blank"
                 href="https://horizon-ui.com/docs-tailwind/docs/react/installation?ref=live-free-tailwind-react"
-                className="px-full linear flex cursor-pointer items-center justify-center rounded-xl border py-[11px] font-bold text-navy-700 transition duration-200 hover:bg-gray-200 hover:text-navy-700 dark:!border-white/10 dark:text-white dark:hover:bg-white/20 dark:hover:text-white dark:active:bg-white/10"
+                className="px-full linear flex cursor-pointer items-center justify-center rounded-xl border py-[11px] font-bold text-navy-700 transition duration-200 hover:bg-gray-200 hover:text-navy-700 "
               >
                 See Documentation
               </a>
               <a
                 target="blank"
                 href="https://horizon-ui.com/?ref=live-free-tailwind-react"
-                className="hover:bg-black px-full linear flex cursor-pointer items-center justify-center rounded-xl py-[11px] font-bold text-navy-700 transition duration-200 hover:text-navy-700 dark:text-white dark:hover:text-white"
+                className="hover:bg-black px-full linear flex cursor-pointer items-center justify-center rounded-xl py-[11px] font-bold text-navy-700 transition duration-200 hover:text-navy-700 "
               >
                 Try Horizon Free
               </a>
@@ -208,15 +214,15 @@ const Navbar = props => {
             />
           }
           children={
-            <div className="flex w-56 flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">
+            <div className="flex w-56 flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 ">
               <div className="p-4">
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-bold text-navy-700 dark:text-white">
+                  <p className="text-sm font-bold text-navy-700 ">
                     Hey, {name}
                   </p>{" "}
                 </div>
               </div>
-              <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
+              <div className="h-px w-full bg-gray-200 " />
               <div className="flex flex-col p-4">
                 {
                   <Link
@@ -225,7 +231,7 @@ const Navbar = props => {
                         ? "/admin/profile"
                         : "/customer/profile"
                     }
-                    className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                    className="text-sm text-gray-800  "
                   >
                     Profile
                   </Link>
@@ -236,7 +242,7 @@ const Navbar = props => {
                       ? "/admin/orders"
                       : "/customer/orders"
                   }
-                  className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                  className="mt-3 text-sm text-gray-800  "
                 >
                   Order
                 </Link>
