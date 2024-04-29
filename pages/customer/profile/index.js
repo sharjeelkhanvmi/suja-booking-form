@@ -324,7 +324,7 @@ useEffect(() => {
               className="rounded-full mt-5 ml-4 py-3  px-8 text-lg uppercase font-semibold text-white shadow-sm text-sm
      bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Udpate Password
+              Update Password
             </button>
           </div>
         </form>
