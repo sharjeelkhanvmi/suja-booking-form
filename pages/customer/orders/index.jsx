@@ -550,8 +550,7 @@ const Index = () => {
                       </div>
                     </div>
                   </div>
-                  {/* BUG IS HERE */}
-                  {/* PASTE FROM HERE */}
+
                   <div className="order-details p-4 pb-8 relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left border rtl:text-right">
                       <tbody>
@@ -569,25 +568,111 @@ const Index = () => {
                             Price
                           </th>
                         </tr>
-                        <tr className="bg-white border-b ">
+                        <tr className="bg-white border-b  ">
                           <td
                             scope="row"
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                           >
-                            <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full capitalize">
-                              {viewLead.step2.dr_course_name}
+                            <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">
+                              Speedster Course
                             </span>
+                            {viewLead.step2.dr_course_price ? (
+                              <span className="block mt-2 ms-1">
+                                {" "}
+                                {Object.keys(
+                                  viewLead.step2.dr_course_price
+                                ).map((courseKey, index) => (
+                                  <span key={index}>
+                                    {
+                                      viewLead.step2.dr_course_price[courseKey]
+                                        .value
+                                    }
+                                    {
+                                      viewLead.step2.dr_course_price[courseKey]
+                                        .variant
+                                    }{" "}
+                                    -{" "}
+                                    <span className="capitalize">
+                                      {viewLead.step2.dr_type}
+                                    </span>{" "}
+                                    ({viewLead.step6.payment})
+                                  </span>
+                                ))}
+                              </span>
+                            ) : (
+                              <span className="text-gray-800">
+                                No course price available
+                              </span>
+                            )}
                           </td>
-                          <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                            <div className="mt-1">
-                              £{viewLead.step2.dr_course_price}
-                            </div>
+                          <td className="px-6 py-4 font-semibold text-sm">
+                            {viewLead.step6.payment === "Full" && (
+                              <div>
+                                {Object.keys(
+                                  viewLead.step2.dr_course_price
+                                ).map((courseKey, index) => (
+                                  <span key={index}>
+                                    £
+                                    {
+                                      viewLead.step2.dr_course_price[courseKey]
+                                        .full
+                                    }
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                        {viewLead.step3.fast_track_practical != "" && (
+                          <tr className="bg-white border-b  p-3 ">
+                            <td
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                            >
+                              <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                                Add-ons
+                              </span>
+                              <span className="block mt-2 ms-1">
+                                Practical Test
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 font-semibold text-sm">
+                              £{viewLead.step3.fast_track_practical}
+                            </td>
+                          </tr>
+                        )}
+                        {viewLead.step3.fast_track_theory != "" && (
+                          <tr className="bg-white border-b  p-3 ">
+                            <td
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                            >
+                              <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                                Add-ons
+                              </span>
+                              <span className="block mt-2 ms-1">
+                                Theory Test
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 font-semibold text-sm">
+                              £{viewLead.step3.fast_track_theory}
+                            </td>
+                          </tr>
+                        )}
+                        <tr className="border-b  p-3 bg-gray-200 ">
+                          <td
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            <span className="block mt-2 ms-1">Total</span>
+                          </td>
+                          <td className="px-6 py-4 font-semibold text-sm">
+                            £{viewLead.step6.amount}
                           </td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
-                  {/* PASTE FROM THERE */}
                 </div>
               </Modal>
             )}
