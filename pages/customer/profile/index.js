@@ -132,17 +132,17 @@ useEffect(() => {
             id: user.id
           });
           if (response.data.success) {
-            //console.log("Password updated successfully");
+      
             toast.success("Password updated successfully");
           } else {
-            //console.log("Failed to update password");
+            
             toast.error("Failed to update password");
           }
         } catch (error) {
-          //console.error("Error updating password:", error);
+          
           toast.error("Error updating password");
         }
-      // console.log('Form submitted successfully');
+      
     } catch (error) {
       const newErrors = {};
       error.inner.forEach((e) => {
@@ -321,8 +321,7 @@ useEffect(() => {
             </div>
             <button
               type="submit"
-              className="rounded-full mt-5 ml-4 py-3  px-8 text-lg uppercase font-semibold text-white shadow-sm text-sm
-     bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-full mt-5 ml-4 py-3  px-8  uppercase font-semibold text-white shadow-sm text-sm bg-red-700 hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Update Password
             </button>

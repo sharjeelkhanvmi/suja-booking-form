@@ -606,7 +606,7 @@ const Index = () => {
                             )}
                           </td>
                           <td className="px-6 py-4 font-semibold text-sm">
-                            {viewLead.step6.payment === "Full" && (
+                            {viewLead.step6.payment && (
                               <div>
                                 {Object.keys(
                                   viewLead.step2.dr_course_price
@@ -614,8 +614,7 @@ const Index = () => {
                                   <span key={index}>
                                     £
                                     {
-                                      viewLead.step2.dr_course_price[courseKey]
-                                        .full
+                                      viewLead.step2.dr_course_price[courseKey].full
                                     }
                                   </span>
                                 ))}
