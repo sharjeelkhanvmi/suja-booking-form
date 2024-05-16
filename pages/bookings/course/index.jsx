@@ -19,6 +19,7 @@ import Head from 'next/head';
 
 
 const index = () => {
+   // console.log(auto);
 
    const router = useRouter();
 
