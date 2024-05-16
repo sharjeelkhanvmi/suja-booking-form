@@ -19,8 +19,6 @@ import Head from 'next/head';
 
 
 const index = () => {
-   // console.log(auto);
-
    const router = useRouter();
 
    let formdata;
@@ -172,8 +170,12 @@ showCoursePricing(values.dr_course_type)
    <Formnav />
    
    <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top md:px-7 px-0 md:py-8 py-7">
+   
    <div className='w-full lg:max-w-[750px] md:pb-24 pb-5'>
+   
    <div className="md:mt-[80px] mt-[50] items-top md:px-7 px-5 md:py-7 py-5">
+   <div className='my-6'><h1 className=" md:text-[21px] text-[20] leading-snug font-semibold">Select type of course:
+</h1></div>
       <div className="w-full lg:max-w-[750px] lg:pb-24 pb-10">
          <div className="grid grid-cols-2 gap-4">
             <div>
