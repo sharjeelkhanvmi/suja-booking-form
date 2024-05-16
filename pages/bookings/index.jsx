@@ -22,7 +22,7 @@
     useEffect(() => {
       // Load form data from localStorage on component mount
       const formData = JSON.parse(localStorage.getItem("formData"));
-      console.log("formData:", formData); // Log the formData to see if it's retrieved correctly
+      // console.log("formData:", formData); // Log the formData to see if it's retrieved correctly
       if (formData && formData.step1) {
         setFormValues(formData.step1);
         formikRef.current.setFieldValue("postal_code", formData.step1.postal_code); // Set the value of the input field
@@ -45,14 +45,14 @@
         .required("Postal code is required")
     });
 
-    console.log("Validation Schema",validationSchema);
+    // console.log("Validation Schema",validationSchema);
 
     const enableLoader = ({formikProps}) => {
       if (formikProps?.isValid) {
         setLoader(true);
       } else {
         // Handle invalid form case here
-        console.log("Form is invalid, cannot proceed.");
+        // console.log("Form is invalid, cannot proceed.");
       }
     };
 

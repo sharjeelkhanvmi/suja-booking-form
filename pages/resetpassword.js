@@ -94,7 +94,7 @@ const ChangePassword = () => {
       });
       if (response) {
         setLoader(true);
-        console.log("PASSWORD UPDATED SUCCESSFULLY");
+        // console.log("PASSWORD UPDATED SUCCESSFULLY");
         setPassword({ password: "", confirm_password: "" });
         toast.success("Password updated");
         router.push("/login");

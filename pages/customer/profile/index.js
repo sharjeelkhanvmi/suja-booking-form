@@ -91,7 +91,7 @@ useEffect(() => {
       const response = await axios.post("/api/user/edit", profile);
       if (response.data.success) {
         toast.success("Profile Updated");
-        console.log("User Ediiteed");
+        // console.log("User Ediiteed");
       } else {
         toast.error("Failed to update data");
       }

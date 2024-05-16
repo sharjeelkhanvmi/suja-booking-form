@@ -45,7 +45,7 @@ const tests = () => {
   //   setCheckboxValue(e.target.value);
   // };
   useEffect(() => {
-    console.log(changedData);
+    // console.log(changedData);
   }, [changedData]);
 
   function enableLoader(){

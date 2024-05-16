@@ -27,8 +27,8 @@ const getCharacterValidationError = (str) => {
 };
 
 // Example usage:
-console.log(isValidPhoneNumber('+44 20 7123 4567')); // true
-console.log(isValidPhoneNumber('+44 7123 456789'));
+// console.log(isValidPhoneNumber('+44 20 7123 4567')); // true
+// console.log(isValidPhoneNumber('+44 7123 456789'));
 
   const validationSchema = Yup.object().shape({
     phone_number: Yup.string()
@@ -64,7 +64,7 @@ const student = () => {
     const [isLoader, setLoader] = useState();
     const [valid, setValid] = useState();
     let formdata;
-    console.log("State",value);
+    // console.log("State",value);
     if (typeof localStorage !== 'undefined') {
       formdata = JSON.parse(localStorage.getItem("formData"));
     }
@@ -103,7 +103,7 @@ const checkAndSetLoader = (valid) => {
       setLoader(true);
     } else {
       // Handle invalid form case here
-      console.log("Form is invalid, cannot proceed.");
+    //   console.log("Form is invalid, cannot proceed.");
     }
   };
 

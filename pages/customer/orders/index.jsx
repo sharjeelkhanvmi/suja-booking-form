@@ -84,7 +84,7 @@ const Index = () => {
     try {
       const response = await fetch("/api/leads/userLeads");
       const responseData = await response.json();
-      console.log("Response of User LEADS FROM FRONT END", responseData.leads);
+      // console.log("Response of User LEADS FROM FRONT END", responseData.leads);
       if (responseData && Object.keys(responseData).length > 0) {
         setLoading(true);
         setLeadsData(responseData.leads);

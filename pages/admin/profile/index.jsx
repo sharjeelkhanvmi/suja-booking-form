@@ -72,7 +72,7 @@ useEffect(() => {
     
       if (response.data.success) {
        
-        console.log('Data updated');
+        // console.log('Data updated');
         toast.success("Profile Data Updated");
        
       } else {

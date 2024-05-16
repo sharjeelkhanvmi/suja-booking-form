@@ -38,7 +38,7 @@ const Index = () => {
       const responseData = await response.json();
       setLoading(true);
       setUsersData(responseData);
-      console.log("Users Data in Orders", responseData);
+      // console.log("Users Data in Orders", responseData);
       setTimeout(() => {
         setLoading(false); // Set loading to false when done
       }, 1000);
@@ -50,7 +50,7 @@ const Index = () => {
 
   useEffect(() => {
     handleUsersData();
-    console.log("User ID From EDITUSERDATA State", editUserData._id);
+    // console.log("User ID From EDITUSERDATA State", editUserData._id);
   }, []);
 
   const handleEdit = async (e) => {
@@ -60,7 +60,7 @@ const Index = () => {
         `/api/user/edit?id_=${editUserData._id}`,
         editUserData
       );
-      console.log("Edit Response:", response.data);
+      // console.log("Edit Response:", response.data);
       await toast.success("User data edited successfully!");
       setToggle(false);
     } catch (error) {

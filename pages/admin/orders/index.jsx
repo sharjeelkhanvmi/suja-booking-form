@@ -96,7 +96,7 @@ const Index = () => {
       setLeadsData(responseData);
       setTimeout(() => {
         setLoading(false);
-        console.log("default", leadsData);
+        // console.log("default", leadsData);
       }, 1000);
     } catch (error) {
       console.error(error, "Error While Fetching Leads Data In order");
@@ -106,13 +106,13 @@ const Index = () => {
 
   const handleLoadMore = async () => {
     try {
-      console.log("Page no",page);
+      // console.log("Page no",page);
       const response = await fetch("/api/leads/loadMore/?page=" + page);
       const responseData = await response.json();
-      console.log("handleLoadMore",responseData);
+      // console.log("handleLoadMore",responseData);
       setLoad(true);
       setTotal((prev)=>responseData.totalCount);
-      console.log("Total Count",total);
+      // console.log("Total Count",total);
       setLeadsData((prevData) => [...prevData, ...responseData.leads]);
       setLoad(false);
     } catch (error) {
@@ -173,12 +173,12 @@ const Index = () => {
       const result = await axios.post("/api/leads/userFilter", { orderId });
       if (result.status === 200) {
         let finalResult = await result.data.filterData;
-        console.log("FINAL", finalResult);
+        // console.log("FINAL", finalResult);
         setLeadsData([finalResult]);
       }
     } catch (error) {
       setLeadsData([]);
-      console.log("Error in handle filter function", error.response.data);
+      // console.log("Error in handle filter function", error.response.data);
     }
   };
 
@@ -191,11 +191,11 @@ const Index = () => {
         start: startDate,
         end: endDate
       });
-      console.log("result of date", result);
+      // console.log("result of date", result);
       let finalResult = result.data.msg;
       // finalResult = finalResult.json();
       setLeadsData(finalResult);
-      console.log("handledata filter", finalResult);
+      // console.log("handledata filter", finalResult);
     } catch (error) {
       console.log("Handle date filter", error);
     }
@@ -204,7 +204,7 @@ const Index = () => {
   const handleuserData = async () => {
     const response = await fetch("/api/admin");
     const responseData = await response.json();
-    console.log("Users Data in Orders", responseData);
+    // console.log("Users Data in Orders", responseData);
   };
 
 
@@ -793,7 +793,7 @@ const Index = () => {
                             </span>{" "}
                             <br />
                             <span className="font-normal text-start">
-                              {console.log("createdAt:", viewLead.createdAt)}
+                              {/* {console.log("createdAt:", viewLead.createdAt)} */}
                               {moment(viewLead.createdAt).format(
                                 "YYYY-MM-DD HH:mm:ss A"
                               )}

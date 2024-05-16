@@ -95,7 +95,7 @@ const Index = () => {
       setLoading(true);
       const result = await axios.delete("/api/leads/deleteAll");
       if (result.status === 200) {
-        console.log("All Data Deleted");
+        // console.log("All Data Deleted");
         await handleLeadsData();
       }
     } catch (error) {
@@ -114,7 +114,7 @@ const Index = () => {
       setLoading(true);
       const result = await axios.post(`/api/leads/softDelete?leadId=${leadId}`);
       if (result.status === 200) {
-        console.log("leads Restore");
+        // console.log("leads Restore");
         await handleLeadsData();
       }
     } catch (error) {
@@ -325,7 +325,7 @@ const Index = () => {
                               {moment(data.createdAt).format(
                                 "YYYY-MM-DD HH:mm:ss A"
                               )}
-                              {console.log("DATE>>>>>>>", data.createdAt)}
+                              {/* {console.log("DATE>>>>>>>", data.createdAt)} */}
                             </p>
                           </td>
                           <td

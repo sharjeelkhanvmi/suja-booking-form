@@ -135,9 +135,9 @@ const Payment = ({ info }) => {
     };
       try {
         
-        console.log(userData)
+        // console.log(userData)
         const find = await axios.get(`/api/user/find/?email=${userData.email}`);
-        console.log(find.data)
+        // console.log(find.data)
         let user
         if(find.data.success)
         {
@@ -160,7 +160,7 @@ const Payment = ({ info }) => {
         }
         const leadresponse = await axios.post("/api/leads/post", leadData);
         const lead = await leadresponse.data
-        console.log('leadData', lead);
+        // console.log('leadData', lead);
         await axios.post("/api/api_mailer", { formdata: lead });
         const token = autoLogin(user)
         if(token)

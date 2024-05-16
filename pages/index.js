@@ -6,7 +6,7 @@ import Head from 'next/head';
 
 const index = () => {
   const {userRole, isLoggedIn} = useAuth();
-  console.log(userRole,isLoggedIn);
+  // console.log(userRole,isLoggedIn);
   return (
     <div >
     <Head>

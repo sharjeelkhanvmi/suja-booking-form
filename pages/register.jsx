@@ -17,7 +17,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
     const res = await register_user(formData);
     if (res.success) {
       toast.success(res.message);
