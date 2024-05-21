@@ -1,3 +1,4 @@
+import { NextRequest, NextResponse } from "next/server";
 
 export default function initMiddleware(middleware) {
   return (req, res) =>
@@ -10,3 +11,4 @@ export default function initMiddleware(middleware) {
       });
     });
 }
+
