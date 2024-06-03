@@ -105,6 +105,7 @@ const courseOptions = Object.keys(course.course).map((key) => ({
    name: 'dr_course_price',
    value: JSON.stringify({ [key]: course.course[key] }),
    variant: course.course[key].variant,
+   desc:course.course[key].desc,
    full: course.course[key].full,
    hour: course.course[key].value
  }));
@@ -350,6 +351,7 @@ showCoursePricing(values.dr_course_type)
 
       
       <div className="mb-10 mt-7" id="CourseBox">
+      {/* Regular Course */}
          <div className='mb-3'>            
             <Field
                   type='radio'
@@ -394,7 +396,7 @@ showCoursePricing(values.dr_course_type)
                            </svg>
                         </div>
                         <div className="">
-                           <div className=" false">I know what course I want</div>
+                           <div className=" false">2-4 hours</div>
                         </div>
                      </div>
                      <div className="pl-7 w-auto">
@@ -405,66 +407,7 @@ showCoursePricing(values.dr_course_type)
                   </div>
                </label>
          </div>
-
-         <div className='mb-3'>            
-            <Field
-                  type='radio'
-                  className='sr-only dr_course_type'
-                  name="dr_course_type"
-                  id="dr_cc_type"
-                  value="speedster"
-                  onChange={(e) => {
-                     handleChange(e);
-                     setChangedData((changedData) => {
-                        const { name, value } = e.target;
-                        delete changedData.step2.dr_course_price;
-                        return {
-                          ...changedData,
-                          step2: {
-                            ...changedData.step2,
-                            [name]: value,
-                          },
-                        };
-                      });
-                   }}
-               />
-               <label htmlFor="dr_cc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
-               <div className=" w-full flex justify-between items-center">
-               <div className="flex items-center">
-                  <div className="pr-5 false">
-                     <svg
-                        width={24}
-                        height={24}
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                           d="M13.182 13.182C12.7641 13.5999 12.2681 13.9313 11.7221 14.1575C11.1761 14.3836 10.591 14.5 10 14.5C9.40905 14.5 8.82388 14.3836 8.27791 14.1575C7.73194 13.9313 7.23586 13.5999 6.818 13.182M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10ZM7.75 7.75C7.75 8.164 7.582 8.5 7.375 8.5C7.168 8.5 7 8.164 7 7.75C7 7.336 7.168 7 7.375 7C7.582 7 7.75 7.336 7.75 7.75ZM7.375 7.75H7.383V7.765H7.375V7.75ZM13 7.75C13 8.164 12.832 8.5 12.625 8.5C12.418 8.5 12.25 8.164 12.25 7.75C12.25 7.336 12.418 7 12.625 7C12.832 7 13 7.336 13 7.75ZM12.625 7.75H12.633V7.765H12.625V7.75Z"
-                           fill="#FFC700"
-                           />
-                        <path
-                           d="M13.182 13.182C12.7641 13.5999 12.2681 13.9313 11.7221 14.1575C11.1761 14.3836 10.591 14.5 10 14.5C9.40905 14.5 8.82388 14.3836 8.27791 14.1575C7.73194 13.9313 7.23586 13.5999 6.818 13.182M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10ZM7.75 7.75C7.75 8.164 7.582 8.5 7.375 8.5C7.168 8.5 7 8.164 7 7.75C7 7.336 7.168 7 7.375 7C7.582 7 7.75 7.336 7.75 7.75ZM7.375 7.75H7.383V7.765H7.375V7.75ZM13 7.75C13 8.164 12.832 8.5 12.625 8.5C12.418 8.5 12.25 8.164 12.25 7.75C12.25 7.336 12.418 7 12.625 7C12.832 7 13 7.336 13 7.75ZM12.625 7.75H12.633V7.765H12.625V7.75Z"
-                           stroke="black"
-                           strokeWidth="1.5"
-                           strokeLinecap="round"
-                           strokeLinejoin="round"
-                           />
-                     </svg>
-                  </div>
-                  <div className="">
-                     <div className=" false">I'm doing well</div>
-                  </div>
-               </div>
-               <div className="pl-7 w-auto">
-                  <div className="bg-amber-200	 w-max py-1 px-3 font-semibold  text-xs rounded-full">
-                     Speedster Course
-                  </div>
-               </div>
-            </div>
-               </label>
-         </div>
-
+           {/* Crash Course */}
          <div className='mb-3'>            
             <Field
                   type='radio'
@@ -523,7 +466,7 @@ showCoursePricing(values.dr_course_type)
                            </svg>
                         </div>
                         <div className="">
-                           <div className=" false">I'm just getting started</div>
+                           <div className=" false">Up to 6 hours per day over 4 consecutive days or over consecutive weekends </div>
                         </div>
                      </div>
                      <div className="pl-7 w-auto">
@@ -534,7 +477,67 @@ showCoursePricing(values.dr_course_type)
                   </div>
                </label>
          </div>
-
+      {/* Speedster Course */}
+         <div className='mb-3'>            
+            <Field
+                  type='radio'
+                  className='sr-only dr_course_type'
+                  name="dr_course_type"
+                  id="dr_cc_type"
+                  value="speedster"
+                  onChange={(e) => {
+                     handleChange(e);
+                     setChangedData((changedData) => {
+                        const { name, value } = e.target;
+                        delete changedData.step2.dr_course_price;
+                        return {
+                          ...changedData,
+                          step2: {
+                            ...changedData.step2,
+                            [name]: value,
+                          },
+                        };
+                      });
+                   }}
+               />
+               <label htmlFor="dr_cc_type" className="w-full flex items-center text-left  bg-emerald-100	py-4 px-5 rounded-lg border font-semibold text-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-1 hover:bg-pmfLightGreen hover:bg-opacity-50 transition-all  ">
+               <div className=" w-full flex justify-between items-center">
+               <div className="flex items-center">
+                  <div className="pr-5 false">
+                     <svg
+                        width={24}
+                        height={24}
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
+                        <path
+                           d="M13.182 13.182C12.7641 13.5999 12.2681 13.9313 11.7221 14.1575C11.1761 14.3836 10.591 14.5 10 14.5C9.40905 14.5 8.82388 14.3836 8.27791 14.1575C7.73194 13.9313 7.23586 13.5999 6.818 13.182M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10ZM7.75 7.75C7.75 8.164 7.582 8.5 7.375 8.5C7.168 8.5 7 8.164 7 7.75C7 7.336 7.168 7 7.375 7C7.582 7 7.75 7.336 7.75 7.75ZM7.375 7.75H7.383V7.765H7.375V7.75ZM13 7.75C13 8.164 12.832 8.5 12.625 8.5C12.418 8.5 12.25 8.164 12.25 7.75C12.25 7.336 12.418 7 12.625 7C12.832 7 13 7.336 13 7.75ZM12.625 7.75H12.633V7.765H12.625V7.75Z"
+                           fill="#FFC700"
+                           />
+                        <path
+                           d="M13.182 13.182C12.7641 13.5999 12.2681 13.9313 11.7221 14.1575C11.1761 14.3836 10.591 14.5 10 14.5C9.40905 14.5 8.82388 14.3836 8.27791 14.1575C7.73194 13.9313 7.23586 13.5999 6.818 13.182M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10ZM7.75 7.75C7.75 8.164 7.582 8.5 7.375 8.5C7.168 8.5 7 8.164 7 7.75C7 7.336 7.168 7 7.375 7C7.582 7 7.75 7.336 7.75 7.75ZM7.375 7.75H7.383V7.765H7.375V7.75ZM13 7.75C13 8.164 12.832 8.5 12.625 8.5C12.418 8.5 12.25 8.164 12.25 7.75C12.25 7.336 12.418 7 12.625 7C12.832 7 13 7.336 13 7.75ZM12.625 7.75H12.633V7.765H12.625V7.75Z"
+                           stroke="black"
+                           strokeWidth="1.5"
+                           strokeLinecap="round"
+                           strokeLinejoin="round"
+                           />
+                     </svg>
+                  </div>
+                  <div className="">
+                     <div className=" false">Up to 6-8 hours</div>
+                  </div>
+               </div>
+               <div className="pl-7 w-auto">
+                  <div className="bg-amber-200	 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                     Speedster Course
+                  </div>
+               </div>
+            </div>
+               </label>
+         </div>
+    
+      {/* Guranteed Course */}
          <div className='mb-3'>            
             <Field
                   type='radio'
@@ -587,7 +590,7 @@ showCoursePricing(values.dr_course_type)
                         </svg>
                      </div>
                      <div className="">
-                        <div className=" false">I'm nearly test ready</div>
+                        <div className=" false">Unlimited number of hours until I pass! </div>
                      </div>
                   </div>
                   <div className="pl-7 w-auto">
@@ -598,6 +601,7 @@ showCoursePricing(values.dr_course_type)
                   </div>
                </label>
          </div>
+
          <ErrorMessage
             name="dr_course_type"
             component="p"
@@ -615,6 +619,7 @@ showCoursePricing(values.dr_course_type)
          <h1 className=" text-[21px] leading-snug font-semibold">
             { course.name }
          </h1>
+        
          <div className="cursor-pointer" onClick={(e) => setHintOpen_2(isHintOpen_2 => !isHintOpen_2)}>
             <svg
                xmlns="http://www.w3.org/2000/svg"
@@ -708,6 +713,7 @@ showCoursePricing(values.dr_course_type)
                   <p className="font-bold md:text-2xl text-xl">{option.hour}</p>
                   <p className="font-semibold text-xs">{option.variant}</p>
                   <div className="display-block">£{option.full}</div>
+                  <div className='text-[12px] font-normal py-2 leading-4'> <p>{option.desc}</p></div>
                </div>
             </label>          
          </div>
