@@ -56,6 +56,25 @@
       }
     };
 
+    const formatPostalCode = (value) => {
+      let formattedValue = value.toUpperCase().replace(/\s/g, "");
+      if (formattedValue.length > 4 && formattedValue.length < 6) {
+        const firstPart = formattedValue.substring(0, 2);
+        const secondPart = formattedValue.substring(2);
+        formattedValue = `${firstPart} ${secondPart}`;
+      }
+      if (formattedValue.length > 5) {
+        const firstPart = formattedValue.substring(0, 3);
+        const secondPart = formattedValue.substring(3);
+        formattedValue = `${firstPart} ${secondPart}`;
+      }
+      console.log("form",formattedValue.length);
+      return formattedValue;
+    };
+
+
+    
+
     const handleSubmit = async (values, { setSubmitting }) => {
       // Simulate async submission
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -112,17 +131,14 @@
                               : "ring-1 ring-inset ring-gray-300"
                           }`}
                           onChange={(e) => {
-                            const { value } = e.target;
-                            let formattedValue = value
-                              .toUpperCase()
-                              .replace(/\s/g, "")
-                              .replace(/(.{3})(?!$)/g, "$1 ");
-
-                            formikProps.setFieldValue(
-                              "postal_code",
-                              formattedValue
-                            );
-                          }}
+                          const { value } = e.target;
+                          const formattedValue = formatPostalCode(value);
+                          formikProps.setFieldValue(
+                            "postal_code",
+                            formattedValue
+                          );
+                        }}
+                      
                         />
 
                         <ErrorMessage

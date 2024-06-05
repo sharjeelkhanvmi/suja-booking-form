@@ -197,9 +197,15 @@
 }
 }
 
+.css-ob1t9r-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
+  color: #d31e32;
+  
+}
 
-
-
+.css-ob1t9r-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+  background-color: #d31e32;
+  font-size: x-large;
+}
 
 
 
