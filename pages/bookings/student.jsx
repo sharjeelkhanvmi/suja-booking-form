@@ -17,6 +17,7 @@ import Head from "next/head";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 import React, { useState } from "react";
 import Switch from "@mui/material/Switch";
+import axios from "axios";
 
 const getCharacterValidationError = (str) => {
   return `Your password must have at least 1 ${str} character`;
@@ -25,6 +26,8 @@ const isValidPhoneNumber = (phoneNumber) => {
   const parsedPhoneNumber = parsePhoneNumberFromString(phoneNumber, "GB");
   return parsedPhoneNumber ? parsedPhoneNumber.isValid() : false;
 };
+
+
 
 const validationSchema = Yup.object().shape({
   phone_number: Yup.string()
@@ -107,6 +110,8 @@ const validationSchema = Yup.object().shape({
     is: (sunday, fullWeek) => sunday && !fullWeek,
     then: Yup.string().required("Sunday end time is required")
   }),
+  postalCode: Yup.string()
+  .required("Postal code is required"),
   // Add a boolean field for single day selection for each day
   monday: Yup.boolean(),
   tuesday: Yup.boolean(),
@@ -117,7 +122,8 @@ const validationSchema = Yup.object().shape({
   sunday: Yup.boolean()
 });
 
-const student = () => {
+const student = ({stepOnePostalCode}) => {
+  console.log("StepOne",stepOnePostalCode);
   const [toogle, setToogle] = useState({
     Monday: false,
     Tuesday: false,
@@ -169,6 +175,7 @@ const student = () => {
   const [changedData, setChangedData] = useState(formdata);
   const step4 = formdata ? formdata.step4 : "";
 
+
   const checkAndSetLoader = (valid) => {
     const hasRequiredKeys =
       valid &&
@@ -193,8 +200,35 @@ const student = () => {
       //   console.log("Form is invalid, cannot proceed.");
     }
   };
+  const [apiAddress, setApiAddress] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
-  // Function to validate UK phone numbers
+  const fetchAddressSuggestions = async (postalCode) => {
+    try {
+      const response = await axios.get(
+        `https://api.getaddress.io/autocomplete/${postalCode}?api-key=aYssNMkdXEGsdfGVZjiY0Q26381`
+      );
+      setApiAddress(response.data.suggestions.slice(0, 10));
+      setShowSuggestions(true);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handlePostalCodeChange = async (e) => {
+    const postalCode = e.target.value;
+    setFieldValue("postalCode", postalCode);
+
+    // Check if postal code matches step one postal code
+    if (postalCode === formdata?.step1?.postal_code) {
+      await fetchAddressSuggestions(postalCode);
+    } else {
+      setApiAddress([]);
+      setShowSuggestions(false);
+    }
+  };
+  // const [stepOnePostalCode, setStepOnePostalCode] = useState(formdata?.step1?.postal_code);
+  // console.log(stepOnePostalCode)
 
   return (
     <div>
@@ -214,6 +248,7 @@ const student = () => {
                 confirm_password: "",
                 phone_number: "",
                 address: "",
+                postalCode: "",
                 terms: false,
                 mondayStartTime: "",
                 mondayEndTime: "",
@@ -256,7 +291,7 @@ const student = () => {
                 <div className="mt-[10px] items-top md:py-5 py-3">
                   <div className="w-full lg:max-w-[750px]">
                     <div className="w-full mb-5 pr-4">
-                      <h1 className="md:text-[26px] text-[24px] text-neutral-950	 font-bold">
+                      <h1 className="md:text-[26px] text-[24px] text-neutral-950 font-bold">
                         Let's get to know each other
                       </h1>
                       <p className="text-current font-regular text-[17px] mt-2">
@@ -509,12 +544,14 @@ const student = () => {
                             <Field
                               type="text"
                               name="postalCode"
-                              className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset  transition-all disabled:opacity-50 cursor-not-allowed"
+                              className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset transition-all"
                               id="postalCode"
                               autoComplete="given-name"
-                              readOnly
-                              value={formdata?.step1?.postal_code}
-                              disabled
+                              value={changedData?.step1?.postal_code}
+                              onClick={async (e) => {
+                                setFieldValue("postalCode", e.target.value);
+                                await fetchAddressSuggestions(e.target.value);
+                              }}
                             />
                             <ErrorMessage
                               name="postalCode"
@@ -537,15 +574,34 @@ const student = () => {
                             <Field
                               type="text"
                               name="address"
-                              className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border  border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset  transition-all "
+                              className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset transition-all"
                               id="address"
                               autoComplete="given-name"
+                              value={values.address}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
                             />
                             <ErrorMessage
                               name="address"
                               component="p"
                               className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
                             />
+                            {showSuggestions && (
+                              <div className="absolute z-10 bg-white border border-gray-300 mt-2 w-full rounded-md shadow-lg">
+                                {apiAddress.map((address, index) => (
+                                  <div
+                                    key={index}
+                                    className="cursor-pointer p-2 hover:bg-gray-200"
+                                    onClick={() => {
+                                      setFieldValue("address", address.address);
+                                      setShowSuggestions(false);
+                                    }}
+                                  >
+                                    {address.address}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -592,9 +648,15 @@ const student = () => {
                                     };
                                     setToogle(newToggle);
                                     if (!newToggle[day]) {
-      setFieldValue(`${day.toLowerCase()}StartTime`, '');
-      setFieldValue(`${day.toLowerCase()}EndTime`, '');
-    }
+                                      setFieldValue(
+                                        `${day.toLowerCase()}StartTime`,
+                                        ""
+                                      );
+                                      setFieldValue(
+                                        `${day.toLowerCase()}EndTime`,
+                                        ""
+                                      );
+                                    }
                                     console.log("Toggle", newToggle);
                                   }}
                                 />
@@ -604,6 +666,7 @@ const student = () => {
                                 <div className="overflow-hidden flex justify-around items-center align-middle md:w-[calc(100%-230px)] lg:w-[calc(100%-230px)] xl:w-[calc(100%-230px)] md:gap-0 lg:gap-0 xl:gap-0 gap-2">
                                   <Field
                                     type="time"
+                                    min="08:00" max="20:00"
                                     id={`${day.toLowerCase()}StartTime`}
                                     name={`${day.toLowerCase()}StartTime`}
                                     value={
@@ -611,7 +674,6 @@ const student = () => {
                                     }
                                     className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-xl px-2 py-2 my-4"
                                     onChange={handleChange}
-                                   
                                   />
                                   <ErrorMessage
                                     name={`${day.toLowerCase()}StartTime`}
@@ -623,6 +685,7 @@ const student = () => {
                                   <span className="">To</span>
                                   <Field
                                     type="time"
+                                    min="08:00" max="20:00"
                                     id={`${day.toLowerCase()}EndTime`}
                                     name={`${day.toLowerCase()}EndTime`}
                                     value={
@@ -630,7 +693,6 @@ const student = () => {
                                     }
                                     className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl my-2 text-xl px-2 py-2"
                                     onChange={handleChange}
-                                    
                                   />
                                   <ErrorMessage
                                     name={`${day.toLowerCase()}EndTime`}
