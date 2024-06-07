@@ -54,62 +54,76 @@ const validationSchema = Yup.object().shape({
   confirm_password: Yup.string()
     .required("Please re-type your password")
     .oneOf([Yup.ref("password")], "Passwords do not match"),
-  mondayStartTime: Yup.string().when(["monday", "fullWeek"], {
-    is: (monday, fullWeek) => monday && !fullWeek,
-    then: Yup.string().required("Monday start time is required")
-  }),
-  mondayEndTime: Yup.string().when(["monday", "fullWeek"], {
-    is: (monday, fullWeek) => monday && !fullWeek,
-    then: Yup.string().required("Monday end time is required")
-  }),
-  tuesdayStartTime: Yup.string().when(["tuesday", "fullWeek"], {
-    is: (tuesday, fullWeek) => tuesday && !fullWeek,
-    then: Yup.string().required("Tuesday start time is required")
-  }),
-  tuesdayEndTime: Yup.string().when(["tuesday", "fullWeek"], {
-    is: (tuesday, fullWeek) => tuesday && !fullWeek,
-    then: Yup.string().required("Tuesday end time is required")
-  }),
-  wednesdayStartTime: Yup.string().when(["wednesday", "fullWeek"], {
-    is: (wednesday, fullWeek) => wednesday && !fullWeek,
-    then: Yup.string().required("Wednesday start time is required")
-  }),
-  wednesdayEndTime: Yup.string().when(["wednesday", "fullWeek"], {
-    is: (wednesday, fullWeek) => wednesday && !fullWeek,
-    then: Yup.string().required("Wednesday end time is required")
-  }),
-  thursdayStartTime: Yup.string().when(["thursday", "fullWeek"], {
-    is: (thursday, fullWeek) => thursday && !fullWeek,
-    then: Yup.string().required("Thursday start time is required")
-  }),
-  thursdayEndTime: Yup.string().when(["thursday", "fullWeek"], {
-    is: (thursday, fullWeek) => thursday && !fullWeek,
-    then: Yup.string().required("Thursday end time is required")
-  }),
-  fridayStartTime: Yup.string().when(["friday", "fullWeek"], {
-    is: (friday, fullWeek) => friday && !fullWeek,
-    then: Yup.string().required("Friday start time is required")
-  }),
-  fridayEndTime: Yup.string().when(["friday", "fullWeek"], {
-    is: (friday, fullWeek) => friday && !fullWeek,
-    then: Yup.string().required("Friday end time is required")
-  }),
-  saturdayStartTime: Yup.string().when(["saturday", "fullWeek"], {
-    is: (saturday, fullWeek) => saturday && !fullWeek,
-    then: Yup.string().required("Saturday start time is required")
-  }),
-  saturdayEndTime: Yup.string().when(["saturday", "fullWeek"], {
-    is: (saturday, fullWeek) => saturday && !fullWeek,
-    then: Yup.string().required("Saturday end time is required")
-  }),
-  sundayStartTime: Yup.string().when(["sunday", "fullWeek"], {
-    is: (sunday, fullWeek) => sunday && !fullWeek,
-    then: Yup.string().required("Sunday start time is required")
-  }),
-  sundayEndTime: Yup.string().when(["sunday", "fullWeek"], {
-    is: (sunday, fullWeek) => sunday && !fullWeek,
-    then: Yup.string().required("Sunday end time is required")
-  }),
+    mondayStartTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    mondayEndTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    tuesdayStartTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    tuesdayEndTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    wednesdayStartTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    wednesdayEndTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    thursdayStartTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    thursdayEndTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    fridayStartTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    fridayEndTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    saturdayStartTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    saturdayEndTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    sundayStartTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
+    sundayEndTime: Yup.string().test(
+      "valid-time",
+      "select time 08:00 and 20:00.",
+      (value) => !value || (value >= "08:00" && value <= "20:00")
+    ),
   postalCode: Yup.string()
   .required("Postal code is required"),
   // Add a boolean field for single day selection for each day
@@ -627,15 +641,15 @@ const student = ({stepOnePostalCode}) => {
                             "Sunday"
                           ].map((day, index) => (
                             <div
-                              className="flex items-center align-middle py-1 md:h-[60px] lg:md:h-[60px] xl:md:h-[60px] xl-max:md:h-[60px] md:flex-row lg:flex-row flex-col md:text-start lg:text-start xl:text-start text-center"
+                              className="flex items-center align-middle py-2 md:h-[60px] lg:md:h-[60px] xl:md:h-[60px] xl-max:md:h-[60px] md:flex-row lg:flex-row flex-row md:text-start lg:text-start xl:text-start text-center mb-5"
                               key={index}
                             >
-                              <div className="first:w-[130px]">
+                              <div className="md:first:w-[130px] lg:first:w-[130px] xl:first:w-[74px]">
                                 <h3 className="uppercase text-sm tracking-wide font-medium text-gray-800">
                                   {day}
                                 </h3>
                               </div>
-                              <div className="mt-0 pt-0 w-[100px] text-center">
+                              <div className="mt-0 pt-0 md:w-[100px] lg:w-[100px] xl:w-[100px] text-center">
                                 <Switch
                                   className="border-red-500"
                                   checked={toogle[day]}
@@ -663,8 +677,9 @@ const student = ({stepOnePostalCode}) => {
                               </div>
 
                               {toogle[day] && (
-                                <div className="overflow-hidden flex justify-around items-center align-middle md:w-[calc(100%-230px)] lg:w-[calc(100%-230px)] xl:w-[calc(100%-230px)] md:gap-0 lg:gap-0 xl:gap-0 gap-2">
-                                  <Field
+                                <div className="overflow-hidden flex md:w-[calc(100%-230px)] lg:w-[calc(100%-230px)] xl:w-[calc(100%-230px)] md:gap-0 lg:gap-0 xl:gap-0 gap-2 relative py-4">
+                                <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 items-center relative pb-2">
+                                <Field
                                     type="time"
                                     min="08:00" max="20:00"
                                     id={`${day.toLowerCase()}StartTime`}
@@ -672,33 +687,32 @@ const student = ({stepOnePostalCode}) => {
                                     value={
                                       values[`${day.toLowerCase()}StartTime`]
                                     }
-                                    className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-xl px-2 py-2 my-4"
+                                    className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm px-2 py-2 my-4"
                                     onChange={handleChange}
                                   />
                                   <ErrorMessage
                                     name={`${day.toLowerCase()}StartTime`}
                                     component="p"
-                                    className="text-red-500 text-sm "
+                                    className="text-red-500 text-[12px] absolute bottom-0"
                                   />
-
-                                  {console.log("CHecking:", values)}
-                                  <span className="">To</span>
-                                  <Field
+                                </div>
+                                  <div className="flex flex-col w-10 text-sm text-center justify-center">To</div>
+                                 <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 relative pb-2">
+                                 <Field
                                     type="time"
                                     min="08:00" max="20:00"
                                     id={`${day.toLowerCase()}EndTime`}
                                     name={`${day.toLowerCase()}EndTime`}
-                                    value={
-                                      values[`${day.toLowerCase()}EndTime`]
-                                    }
-                                    className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl my-2 text-xl px-2 py-2"
+                                    value={values[`${day.toLowerCase()}EndTime`]}
+                                    className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm px-2 py-2 my-4"
                                     onChange={handleChange}
                                   />
                                   <ErrorMessage
                                     name={`${day.toLowerCase()}EndTime`}
-                                    component="div"
-                                    className="text-red-500 text-sm"
+                                    component="p"
+                                    className="text-red-500 text-[12px] absolute bottom-0"
                                   />
+                                 </div>
                                 </div>
                               )}
                             </div>
