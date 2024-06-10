@@ -207,7 +207,10 @@
   font-size: x-large;
 }
 
-
+input[type="time"]::-webkit-calendar-picker-indicator {
+  font-size: 20px;
+  position: relative;
+}
 
 
 

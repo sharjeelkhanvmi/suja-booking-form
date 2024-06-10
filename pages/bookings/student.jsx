@@ -27,8 +27,6 @@ const isValidPhoneNumber = (phoneNumber) => {
   return parsedPhoneNumber ? parsedPhoneNumber.isValid() : false;
 };
 
-
-
 const validationSchema = Yup.object().shape({
   phone_number: Yup.string()
     .required("Phone number is required")
@@ -44,7 +42,6 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
-  address: Yup.string().required("Address is required"),
   password: Yup.string()
     .required("Please enter a password")
     .min(8, "Password must have at least 8 characters")
@@ -54,78 +51,81 @@ const validationSchema = Yup.object().shape({
   confirm_password: Yup.string()
     .required("Please re-type your password")
     .oneOf([Yup.ref("password")], "Passwords do not match"),
-    mondayStartTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    mondayEndTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    tuesdayStartTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    tuesdayEndTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    wednesdayStartTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    wednesdayEndTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    thursdayStartTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    thursdayEndTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    fridayStartTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    fridayEndTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    saturdayStartTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    saturdayEndTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    sundayStartTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-    sundayEndTime: Yup.string().test(
-      "valid-time",
-      "select time 08:00 and 20:00.",
-      (value) => !value || (value >= "08:00" && value <= "20:00")
-    ),
-  postalCode: Yup.string()
-  .required("Postal code is required"),
+  address: Yup.string().required("Address is required"),
+  county: Yup.string().required("county is required"),
+  city: Yup.string().required("City is required"),
+  address: Yup.string().required("Address is required"),
+  mondayStartTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  mondayEndTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  tuesdayStartTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  tuesdayEndTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  wednesdayStartTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  wednesdayEndTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  thursdayStartTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  thursdayEndTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  fridayStartTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  fridayEndTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  saturdayStartTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  saturdayEndTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  sundayStartTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  sundayEndTime: Yup.string().test(
+    "valid-time",
+    "select time 08:00 and 20:00.",
+    (value) => !value || (value >= "08:00" && value <= "20:00")
+  ),
+  postalCode: Yup.string().required("Postal code is required"),
   // Add a boolean field for single day selection for each day
   monday: Yup.boolean(),
   tuesday: Yup.boolean(),
@@ -136,8 +136,8 @@ const validationSchema = Yup.object().shape({
   sunday: Yup.boolean()
 });
 
-const student = ({stepOnePostalCode}) => {
-  console.log("StepOne",stepOnePostalCode);
+const student = ({ stepOnePostalCode }) => {
+  console.log("StepOne", stepOnePostalCode);
   const [toogle, setToogle] = useState({
     Monday: false,
     Tuesday: false,
@@ -189,7 +189,6 @@ const student = ({stepOnePostalCode}) => {
   const [changedData, setChangedData] = useState(formdata);
   const step4 = formdata ? formdata.step4 : "";
 
-
   const checkAndSetLoader = (valid) => {
     const hasRequiredKeys =
       valid &&
@@ -220,12 +219,31 @@ const student = ({stepOnePostalCode}) => {
   const fetchAddressSuggestions = async (postalCode) => {
     try {
       const response = await axios.get(
-        `https://api.getaddress.io/autocomplete/${postalCode}?api-key=aYssNMkdXEGsdfGVZjiY0Q26381`
+        `https://api.getaddress.io/autocomplete/${postalCode}?api-key=_UFb05P76EyMidU1VHIQ_A42976`
+        // `https://api.getAddress.io/get/{id}?api-key=_UFb05P76EyMidU1VHIQ_A42976`
       );
       setApiAddress(response.data.suggestions.slice(0, 10));
       setShowSuggestions(true);
     } catch (e) {
       console.log(e);
+    }
+  };
+  const fetchDetailedAddress = async (id, setFieldValue) => {
+    try {
+      console.log(`Fetching details for ID: ${id}`); // Log the ID
+      const response = await axios.get(
+        `https://api.getAddress.io/get/${id}?api-key=_UFb05P76EyMidU1VHIQ_A42976`
+      );
+      const detailedAddress = response.data;
+
+      // Log the detailed address response
+      console.log("Detailed Address Response:", detailedAddress);
+      setFieldValue("postalCode", detailedAddress.postcode);
+      setFieldValue("address", detailedAddress.line_1 + detailedAddress.line_2);
+      setFieldValue("county", detailedAddress.county);
+      setFieldValue("city", detailedAddress.town_or_city);
+    } catch (e) {
+      console.error("Error fetching detailed address:", e);
     }
   };
 
@@ -262,6 +280,8 @@ const student = ({stepOnePostalCode}) => {
                 confirm_password: "",
                 phone_number: "",
                 address: "",
+                county: "",
+                city: "",
                 postalCode: "",
                 terms: false,
                 mondayStartTime: "",
@@ -278,7 +298,6 @@ const student = ({stepOnePostalCode}) => {
                 saturdayEndTime: "",
                 sundayStartTime: "",
                 sundayEndTime: ""
-                // monday:{enable:false,time:{to:"",from:""}}
               }
         }
         validationSchema={validationSchema}
@@ -543,27 +562,28 @@ const student = ({stepOnePostalCode}) => {
                       </div>
                     </div>
 
-                    {/* full Address */}
+                    {/* FULL ADDRESS WITH POSTAL CODE */}
                     <div className="mt-5 w-full flex justify-start gap-5">
                       {/* POSTAL CODE */}
                       <div>
                         <label
-                          className="uppercase text-sm  tracking-wide font-medium text-gray-800"
+                          className="uppercase text-sm tracking-wide font-medium text-gray-800"
                           htmlFor="postalCode"
                         >
                           Postal Code
                         </label>
                         <div className="mt-1">
-                          <div className="relative w-36">
+                          <div className="relative w-52">
                             <Field
                               type="text"
                               name="postalCode"
                               className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset transition-all"
                               id="postalCode"
                               autoComplete="given-name"
-                              value={changedData?.step1?.postal_code}
-                              onClick={async (e) => {
-                                setFieldValue("postalCode", e.target.value);
+                              onBlur={handleBlur}
+                              value={values.postalCode}
+                              onChange={async (e) => {
+                                handleChange(e);
                                 await fetchAddressSuggestions(e.target.value);
                               }}
                             />
@@ -572,13 +592,32 @@ const student = ({stepOnePostalCode}) => {
                               component="p"
                               className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
                             />
+                            {showSuggestions && (
+                              <div className="absolute z-10 bg-white border border-gray-300 mt-2 w-full rounded-md shadow-lg">
+                                {apiAddress.map((suggestion) => (
+                                  <div
+                                    key={suggestion.id}
+                                    className="cursor-pointer p-2 hover:bg-gray-200"
+                                    onClick={async () => {
+                                      await fetchDetailedAddress(
+                                        suggestion.id,
+                                        setFieldValue
+                                      );
+                                      setShowSuggestions(false);
+                                    }}
+                                  >
+                                    {suggestion.address}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
-                      {/* ADDRESS CODE */}
+                      {/* ADDRESS FIELD */}
                       <div className="w-full">
                         <label
-                          className="uppercase text-sm  tracking-wide font-medium text-gray-800"
+                          className="uppercase text-sm tracking-wide font-medium text-gray-800"
                           htmlFor="address"
                         >
                           Address
@@ -600,22 +639,63 @@ const student = ({stepOnePostalCode}) => {
                               component="p"
                               className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
                             />
-                            {showSuggestions && (
-                              <div className="absolute z-10 bg-white border border-gray-300 mt-2 w-full rounded-md shadow-lg">
-                                {apiAddress.map((address, index) => (
-                                  <div
-                                    key={index}
-                                    className="cursor-pointer p-2 hover:bg-gray-200"
-                                    onClick={() => {
-                                      setFieldValue("address", address.address);
-                                      setShowSuggestions(false);
-                                    }}
-                                  >
-                                    {address.address}
-                                  </div>
-                                ))}
-                              </div>
-                            )}
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+
+                    {/* FULL ADDRESS API COMING ADDRESS */}
+                    <div className="mt-5 w-full flex justify-start gap-5">
+                      {/* COUNTY FIELD */}
+                      {values.county > 1 && 
+                      <div className="w-full">
+                        <label
+                          className="uppercase text-sm tracking-wide font-medium text-gray-800"
+                          htmlFor="county"
+                        >
+                          County
+                        </label>
+                        <div className="mt-1">
+                          <div className="relative w-full">
+                            <Field
+                              id="county"
+                              name="county"
+                              type="text"
+                              value={values.county}
+                              className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset transition-all"
+                            />
+                            <ErrorMessage
+                              name="county"
+                              component="p"
+                              className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                            />
+                          </div>
+                        </div>
+                      </div>}
+
+                      {/* CITY FIELD */}
+                      <div className="w-full">
+                        <label
+                          className="uppercase text-sm tracking-wide font-medium text-gray-800"
+                          htmlFor="city"
+                        >
+                          City
+                        </label>
+                        <div className="mt-1">
+                          <div className="relative w-full">
+                            <Field
+                              className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset transition-all"
+                              id="city"
+                              name="city"
+                              type="text"
+                              value={values.city}
+                            />
+                            <ErrorMessage
+                              name="city"
+                              component="p"
+                              className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                            />
                           </div>
                         </div>
                       </div>
@@ -678,41 +758,47 @@ const student = ({stepOnePostalCode}) => {
 
                               {toogle[day] && (
                                 <div className="overflow-hidden flex md:w-[calc(100%-230px)] lg:w-[calc(100%-230px)] xl:w-[calc(100%-230px)] md:gap-0 lg:gap-0 xl:gap-0 gap-2 relative py-4">
-                                <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 items-center relative pb-2">
-                                <Field
-                                    type="time"
-                                    min="08:00" max="20:00"
-                                    id={`${day.toLowerCase()}StartTime`}
-                                    name={`${day.toLowerCase()}StartTime`}
-                                    value={
-                                      values[`${day.toLowerCase()}StartTime`]
-                                    }
-                                    className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm px-2 py-2 my-4"
-                                    onChange={handleChange}
-                                  />
-                                  <ErrorMessage
-                                    name={`${day.toLowerCase()}StartTime`}
-                                    component="p"
-                                    className="text-red-500 text-[12px] absolute bottom-0"
-                                  />
-                                </div>
-                                  <div className="flex flex-col w-10 text-sm text-center justify-center">To</div>
-                                 <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 relative pb-2">
-                                 <Field
-                                    type="time"
-                                    min="08:00" max="20:00"
-                                    id={`${day.toLowerCase()}EndTime`}
-                                    name={`${day.toLowerCase()}EndTime`}
-                                    value={values[`${day.toLowerCase()}EndTime`]}
-                                    className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm px-2 py-2 my-4"
-                                    onChange={handleChange}
-                                  />
-                                  <ErrorMessage
-                                    name={`${day.toLowerCase()}EndTime`}
-                                    component="p"
-                                    className="text-red-500 text-[12px] absolute bottom-0"
-                                  />
-                                 </div>
+                                  <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 items-center relative pb-2">
+                                    <Field
+                                      type="time"
+                                      min="08:00"
+                                      max="20:00"
+                                      id={`${day.toLowerCase()}StartTime`}
+                                      name={`${day.toLowerCase()}StartTime`}
+                                      value={
+                                        values[`${day.toLowerCase()}StartTime`]
+                                      }
+                                      className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm px-2 py-2 my-4"
+                                      onChange={handleChange}
+                                    />
+                                    <ErrorMessage
+                                      name={`${day.toLowerCase()}StartTime`}
+                                      component="p"
+                                      className="text-red-500 text-[12px] absolute bottom-0"
+                                    />
+                                  </div>
+                                  <div className="flex flex-col w-10 text-sm text-center justify-center">
+                                    To
+                                  </div>
+                                  <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 relative pb-2">
+                                    <Field
+                                      type="time"
+                                      min="08:00"
+                                      max="20:00"
+                                      id={`${day.toLowerCase()}EndTime`}
+                                      name={`${day.toLowerCase()}EndTime`}
+                                      value={
+                                        values[`${day.toLowerCase()}EndTime`]
+                                      }
+                                      className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm px-2 py-2 my-4"
+                                      onChange={handleChange}
+                                    />
+                                    <ErrorMessage
+                                      name={`${day.toLowerCase()}EndTime`}
+                                      component="p"
+                                      className="text-red-500 text-[12px] absolute bottom-0"
+                                    />
+                                  </div>
                                 </div>
                               )}
                             </div>
