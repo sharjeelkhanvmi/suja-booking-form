@@ -51,10 +51,10 @@ const validationSchema = Yup.object().shape({
   confirm_password: Yup.string()
     .required("Please re-type your password")
     .oneOf([Yup.ref("password")], "Passwords do not match"),
-  address: Yup.string().required("Address is required"),
+  addressLineOne: Yup.string().required("Address is required"),
   county: Yup.string().required("county is required"),
-  city: Yup.string().required("City is required"),
-  address: Yup.string().required("Address is required"),
+  // city: Yup.string().required("City is required"),
+  // address: Yup.string().required("Address is required"),
   mondayStartTime: Yup.string().test(
     "valid-time",
     "select time 08:00 and 20:00.",
@@ -151,6 +151,7 @@ const student = ({ stepOnePostalCode }) => {
   const [info, setInfo] = useState();
   const [isLoader, setLoader] = useState();
   const [valid, setValid] = useState();
+  const [clientSide, setClientSide] = useState(false)
   let formdata;
 
   if (typeof localStorage !== "undefined") {
@@ -181,6 +182,7 @@ const student = ({ stepOnePostalCode }) => {
     };
 
     setToogle(initialToggle);
+    setClientSide(true)
   }, []);
 
   console.log("Form data", formdata);
@@ -199,7 +201,7 @@ const student = ({ stepOnePostalCode }) => {
       valid?.password &&
       valid?.confirm_password &&
       valid?.phone_number &&
-      valid?.address &&
+      valid?.addressLineOne &&
       valid?.terms == true;
     const loader = hasRequiredKeys ? true : false;
     return loader;
@@ -239,7 +241,8 @@ const student = ({ stepOnePostalCode }) => {
       // Log the detailed address response
       console.log("Detailed Address Response:", detailedAddress);
       setFieldValue("postalCode", detailedAddress.postcode);
-      setFieldValue("address", detailedAddress.line_1 + detailedAddress.line_2);
+      setFieldValue("addressLineOne", detailedAddress.line_1);
+      setFieldValue("addressLineTwo",detailedAddress.line_2)
       setFieldValue("county", detailedAddress.county);
       setFieldValue("city", detailedAddress.town_or_city);
     } catch (e) {
@@ -279,7 +282,8 @@ const student = ({ stepOnePostalCode }) => {
                 password: "",
                 confirm_password: "",
                 phone_number: "",
-                address: "",
+                addressLineOne: "",
+                addressLineTwo: "",
                 county: "",
                 city: "",
                 postalCode: "",
@@ -565,7 +569,7 @@ const student = ({ stepOnePostalCode }) => {
                     {/* FULL ADDRESS WITH POSTAL CODE */}
                     <div className="mt-5 w-full flex justify-start gap-5">
                       {/* POSTAL CODE */}
-                      <div>
+                      <div className="w-full">
                         <label
                           className="uppercase text-sm tracking-wide font-medium text-gray-800"
                           htmlFor="postalCode"
@@ -573,7 +577,7 @@ const student = ({ stepOnePostalCode }) => {
                           Postal Code
                         </label>
                         <div className="mt-1">
-                          <div className="relative w-52">
+                          <div className="relative w-full">
                             <Field
                               type="text"
                               name="postalCode"
@@ -614,41 +618,67 @@ const student = ({ stepOnePostalCode }) => {
                           </div>
                         </div>
                       </div>
-                      {/* ADDRESS FIELD */}
-                      <div className="w-full">
+                    </div>
+                    
+                    {/* FULL ADDRESS FIELD WITH LINE ONE AND LINE TWO */}
+                    <div className="mt-5 w-full flex justify-start gap-5">
+                       <div className="w-1/2">
                         <label
                           className="uppercase text-sm tracking-wide font-medium text-gray-800"
-                          htmlFor="address"
+                          htmlFor="addressLineOne"
                         >
-                          Address
+                          Address line One
                         </label>
                         <div className="mt-1">
                           <div className="relative w-full">
                             <Field
                               type="text"
-                              name="address"
+                              name="addressLineOne"
                               className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset transition-all"
-                              id="address"
+                              id="addressLineOne"
                               autoComplete="given-name"
-                              value={values.address}
+                              value={values.addressLineOne}
                               onChange={handleChange}
                               onBlur={handleBlur}
                             />
                             <ErrorMessage
-                              name="address"
+                              name="addressLineOne"
                               component="p"
                               className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
                             />
                           </div>
                         </div>
                       </div>
-                      
+                     {clientSide && values.addressLineTwo && values.addressLineTwo.length > 0 &&( 
+                      <div className="w-1/2">
+                        <label
+                          className="uppercase text-sm tracking-wide font-medium text-gray-800"
+                          htmlFor="addressLineTwo"
+                        >
+                          Address Line Two
+                        </label>
+                        <div className="mt-1">
+                          <div className="relative w-full">
+                            <Field
+                              type="text"
+                              name="addressLineTwo"
+                              className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset transition-all"
+                              id="addressLineTwo"
+                              autoComplete="given-name"
+                              value={values.addressLineTwo}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                            />
+                            
+                          </div>
+                        </div>
+                      </div>)}
                     </div>
 
-                    {/* FULL ADDRESS API COMING ADDRESS */}
+                    {/* FULL ADDRESS COMING API COUNTY AND CITY */}
                     <div className="mt-5 w-full flex justify-start gap-5">
                       {/* COUNTY FIELD */}
-                      {values.county > 1 && 
+                      {clientSide && values.county && values.county.length > 0 && (
                       <div className="w-full">
                         <label
                           className="uppercase text-sm tracking-wide font-medium text-gray-800"
@@ -672,8 +702,8 @@ const student = ({ stepOnePostalCode }) => {
                             />
                           </div>
                         </div>
-                      </div>}
-
+                      </div>
+                    )}
                       {/* CITY FIELD */}
                       <div className="w-full">
                         <label
