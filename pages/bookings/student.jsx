@@ -18,6 +18,7 @@ import { parsePhoneNumberFromString } from "libphonenumber-js";
 import React, { useState } from "react";
 import Switch from "@mui/material/Switch";
 import axios from "axios";
+import { FaClock } from 'react-icons/fa';
 
 const getCharacterValidationError = (str) => {
   return `Your password must have at least 1 ${str} character`;
@@ -788,7 +789,7 @@ const student = ({ stepOnePostalCode }) => {
 
                               {toogle[day] && (
                                 <div className="overflow-hidden flex md:w-[calc(100%-230px)] lg:w-[calc(100%-230px)] xl:w-[calc(100%-230px)] md:gap-0 lg:gap-0 xl:gap-0 gap-2 relative py-4">
-                                  <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 items-center relative pb-2">
+                                  <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 relative pb-2 items-center">
                                     <Field
                                       type="time"
                                       min="08:00"
@@ -798,9 +799,10 @@ const student = ({ stepOnePostalCode }) => {
                                       value={
                                         values[`${day.toLowerCase()}StartTime`]
                                       }
-                                      className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm px-2 py-2 my-4"
+                                      className="md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm py-2 my-4 relative md:ps-8 md:pe-12 lg:ps-8 lg:pe-12 px-2"
                                       onChange={handleChange}
                                     />
+                                    <FaClock className="absolute right-[30px] top-[39px] transform -translate-y-1/2 text-[#D31E32] md:block lg:block xl:block hidden" />
                                     <ErrorMessage
                                       name={`${day.toLowerCase()}StartTime`}
                                       component="p"
@@ -810,7 +812,7 @@ const student = ({ stepOnePostalCode }) => {
                                   <div className="flex flex-col w-10 text-sm text-center justify-center">
                                     To
                                   </div>
-                                  <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 relative pb-2">
+                                  <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 relative pb-2 items-center">
                                     <Field
                                       type="time"
                                       min="08:00"
@@ -820,9 +822,10 @@ const student = ({ stepOnePostalCode }) => {
                                       value={
                                         values[`${day.toLowerCase()}EndTime`]
                                       }
-                                      className="md:px-8 lg:px-8 xl:px-8 md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm px-2 py-2 my-4"
+                                      className="md:py-3 lg:py-3 xl:py-3 rounded-2xl text-sm py-2 my-4 relative md:ps-8 md:pe-12 lg:ps-8 lg:pe-12 px-2"
                                       onChange={handleChange}
                                     />
+                                    <FaClock className="absolute right-[30px] top-[39px] transform -translate-y-1/2 text-[#D31E32] md:block lg:block xl:block hidden" />
                                     <ErrorMessage
                                       name={`${day.toLowerCase()}EndTime`}
                                       component="p"

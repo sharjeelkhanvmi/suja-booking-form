@@ -207,11 +207,27 @@
   font-size: x-large;
 }
 
-input[type="time"]::-webkit-calendar-picker-indicator {
-  font-size: 20px;
+input[type="time"] {
   position: relative;
 }
 
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: block;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
+}
+input#session-date::-webkit-calendar-picker-indicator{
+  display:block;
+  top:0;
+  left:0;
+  background: #0000;
+  position:absolute;
+  transform: scale(12)
+}
 
 
 
