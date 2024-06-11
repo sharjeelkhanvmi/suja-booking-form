@@ -830,7 +830,7 @@ const Index = () => {
                           <h4 className="font-bold md:text-lg text-sm">
                             Email:{" "}
                           </h4>
-                          <span className="font-semibold md:text-lg text-sm">
+                          <span className="md:text-lg text-sm">
                             {viewLead.step4.email}
                           </span>
                         </div>
@@ -838,7 +838,7 @@ const Index = () => {
                           <h4 className="font-bold md:text-lg text-sm">
                             Mobile Number:{" "}
                           </h4>
-                          <span className="font-semibold md:text-lg text-sm">
+                          <span className=" md:text-lg text-sm">
                             {viewLead.step4.phone_number}
                           </span>
                         </div>
@@ -846,7 +846,7 @@ const Index = () => {
                           <h4 className="font-bold md:text-lg text-sm pt-5">
                             Course Speed:{" "}
                           </h4>
-                          <span className="font-semibold md:text-lg text-sm">
+                          <span className=" md:text-lg text-sm">
                             {viewLead.step5.intensiveCourse}
                           </span>
                         </div>
@@ -862,6 +862,28 @@ const Index = () => {
                           </span>
                         </div>
                       </div>
+                    </div>
+                    <div className="grid md:grid-cols-3 grid-cols-2">
+                    <div className=" ms-0 md:my-0 my-4">
+                          <h4 className="font-bold md:text-lg text-sm">
+                            Address
+                          </h4>
+                          <span className=" md:text-lg text-base">
+                            {viewLead.step4.addressLineOne+viewLead?.step4?.addressLineTwo}
+                          </span>
+                        </div>
+                        <div className="ms-0 md:my-0 my-4">
+                          <h4 className="font-bold md:text-lg text-sm">
+                            Availablility
+                          </h4>
+                          <span className=" md:text-lg text-base">
+                            {viewLead.step4.mondayStartTime}
+                          </span>
+                          <span className="mx-2">To</span>
+                          <span className=" md:text-lg text-base">
+                            {viewLead.step4.mondayEndTime}
+                          </span>
+                        </div>
                     </div>
                   </div>
 
