@@ -229,5 +229,7 @@ input#session-date::-webkit-calendar-picker-indicator{
   transform: scale(12)
 }
 
-
+.css-bo5c3t.Mui-checked {
+  color: #D31E32;
+}
 
