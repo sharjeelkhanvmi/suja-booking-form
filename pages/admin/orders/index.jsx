@@ -248,7 +248,45 @@ const Index = () => {
  
   const [crossIconState, setcrossIconState] = useState(false);
 
+  const formatTime = (time) => {
+    if (!time) return "";
+    const [hours, minutes] = time.split(":");
+    const date = new Date();
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    const options = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    };
+    return date.toLocaleTimeString([], options);
+  };
   
+  const formatAvailability = (startTime, endTime) => {
+    return `${formatTime(startTime)} to ${formatTime(endTime)}`;
+  };
+  
+  const getAvailabilityData = (viewLead) => {
+    const days = [
+      { day: 'Mon', start: viewLead?.step4?.mondayStartTime, end: viewLead?.step4.mondayEndTime },
+      { day: 'Tue', start: viewLead?.step4?.tuesdayStartTime, end: viewLead?.step4.tuesdayEndTime },
+      { day: 'Wed', start: viewLead?.step4?.wednesdayStartTime, end: viewLead?.step4.wednesdayEndTime },
+      { day: 'Thu', start: viewLead?.step4?.thursdayStartTime, end: viewLead?.step4.thursdayEndTime },
+      { day: 'Fri', start: viewLead?.step4?.fridayStartTime, end: viewLead?.step4.fridayEndTime },
+      { day: 'Sat', start: viewLead?.step4?.saturdayStartTime, end: viewLead?.step4.saturdayEndTime },
+      { day: 'Sun', start: viewLead?.step4?.sundayStartTime, end: viewLead?.step4.sundayEndTime },
+    ];
+  
+    // Filter out days without both start and end times
+    return days.filter(day => day.start && day.end);
+  };
+  
+  
+  
+  
+                        
+  const availabilityData = getAvailabilityData(viewLead);
+
 
   return (
     <Layout>
@@ -769,7 +807,7 @@ const Index = () => {
                   {/* <span className="text-sm  w-1/5 text-center  font-semibold rounded-md bg-white px-1 py-2  text-red-500">Paid</span> */}
                 </div>
                 <div className="overflow-y-auto">
-                  <div className="orderCustomerDetails md:p-7 p-4 pb-3">
+                  <div className="orderCustomerDetails md:px-5 md:py-2 p-4 pb-3">
                     <div className="flex justify-between ">
                       <div className="">
                         <h3 className="md:text-xl text-sm font-bold mb-2">
@@ -784,7 +822,7 @@ const Index = () => {
                         </h4>
                       </div>
                       <div className="text-start">
-                        <span className="font-bold md:text-lg text-sm text-start ">
+                        <span className="font-bold md:text-base text-sm text-start ">
                           <span className="">
                             {" "}
                             <span className="md:text-xl text-sm font-bold mb-2">
@@ -812,12 +850,12 @@ const Index = () => {
                   </div> */}
                     </div>
                     <div>
-                      <div className="grid md:grid-cols-3 grid-cols-2 mt-5">
+                      <div className="grid md:grid-cols-3 grid-cols-2 mt-2">
                         <div>
                           <h4 className="font-bold md:text-lg text-sm">
                             Full Name:{" "}
                           </h4>
-                          <span className="font-semibold text-sm">
+                          <span className="text-sm md:text-base">
                             {viewLead.step4.title}. {viewLead.step4.firstName}{" "}
                             {viewLead.step4.surname}
                           </span>
@@ -830,7 +868,7 @@ const Index = () => {
                           <h4 className="font-bold md:text-lg text-sm">
                             Email:{" "}
                           </h4>
-                          <span className="md:text-lg text-sm">
+                          <span className="md:text-base text-sm">
                             {viewLead.step4.email}
                           </span>
                         </div>
@@ -838,52 +876,51 @@ const Index = () => {
                           <h4 className="font-bold md:text-lg text-sm">
                             Mobile Number:{" "}
                           </h4>
-                          <span className=" md:text-lg text-sm">
+                          <span className=" md:text-base text-sm">
                             {viewLead.step4.phone_number}
                           </span>
                         </div>
                         <div>
-                          <h4 className="font-bold md:text-lg text-sm pt-5">
+                          <h4 className="font-bold md:text-lg text-sm md:pt-3 pt-5">
                             Course Speed:{" "}
                           </h4>
-                          <span className=" md:text-lg text-sm">
+                          <span className=" md:text-base text-sm">
                             {viewLead.step5.intensiveCourse}
                           </span>
                         </div>
                         <div>
                           <span className="font-regular  text-sm text-start rounded-full font-semibold">
-                            <h4 className="font-bold md:text-lg text-sm pt-5">
+                            <h4 className="font-bold md:text-lg text-sm md:pt-3 pt-5">
                               {" "}
                               Transaction ID
                             </h4>
-                            <span className="font-normal">
+                            <span className="font-normal md:text-base">
                               {viewLead.stripe.paymentId}
                             </span>
                           </span>
                         </div>
                       </div>
                     </div>
-                    <div className="grid md:grid-cols-3 grid-cols-2">
+                    <div className="grid md:grid-cols-3 grid-cols-2 pt-2">
                     <div className=" ms-0 md:my-0 my-4">
                           <h4 className="font-bold md:text-lg text-sm">
                             Address
                           </h4>
-                          <span className=" md:text-lg text-base">
+                          <span className=" md:text-base text-sm">
                             {viewLead.step4.addressLineOne+viewLead?.step4?.addressLineTwo}
                           </span>
                         </div>
+                        
                         <div className="ms-0 md:my-0 my-4">
-                          <h4 className="font-bold md:text-lg text-sm">
-                            Availablility
-                          </h4>
-                          <span className=" md:text-lg text-base">
-                            {viewLead.step4.mondayStartTime}
-                          </span>
-                          <span className="mx-2">To</span>
-                          <span className=" md:text-lg text-base">
-                            {viewLead.step4.mondayEndTime}
-                          </span>
+                        <h4 className="font-bold md:text-lg text-sm">Availability</h4>
+                        <div className="md:text-base text-sm">
+                          {availabilityData.map(({ day, start, end }) => (
+                            <div key={day}>
+                              <span className="font-bold">{day}</span>: {formatAvailability(start, end)}
+                            </div>
+                          ))}
                         </div>
+                       </div>
                     </div>
                   </div>
 
