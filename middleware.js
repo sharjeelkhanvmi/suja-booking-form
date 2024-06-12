@@ -28,8 +28,6 @@ export function middleware(request) {
     return NextResponse.next()
   }
  
-
-  
   if (request.nextUrl.pathname.startsWith("/api") && !cookie) {
     return NextResponse.json({ error: 'Unauthorizes' }, { status: 401 })
   }
