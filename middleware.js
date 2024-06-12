@@ -12,6 +12,24 @@ export function middleware(request) {
   if (request.nextUrl.pathname.startsWith("/api/auth/login")) {
     return NextResponse.next()
   }
+  if (request.nextUrl.pathname.startsWith("/api/payment")) {
+    return NextResponse.next()
+  }
+  if (request.nextUrl.pathname.startsWith("/api/user/find")) {
+    return NextResponse.next()
+  }
+  if (request.nextUrl.pathname.startsWith("/api/leads")) {
+    return NextResponse.next()
+  }
+  if (request.nextUrl.pathname.startsWith("/api/leads/post")) {
+    return NextResponse.next()
+  }
+  if (request.nextUrl.pathname.startsWith("/api/api_mailer")) {
+    return NextResponse.next()
+  }
+ 
+
+  
   if (request.nextUrl.pathname.startsWith("/api") && !cookie) {
     return NextResponse.json({ error: 'Unauthorizes' }, { status: 401 })
   }

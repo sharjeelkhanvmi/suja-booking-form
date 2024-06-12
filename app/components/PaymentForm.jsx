@@ -9,10 +9,14 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import Cookies from "js-cookie";
+
 
 // const stripePromise = loadStripe("pk_test_51BYFp0JBAYr3SMoYxRwJkPOjM091MERYVeeaKGHriY9ZfHWHb6PfOpbtMV0E6xgfUhcDz3Wibgiezwd1SQSWwJuc00OoJDJuM5");
 
 const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
+
+
   const stripe = useStripe();
   const elements = useElements();
   const [paymentError, setPaymentError] = useState(null);
@@ -133,7 +137,6 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
         const response = await axios.post("/api/payment", {
           paymentMethodId: paymentMethod.id,
           amount: productPrice * 100,
-          
         });
 
         console.log("Front End Response",response);
