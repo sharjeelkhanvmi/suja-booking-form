@@ -27,6 +27,9 @@ export function middleware(request) {
   if (request.nextUrl.pathname.startsWith("/api/api_mailer")) {
     return NextResponse.next()
   }
+  if (request.nextUrl.pathname.startsWith("/api/user/post")) {
+    return NextResponse.next()
+  }
  
   if (request.nextUrl.pathname.startsWith("/api") && !cookie) {
     return NextResponse.json({ error: 'Unauthorizes' }, { status: 401 })
