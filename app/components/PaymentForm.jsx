@@ -89,7 +89,9 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
     parseFormData.step4.firstName + " " + parseFormData.step4.surname;
   const parseFromDataEmail = parseFormData.step4.email;
   const parseFromDataPhone = parseFormData.step4.phone_number;
-  console.log("Parse Data: ", parseFormData.step4.phone_number);
+  const parseAddressLineOne = `${parseFormData.step4.addressLineOne}`;
+  const parseFromDataCity = parseFormData.step4.city;
+  console.log("Parse Data: ", parseFormData.step4.city);
 
 
 
@@ -106,9 +108,9 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
         card: elements.getElement(CardNumberElement),
         billing_details: {
           address: {
-            city: "Karachi",
-            country: "PK",
-            line1: "Your Address Line 1"
+            city: parseFromDataCity,
+            country: "GB",
+            line1: parseAddressLineOne
           },
           email: parseFromDataEmail,
           name: parseFromDataFullname,
@@ -123,20 +125,10 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
           })
         }
       });
-
-      // if (error) {
-      //   setPaymentError(error.message);
-      // } else {
-      //   setLoader(true)
-      //   console.log('PaymentMethod:', paymentMethod);
-      //   console.log('Product Details:', { productName, productPrice });
-      //   onSuccess(paymentMethod);
-      // }
       if (error) {
         setPaymentError(error.message);
       } else {
         setLoader(true);
-
         // Charge the payment using the paymentMethod.id
         const response = await axios.post("/api/payment", {
           paymentMethodId: paymentMethod.id,
@@ -145,8 +137,6 @@ const PaymentForm = ({ onSuccess, data, isLoader, setLoader }) => {
         });
 
         console.log("Front End Response",response);
-
-
         if (response.data.status == "succeeded") {
           const paymentConfirmation = await response.data;
           console.log("Payment Confirmation:", paymentConfirmation);

@@ -263,7 +263,7 @@ const Index = () => {
   };
   
   const formatAvailability = (startTime, endTime) => {
-    return `${formatTime(startTime)} to ${formatTime(endTime)}`;
+    return `${formatTime(startTime)}-${formatTime(endTime)}`;
   };
   
   const getAvailabilityData = (viewLead) => {
@@ -795,6 +795,7 @@ const Index = () => {
               <Modal
                 isOpen={SecondToggle}
                 onRequestClose={closeModal}
+                style={{ maxHeight: "90vh", overflowY: "auto" }}
                 className="mx-auto bg-gray-50 md:w-[40%] w-96 rounded-3xl flex flex-col"
               >
                 <div className="flex justify-between py-4 px-5 bg-red-400 rounded-t-xl pb-3">
