@@ -54,8 +54,6 @@ const validationSchema = Yup.object().shape({
     .oneOf([Yup.ref("password")], "Passwords do not match"),
   addressLineOne: Yup.string().required("Address is required"),
   county: Yup.string().required("county is required"),
-  // city: Yup.string().required("City is required"),
-  // address: Yup.string().required("Address is required"),
   mondayStartTime: Yup.string().test(
     "valid-time",
     "select time 08:00 and 20:00.",
@@ -650,7 +648,7 @@ const student = ({ stepOnePostalCode }) => {
                           </div>
                         </div>
                       </div>
-                     {clientSide && values.addressLineTwo && values.addressLineTwo.length > 0 &&( 
+                      
                       <div className="w-1/2">
                         <label
                           className="uppercase text-sm tracking-wide font-medium text-gray-800"
@@ -673,7 +671,7 @@ const student = ({ stepOnePostalCode }) => {
                             
                           </div>
                         </div>
-                      </div>)}
+                      </div>
                     </div>
 
                     {/* FULL ADDRESS COMING API COUNTY AND CITY */}
