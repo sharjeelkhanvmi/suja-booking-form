@@ -79,7 +79,7 @@ const router = useRouter();
   // pass_protect = (data && data.step6 && data.step6.pass_protect != '') ? parseInt(data.step6.pass_protect) : 0
  // subTotal = ((deposit) ? deposit : full)
   
-  total = full + fast_track_practical + fast_track_theory;
+  total = full;
 
   return (
 
@@ -109,7 +109,7 @@ const router = useRouter();
             </div>
           </div>
         </div>
-        { (data && data.step3 && data.step3.fast_track_theory || data && data.step3 && data.step3.fast_track_practical)  ? (
+        {/* { (data && data.step3 && data.step3.fast_track_theory || data && data.step3 && data.step3.fast_track_practical)  ? (
           <div>
           <div className="mt-5 theory-test">
           <h4 className="text-white text-opacity-50 font-bold uppercase text-[13px] tracking-wide">
@@ -133,7 +133,7 @@ const router = useRouter();
           ) : ''}
           </div>
           </div>
-        ) : ''}
+        ) : ''} */}
 
         {(data && data.step6 && data.step6.pass_protect) ? (
         <div className="mt-5">

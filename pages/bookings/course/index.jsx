@@ -324,7 +324,7 @@ showCoursePricing(values.dr_course_type)
         transition= {{ delay: 0, duration: 0.3, ease: "easeInOut" }}        
         >
       <div className="flex justify-between items-center gap-x-5">
-      <h1 className=" md:text-[21px] text-[20] leading-snug font-semibold">How's your driving going so far?</h1>
+      <h1 className=" md:text-[21px] text-[20] leading-snug font-semibold">How many hours would you like to complete on a weekly basis? </h1>
          <div className="cursor-pointer" onClick={(e) => setHintOpen_1(isHintOpen_1 => !isHintOpen_1)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -396,7 +396,7 @@ showCoursePricing(values.dr_course_type)
                            </svg>
                         </div>
                         <div className="">
-                           <div className=" false">2-4 hours</div>
+                           <div className=" false">2-4 hours per week  </div>
                         </div>
                      </div>
                      <div className="pl-7 w-auto">
@@ -466,7 +466,7 @@ showCoursePricing(values.dr_course_type)
                            </svg>
                         </div>
                         <div className="">
-                           <div className=" false">Up to 6 hours per day over 4 consecutive days or over consecutive weekends </div>
+                           <div className=" false">Up to 6-8 hours per week</div>
                         </div>
                      </div>
                      <div className="pl-7 w-auto">
@@ -525,7 +525,7 @@ showCoursePricing(values.dr_course_type)
                      </svg>
                   </div>
                   <div className="">
-                     <div className=" false">Up to 6-8 hours</div>
+                     <div className=" false">Up to 6 hours per day over 4 consecutive days or over consecutive weekends</div>
                   </div>
                </div>
                <div className="pl-7 w-auto">
@@ -590,7 +590,7 @@ showCoursePricing(values.dr_course_type)
                         </svg>
                      </div>
                      <div className="">
-                        <div className=" false">Unlimited number of hours until I pass! </div>
+                        <div className=" false">Unlimited number of hours until I pass!</div>
                      </div>
                   </div>
                   <div className="pl-7 w-auto">

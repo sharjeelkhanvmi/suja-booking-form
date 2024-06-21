@@ -109,7 +109,7 @@ export const manual = {
   },
   guaranteed_pass: {
     name: "Guaranteed Pass Course",
-    title: `Select Your Instalment`,
+    title: `Select Your Course`,
     course: {
       "1_installment": {
         value: "First",
@@ -174,7 +174,7 @@ export const auto = {
   },
   speedster: {
     name: "Speedster Course",
-    title: `How many hours of lessons do you think you'll need? 2`,
+    title: `Select your course`,
     course: {
       "20_hours": {
         value: "20",
@@ -210,7 +210,7 @@ export const auto = {
   },
   crash: {
     name: "Crash Course",
-    title: `How many hours of lessons do you think you'll need? 1`,
+    title: `Select your course`,
     course: {
       "5_hours": {
         value: "5",
@@ -247,7 +247,7 @@ export const auto = {
 
   guaranteed_pass: {
     name: "Guaranteed Pass Course",
-    title: `How many hours of lessons do you think you'll need?`,
+    title: `Select your course`,
     course: {
       "1_installment": {
         value: "First",

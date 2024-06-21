@@ -229,7 +229,7 @@ const tests = () => {
                       </div>
                     </div>
                     <div className="pl-7 w-auto">
-                      <span className="text-sm flex">£110</span>
+                      {/* <span className="text-sm flex">£110</span> */}
                     </div>
                   </label>
                   {/* 
@@ -347,9 +347,9 @@ const tests = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="pl-7 w-auto">
+                      {/* <div className="pl-7 w-auto">
                         <span className="text-sm text-black flex">£40</span>
-                      </div>
+                      </div> */}
                     </label>
 
                     <div className="fast_track_theory_bottom">
