@@ -100,11 +100,11 @@ const Payment = ({ info }) => {
       : 0;
   // subTotal = ((deposit) ? deposit : full)
 
-  total = full + fast_track_theory + fast_track_practical;
-  deposit = deposit + fast_track_theory + fast_track_practical;
-  remaining = full + fast_track_theory + fast_track_practical - deposit;
+  total = full;
+  deposit = deposit;
+  remaining = full - deposit;
 
-  addon = fast_track_theory + fast_track_practical;
+  // addon = fast_track_theory + fast_track_practical;
 
   // let checkFull = document.getElementbyId('full');
 
@@ -180,7 +180,7 @@ const Payment = ({ info }) => {
     if (e.target.value == "Full") {
       amount = total;
     } else {
-      amount = deposit + fast_track_theory + fast_track_practical;
+      amount = deposit;
     }
     const step6 = { step6: { payment: e.target.value, amount: amount } };
     const formDatas = {
@@ -228,7 +228,7 @@ const Payment = ({ info }) => {
               <div className="">
                 <span className="w-full font-bold">
                   Pay Deposit - £{deposit} {addon? '+ £'+ addon : ''}
-                  {addon? <span class="font-medium text-[15px]"> (addon)</span> : ''}
+                  {/* {addon? <span class="font-medium text-[15px]"> (addon)</span> : ''} */}
                 </span>
                 <div className="text-secondary text-opacity-[0.65] text-sm false">
                   <p className="text-secondary leading-snug text-opacity-70 font-medium 
@@ -260,7 +260,7 @@ const Payment = ({ info }) => {
               <div className="">
                 <span className="w-full font-bold">
                   Pay Full - £{full} {addon? '+ £'+ addon : ''}
-                  {addon? <span class="font-medium text-[15px]"> (addon)</span> : ''}
+                  {/* {addon? <span class="font-medium text-[15px]"> (addon)</span> : ''} */}
                 </span>
                
                 <div className="text-secondary text-opacity-[0.65] text-sm false">
@@ -383,7 +383,7 @@ Pay £840
         <Sidebar data={changedData} />
       </div>
       <Footnote />
-      {isLoader && <OldUserLoader />}
+      {/* {isLoader && <OldUserLoader />} */}
     </div>
   );
 };

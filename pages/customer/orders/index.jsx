@@ -636,7 +636,7 @@ const Index = () => {
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
-                              £{viewLead.step3.fast_track_practical}
+                              {/* £{viewLead.step3.fast_track_practical} */}
                             </td>
                           </tr>
                         )}
@@ -654,7 +654,7 @@ const Index = () => {
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
-                              £{viewLead.step3.fast_track_theory}
+                              {/* £{viewLead.step3.fast_track_theory} */}
                             </td>
                           </tr>
                         )}

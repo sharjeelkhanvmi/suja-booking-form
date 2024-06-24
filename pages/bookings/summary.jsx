@@ -52,8 +52,8 @@ let variant;
 let full;
 let deposit;
 let total;
-let fast_track_theory;
-let fast_track_practical;
+// let fast_track_theory;
+// let fast_track_practical;
 let pass_protect;
 
 if(changedData && changedData.step2 && changedData.step2.dr_course_price != undefined){
@@ -67,12 +67,14 @@ if(changedData && changedData.step2 && changedData.step2.dr_course_price != unde
 }
 
 
-fast_track_theory = (changedData && changedData.step3 && changedData.step3.fast_track_theory != '') ? parseInt(changedData.step3.fast_track_theory) : 0
-fast_track_practical = (changedData && changedData.step3 && changedData.step3.fast_track_practical != '') ? parseInt(changedData.step3.fast_track_practical) : 0
+// fast_track_theory = (changedData && changedData.step3 && changedData.step3.fast_track_theory != '') ? parseInt(changedData.step3.fast_track_theory) : 0
+// fast_track_practical = (changedData && changedData.step3 && changedData.step3.fast_track_practical != '') ? parseInt(changedData.step3.fast_track_practical) : 0
+
 // pass_protect = (changedData && changedData.step6 && changedData.step6.pass_protect != '') ? parseInt(changedData.step6.pass_protect) : 0
 // subTotal = ((deposit) ? deposit : full)
 
-total = full + fast_track_theory + fast_track_practical;
+// total = full + fast_track_theory + fast_track_practical;
+total = full;
 
 const paymentButtonClick = () => 
 {
@@ -200,7 +202,7 @@ return (
             </div>
             <div className="flex items-center">
               <div className="font-semibold text-gray-800 text-lg">
-                £{changedData.step3.fast_track_practical}
+                {/* £{changedData.step3.fast_track_practical} */}
               </div>
             </div>
           </div>
@@ -249,7 +251,7 @@ return (
             </div>
             <div className="flex items-center">
               <div className="font-semibold text-gray-800 text-lg">
-              £{changedData.step3.fast_track_theory}
+              {/* £{changedData.step3.fast_track_theory} */}
               </div>
             </div>
           </div>

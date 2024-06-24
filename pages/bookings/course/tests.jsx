@@ -75,19 +75,19 @@ const tests = () => {
         //validationSchema={validationSchema}
         onSubmit={async values => {
           await new Promise(r => setTimeout(r, 500));
-          const fastTrackPracticalValue = values.fast_track_practical
-            ? checkboxValue.fast_track_practical
-            : "";
-          const fastTrackTheoryValue = values.fast_track_theory
-            ? checkboxValue.fast_track_theory
-            : "";
+          // const fastTrackPracticalValue = values.fast_track_practical
+          //   ? checkboxValue.fast_track_practical
+          //   : "";
+          // const fastTrackTheoryValue = values.fast_track_theory
+          //   ? checkboxValue.fast_track_theory
+          //   : "";
           // const fieldNames = Object.keys(values);
           const formDatas = {
             ...formdata,
             step3: {
               ...values,
-              fast_track_practical: fastTrackPracticalValue,
-              fast_track_theory: fastTrackTheoryValue
+              // fast_track_practical: fastTrackPracticalValue,
+              // fast_track_theory: fastTrackTheoryValue
             }
           };
           //  Cookies.set("formData", JSON.stringify(formDatas), { expires: 30 });
