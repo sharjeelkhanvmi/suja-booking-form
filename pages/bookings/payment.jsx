@@ -383,7 +383,8 @@ Pay £840
         <Sidebar data={changedData} />
       </div>
       <Footnote />
-      {/* {isLoader && <OldUserLoader />} */}
+      {console.log("ISloader",isLoader)}
+      {isLoader && <OldUserLoader />}
     </div>
   );
 };
