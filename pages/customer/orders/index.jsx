@@ -669,7 +669,7 @@ const Index = () => {
                                 Add-ons
                               </span>
                               <span className="block mt-2 ms-1">
-                              I have already passed 
+                              I've already passed 
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
@@ -687,7 +687,7 @@ const Index = () => {
                                 Add-ons
                               </span>
                               <span className="block mt-2 ms-1">
-                              I have already booked 
+                              I've already booked
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
