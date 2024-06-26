@@ -27,7 +27,7 @@ export const manual = {
       "20_hours": {
         value: "20",
         variant: "Hours",
-        desc:'Recommended for those who have completed under 15 hours with an instructor.Perfect for beginners as a foundation',
+        desc:'Recommended for those who have completed under 15 hours with an instructor.Perfect for beginners as a foundation.',
         full: 660,
         deposit: 260
       }
@@ -164,7 +164,7 @@ export const auto = {
       "20_hours": {
         value: "20",
         variant: "Hours",
-        desc:'Recommended for those who have completed under 15 hours with an instructor.Perfect for beginners as a foundation',
+        desc:'Recommended for those who have completed under 15 hours with an instructor.Perfect for beginners as a foundation.',
         full: 680,
         deposit: 280
       }
@@ -236,7 +236,7 @@ export const auto = {
       "20_hours": {
         value: "20",
         variant: "Hours",
-        desc:'Recommended for those who have completed under 15 hours with an instructor.Perfect for beginners as a foundation',
+        desc:'Recommended for those who have completed under 15 hours with an instructor.Perfect for beginners as a foundation.',
         full: 840,
         deposit: 440
       }
