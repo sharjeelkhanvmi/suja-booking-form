@@ -524,6 +524,7 @@ const Index = () => {
                         </span>
                       </div>
                     </div>
+                    {console.log(viewLead)}
                     <div className="grid grid-cols-2 mt-5">
                       <div>
                         <h4 className="font-bold text-lg">Full Name: </h4>
@@ -658,6 +659,43 @@ const Index = () => {
                             </td>
                           </tr>
                         )}
+                        {viewLead.step3.i_have_already === "passed" && (
+                          <tr className="bg-white border-b  p-3 ">
+                            <td
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                            >
+                              <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                                Add-ons
+                              </span>
+                              <span className="block mt-2 ms-1">
+                              I have already passed 
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 font-semibold text-sm">
+                              {/* £{viewLead.step3.i_have_already} */}
+                            </td>
+                          </tr>
+                        )}
+                        {viewLead.step3.i_have_already === "booked" && (
+                          <tr className="bg-white border-b  p-3 ">
+                            <td
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                            >
+                              <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                                Add-ons
+                              </span>
+                              <span className="block mt-2 ms-1">
+                              I have already booked 
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 font-semibold text-sm">
+                              {/* £{viewLead.step3.i_have_already} */}
+                            </td>
+                          </tr>
+                        )}
+
                         <tr className="border-b  p-3 bg-gray-200 ">
                           <td
                             scope="row"
