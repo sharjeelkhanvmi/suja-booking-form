@@ -995,8 +995,24 @@ const Index = () => {
                                 ))}
                               </div>
                             )}
+                            {/* {viewLead.step6.payment === "Deposit" && (
+                              <div>
+                                {Object.keys(
+                                  viewLead.step2.dr_course_price
+                                ).map((courseKey, index) => (
+                                  <span key={index}>
+                                    £
+                                    {
+                                      viewLead.step2.dr_course_price[courseKey]
+                                        .deposit
+                                    }
+                                  </span>
+                                ))}
+                              </div>
+                            )} */}
                           </td>
                         </tr>
+                        {/* {console.log(viewLead)} */}
                         {viewLead.step3.fast_track_practical != "" && (
                           <tr className="bg-white border-b  p-3 ">
                             <td
@@ -1011,7 +1027,7 @@ const Index = () => {
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
-                              £{viewLead.step3.fast_track_practical}
+                              {/* £{viewLead.step3.fast_track_practical} */}
                             </td>
                           </tr>
                         )}
@@ -1029,7 +1045,43 @@ const Index = () => {
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
-                              £{viewLead.step3.fast_track_theory}
+                              {/* £{viewLead.step3.fast_track_theory} */}
+                            </td>
+                          </tr>
+                        )}
+                        {viewLead.step3.i_have_already === "passed" && (
+                          <tr className="bg-white border-b  p-3 ">
+                            <td
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                            >
+                              <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                                Add-ons
+                              </span>
+                              <span className="block mt-2 ms-1">
+                              I've already passed 
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 font-semibold text-sm">
+                              {/* £{viewLead.step3.i_have_already} */}
+                            </td>
+                          </tr>
+                        )}
+                        {viewLead.step3.i_have_already === "booked" && (
+                          <tr className="bg-white border-b  p-3 ">
+                            <td
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                            >
+                              <span className="bg-lime-300 w-max py-1 px-3 font-semibold  text-xs rounded-full">
+                                Add-ons
+                              </span>
+                              <span className="block mt-2 ms-1">
+                              I've already booked
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 font-semibold text-sm">
+                              {/* £{viewLead.step3.i_have_already} */}
                             </td>
                           </tr>
                         )}
