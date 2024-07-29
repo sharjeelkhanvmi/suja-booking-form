@@ -19,6 +19,7 @@ import React, { useState } from "react";
 import Switch from "@mui/material/Switch";
 import axios from "axios";
 import { FaClock } from 'react-icons/fa';
+import Link from "next/link";
 
 const getCharacterValidationError = (str) => {
   return `Your password must have at least 1 ${str} character`;
@@ -35,6 +36,9 @@ const validationSchema = Yup.object().shape({
       isValidPhoneNumber(value)
     ),
   terms: Yup.boolean()
+    .oneOf([true], "You must accept the terms")
+    .required("You must accept the terms"),
+    terms2: Yup.boolean()
     .oneOf([true], "You must accept the terms")
     .required("You must accept the terms"),
   title: Yup.string().required("Title is required"),
@@ -124,7 +128,7 @@ const validationSchema = Yup.object().shape({
     "select time 08:00 and 20:00.",
     (value) => !value || (value >= "08:00" && value <= "20:00")
   ),
-  postalCode: Yup.string().required("Postal code is required"),
+  postal_code: Yup.string().required("Postal code is required"),
   // Add a boolean field for single day selection for each day
   monday: Yup.boolean(),
   tuesday: Yup.boolean(),
@@ -135,8 +139,8 @@ const validationSchema = Yup.object().shape({
   sunday: Yup.boolean()
 });
 
-const student = ({ stepOnePostalCode }) => {
-  console.log("StepOne", stepOnePostalCode);
+const student = () => {
+
   const [toogle, setToogle] = useState({
     Monday: false,
     Tuesday: false,
@@ -184,11 +188,27 @@ const student = ({ stepOnePostalCode }) => {
     setClientSide(true)
   }, []);
 
-  console.log("Form data", formdata);
+
+  
 
   const router = useRouter();
   const [changedData, setChangedData] = useState(formdata);
-  const step4 = formdata ? formdata.step4 : "";
+  const [firstStepPostalCode, setFirstStepPostalCode] = useState();
+  const step4 = formdata ? formdata.step4 : {};
+  
+  useEffect(() => {
+    if (formdata?.step1?.postal_code) {
+      setFirstStepPostalCode(formdata.step1.postal_code);
+    }
+  }, [formdata]);
+  
+  useEffect(() => {
+    if (firstStepPostalCode && step4) {
+      step4.postal_code = firstStepPostalCode;
+    }
+  }, [firstStepPostalCode, step4]);
+  
+
 
   const checkAndSetLoader = (valid) => {
     const hasRequiredKeys =
@@ -217,10 +237,10 @@ const student = ({ stepOnePostalCode }) => {
   const [apiAddress, setApiAddress] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const fetchAddressSuggestions = async (postalCode) => {
+  const fetchAddressSuggestions = async (postal_code) => {
     try {
       const response = await axios.get(
-        `https://api.getaddress.io/autocomplete/${postalCode}?api-key=_UFb05P76EyMidU1VHIQ_A42976`
+        `https://api.getaddress.io/autocomplete/${postal_code}?api-key=_UFb05P76EyMidU1VHIQ_A42976`
         // `https://api.getAddress.io/get/{id}?api-key=_UFb05P76EyMidU1VHIQ_A42976`
       );
       setApiAddress(response.data.suggestions.slice(0, 10));
@@ -239,7 +259,7 @@ const student = ({ stepOnePostalCode }) => {
 
       // Log the detailed address response
       console.log("Detailed Address Response:", detailedAddress);
-      setFieldValue("postalCode", detailedAddress.postcode);
+      setFieldValue("postal_code", detailedAddress.postcode);
       setFieldValue("addressLineOne", detailedAddress.line_1);
       setFieldValue("addressLineTwo",detailedAddress.line_2)
       setFieldValue("county", detailedAddress.county);
@@ -249,20 +269,18 @@ const student = ({ stepOnePostalCode }) => {
     }
   };
 
-  const handlePostalCodeChange = async (e) => {
-    const postalCode = e.target.value;
-    setFieldValue("postalCode", postalCode);
+  const handlepostal_codeChange = async (e) => {
+    const postal_code = e.target.value;
+    setFieldValue("postal_code", postal_code);
 
     // Check if postal code matches step one postal code
-    if (postalCode === formdata?.step1?.postal_code) {
-      await fetchAddressSuggestions(postalCode);
+    if (postal_code === formdata?.step1?.postal_code) {
+      await fetchAddressSuggestions(postal_code);
     } else {
       setApiAddress([]);
       setShowSuggestions(false);
     }
   };
-  // const [stepOnePostalCode, setStepOnePostalCode] = useState(formdata?.step1?.postal_code);
-  // console.log(stepOnePostalCode)
 
   return (
     <div>
@@ -285,8 +303,9 @@ const student = ({ stepOnePostalCode }) => {
                 addressLineTwo: "",
                 county: "",
                 city: "",
-                postalCode: "",
+                postal_code: firstStepPostalCode || "",
                 terms: false,
+                terms2:false,
                 mondayStartTime: "",
                 mondayEndTime: "",
                 tuesdayStartTime: "",
@@ -306,20 +325,20 @@ const student = ({ stepOnePostalCode }) => {
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
+          console.log("inside")
           const formDatas = {
             ...formdata,
             ...{ step4: values }
           };
           localStorage.setItem("formData", JSON.stringify(formDatas));
-          console.log("FULL DATA", formDatas);
-          //Cookies.set('formData', JSON.stringify(stepFourData), { expires: 30 });
-          //let formdata123 = Cookies.get('formData');
           router.push("/bookings/availability");
         }}
       >
         {({ values, setFieldValue, handleChange, handleBlur }) => (
           <Form>
-            {setValid(values)}
+            { useEffect(() => {
+            setValid(values);
+          }, [values])}
             <Formnav />
 
             <div className="mt-[0px] lg:w-[calc(100vw-360px)] flex justify-center items-top md:px-7 px-5 md:py-8 py-5">
@@ -571,7 +590,7 @@ const student = ({ stepOnePostalCode }) => {
                       <div className="w-full">
                         <label
                           className="uppercase text-sm tracking-wide font-medium text-gray-800"
-                          htmlFor="postalCode"
+                          htmlFor="postal_code"
                         >
                           Postal Code
                         </label>
@@ -579,19 +598,19 @@ const student = ({ stepOnePostalCode }) => {
                           <div className="relative w-full">
                             <Field
                               type="text"
-                              name="postalCode"
+                              name="postal_code"
                               className="w-full rounded-md font-semibold text-base placeholder:text-dust placeholder:text-opacity-50 px-5 py-4 border border-[#BEBEBE] text-dust bg-white outline-none focus:ring-2 focus:ring-inset transition-all"
-                              id="postalCode"
+                              id="postal_code"
                               autoComplete="given-name"
                               onBlur={handleBlur}
-                              value={values.postalCode}
+                              value={values.postal_code}
                               onChange={async (e) => {
                                 handleChange(e);
                                 await fetchAddressSuggestions(e.target.value);
                               }}
                             />
                             <ErrorMessage
-                              name="postalCode"
+                              name="postal_code"
                               component="p"
                               className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
                             />
@@ -842,7 +861,7 @@ const student = ({ stepOnePostalCode }) => {
                         </div>
                       </div>
                     </div>
-
+                    {/* Checkone */}
                     <div className="mt-5 w-full">
                       <div>
                         <Field
@@ -886,8 +905,62 @@ const student = ({ stepOnePostalCode }) => {
                         />
                       </div>
                     </div>
+                    {/* Checktwo */}
+                    <div className="mt-5 w-full">
+                      <div>
+                        <Field
+                          type="checkbox"
+                          className="sr-only"
+                          name="terms2"
+                          id="terms2"
+                          onChange={() => setFieldValue("terms2", !values.terms2)}
+                        />
+
+                        <label
+                          htmlFor="terms2"
+                          className=" flex items-center  group"
+                        >
+                          <div className="rounded-full transition-all flex w-10 h-10 items-center justify-center mr-4 border-2 border-primaryOutline bg-primary">
+                            <span className={`${values.terms2 ? "" : "hidden"}`}>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="23"
+                                height="23"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                              </svg>
+                            </span>
+                          </div>
+                          <div className="font-semibold w-[calc(100%-40px)] text-[15px]">
+                          I accept 
+                           <Link href={'https://wordpress-664586-3395085.cloudwaysapps.com/terms-and-conditions/'} target="blank" className="cursor-pointer text-blue-600 px-2">
+                           Terms & Conditions
+                           </Link>
+                            
+                            and 
+                            
+                            <Link href={'https://sujadrivingschool.co.uk/wp-content/uploads/2024/05/Privacy-Policy.pdf'} target="blank" className="cursor-pointer text-blue-600 px-2">
+                            Privacy Policy
+                           </Link>
+                            
+                          </div>
+                        </label>
+                        <ErrorMessage
+                          name="terms2"
+                          component="p"
+                          className="block mt-1 text-opacity-70 text-dust font-semibold text-sm text-red-500"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
+                {/* Continue Button */}
                 <div className="block items-center justify-content-center">
                   <button
                     type="submit"
@@ -920,7 +993,13 @@ const student = ({ stepOnePostalCode }) => {
                   </p>
                 </div>
               </div>
-              <Sidebar data={changedData} />
+              <Sidebar
+              data={
+               (changedData.step2?.dr_course_type == "speedster" || changedData.step2?.dr_course_type == "guaranteed_pass")
+                  ? changedData
+                  : {}
+              }
+            />
             </div>
           </Form>
         )}

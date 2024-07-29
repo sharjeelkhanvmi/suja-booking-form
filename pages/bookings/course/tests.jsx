@@ -341,7 +341,7 @@ const tests = () => {
                         <div className="">
                           <div className=" false">
                             <div>
-                              <p>Fast-Track Theory</p>
+                              <p> Free Theory Subscription</p>
                               <div className="mt-1 bg-gray-900 text-white  w-max py-1 px-3 font-semibold  text-xs rounded-full add_remove_label" />
                             </div>
                           </div>
@@ -512,7 +512,12 @@ const tests = () => {
                   </button>
                 </div>
               </div>
-              <Sidebar data={changedData} />
+              <Sidebar data={
+               (changedData.step2?.dr_course_type == "speedster" || changedData.step2?.dr_course_type == "guaranteed_pass")
+                  ? changedData
+                  : {}
+              }
+            />
             </div>
           </Form>}
       </Formik>

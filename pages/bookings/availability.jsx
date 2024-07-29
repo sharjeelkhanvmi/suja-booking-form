@@ -41,7 +41,7 @@ const [isHintOpen_1, setHintOpen_1] = useState(false)
 const [changedData, setChangedData] = useState(formdata);
 const [isLoader, setLoader] = useState();
 const [valid, setValid] = useState();
-const step5 = formdata ? formdata.step5 : '';
+const step5 = formdata ? formdata.step5 : {};
 
 const variants = {
 open: { opacity: 1, height: 'auto', position: 'relative', 'z-index': 1  },
@@ -71,8 +71,15 @@ return (
     localStorage.setItem("formData", JSON.stringify(formDatas));
     //Cookies.set('formData', JSON.stringify(stepFiveData), { expires: 30 });
     // let formdata1234 = Cookies.get('formData');
-    // console.log(formdata1234)
-    router.push('/bookings/summary/');
+    console.log("availability",formDatas)
+    if(changedData.step2.dr_course_type == "regular" || changedData.step2.dr_course_type == "crash"){
+        console.log('step 2 data',changedData.step2)
+        router.push('/bookings/thanks/');
+    }
+    else{
+        router.push('/bookings/summary/');
+        console.log('step 2 data',changedData.step2)
+    }
     }}
     >
     {formikProps => (
@@ -213,7 +220,12 @@ return (
         </button>
     </div>
 </div>
-<Sidebar data={changedData} />
+                <Sidebar data={
+               (changedData.step2?.dr_course_type == "speedster" || changedData.step2?.dr_course_type == "guaranteed_pass")
+                  ? changedData
+                  : {}
+              }
+            />
         </div>
     </Form>
     )}

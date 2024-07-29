@@ -481,7 +481,6 @@ Continue to Payment Method
 </div>
 </div>
 </div>
-
     <Footnote />
     {isLoader && <OldUserLoader />}
 </div>
@@ -494,11 +493,11 @@ if (typeof localStorage !== 'undefined') {
   formdata = JSON.parse(localStorage.getItem("formData"));
 }
 else {
-  formdata = '';
+  formdata = {};
 }
 
 const YourPage = () => {
-  return <ThankYou  info={formdata} />;
+  return <ThankYou  info={(formdata.step2?.dr_course_type == "speedster" || formdata.step2?.dr_course_type == "guaranteed_pass") ? formdata : {}} />;
 };
 
 export default YourPage;

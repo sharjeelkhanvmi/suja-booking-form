@@ -229,6 +229,42 @@ const Sidebar = ({ open, onClose }) => {
                 <div className="absolute top-px h-9 w-1 rounded-lg bg-red-700 end-0 dark:bg-brand-400" />}
             </div>
           </Link>
+          <Link href="/admin/bookingrequest">
+            <div className="relative mb-3 flex hover:cursor-pointer">
+              <li className="my-[3px] flex cursor-pointer items-center px-8">
+                <span
+                  className={`font-bold dark:text-white ${router.pathname ===
+                  "/admin/bookingrequest"
+                    ? "text-red-500 border-b-red-500"
+                    : "text-gray-600"}`}
+                >
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    className="h-6 w-6"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="none" d="M0 0h24v24H0V0z" />
+                    <path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0020.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                  </svg>
+                </span>
+                <p
+                  className={`leading-1 flex ms-4 font-bold dark:text-white ${router.pathname ===
+                  `/admin/bookingrequest`
+                    ? "text-navy-700"
+                    : "text-gray-800"}`}
+                >
+                  Booking Request
+                </p>
+              </li>
+              {router.pathname === "/admin/bookingrequest" &&
+                <div className="absolute top-px h-9 w-1 rounded-lg bg-red-700 end-0 dark:bg-brand-400" />}
+            </div>
+          </Link>
         </ul>}
       {userRole === "customer" &&
         <ul className="mb-auto pt-1">

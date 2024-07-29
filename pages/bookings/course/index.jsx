@@ -746,7 +746,12 @@ showCoursePricing(values.dr_course_type)
                </button>
             </div>
          </div>
-         <Sidebar data={changedData} />
+         <Sidebar data={
+               (changedData.step2?.dr_course_type == "speedster" || changedData.step2?.dr_course_type == "guaranteed_pass")
+                  ? changedData
+                  : {}
+              }
+            />
       </div>
 </Form>
 )}
