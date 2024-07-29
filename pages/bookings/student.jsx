@@ -181,9 +181,9 @@ const student = () => {
         formdata?.step4?.fridayStartTime && formdata?.step4?.fridayEndTime,
       Saturday:
         formdata?.step4?.saturdayStartTime && formdata?.step4?.saturdayEndTime,
-      Sunday: formdata?.step4?.sundayStartTime && formdata?.step4?.sundayEndTime
+      Sunday: 
+      formdata?.step4?.sundayStartTime && formdata?.step4?.sundayEndTime 
     };
-
     setToogle(initialToggle);
     setClientSide(true)
   }, []);
@@ -196,17 +196,17 @@ const student = () => {
   const [firstStepPostalCode, setFirstStepPostalCode] = useState();
   const step4 = formdata ? formdata.step4 : {};
   
-  useEffect(() => {
-    if (formdata?.step1?.postal_code) {
-      setFirstStepPostalCode(formdata.step1.postal_code);
-    }
-  }, [formdata]);
+  // useEffect(() => {
+  //   if (formdata?.step1?.postal_code) {
+  //     setFirstStepPostalCode(formdata.step1.postal_code);
+  //   }
+  // }, [formdata]);
   
-  useEffect(() => {
-    if (firstStepPostalCode && step4) {
-      step4.postal_code = firstStepPostalCode;
-    }
-  }, [firstStepPostalCode, step4]);
+  // useEffect(() => {
+  //   if (firstStepPostalCode && step4) {
+  //     step4.postal_code = firstStepPostalCode;
+  //   }
+  // }, [firstStepPostalCode, step4]);
   
 
 
@@ -303,7 +303,7 @@ const student = () => {
                 addressLineTwo: "",
                 county: "",
                 city: "",
-                postal_code: firstStepPostalCode || "",
+                postal_code: "",
                 terms: false,
                 terms2:false,
                 mondayStartTime: "",

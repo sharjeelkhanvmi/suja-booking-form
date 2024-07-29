@@ -10,6 +10,8 @@ import Formnav from '@/app/components/Formnav';
 import OldUserLoader from "@/pages/bookings/OldUserLoader";
 import { motion } from "framer-motion";
 import Head from 'next/head';
+import { autoLogin } from '@/app/service/mailService';
+import axios from 'axios';
 // let formdata = Cookies.get('formData');
 // const data = formdata ? JSON.parse(formdata) : { auto_manual: '' };
 const validationSchema = Yup.object().shape({
@@ -18,7 +20,6 @@ intensiveCourse: Yup.string()
 });
 const availablity = () => {
     const [info, setInfo] = useState();
-    
     let formdata;
     if (typeof localStorage !== 'undefined') {
       formdata = JSON.parse(localStorage.getItem("formData"));
@@ -52,6 +53,54 @@ function enableLoader(){
     setLoader(valid);
  }
 
+ const handlePaymentSuccess = async (paymentMethod) => {
+    
+    const userData = {
+      fname: changedData.step4.firstName,
+      lname: changedData.step4.surname,
+      postalcode: changedData.step1.postal_code,
+      email: changedData.step4.email,
+      password: changedData.step4.password,
+      phone: changedData.step4.phone_number
+    };
+      try {
+        const find = await axios.get(`/api/user/find/?email=${userData.email}`);
+        let user
+        if(find.data.success)
+        {
+          user = find.data.user
+        }
+        else
+        {
+          const userresponse = await axios.post("/api/user/post", userData);
+          user = await userresponse.data
+        }
+        const leadData = await {
+          user: user._id,
+          step1: changedData.step1,
+          step2: changedData.step2,
+          step3: changedData.step3,
+          step4: changedData.step4,
+          step5: changedData.step5,
+          step6: changedData.step6,
+          
+        }
+        const leadresponse = await axios.post("/api/leads/post", leadData);
+        const lead = await leadresponse.data
+        // console.log('leadData', lead);
+        await axios.post("/api/api_mailer", { formdata: lead });
+        const token = autoLogin(user)
+        if(token)
+        {
+          Cookies.set("token", token);
+        }
+      } catch (error) {
+        console.error(error);
+        console.log("Error");
+      }
+
+  };
+
 return (
 <div>
 <Head>
@@ -69,11 +118,54 @@ return (
     ...{'step5': values}
     };
     localStorage.setItem("formData", JSON.stringify(formDatas));
-    //Cookies.set('formData', JSON.stringify(stepFiveData), { expires: 30 });
-    // let formdata1234 = Cookies.get('formData');
     console.log("availability",formDatas)
+    // ADDITION CODE START
     if(changedData.step2.dr_course_type == "regular" || changedData.step2.dr_course_type == "crash"){
-        console.log('step 2 data',changedData.step2)
+        console.log("inside if condition of regular and crash")
+        const userData = {
+      fname: changedData.step4.firstName,
+      lname: changedData.step4.surname,
+      postalcode: changedData.step1.postal_code,
+      email: changedData.step4.email,
+      password: changedData.step4.password,
+      phone: changedData.step4.phone_number
+    };
+      try {
+        const find = await axios.get(`/api/user/find/?email=${userData.email}`);
+        let user
+        if(find.data.success)
+        {
+          user = find.data.user
+        }
+        else
+        {
+          const userresponse = await axios.post("/api/user/post", userData);
+          user = await userresponse.data
+        }
+        const leadData = await {
+          user: user._id,
+          step1: changedData.step1,
+          step2: changedData.step2,
+          step3: changedData.step3,
+          step4: changedData.step4,
+          step5: changedData.step5,
+          step6: changedData.step6,
+          
+        }
+        const leadresponse = await axios.post("/api/leads/post", leadData);
+        const lead = await leadresponse.data
+        // console.log('leadData', lead);
+        await axios.post("/api/api_mailer", { formdata: lead });
+        const token = autoLogin(user)
+        if(token)
+        {
+          Cookies.set("token", token);
+        }
+      } catch (error) {
+        console.error(error);
+        console.log("Error");
+      }
+    //   ADDITION CODE END
         router.push('/bookings/thanks/');
     }
     else{

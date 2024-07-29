@@ -947,8 +947,8 @@ const Index = () => {
                             scope="row"
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                           >
-                            <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">
-                              Speedster Course
+                            <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full capitalize">
+                              {viewLead.step2.dr_course_type}
                             </span>
                             {viewLead.step2.dr_course_price ? (
                               <span className="block mt-2 ms-1">
@@ -964,7 +964,7 @@ const Index = () => {
                                     {
                                       viewLead.step2.dr_course_price[courseKey]
                                         .variant
-                                    }{" "}
+                                    }{" "} 
                                     -{" "}
                                     <span className="capitalize">
                                       {viewLead.step2.dr_type}
