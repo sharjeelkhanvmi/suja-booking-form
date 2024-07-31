@@ -251,6 +251,7 @@ const Index = () => {
                     </tr>
                   </thead>
                   <tbody role="rowgroup">
+                  {console.log("Lead data customer",leadsData)}
                     {leadsData &&
                       leadsData.map((data) => (
                         <tr key={data._id}>
@@ -306,7 +307,7 @@ const Index = () => {
                                     </div>
                                   )
                                 )}
-                                <div>/ {data.step5.intensiveCourse}</div>
+                                <div>/ {data.step5?.intensiveCourse && data.step5.intensiveCourse}</div> 
                               </div>
                             </p>
                           </td>
@@ -596,7 +597,7 @@ const Index = () => {
                                     <span className="capitalize">
                                       {viewLead.step2.dr_type}
                                     </span>{" "}
-                                    ({viewLead.step6.payment})
+                                    {viewLead.step6 && (viewLead.step6.payment === "Full" || viewLead.step6.payment === "Deposit") && viewLead.step6.payment }
                                   </span>
                                 ))}
                               </span>
@@ -606,7 +607,7 @@ const Index = () => {
                               </span>
                             )}
                           </td>
-                          <td className="px-6 py-4 font-semibold text-sm">
+                          {/* <td className="px-6 py-4 font-semibold text-sm">
                             {viewLead.step6.payment && (
                               <div>
                                 {Object.keys(
@@ -621,7 +622,7 @@ const Index = () => {
                                 ))}
                               </div>
                             )}
-                          </td>
+                          </td> */}
                         </tr>
                         {viewLead.step3.fast_track_practical != "" && (
                           <tr className="bg-white border-b  p-3 ">
@@ -704,7 +705,7 @@ const Index = () => {
                             <span className="block mt-2 ms-1">Total</span>
                           </td>
                           <td className="px-6 py-4 font-semibold text-sm">
-                            £{viewLead.step6.amount}
+                            £ {viewLead.step6 ? viewLead.step6.amount : 0}
                           </td>
                         </tr>
                       </tbody>

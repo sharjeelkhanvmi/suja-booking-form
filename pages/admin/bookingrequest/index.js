@@ -47,8 +47,8 @@ const Index = () => {
       phone_number: selectedLead?.step4?.phone_number
     },
     step6: {
-      payment: selectedLead?.step6?.payment,
-      amount: selectedLead?.step6?.amount
+      payment: selectedLead?.step6?.payment || 0,
+      amount: selectedLead?.step6?.amount || 0,
     }
   });
 
@@ -539,14 +539,7 @@ const Index = () => {
                               </p>
                             </div>
                           </td>
-                          {/* <td
-                        role="cell"
-                        className="pt-[14px] pb-[16px] sm:text-[14px]"
-                      >
-                        <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          {data.step6.couponcode}
-                        </p>
-                      </td> */}
+                       
                           <td
                             role="cell"
                             className="pt-[14px] pb-[16px] sm:text-[14px]"
@@ -889,7 +882,7 @@ const Index = () => {
                             {viewLead.step5.intensiveCourse}
                           </span>
                         </div>
-                        <div>
+                        {/* <div>
                           <span className="font-regular  text-sm text-start rounded-full font-semibold">
                             <h4 className="font-bold md:text-lg text-sm md:pt-3 pt-5">
                               {" "}
@@ -899,7 +892,7 @@ const Index = () => {
                               {viewLead.stripe.paymentId}
                             </span>
                           </span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className="grid md:grid-cols-3 grid-cols-2 pt-2">
@@ -969,7 +962,7 @@ const Index = () => {
                                     <span className="capitalize">
                                       {viewLead.step2.dr_type}
                                     </span>{" "}
-                                    ({viewLead.step6.payment})
+                                    {viewLead.step6 && (viewLead.step6.payment === "Full" || viewLead.step6.payment === "Deposit") && viewLead.step6.payment }
                                   </span>
                                 ))}
                               </span>
@@ -979,38 +972,7 @@ const Index = () => {
                               </span>
                             )}
                           </td>
-                          <td className="px-6 py-4 font-semibold text-sm">
-                            {viewLead.step6.payment === "Full" && (
-                              <div>
-                                {Object.keys(
-                                  viewLead.step2.dr_course_price
-                                ).map((courseKey, index) => (
-                                  <span key={index}>
-                                    £
-                                    {
-                                      viewLead.step2.dr_course_price[courseKey]
-                                        .full
-                                    }
-                                  </span>
-                                ))}
-                              </div>
-                            )}
-                            {/* {viewLead.step6.payment === "Deposit" && (
-                              <div>
-                                {Object.keys(
-                                  viewLead.step2.dr_course_price
-                                ).map((courseKey, index) => (
-                                  <span key={index}>
-                                    £
-                                    {
-                                      viewLead.step2.dr_course_price[courseKey]
-                                        .deposit
-                                    }
-                                  </span>
-                                ))}
-                              </div>
-                            )} */}
-                          </td>
+                          
                         </tr>
                         {/* {console.log(viewLead)} */}
                         {viewLead.step3.fast_track_practical != "" && (
@@ -1093,7 +1055,7 @@ const Index = () => {
                             <span className="block mt-2 ms-1">Total</span>
                           </td>
                           <td className="px-6 py-4 font-semibold text-sm">
-                            £{viewLead.step6.amount}
+                          £ {viewLead.step6 ? viewLead.step6.amount : 0}
                           </td>
                         </tr>
                       </tbody>

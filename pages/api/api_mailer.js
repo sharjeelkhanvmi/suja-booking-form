@@ -22,6 +22,7 @@ const handler = async (req, res) => {
         if (!step1 || !step2 || !step3 || !step4 || !step5 || !step6) {
           return res.status(400).json({ error: "Incomplete form data" });
         }
+      
 
         const { postal_code } = step1;
 

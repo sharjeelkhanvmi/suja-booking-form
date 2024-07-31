@@ -194,19 +194,15 @@ const student = () => {
   const router = useRouter();
   const [changedData, setChangedData] = useState(formdata);
   const [firstStepPostalCode, setFirstStepPostalCode] = useState();
-  const step4 = formdata ? formdata.step4 : {};
-  
-  // useEffect(() => {
-  //   if (formdata?.step1?.postal_code) {
-  //     setFirstStepPostalCode(formdata.step1.postal_code);
-  //   }
-  // }, [formdata]);
-  
-  // useEffect(() => {
-  //   if (firstStepPostalCode && step4) {
-  //     step4.postal_code = firstStepPostalCode;
-  //   }
-  // }, [firstStepPostalCode, step4]);
+  const step4 = formdata.step4 ? formdata.step4 : {};
+  console.log("formdata.step1.postal_code",formdata);
+
+  useEffect(()=>{
+    step4.postal_code=formdata.step1.postal_code;
+    setFirstStepPostalCode(step4.postal_code=formdata.step1.postal_code);
+    console.log("inside useeefect",firstStepPostalCode);
+  },[])
+
   
 
 
@@ -244,7 +240,9 @@ const student = () => {
         // `https://api.getAddress.io/get/{id}?api-key=_UFb05P76EyMidU1VHIQ_A42976`
       );
       setApiAddress(response.data.suggestions.slice(0, 10));
+
       setShowSuggestions(true);
+      
     } catch (e) {
       console.log(e);
     }
@@ -330,6 +328,7 @@ const student = () => {
             ...formdata,
             ...{ step4: values }
           };
+          formDatas.step1.postal_code = formDatas.step4.postal_code;
           localStorage.setItem("formData", JSON.stringify(formDatas));
           router.push("/bookings/availability");
         }}
@@ -606,6 +605,7 @@ const student = () => {
                               value={values.postal_code}
                               onChange={async (e) => {
                                 handleChange(e);
+                                
                                 await fetchAddressSuggestions(e.target.value);
                               }}
                             />

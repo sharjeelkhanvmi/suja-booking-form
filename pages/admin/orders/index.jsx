@@ -1044,7 +1044,7 @@ const Index = () => {
                                 Add-ons
                               </span>
                               <span className="block mt-2 ms-1">
-                              Fast Track Theory (Theory Test)
+                              Free Theory Subscription (Theory Test)
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
