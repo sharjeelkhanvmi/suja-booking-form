@@ -948,7 +948,7 @@ const Index = () => {
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                           >
                             <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full capitalize">
-                          {viewLead.step2.dr_course_type}
+                        {viewLead.step2.dr_course_type}
                             </span>
                             {viewLead.step2.dr_course_price ? (
                               <span className="block mt-2 ms-1">
@@ -980,7 +980,7 @@ const Index = () => {
                             )}
                           </td>
                           <td className="px-6 py-4 font-semibold text-sm">
-                          
+                          {/* FOR FULL PAYMENT */}
                             {viewLead.step6?.payment === "Full" && (
                               <div>
                               <span>{viewLead.step6?.amount}</span>
@@ -997,6 +997,7 @@ const Index = () => {
                                 ))} */}
                               </div>
                             )}
+                            {/* FOR DEPOSIT PAYMENT */}
                             {viewLead.step6?.payment === "Deposit" && (
                               <div>
                               <span>{viewLead.step6?.amount}</span>
@@ -1015,7 +1016,7 @@ const Index = () => {
                             )}
                           </td>
                         </tr>
-                        {/* {console.log(viewLead)} */}
+                      
                         {viewLead.step3.fast_track_practical != "" && (
                           <tr className="bg-white border-b  p-3 ">
                             <td

@@ -525,7 +525,7 @@ const Index = () => {
                         </span>
                       </div>
                     </div>
-                    {console.log(viewLead)}
+                    
                     <div className="grid grid-cols-2 mt-5">
                       <div>
                         <h4 className="font-bold text-lg">Full Name: </h4>
@@ -546,9 +546,9 @@ const Index = () => {
                         <h4 className="font-bold text-lg pt-3">
                           Course Speed:{" "}
                         </h4>
-                        <span className="font-semibold text-sm">
-                          {viewLead.step5.intensiveCourse}
-                        </span>
+                        <span className=" md:text-base text-sm">
+                            {viewLead.step5?.intensiveCourse && viewLead.step5?.intensiveCourse}
+                          </span>
                       </div>
                     </div>
                   </div>
@@ -576,7 +576,7 @@ const Index = () => {
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                           >
                             <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">
-                              Speedster Course
+                            {viewLead.step2.dr_course_type}
                             </span>
                             {viewLead.step2.dr_course_price ? (
                               <span className="block mt-2 ms-1">
@@ -592,12 +592,12 @@ const Index = () => {
                                     {
                                       viewLead.step2.dr_course_price[courseKey]
                                         .variant
-                                    }{" "}
+                                    }{" "} 
                                     -{" "}
                                     <span className="capitalize">
                                       {viewLead.step2.dr_type}
                                     </span>{" "}
-                                    {viewLead.step6 && (viewLead.step6.payment === "Full" || viewLead.step6.payment === "Deposit") && viewLead.step6.payment }
+                                    {viewLead.step6?.payment ? (viewLead.step6?.payment) : ''}
                                   </span>
                                 ))}
                               </span>
@@ -634,11 +634,11 @@ const Index = () => {
                                 Add-ons
                               </span>
                               <span className="block mt-2 ms-1">
-                                Practical Test
+                              Fast Track Practical (Practical Test) 
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
-                              {/* £{viewLead.step3.fast_track_practical} */}
+                            {/* £0 */}
                             </td>
                           </tr>
                         )}
@@ -652,11 +652,12 @@ const Index = () => {
                                 Add-ons
                               </span>
                               <span className="block mt-2 ms-1">
-                                Theory Test
+                              Free Theory Subscription (Theory Test)
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
                               {/* £{viewLead.step3.fast_track_theory} */}
+                              £0
                             </td>
                           </tr>
                         )}
@@ -670,11 +671,11 @@ const Index = () => {
                                 Add-ons
                               </span>
                               <span className="block mt-2 ms-1">
-                              I've already passed 
+                              I've already passed (Theory Test)
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
-                              {/* £{viewLead.step3.i_have_already} */}
+                              {/* £{viewLead.step3.i_have_already} */} 
                             </td>
                           </tr>
                         )}
@@ -688,11 +689,11 @@ const Index = () => {
                                 Add-ons
                               </span>
                               <span className="block mt-2 ms-1">
-                              I've already booked
+                              {viewLead.step3.i_have_already ? "I have Already Booked" : ''} (Theory Test) 
                               </span>
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
-                              {/* £{viewLead.step3.i_have_already} */}
+                              {/* £{viewLead.step3.i_have_already} */} 
                             </td>
                           </tr>
                         )}
@@ -705,7 +706,7 @@ const Index = () => {
                             <span className="block mt-2 ms-1">Total</span>
                           </td>
                           <td className="px-6 py-4 font-semibold text-sm">
-                            £ {viewLead.step6 ? viewLead.step6.amount : 0}
+                          £{viewLead.step6?.amount ? viewLead.step6?.amount : 0}
                           </td>
                         </tr>
                       </tbody>
