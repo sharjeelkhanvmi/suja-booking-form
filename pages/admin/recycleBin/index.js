@@ -313,7 +313,7 @@ const Index = () => {
                                     </div>
                                   )
                                 )}
-                                <div>/ {data.step5.intensiveCourse}</div>
+                                <div>/ {data.step5?.intensiveCourse}</div>
                               </div>
                             </p>
                           </td>

@@ -896,7 +896,7 @@ const Index = () => {
                               Transaction ID
                             </h4>
                             <span className="font-normal md:text-base">
-                              {viewLead.stripe?.paymentId}
+                              {viewLead.stripe ? viewLead.stripe?.paymentId : '-'}
                             </span>
                           </span>
                         </div>
@@ -1050,7 +1050,7 @@ const Index = () => {
                             </td>
                             <td className="px-6 py-4 font-semibold text-sm">
                               {/* £{viewLead.step3.fast_track_theory} */}
-                              £0
+                              
                             </td>
                           </tr>
                         )}

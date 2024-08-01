@@ -57,7 +57,7 @@ const validationSchema = Yup.object().shape({
     .required("Please re-type your password")
     .oneOf([Yup.ref("password")], "Passwords do not match"),
   addressLineOne: Yup.string().required("Address is required"),
-  county: Yup.string().required("county is required"),
+  // county: Yup.string().required("county is required"),
   mondayStartTime: Yup.string().test(
     "valid-time",
     "select time 08:00 and 20:00.",
@@ -323,7 +323,7 @@ const student = () => {
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
-          console.log("inside")
+          console.log("inside",values)
           const formDatas = {
             ...formdata,
             ...{ step4: values }
@@ -337,6 +337,7 @@ const student = () => {
           <Form>
             { useEffect(() => {
             setValid(values);
+            console.log('Current values',values)
           }, [values])}
             <Formnav />
 
