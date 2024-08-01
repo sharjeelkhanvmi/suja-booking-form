@@ -160,10 +160,10 @@ const Index = () => {
         <>
           <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
             <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 w-full h-full sm:overflow-auto">
-              <div className="overflow-x-scroll xl:overflow-x-hidden p-10">
+              <div className="overflow-x-scroll 2xl:overflow-x-hidden p-10">
                 <table
                   role="table"
-                  className="w-full table-auto"
+                  className="w-full table-auto 2xl:min-w-full min-w-[1200px]"
                   variant="simple"
                   color="gray-500"
                   mb="24px"

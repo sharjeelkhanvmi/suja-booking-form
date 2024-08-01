@@ -280,13 +280,9 @@ const Index = () => {
     // Filter out days without both start and end times
     return days.filter(day => day.start && day.end);
   };
-  
-  
-  
-  
                         
   const availabilityData = getAvailabilityData(viewLead);
-
+  console.log("availabilityData",availabilityData)
 
   return (
     <Layout>
@@ -381,10 +377,10 @@ const Index = () => {
           </div>
           <div className="w-full p-2 my-3  flex items-center justify-center text-white bg-black flex-col">
             <div className="!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 w-full h-full sm:overflow-auto">
-              <div className="overflow-x-scroll xl:overflow-x-hidden p-10">
+              <div className="overflow-x-scroll 2xl:overflow-x-hidden p-10">
                 <table
                   role="table"
-                  className="w-full table-auto"
+                  className="w-full table-auto 2xl:min-w-full min-w-[1200px]"
                   variant="simple"
                   color="gray-500"
                   mb="24px"
@@ -632,12 +628,12 @@ const Index = () => {
                 </table>
               </div>
             </div>
-            <div className="flex">
-            <div className="text-gray-400 mr-4 my-2">
+            <div className="flex my-2 gap-1 sm:gap-4 flex-wrap ">
+            <div className="text-gray-400">
                 <span>Current Order Count: </span>{" "}
                 <span className="font-bold">{leadsData && leadsData.length > 0 ? leadsData.length : 0} </span>
               </div> 
-              <div className="text-gray-400 mr-4 my-2">
+              <div className="text-gray-400">
                 <span>Total Orders </span>{" "}
                <span className="font-bold"> {count} </span>
               </div>
@@ -688,7 +684,7 @@ const Index = () => {
                     </label>
                     <input
                       className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                      value={formData?.step6.payment}
+                      value={formData?.step6 ? formData.step6.payment : '0'} // I have added Hard Code value it will be change to formData?.step6?.payment for normal functionality
                       type="text"
                       onChange={(e) =>
                         setFormData({
@@ -702,7 +698,7 @@ const Index = () => {
                     </label>
                     <input
                       className="block mb-4 w-full text-xs p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                      value={formData?.step6.amount}
+                      value={formData?.step6 ? formData.step6.amount : '0'} // I have added Hard Code value it will be change to formData?.step6?.amount for normal functionality
                       type="text"
                       readOnly
                       // onChange={(e) =>

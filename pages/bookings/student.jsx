@@ -195,12 +195,12 @@ const student = () => {
   const [changedData, setChangedData] = useState(formdata);
   const [firstStepPostalCode, setFirstStepPostalCode] = useState();
   const step4 = formdata.step4 ? formdata.step4 : {};
-  console.log("formdata.step1.postal_code",formdata);
+  // console.log("formdata.step1.postal_code",formdata);
 
   useEffect(()=>{
     step4.postal_code=formdata.step1.postal_code;
     setFirstStepPostalCode(step4.postal_code=formdata.step1.postal_code);
-    console.log("inside useeefect",firstStepPostalCode);
+    // console.log("inside useeefect",firstStepPostalCode);
   },[])
 
   
@@ -337,7 +337,7 @@ const student = () => {
           <Form>
             { useEffect(() => {
             setValid(values);
-            console.log('Current values',values)
+            {/* console.log('Current values',values) */}
           }, [values])}
             <Formnav />
 
