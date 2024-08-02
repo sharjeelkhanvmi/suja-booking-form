@@ -89,7 +89,7 @@ const Index = () => {
   const handleLeadsData = async () => {
     try {
      
-      const response = await fetch("/api/leads/");
+      const response = await fetch("/api/bookingrequest/");
       const responseData = await response.json();
 
       setLoading(true);
@@ -588,7 +588,7 @@ const Index = () => {
                           </td>
                           <td
                             role="cell"
-                            className="flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full gap-2 mx-auto"
+                            className="flex flex-1 justify-end pt-[14px] pb-[16px] sm:text-[14px] w-full mx-auto"
                           >
                             <span className="text-sm font-bold text-red-700 ">
                               <AiFillDelete
@@ -598,12 +598,12 @@ const Index = () => {
                                 }}
                               />
                             </span>
-                            <span className="text-sm font-bold text-gray-800 ">
+                            {/* <span className="text-sm font-bold text-gray-800 ">
                               <AiFillEdit
                                 className="text-2xl cursor-pointer"
                                 onClick={() => handleEdit(data)}
                               />
-                            </span>
+                            </span> */}
                             <span className="text-sm font-bold text-gray-800 ">
                               <IoEye
                                 className="text-2xl cursor-pointer"
@@ -625,7 +625,7 @@ const Index = () => {
                 </table>
               </div>
             </div>
-            <div className="flex">
+            {/* <div className="flex">
             <div className="text-gray-400 mr-4 my-2">
                 <span>Current Order Count: </span>{" "}
                 <span className="font-bold">{leadsData && leadsData.length > 0 ? leadsData.length : 0} </span>
@@ -634,7 +634,7 @@ const Index = () => {
                 <span>Total Orders </span>{" "}
                <span className="font-bold"> {count} </span>
               </div>
-            </div>
+            </div> */}
             {leadsData && leadsData.length != total &&
             (
               <>
@@ -941,8 +941,9 @@ const Index = () => {
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                           >
                             <span className="bg-amber-200  py-1 px-3 font-semibold  text-xs rounded-full">
-                              Speedster Course
+                               {viewLead.step2.dr_course_type.charAt(0).toUpperCase() + viewLead.step2.dr_course_type.slice(1)}
                             </span>
+                            {console.log(viewLead)}
                             {viewLead.step2.dr_course_price ? (
                               <span className="block mt-2 ms-1">
                                 {" "}

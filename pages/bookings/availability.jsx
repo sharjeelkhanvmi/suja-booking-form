@@ -149,8 +149,7 @@ return (
           step3: changedData.step3,
           step4: changedData.step4,
           step5: changedData.step5,
-          step6: changedData.step6,
-          
+          //step6: changedData.step6,
         }
         const leadresponse = await axios.post("/api/leads/post", leadData);
         const lead = await leadresponse.data
