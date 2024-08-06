@@ -1,7 +1,7 @@
 import { sendMail } from "@/app/service/mailService";
 
 const handler = async (req, res) => {
-  console.log("CHECKINNNNNG",req.headers.host)
+  // console.log("CHECKINNNNNG",req.headers.host)
   const dynamicURL = req.headers.host;
   try {
     const { method } = req;
@@ -18,7 +18,7 @@ const handler = async (req, res) => {
 
         // Extract each step from formdata
         const { step1, step2, step3, step4, step5, step6 } = formdata;
-
+        console.log("API Mailer",formdata)
         if (!step1 || !step2 || !step3 || !step4 || !step5 || !step6) {
           return res.status(400).json({ error: "Incomplete form data" });
         }
@@ -60,7 +60,7 @@ const handler = async (req, res) => {
 
         try {
           // Send the email
-          await sendMail("Suja Booking Receipt" , `m.waqas.ansari36@gmail.com, sharjeelkhanvmi@gmail.com,${step4.email}`, emailContent);
+          await sendMail("Suja Booking Receipt" , `sharjeelkhanvmi@gmail.com,${step4.email}`, emailContent);
 
           // Log a success message
           console.log("Email sent successfully");

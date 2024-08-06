@@ -186,7 +186,7 @@ export default function ThreeBoxes() {
         >
           <div className="p-3 mx-3 bg-gray-200  opacity-1 transition-all rounded-xl">
           <svg className="w-8 h-8 text-black-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <circle cx="12" cy="12" r="10" stroke-width="2" />
+  <circle cx="12" cy="12" r="10" strokeWidth="2" />
   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 16v-4m0-4h.01" />
 </svg>
 

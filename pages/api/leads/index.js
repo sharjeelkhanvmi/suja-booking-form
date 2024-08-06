@@ -17,7 +17,7 @@ export default async function GET(req, res) {
 
     if (leads.length  > 0) {
       const filteredLeads = leads.filter(
-        lead => lead.step2.dr_course_type == 'guaranteed_pass' || lead.step2.dr_course_type == 'speedster'
+        lead => lead.step2.dr_course_type === 'guaranteed_pass' || lead.step2.dr_course_type === 'speedster'
       );
 
       if (filteredLeads.length > 0) {
